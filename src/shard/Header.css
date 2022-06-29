@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+
+.navBar {
+    background-color: #19221f;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 29px 20px;
+    width: 1400px;
+    min-width: 375px;
+}
+/* 
+.navBar_Login {
+
+} */
+/* 
+@media screen and (max-width:375px) {
+    .navBar {
+        justify-content: space-between;
+        display: none;
+    }
+    
+} */
