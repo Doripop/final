@@ -1,14 +1,34 @@
 import React, { useRef } from "react";
+import axios from "axios"
 import styled from "styled-components";
 import "./modal.css"
+import { instance } from "../axios";
 
 
-const Modal = (props) => {
-    const write = useRef(null)
+const LoginModal = (props) => {
+    const userID = useRef("")
+    const userPW = useRef("")
+   
+    
+    
+    const userLogin = async()=>{
+            try {
+           const {data} =  await instance.post("user-login",{
+            email : userID.current.value,
+            password : userPW.current.value
+           });
+
+            //  localStorage.setItem("token", data.token)
+            } catch(error){
+              window.alert(error) 
+            }
+        }
+      
+    
+    
+    
     
     const {open, close , header} = props;
-
-   
 
     return (
         <>
@@ -20,16 +40,16 @@ const Modal = (props) => {
                     </header>
                     <body style={{display:"flex",flexDirection:"column", alignItems:"center"}}>
                         <div>
-                            아이디 : <input ref={write} type="text" placeholder="입력해주세요" />
+                            <input ref={userID} type="email" placeholder="EMAIL" />
                         </div>
                         <div>
-                            비밀번호 : <input ref={write} type="text" placeholder="입력해주세요" />
+                            <input ref={userPW} type="password" placeholder="PASSWORD" />
                         </div>
                         
 
                     </body>
                     <footer>
-                        <button className="close" onClick={close}>로그인</button>
+                        <button className="close" onClick={userLogin}>로그인</button>
                         <button className="close" onClick={close}>닫기</button>
                     </footer>
                 </section>
@@ -42,4 +62,4 @@ const Modal = (props) => {
 
 }
 
-export default Modal;
+export default LoginModal;
