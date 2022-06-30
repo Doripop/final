@@ -9,8 +9,13 @@ const LoginModal = (props) => {
     const userID = useRef("")
     const userPW = useRef("")
    
-    
-    
+    // const reLogin = async() => {
+    //    const {data} = await instance.post ("user-re")
+    //    localStorage.setItem("token", data.token)
+    //    console.log("아앙")
+    // }
+
+
     const userLogin = async()=>{
             try {
            const {data} =  await instance.post("user-login",{
@@ -18,7 +23,13 @@ const LoginModal = (props) => {
             password : userPW.current.value
            });
 
-            //  localStorage.setItem("token", data.token)
+            // localStorage.setItem("token", data.token)
+            // localStorage.setItem("token", data.re_token) 
+
+            // window.setTimeout(()=>{
+            //     reLogin()
+            // }, 590000)
+
             } catch(error){
               window.alert(error) 
             }
