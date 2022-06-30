@@ -1,10 +1,10 @@
-import LoginModal from "../shard/modal/Loginmodal"
+import SignupModal from "../shard/modal/Signupmodal";
 import React, { useState } from "react";
 
 
 
 
-const Login = () => {
+const Signup = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   
@@ -19,13 +19,13 @@ const Login = () => {
 
     return (
         <>
-     <button onClick={openModal}>로그인</button>
-      <LoginModal open={modalOpen} close={closeModal} header="로그인">
-      </LoginModal>
+     <button onClick={openModal}>회원가입</button>
+      <SignupModal open={modalOpen} close={closeModal} header="회원가입">
+      </SignupModal>
 
         </>
     )
 }
 
 
-export default  Login;
+export default  Signup;
