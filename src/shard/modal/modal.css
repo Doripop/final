@@ -45,6 +45,15 @@
     animation: modal-bg-show 0.3s;
 }
 
+.user {
+    display: none;
+}
+
+.admin {
+    display: flex;
+}
+
+
 @keyframes modal-show {
     from {
         opacity: 1;
