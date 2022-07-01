@@ -1,9 +1,7 @@
 import LoginModal from "../shard/modal/Loginmodal"
 import React, { useState } from "react";
-import styled from "styled-components";
 
-//import react Icons
-import { FiLogIn } from 'react-icons/fi'
+
 
 
 const Login = () => {
@@ -21,22 +19,13 @@ const Login = () => {
 
     return (
         <>
-      <LoginBtn onClick={openModal}><FiLogIn/></LoginBtn>
+     <button onClick={openModal}>로그인</button>
       <LoginModal open={modalOpen} close={closeModal} header="로그인">
       </LoginModal>
 
         </>
     )
 }
-
-const LoginBtn = styled.button`
-  color: white;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-size: 30px;
-  font-weight: 500;
-`;
 
 
 export default  Login;

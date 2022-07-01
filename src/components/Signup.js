@@ -1,9 +1,8 @@
 import SignupModal from "../shard/modal/Signupmodal";
 import React, { useState } from "react";
-import styled from "styled-components";
 
-//import react Icons
-import { SiGnuprivacyguard } from 'react-icons/si'
+
+
 
 const Signup = () => {
 
@@ -20,7 +19,7 @@ const Signup = () => {
 
     return (
         <>
-      <SignupBtn onClick={openModal}><SiGnuprivacyguard/></SignupBtn>
+     <button onClick={openModal}>회원가입</button>
       <SignupModal open={modalOpen} close={closeModal} header="회원가입">
       </SignupModal>
 
@@ -28,13 +27,5 @@ const Signup = () => {
     )
 }
 
-const SignupBtn = styled.button`
-  color: white;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-size: 30px;
-  font-weight: 500; 
-`;
 
 export default  Signup;

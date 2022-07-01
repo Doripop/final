@@ -10,7 +10,6 @@ const CardList = () => {
                     alt="#사진"
                 >
                 </img>
-                <div>카페 이름</div>
             </ContentImg>
             <Content>
                 <img
@@ -18,7 +17,10 @@ const CardList = () => {
                     alt="#사진"
                 >
                 </img>
+                <p>별점</p>
                 <div>카페 이름</div>
+                <div>해시태그</div>
+                <div>실제리뷰란입니다. 실제리뷰란입니다. </div>
             </Content>
             <Content>
                 <img
@@ -26,7 +28,10 @@ const CardList = () => {
                     alt="#사진"
                 >
                 </img>
+                <p>별점</p>
                 <div>카페 이름</div>
+                <div>해시태그</div>
+                <div>실제리뷰란입니다. 실제리뷰란입니다. </div>
             </Content>
         </Container>
     );
@@ -48,7 +53,7 @@ const Container = styled.div`
 
 const ContentImg = styled.div`
     width: 390px;
-    height: 365px;
+    height: 390px;
     border: 2px solid black;
 
     padding: 10px;
@@ -60,7 +65,7 @@ const ContentImg = styled.div`
 
 const Content = styled.div`
     width: 390px;
-    height: 365px;
+    height: 390px;
     border: 2px solid black;
 
     padding: 10px;

@@ -4,35 +4,19 @@ import styled from 'styled-components';
 //Icon import
 import { FiSearch } from 'react-icons/fi'
 
-const NavBtn = () => {
+const Search = () => {
     return (
         <>
         <Container>
-            <span>
-                OO동 근처에 있는카페!
-                <button>
-                    위치변경
-                </button>
-                <button>
-                    카페등록
-                </button>
-                <button>
-                    리뷰작성
-                </button>
-                <button>
-                    별점순
-                </button>
-                <button>
-                    최신순
-                </button>
-            </span>
+            <SearchInput type="text" placeholder="서울특별시 용산구, 42 디저트카페">
+            </SearchInput><SearchIcon><FiSearch/></SearchIcon>
         </Container>
         </>
     );
 }
 const Container = styled.div`
     width: 720px;
-    height: 100px;
+    height: 40px;
     margin: 0px auto;
     margin-bottom: 30px;
 
@@ -63,4 +47,4 @@ const SearchIcon = styled.span`
     cursor: pointer;
 `;
 
-export default NavBtn;
+export default Search;

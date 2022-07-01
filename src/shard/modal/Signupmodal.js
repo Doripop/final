@@ -1,22 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import axios from "axios";
 import "./modal.css"
 import { instance } from "../axios";
 
-//Image import
-import coffee1 from "../../css/coffee1.jpg";
-import coffee2 from "../../css/coffee2.jpg";
-import coffee3 from "../../css/coffee3.jpg";
-import coffee4 from "../../css/coffee4.jpg";
-
 
 const SignupModal = (props) => {
-
-    //Image array
-    const backgroundArr = [coffee1,coffee2,coffee3,coffee4];
-    const randomIndex = Math.floor(Math.random() * backgroundArr.length);
-    const backgroundImg = backgroundArr[randomIndex];
 
     const { open, close, header } = props;
 
@@ -81,11 +71,11 @@ const SignupModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-                    <section style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
-                        <Header>
+                    <section>
+                        <header style={{ display: "flex", justifyContent: "center" }}>
                             {header}
-                        </Header>
-                        <Body>
+                        </header>
+                        <body style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                             <div>
 
                                 <label htmlFor="사용자">사용자</label>
@@ -110,70 +100,36 @@ const SignupModal = (props) => {
                                 />
                             </div>
                             <div>
-                                <InputBox ref={Nic} type="text" placeholder="NICKNAME" />
+                                <input ref={Nic} type="text" placeholder="NICKNAME" />
                             </div>
                             <div>
-                                <InputBox ref={Email} type="email" placeholder="EMAIL" />
+                                <input ref={Email} type="email" placeholder="EMAIL" />
                             </div>
                             <div>
-                                <InputBox ref={Password} type="password" placeholder="PASSWORD" />
+                                <input ref={Password} type="password" placeholder="PASSWORD" />
                             </div>
                             <div>
-                                <InputBox ref={Check} type="password" placeholder="PASSWORD CHECK" />
+                                <input ref={Check} type="password" placeholder="PASSWORD CHECK" />
                             </div>
 
                             <div className={role == "user" ? "user" : "admin"}>
-                                <InputBox ref={Key} type="password" placeholder="Key" />
+                                <input ref={Key} type="password" placeholder="Key" />
                             </div>
-                        </Body>
-                        <Footer>
+
+
+                        </body>
+                        <footer>
                             <button className="close" onClick={() => { userRegister() }}>가입하기</button>
                             <button className="close" onClick={close}>닫기</button>
-                        </Footer>
+                        </footer>
                     </section>
                 ) : null}
 
             </div>
         </>
     )
+
+
 }
-
-const Header = styled.header`
-    display: flex; 
-    justify-content: center;
-    height: 150px;
-    text-align: center;
-    font-size: 50px;
-    margin-top: 80px; 
-`;
-
-const Body = styled.body`
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-`;
-
-const InputBox = styled.input`
-    width: 200px;
-    height: 30px;
-    background: transparent;
-
-    font-size: 20px;
-
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
-
-    ::placeholder {
-        color: white;  
-    }
-`;
-
-const Footer = styled.footer`
-    display: flex;
-    width:fit-content;
-    margin: 0 auto;
-`;
 
 export default SignupModal;
