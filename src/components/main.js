@@ -1,19 +1,29 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./header";
+import Banner from "./Banner";
+import Search from "./Search";
+import CardList from "./CardList";
+import AdminAdd from "./adminAdd";
 
 const Main = () => {
 
 
-
-
-
     return (
         <>
-        <div>
-            <Header />
+            <div>
+                
+                <Banner />
+                <Search />
+                <CardList />
+               
+    
 
-        </div>
+
+                <Routes>
+                <Route path="/admin"  element={<AdminAdd />}/> 
+                </Routes>
+            </div>
         </>
     )
 }
