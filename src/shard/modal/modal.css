@@ -50,8 +50,9 @@
     display: none;
 }
 
-.admin {
+.owner {
     display: flex;
+    flex-direction: column;
 }
 
 

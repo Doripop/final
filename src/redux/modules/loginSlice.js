@@ -14,7 +14,7 @@ const change = createSlice({
     initialState,
     reducers : {
         // listadd : (state, action) => {
-        //     state.user.push(action.payload);
+        //     state.kang.push(action.payload);
         // }, 
         // listup : (state, action) =>{
         //     state.user[0] = (action.payload)

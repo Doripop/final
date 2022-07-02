@@ -26,7 +26,13 @@ const LoginModal = (props) => {
             password : userPW.current.value
            });
 
-            //  localStorage.setItem("token", data.token)
+            // localStorage.setItem("token", data.token)
+            // localStorage.setItem("token", data.re_token) 
+
+            // window.setTimeout(()=>{
+            //     reLogin()
+            // }, 590000)
+
             } catch(error){
               window.alert(error) 
             }
