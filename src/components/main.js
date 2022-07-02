@@ -4,7 +4,7 @@ import Header from "./header";
 import Banner from "./Banner";
 import NavBtn from "./NavBtn";
 import CardList from "./CardList";
-import AdminAdd from "./adminAdd";
+
 
 const Main = () => {
 

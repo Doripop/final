@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import CafeReg from './CafeReg';
 //Icon import
 import { FiSearch } from 'react-icons/fi'
 
 const NavBtn = () => {
+
     return (
         <>
         <Container>
@@ -13,9 +14,7 @@ const NavBtn = () => {
                 <button>
                     위치변경
                 </button>
-                <button>
-                    카페등록
-                </button>
+                <CafeReg />
                 <button>
                     리뷰작성
                 </button>

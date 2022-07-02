@@ -1,10 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom"
 import Main from "./components/main";
-import AdminAdd from "./components/adminAdd";
 import Header from "./components/header";
 import { instance } from "./shard/axios";
-import CafeReg from "./components/CafeReg";
+
 
 function App() {
 
@@ -24,8 +23,6 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/admin" element={<AdminAdd />} />
-        <Route path="/cafereg" element={<CafeReg />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 
