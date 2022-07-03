@@ -23,7 +23,7 @@
     margin: 0 auto;
     border-radius: 0.3rem;
     background-color: #fff;
-    animation: modal-show 0.3s;
+    animation: modal-show 0.1s;
     overflow: hidden;
 }
 
