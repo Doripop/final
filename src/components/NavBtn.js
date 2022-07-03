@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CafeReg from './CafeReg';
 //Icon import
 import { FiSearch } from 'react-icons/fi'
+import Review from './Review';
 
 const NavBtn = () => {
 
@@ -15,9 +16,7 @@ const NavBtn = () => {
                     위치변경
                 </button>
                 <CafeReg />
-                <button>
-                    리뷰작성
-                </button>
+                <Review />
                 <button>
                     별점순
                 </button>
