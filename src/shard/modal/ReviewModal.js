@@ -1,76 +1,174 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
-
-
+import { AiOutlineClose } from "react-icons/ai"
+import { ImSearch } from "react-icons/im"
+import { BsStarFill, BsStar } from "react-icons/bs"
 
 
 const ReviewModal = (props) => {
- 
-    const {open, close , header} = props;
+
+    const { open, close } = props;
+    const [star, setStar] = useState(0);
+
 
     return (
         <>
-        <div className={open ? 'openModal modal' : 'modal'}>
-            {open ? (
-                <section>
-                    <Header>
-                        {header}
-                    </Header>
-                    <Body>
-                        <h2>네이버 로그인</h2>
-                        <h2>카카오 로그인</h2>
-                        <h2>구글 로그인</h2>
-                    </Body>
-                    <Footer>
-                        <button className="close" onClick={close}>닫기</button>
-                    </Footer>
-                </section>
-            ):null}
-
-        </div>
+            <div className={open ? 'openModal modal' : 'modal'}>
+                {open ? (
+                    <section>
+                        <div
+                            onClick={close}
+                            style={{
+                                display: "flex",
+                                justifyContent: "flex-end"
+                            }}
+                        >
+                            <span style={{ fontSize: "25px" }}><AiOutlineClose /></span>
+                        </div>
+                        <div style={{ padding: "30px" }}>
+                            <Title>
+                                원하시는 카페의 <br />
+                                리뷰를 작성해주세요
+                            </Title>
+                        </div>
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}>
+                            <Search type="search" placeholder="카페 검색" />
+                        </div>
+                        <Body>
+                            <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+                                <span style={{fontWeight : "bold"}}>
+                                    별점
+                                </span>
+                                <div>
+                                    {Array.from({ length: 5 }, (items, i) => (
+                                        <>
+                                            <span
+                                                style={{
+                                                    fontSize : "30px",
+                                                    color : "#3FC275",
+                                                    cursor : "pointer"
+                                                }}
+                                                onClick={() => {
+                                                    setStar(i + 1)
+                                                }}
+                                            > {star < i + 1 ? <BsStar /> : <BsStarFill />}</span>
+                                        </>
+                                    ))}
+                                </div>
+                                <div
+                                    style={{
+                                        marginTop : "20px",
+                                    }}>
+                                    <span style={{fontWeight : "bold"}}>
+                                        해시태그
+                                    </span>
+                                    <div style={{
+                                        display : "flex",
+                                        justifyContent : "center"
+                                    }}>
+                                        <Hashtag type="text" placeholder="해쉬태그" />
+                                    </div>
+                                </div>
+                                    <div
+                                    style={{
+                                        marginTop : "20px",
+                                    }}>
+                                    <span style={{fontWeight : "bold"}}>
+                                        리뷰
+                                    </span>
+                                    <div style={{
+                                        display : "flex",
+                                        justifyContent : "center"
+                                    }}>
+                                        <ReviewArea placeholder="리뷰를 작성해주세요" />
+                                    </div>
+                                </div>
+                                <div
+                                    style={{
+                                        marginTop: "20px",
+                                    }}>
+                                    <span style={{fontWeight : "bold"}}>
+                                        리뷰 사진 업로드
+                                    </span>
+                                    <div style={{
+                                        display : "flex",
+                                        justifyContent : "center"
+                                    }}>
+                                        <Hashtag type="file" placeholder="리뷰 사진 업로드" />
+                                    </div>
+                                </div>
+                            </div> 
+                        </Body>
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}>
+                            <UploadBtn className="close" onClick={close}>게시하기</UploadBtn>
+                        </div>
+                    </section>
+                ) : null}
+            </div>
         </>
     )
 }
 
-const Header = styled.header`
+const Title = styled.span`
     display: flex; 
-    justify-content: center;
-    height: 150px;
-    text-align: center;
-    font-size: 50px;
-    margin-top: 80px; 
+    justify-content: flex-start;
+    font-size: 30px;
+    font-weight : bold;
 `;
 
 const Body = styled.body`
     display: flex; 
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content : flex-start;
+    padding : 30px;
 `;
 
-const InputBox = styled.input`
-    width: 200px;
-    height: 30px;
-    background: transparent;
-
-    font-size: 20px;
-
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
-
-    ::placeholder {
-        color: white;  
-    }
+const Search = styled.input`
+    width: 80%;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 14px;
+    box-shadow: 0 4px 4px -4px black;
 `;
 
-const Footer = styled.footer`
-    display: flex;
-    width:fit-content;
-    margin: 0 auto;
+const Hashtag = styled.input`
+    width: 80%;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 14px;
+    box-shadow: 0 4px 4px -4px black;
+    margin-top : 20px;
+`;
 
+const ReviewArea = styled.textarea`
+    width : 80%;
+    height : 100px;
+    border : 1px solid #bbb;
+    border-radius : 4px;
+    padding : 10px 12px;
+    font-size : 14px;
+    box-shadow : 0 4px 4px -4px black;
+    margin-top : 20px;
+`;
+
+const UploadBtn = styled.button`
+    width : 200px;
+    height : 40px;
+    border : none;
+    background-color : black;
+    color : white;
+    font-size : 20px; 
 `;
 
 export default ReviewModal;

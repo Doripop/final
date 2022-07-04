@@ -20,7 +20,7 @@ const Review = () => {
     return (
         <>
       <button onClick={openModal}>리뷰작성</button>
-      <ReviewModal open={modalOpen} close={closeModal} header="리뷰작성">
+      <ReviewModal open={modalOpen} close={closeModal}>
       </ReviewModal>
 
         </>
