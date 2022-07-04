@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom"
 import Main from "./components/main";
+import Admin from "./components/admin";
 import Header from "./components/header";
 import { instance } from "./shard/axios";
 
@@ -23,6 +24,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 

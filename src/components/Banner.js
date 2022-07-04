@@ -23,29 +23,29 @@ const Banner = (props) => {
             <StyledSlider {...settings}>
                 <div>
                     <img 
-                        src="https://img-cf.kurly.com/banner/main/pc/img/96d199a4-ce14-43c5-9471-8c816ccd8b64"
+                        src="../css/coffee1.jpg"
                         alt="메인 배너 1"
                     >
                     </img>
                 </div>
                 <div>
                     <img 
-                        src="https://img-cf.kurly.com/banner/main/pc/img/bb14e79a-a0ff-4e5e-83a2-a1c06c48d4ae"
+                        src="../css/coffee2.jpg"
+                        alt="메인 배너 2"
+                    >
+                    </img>
+                </div>
+                <div>
+                    <img 
+                        src="../css/coffee3.jpg"
                         alt="메인 배너 3"
                     >
                     </img>
                 </div>
                 <div>
                     <img 
-                        src="https://img-cf.kurly.com/banner/main/pc/img/8f6fd94e-cf21-4547-a726-b2ad7ad99e17"
+                        src="../css/coffee4.jpg"
                         alt="메인 배너 4"
-                    >
-                    </img>
-                </div>
-                <div>
-                    <img 
-                        src="https://img-cf.kurly.com/banner/main/pc/img/cc9e301f-bf05-42ca-889b-8d6d0777be4b"
-                        alt="메인 배너 5"
                     >
                     </img>
                 </div>
@@ -69,7 +69,7 @@ const StyledSlider = styled(Slider)`
         //슬라이드 스크린
         max-width: 1900px;
         min-width: 1050px;
-        width: 1440px;
+        width: 1200px;
         margin: 0 auto;
         background-size: cover;
         background-position: 50% center;
