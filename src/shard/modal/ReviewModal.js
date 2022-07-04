@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
-
+import {AiOutlineClose} from "react-icons/ai"
 
 
 
@@ -15,6 +15,12 @@ const ReviewModal = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             {open ? (
                 <section>
+                    <div 
+                    onClick={close}
+                    style={{display:"flex",justifyContent:"flex-end"}}
+                    >
+                    <span style={{fontSize:"25px"}}><AiOutlineClose /></span>
+                    </div>
                     <Header>
                         {header}
                     </Header>
