@@ -1,27 +1,24 @@
 import React,{ useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { InfoLoad } from "../redux/modules/adminSlice";
+
+
+
 
 const Admin = () => {
 
+
+    const dispatch = useDispatch()
+    
     React.useEffect(() => {
+        dispatch(InfoLoad())
+    }, [dispatch]);
 
-        let xhr = new XMLHttpRequest();
-        
-        xhr.open("GET", "http://localhost:5001/admin");
 
-        xhr.send();
+    const list = useSelector((state) => state.adminSlice.userInfo);
+    console.log(list);
 
-        //XMLHTTPRequest.readyState라는 프로퍼티가 변경이 될때마다 어떤 콜백함수를 호출해주는 것
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState === 4) {
-                console.log(xhr.responseText);
-            }
-        }
-
-        xhr.onload = function () {
-            console.log(xhr.responseText);
-        }
-    }, []);
     return (
         <Container>
             <LeftContent>
