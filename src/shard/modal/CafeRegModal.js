@@ -87,7 +87,10 @@ const CafeReg = (props) => {
           Longitude: longitude,
           oldAddress: query
         });
+        // console.log(data);
+        
       } catch (error) {
+        // console.log(error);
         window.alert(error)
       }
     }
