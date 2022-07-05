@@ -1,7 +1,7 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { InfoLoad } from "../redux/modules/adminSlice";
+import { InfoLoad, userInfoLoad } from "../redux/modules/adminSlice";
 
 
 
@@ -10,20 +10,22 @@ const Admin = () => {
 
 
     const dispatch = useDispatch()
-    
+
     React.useEffect(() => {
-        dispatch(InfoLoad())
+        // dispatch(InfoLoad())
+        dispatch(userInfoLoad())
     }, [dispatch]);
 
 
-    const list = useSelector((state) => state.adminSlice.userInfo);
-    console.log(list);
+    const list = useSelector((state) => state.adminSlice.CafeInfo);
+
+
 
     return (
         <Container>
             <LeftContent>
                 <h2>
-                    오늘도 일해주세요!<br/>
+                    오늘도 일해주세요!<br />
                     관리자님!
                 </h2>
                 <button>
@@ -38,14 +40,20 @@ const Admin = () => {
             </LeftContent>
             <ReightContent>
                 <button>미처리</button>
-                <hr/>
+                <hr />
                 <List>
-                <Card>
-                    <h1>카페명</h1>
-                    <p>카페주소</p>
-                    <button>⩗</button>
-                    <button>⨉</button>
-                </Card>
+                    {list?.map((item, i) => (
+                        <Card>
+                            <h1>{item.name}</h1>
+                            <p>
+                                {item.address} <br />
+                                {item.zoneNum}
+                            </p>
+                            <button>⩗</button>
+                            <button>⨉</button>
+                        </Card>
+                    ))}
+
                 </List>
             </ReightContent>
         </Container>

@@ -37,13 +37,7 @@ const LoginModal = (props) => {
               window.alert(error) 
             }
         }
-      
-    
-    
-    
-    
     const {open, close , header} = props;
-
     return (
         <>
         <div className={open ? 'openModal modal' : 'modal'}>
