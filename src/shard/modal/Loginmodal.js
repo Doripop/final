@@ -53,9 +53,9 @@ const LoginModal = (props) => {
                         <div>
                             <InputBox ref={userPW} type="password" placeholder="PASSWORD" />
                         </div>
-                        <h2>네이버 로그인</h2>
-                        <h2>카카오 로그인</h2>
-                        <h2>구글 로그인</h2>
+                        <div>네이버 로그인</div>
+                        <div>카카오 로그인</div>
+                        <div>구글 로그인</div>
                     </Body>
                     <Footer>
                         <button className="close" onClick={userLogin}>로그인</button>
