@@ -96,7 +96,7 @@ const ReviewModal = (props) => {
     //Hashtag
     const [tagItem, setTagItem] = useState('')
     const [tagList, setTagList] = useState([])
-    console.log(tagList);
+    // console.log(tagList);
     // console.log(tagItem)
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
@@ -160,7 +160,7 @@ const ReviewModal = (props) => {
                                 justifyContent: "flex-end",
                                 cursor:"pointer"
                             }}>
-                            <span style={{ fontSize: "25px" }}><AiOutlineClose /></span>
+                            <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
                         </div>
                         <div style={{ padding: "30px" }}>
                             <Title>

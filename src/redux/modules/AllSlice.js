@@ -23,9 +23,9 @@ export const ReviewReg = createAsyncThunk(
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
      async (searchName,dispacth) => {
-        console.log(searchName, "아아아", dispacth);
+        // console.log(searchName, "아아아", dispacth);
         try {
-            const {data} =  await instance.get("cafes/{cafeId}");
+            const {data} =  await instance.get(`cafes/${searchName}`);
             // console.log(data);
             // dispacth(listLoad(data));
             return data
@@ -49,7 +49,15 @@ const change = createSlice({
         // }
     },
     extraReducers : {
-    //비동기 작업을 실행할때 쓰는 공간
+        [CafeSearch.pending]: (state) => {
+            console.log("호출중")
+        },
+        [CafeSearch.fulfilled]: (state, action) => {
+            state.SearchCafeInfo = action.payload
+        },
+        [CafeSearch.rejected]: (state) => {
+            console.log("호출 실패")
+        }
     }
 })
 
