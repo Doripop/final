@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
+import {AiOutlineClose} from "react-icons/ai"
 
 //Image import
 import coffee1 from "../../css/coffee1.jpg";
@@ -110,13 +111,17 @@ const SignupModal = (props) => {
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
                     <section style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+                        <div 
+                            onClick={close}
+                            style={{display:"flex",justifyContent:"flex-end"}}
+                        >
+                            <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
+                        </div>
                         <Header>
                             {header}
                         </Header>
                         <Body>
                             <div>
-
-                                <label htmlFor="사용자">사용자</label>
                                 <input
                                     type="radio"
                                     id="사용자"
@@ -126,7 +131,7 @@ const SignupModal = (props) => {
                                         userRole(e)
                                     }}
                                 />
-                                <label htmlFor="사장님">사장님</label>
+                                <FormCheckText htmlFor="사용자">사용자</FormCheckText>
                                 <input
                                     type="radio"
                                     id="사장님"
@@ -136,10 +141,11 @@ const SignupModal = (props) => {
                                         userRole(e)
                                     }}
                                 />
+                                <FormCheckText htmlFor="사장님">사장님</FormCheckText>
                             </div>
                             <div className={role == "user" ? "user" : "owner"}>
-                                <input ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
-                                <input ref={Businessnumber} type="text" placeholder="사업자등록번호" />
+                                <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
+                                <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" />
                                 <button
                                 onClick={()=>{NumberCheck(Businessnumber.current.value)}}
                                 >확인</button>
@@ -156,15 +162,9 @@ const SignupModal = (props) => {
                             <div>
                                 <InputBox ref={Check} type="password" placeholder="PASSWORD CHECK" />
                             </div>
-
-
-                       
-                      
-
                         </Body>
                         <Footer>
                             <button className="close" onClick={() => { userRegister() }}>가입하기</button>
-                            <button className="close" onClick={close}>닫기</button>
                         </Footer>
                     </section>
                 ) : null}
@@ -179,20 +179,52 @@ const Header = styled.header`
     justify-content: center;
     height: 150px;
     text-align: center;
-    font-size: 50px;
     margin-top: 80px; 
+
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
 `;
 
 const Body = styled.body`
     display: flex; 
     flex-direction: column;
     align-items: center;
+
+    & button {
+        width: 100px;
+        height: 40px;
+        margin-top: 15px;
+        margin-left: 200px;
+
+        border: 1px solid black;
+        color: white;
+        background-color: black;
+    }
+`;
+
+const FormCheckText = styled.label`
+    margin: 10px;
+    width: 110px;
+    height: 35px;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+
+    &:hover{  
+        color : black;
+        font-weight: bold;
+    }
 `;
 
 const InputBox = styled.input`
-    width: 200px;
-    height: 30px;
+    width: 300px;
+    height: 50px;
     background: transparent;
+    color: white;
 
     font-size: 20px;
 
@@ -200,6 +232,7 @@ const InputBox = styled.input`
     border-right-width:0; 
     border-top-width:0;
     border-bottom-width:1;
+    border-bottom-color: white;
 
     ::placeholder {
         color: white;  
@@ -210,6 +243,11 @@ const Footer = styled.footer`
     display: flex;
     width:fit-content;
     margin: 0 auto;
+
+    & button {
+        color: white;
+        background-color: black;
+    }
 `;
 
 export default SignupModal;

@@ -19,7 +19,7 @@ const Review = () => {
 
     return (
         <>
-      <button onClick={openModal}>리뷰작성</button>
+      <ReviewBtn onClick={openModal}>리뷰작성</ReviewBtn>
       <ReviewModal open={modalOpen} close={closeModal}>
       </ReviewModal>
 
@@ -27,7 +27,18 @@ const Review = () => {
     )
 }
 
+const ReviewBtn = styled.button`
+  width: 100px;
+  height: 40px;
+  color: white;
 
+  background-color: #00E676;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  
+  cursor: pointer;
+`;
 
 
 export default  Review;

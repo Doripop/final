@@ -20,13 +20,25 @@ const CafeReg = () => {
 
     return (
         <>
-      <button onClick={openModal}>카페등록</button>
-      <CafeRegModal open={modalOpen} close={closeModal} header="카페등록">
-      </CafeRegModal>
-
+          <CafeBtn onClick={openModal}>카페등록</CafeBtn>
+          <CafeRegModal open={modalOpen} close={closeModal} header="카페등록">
+          </CafeRegModal>
         </>
     )
 }
 
+const CafeBtn = styled.button`
+  width: 100px;
+  height: 40px;
+  color: white;
+  margin-right:10px;
+
+  background-color: #00E676;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+`;
 
 export default  CafeReg;

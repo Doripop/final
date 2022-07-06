@@ -111,14 +111,13 @@ const CafeReg = (props) => {
               onClick={close}
               style={{display:"flex",justifyContent:"flex-end"}}
               >
-                  <span style={{fontSize:"25px"}}><AiOutlineClose /></span>
+                  <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
               </div>
              
               <Header>
                 {header}
               </Header>
               <Body>
-
                 {/* {user ? (
             <div>
               <h1>원하시는 카페를 신청해주세요!</h1>
@@ -130,33 +129,33 @@ const CafeReg = (props) => {
               파람에서 받거나 데이터베이스에 get요청으로 받아온 사장님이 가입할떄 나온 상호명
               </div>
               )} */}
-                <h1>당신의 카페를 등록해주세요!</h1>
-                상호명
-                <input ref={Cafe_Name} type="text" placeholder="카페이름" />
-                <p>우편번호 찾기</p>
+                <h1>원하시는 카페를 등록해주세요!</h1>
+                <h3>상호명</h3>
+                <InputBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점" />
+                <h3>우편번호 찾기</h3>
                 <div style={{ display: "flex" }}>
-                  <input
-                    placeholder="주소를 입력해주세요."
+                  <InputBox
+                    placeholder="우편번호"
                     name="address"
                     onChange={(e) => e.current.value}
                     value={zone}
                     required
-                  ></input>
-                  <button
+                  ></InputBox>
+                  <AdrBtn
                     onClick={() => {
                       modalClose();
                     }}
                   >
                     우편번호 찾기
-                  </button>
+                  </AdrBtn>
                 </div>
                 {opened ? (
                   <div>
                     <DaumPostCode style={postCodeStyle} onComplete={onComplete} />
                   </div>
                 ) : null}
-                <input type="text" placeholder="도로명 주소" value={address} />
-                <input ref={Detail_Address} type="text" placeholder="상세 주소를 입력해주세요" />
+                <InputBox type="text" placeholder="도로명 주소" value={address} />
+                <InputBox ref={Detail_Address} type="text" placeholder="상세주소를 입력해주세요" />
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <span>*카페는 관리자 승인 후 업로드 됩니다.</span>
@@ -175,15 +174,7 @@ const CafeReg = (props) => {
             </section>
           </>
         ) : null}
-
       </div>
-
-
-
-
-
-
-
     </>
   )
 };
@@ -202,16 +193,35 @@ const postCodeStyle = {
 const Header = styled.header`
     display: flex; 
     justify-content: center;
-    height: 60px;
+    height: 40px;
     text-align: center;
-    font-size: 35px;
-    margin-top: 80px; 
+    font-size: 30px;
+    margin-top: 50px; 
 `;
 
 const Body = styled.body`
     display: flex; 
     flex-direction: column;
-    align-items: center;
+    padding: 30px;
+`;
+
+const InputBox = styled.input`
+  width: 290px;
+  height: 40px;
+  margin-bottom: 10px;
+
+  border: 2px solid #F0F4C3;
+  outline:none;
+`;
+
+const AdrBtn = styled.button`
+  width: 120px;
+  height: 45px;
+  margin-left: 5px;
+
+  background-color: black;
+  color: wheat;
+  font-size: 10px;
 `;
 
 const BtnBox = styled.div`

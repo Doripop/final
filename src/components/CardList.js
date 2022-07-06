@@ -47,9 +47,10 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-    width: 390px;
-    height: 365px;
-    border: none;
+    width: 380px;
+    height: 380px;
+    border: 1px solid black;
+    margin-right:5px;
 
     padding: 10px;
     background-size: cover;

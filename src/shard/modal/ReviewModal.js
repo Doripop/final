@@ -149,7 +149,7 @@ const ReviewModal = (props) => {
                                 display: "flex",
                                 justifyContent: "flex-end"
                             }}>
-                            <span style={{ fontSize: "25px" }}><AiOutlineClose /></span>
+                            <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
                         </div>
                         <div style={{ padding: "30px" }}>
                             <Title>

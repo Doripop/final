@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
+import {AiOutlineClose} from "react-icons/ai"
 
 //google, naver, kakao login import
 import NaverLogin from 'react-naver-login';
@@ -60,6 +61,12 @@ const LoginModal = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             {open ? (
                 <section style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+                    <div 
+                        onClick={close}
+                        style={{display:"flex",justifyContent:"flex-end"}}
+                    >
+                        <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
+                    </div>
                     <Header>
                         {header}
                     </Header>
@@ -100,7 +107,6 @@ const LoginModal = (props) => {
                     </Body>
                     <Footer>
                         <button className="close" onClick={userLogin}>로그인</button>
-                        <button className="close" onClick={close}>닫기</button>
                     </Footer>
                 </section>
             ):null}
@@ -115,8 +121,11 @@ const Header = styled.header`
     justify-content: center;
     height: 150px;
     text-align: center;
-    font-size: 50px;
     margin-top: 80px; 
+    
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
 `;
 
 const Body = styled.body`
@@ -126,9 +135,10 @@ const Body = styled.body`
 `;
 
 const InputBox = styled.input`
-    width: 200px;
-    height: 30px;
+    width: 300px;
+    height: 50px;
     background: transparent;
+    color: white;
 
     font-size: 20px;
 
@@ -136,6 +146,7 @@ const InputBox = styled.input`
     border-right-width:0; 
     border-top-width:0;
     border-bottom-width:1;
+    border-bottom-color: white;
 
     ::placeholder {
         color: white;  
@@ -143,8 +154,8 @@ const InputBox = styled.input`
 `;
 
 const Img_sns = styled.img`
-    width: 200px;
-    height: 45px;
+    width: 300px;
+    height: 68px;
 
     margin-top: 20px;
     cursor: pointer;
@@ -155,6 +166,10 @@ const Footer = styled.footer`
     width:fit-content;
     margin: 0 auto;
 
+    & button {
+        color: white;
+        background-color: black;
+    }
 `;
 
 export default LoginModal;
