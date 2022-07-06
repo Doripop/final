@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Login from "./login";
 import Signup from "./Signup";
 import styled from 'styled-components';
@@ -10,8 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 
-    
     const navigate = useNavigate()
+
+    const searchItem = useRef("")
+    const onKeyPress = (e) => {
+        if ( e.key === 'Enter') {
+            navigate(`/search/${searchItem.current.value}`)
+        }
+    }
+    
+
+    
     return (
         <>
             <div className="header">
@@ -20,7 +29,12 @@ const Header = () => {
                         localStorage.clear();
                         window.location.replace("/");
                     }}>😁Logoipsum</Logo>
-                    <SearchInput type="text" placeholder="서울특별시 용산구, 42 디저트카페">
+                    <SearchInput 
+                    type="text" 
+                    placeholder="서울특별시 용산구, 42 디저트카페"
+                    ref={searchItem}
+                    onKeyPress={(e)=>{onKeyPress(e)}}
+                    >
                     </SearchInput>
                     <div>
                     <Login />
@@ -28,7 +42,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

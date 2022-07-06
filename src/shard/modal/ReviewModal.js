@@ -5,12 +5,20 @@ import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
 import { ImSearch } from "react-icons/im"
 import { BsStarFill, BsStar } from "react-icons/bs"
+import { useDispatch } from "react-redux";
 
 
 const ReviewModal = (props) => {
 
+    const dispatch = useDispatch();
     const { open, close } = props;
     const [star, setStar] = useState(0);
+
+
+    // React.useEffect(()=>{
+    //     dispatch() get요청 보내면서 위도 경도 메인에서 받아와서 보내기
+    // },[])
+
 
     //자동완성 기능 
     const wholeTextArray = [
@@ -88,8 +96,8 @@ const ReviewModal = (props) => {
     //Hashtag
     const [tagItem, setTagItem] = useState('')
     const [tagList, setTagList] = useState([])
-    //console.log(tagList) 이거 보내주자
-    //console.log(tagItem)
+    console.log(tagList);
+    // console.log(tagItem)
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
             submitTagItem()
@@ -133,7 +141,9 @@ const ReviewModal = (props) => {
     };
     // console.log(Upimage);
 
-
+    const ReviewUpload = () => {
+        dispatch()
+    }
    
 
 
@@ -147,7 +157,8 @@ const ReviewModal = (props) => {
                             onClick={close}
                             style={{
                                 display: "flex",
-                                justifyContent: "flex-end"
+                                justifyContent: "flex-end",
+                                cursor:"pointer"
                             }}>
                             <span style={{ fontSize: "25px" }}><AiOutlineClose /></span>
                         </div>
@@ -428,8 +439,6 @@ const Search = styled.input`
     font-size: 14px;
     box-shadow: 0 4px 4px -4px black;
 `;
-
-
 
 const ReviewArea = styled.textarea`
     width : 80%;

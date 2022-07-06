@@ -57,10 +57,10 @@ const SignupModal = (props) => {
          }
          checkSum += parseInt((Arr[8] * BusinessCheck[8] / 10, 10));
          Math.floor(BusinessCheck[9] === (10 - (checkSum % 10)))
-         return true
-       }
-       return false 
-    }
+            return true
+        }
+        return false 
+        }
 
     
     async function userRegister() {
