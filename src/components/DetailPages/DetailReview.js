@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
+import {useDispatch} from "react-redux"
+
+
 const DetailReview = () => {
+
+    React.useEffect(()=>{
+        //리뷰 정보 받아오기
+    },[])
+    
     return (
         <>
             <Alignment>

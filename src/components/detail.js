@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Banner from "./Banner";
 import DetailHome from "./DetailPages/DetailHome";
@@ -6,19 +6,35 @@ import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
 
 const Detail = () => {
+
+
+    const [Menu, setMenu] = useState("A")
+
     return (
         <>
-            <Banner/>
+            <Banner />
             <Container>
                 <div>
-                    <button>홈</button>
-                    <button>메뉴</button>
-                    <button>리뷰</button>
+                    <button
+                    onClick={()=>{setMenu("A")}}
+                    >홈</button>
+                    <button
+                    onClick={()=>{setMenu("B")}}
+                    >메뉴</button>
+                    <button
+                    onClick={()=>{setMenu("C")}}
+                    >리뷰</button>
                 </div>
             </Container>
-            <DetailHome/>
-            <DetailMenu/>
-            <DetailReview/>
+            <div>
+                {
+                Menu === "A" && <DetailHome /> ||
+                Menu === "B" && <DetailMenu /> ||
+                Menu === "C" && <DetailReview />
+            }
+            </div>
+            
+  
         </>
     );
 }
