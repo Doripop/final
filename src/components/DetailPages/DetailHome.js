@@ -4,7 +4,14 @@ import styled from "styled-components";
 import { MdDeliveryDining } from 'react-icons/md';
 import { AiFillSound } from 'react-icons/ai';
 
+import {useDispatch} from "react-redux"
+
 const DetailHome = () => {
+
+    React.useEffect(()=>{
+        //홈 정보 받아오기
+    },[])
+    
     return (
         <>
             <Home>

@@ -64,10 +64,10 @@ const CafeReg = (props) => {
         setLongitude(lon);
       });
   };
-  console.log(latitude, longitude, address, zone, query)
-  window.setTimeout(() => {
-    console.log(Detail_Address.current.value)
-  }, 6000)
+  // console.log(latitude, longitude, address, zone, query)
+  // window.setTimeout(() => {
+  //   console.log(Detail_Address.current.value)
+  // }, 6000)
 
   const CafeAdd = async () => {
     if (!Cafe_Name.current.value) {

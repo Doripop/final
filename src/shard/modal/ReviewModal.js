@@ -5,12 +5,20 @@ import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
 import { ImSearch } from "react-icons/im"
 import { BsStarFill, BsStar } from "react-icons/bs"
+import { useDispatch } from "react-redux";
 
 
 const ReviewModal = (props) => {
 
+    const dispatch = useDispatch();
     const { open, close } = props;
     const [star, setStar] = useState(0);
+
+
+    // React.useEffect(()=>{
+    //     dispatch() get요청 보내면서 위도 경도 메인에서 받아와서 보내기
+    // },[])
+
 
     //자동완성 기능 
     const wholeTextArray = [
@@ -88,8 +96,8 @@ const ReviewModal = (props) => {
     //Hashtag
     const [tagItem, setTagItem] = useState('')
     const [tagList, setTagList] = useState([])
-    //console.log(tagList) 이거 보내주자
-    //console.log(tagItem)
+    // console.log(tagList);
+    // console.log(tagItem)
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
             submitTagItem()
@@ -112,28 +120,60 @@ const ReviewModal = (props) => {
 
 
     const [Upimage, setUpimage] = useState([]);
+    // const formData = new FormData();
+
     const handleAddImages = (e) => {
         const imageLists = e.target.files;
-        // const imageLists = dragImage.files;
         let imageUrlLists = [...Upimage];
+       
 
         for (let i = 0; i < imageLists.length; i++) {
             const currentImageUrl = URL.createObjectURL(imageLists[i]);
             imageUrlLists.push(currentImageUrl);
+            /////
+            // console.log(imageLists[i])
+            // formData.append("file", imageLists[i])
         }
         if (imageUrlLists.length > 3) {
             imageLists = imageLists.slice(0, 3);
         }
         setUpimage(imageUrlLists);
+
+        // for (let key of formData.keys()) {
+        //     console.log(key);
+        //   }
+          
+        //   // FormData의 value 확인
+        //   for (let value of formData.values()) {
+        //     console.log(value);
+        //   }
+      
     }
-    // console.log(Upimage)
+    
+    
+    /////////test/////////
+    // const test = async()=>{
+    //     try {
+    //    const {data} =  await instance.post("admin", formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   });
+    //     } catch(error){
+    //       window.alert(error) 
+    //     }
+    // }
     //멀티 이미지 지우기
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
     };
     // console.log(Upimage);
+   
 
 
+    const ReviewUpload = () => {
+        dispatch()
+    }
    
 
 
@@ -147,7 +187,8 @@ const ReviewModal = (props) => {
                             onClick={close}
                             style={{
                                 display: "flex",
-                                justifyContent: "flex-end"
+                                justifyContent: "flex-end",
+                                cursor:"pointer"
                             }}>
                             <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
                         </div>
@@ -228,8 +269,6 @@ const ReviewModal = (props) => {
                                     <span style={{ fontWeight: "bold" }}>
                                         해시태그
                                     </span>
-
-
                                     <div style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -255,13 +294,8 @@ const ReviewModal = (props) => {
                                                 )
                                             })}
                                         </TagBox>
-
                                     </div>
-
                                 </div>
-
-
-
                                 <div
                                     style={{
                                         marginTop: "20px",
@@ -284,6 +318,17 @@ const ReviewModal = (props) => {
                                     <span style={{ fontWeight: "bold" }}>
                                         리뷰 사진 업로드
                                     </span>
+                                    
+
+                                    <button
+                                    onClick={()=>{
+                                        test()
+                                    }}>tset</button>
+
+
+
+
+
                                     <div style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -294,7 +339,11 @@ const ReviewModal = (props) => {
                                             htmlFor="input-file"
                                             onChange={handleAddImages}
                                             style={{ marginTop: "15px" }}>
-                                            <input type="file" id="input-file" multiple />
+                                            <input 
+                                            type="file"
+                                            id="input-file"
+                                            // multiple
+                                             />
                                         </label>
                                         <div
                                             style={{
@@ -428,8 +477,6 @@ const Search = styled.input`
     font-size: 14px;
     box-shadow: 0 4px 4px -4px black;
 `;
-
-
 
 const ReviewArea = styled.textarea`
     width : 80%;

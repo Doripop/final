@@ -58,10 +58,10 @@ const SignupModal = (props) => {
          }
          checkSum += parseInt((Arr[8] * BusinessCheck[8] / 10, 10));
          Math.floor(BusinessCheck[9] === (10 - (checkSum % 10)))
-         return true
-       }
-       return false 
-    }
+            return true
+        }
+        return false 
+        }
 
     
     async function userRegister() {
@@ -69,7 +69,7 @@ const SignupModal = (props) => {
             window.alert('모두 입력해주세요')
         }else if (!reg_email.test(Email.current.value)) {
             return alert('이메일 형식을 지켜주세요!')
-        }else if (NumberCheck(Businessnumber.current.value) == false ) {
+        }else if (role == "owner" && NumberCheck(Businessnumber.current.value) == false ) {
             return alert('사업자 등록번호 형식이 아닙니다!')
         }  else if (Password.current.value !== Check.current.value) {
             return alert('비밀번호가 일치하지 않아요!')

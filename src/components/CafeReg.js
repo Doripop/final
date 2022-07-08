@@ -7,15 +7,15 @@ import styled from "styled-components";
 
 const CafeReg = () => {
 
-  const [modalOpen, setModalOpen] = useState(false);
-  
-  const openModal = () => {
-    setModalOpen(true);
-  }
+    const [modalOpen, setModalOpen] = useState(false);
+    
+    const openModal = () => {
+      setModalOpen(true);
+    }
 
-  const closeModal = () => {
-    setModalOpen(false);
-  }
+    const closeModal = () => {
+      setModalOpen(false);
+    }
 
 
     return (

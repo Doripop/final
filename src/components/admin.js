@@ -3,22 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { InfoLoad, userInfoLoad } from "../redux/modules/adminSlice";
 
-
+// 페이지네이션
+import Success from "./AdminPages/Success";
+import Reject from "./AdminPages/Reject";
+import AllList from "./AdminPages/AllList";
+import RealAllCafe from "./AdminPages/RealAllCafe";
 
 
 const Admin = () => {
 
-
+    const [subMenu, setSubMenu] = useState("A")
+ 
     const dispatch = useDispatch()
-
-    React.useEffect(() => {
-        // dispatch(InfoLoad())
-        dispatch(userInfoLoad())
-    }, [dispatch]);
-
-
-    const list = useSelector((state) => state.adminSlice.CafeInfo);
-
 
 
     return (
@@ -28,31 +24,58 @@ const Admin = () => {
                     오늘도 일해주세요!<br />
                     관리자님!
                 </h2>
-                <button>
-                    전체 등록 리스트 37개 &gt;
+                <button
+                onClick={()=>{setSubMenu("A")}}
+                >
+                    전체 신청 리스트 37개 &gt;
                 </button>
-                <button>
-                    최종 승인 카페 37개 &gt;
+                <button
+                onClick={()=>{setSubMenu("B")}}
+                >
+                   승인된 목록 //거절기능없음 37개 &gt;
                 </button>
-                <button>
+                <button
+                onClick={()=>{setSubMenu("C")}}
+                >
                     최종 거절 카페 37개 &gt;
+                </button>
+                <button
+                onClick={()=>{setSubMenu("D")}}
+                >
+                   모든 등록된 카페 // 삭제가능 37개 &gt;
                 </button>
             </LeftContent>
             <ReightContent>
-                <button>미처리</button>
+                {
+                    subMenu === "A" && <h3>미처리</h3> ||
+                    subMenu === "B" && <h3>승인된 목록 //거절기능없음</h3> ||
+                    subMenu === "C" && <h3>거절 목록</h3> ||
+                    subMenu === "D" && <h3>모든 등록된 카페 // 삭제가능</h3>
+
+                }
                 <hr />
                 <List>
-                    {list?.map((item, i) => (
-                        <Card>
-                            <h1>{item.name}</h1>
+                    {
+                        subMenu === "A" && <AllList /> ||
+                        subMenu === "B" && <Success /> ||
+                        subMenu === "C" && <Reject /> ||
+                        subMenu === "D" && <RealAllCafe />
+
+                    }
+
+                    {/* {list?.map((item, i) => (
+                        <Card
+                        key={i}>
+                            <h3>{item.cafename}</h3>
                             <p>
                                 {item.address} <br />
-                                {item.zoneNum}
+                                {item.addressdetail}<br />
+                                {item.zonenum}
                             </p>
-                            <button>⩗</button>
-                            <button>⨉</button>
+                            <button>승인</button>
+                            <button>거절</button>
                         </Card>
-                    ))}
+                    ))} */}
 
                 </List>
             </ReightContent>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom"
 import Main from "./components/main";
 import Admin from "./components/admin";
 import Detail from "./components/detail";
 import Header from "./components/header";
 import { instance } from "./shard/axios";
+import Search from "./components/Search";
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
   //       }
   //   },[])
 
+
+
   return (
     <div className="App">
       <Header />
@@ -27,6 +30,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/search/:text/*" element={<Search />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 

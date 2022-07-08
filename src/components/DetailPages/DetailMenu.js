@@ -4,7 +4,14 @@ import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
 
+import {useDispatch} from "react-redux"
+
 const DetailMenu = () => {
+
+    React.useEffect(()=>{
+        //메뉴 정보 받아오기
+    },[])
+
     return (
         <>
             <Menu>
