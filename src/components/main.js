@@ -4,6 +4,7 @@ import Header from "./header";
 import Banner from "./Banner";
 import NavBtn from "./NavBtn";
 import CardList from "./CardList";
+import ScrollBtn from "./ScrollBtn";
 
 
 const Main = () => {
@@ -15,6 +16,7 @@ const Main = () => {
                 <Banner/>
                 <NavBtn/>
                 <CardList/>
+                <ScrollBtn/>
             </div>
         </>
     )
