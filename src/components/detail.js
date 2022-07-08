@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Banner from "./Banner";
-import DetailHome from "./DetailHome";
-import DetailMenu from "./DetailMenu";
-import DetailReview from "./DetailReview";
+import DetailHome from "./DetailPages/DetailHome";
+import DetailMenu from "./DetailPages/DetailMenu";
+import DetailReview from "./DetailPages/DetailReview";
 
 const Detail = () => {
     return (

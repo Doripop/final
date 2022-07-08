@@ -120,26 +120,56 @@ const ReviewModal = (props) => {
 
 
     const [Upimage, setUpimage] = useState([]);
+    // const formData = new FormData();
+
     const handleAddImages = (e) => {
         const imageLists = e.target.files;
-        // const imageLists = dragImage.files;
         let imageUrlLists = [...Upimage];
+       
 
         for (let i = 0; i < imageLists.length; i++) {
             const currentImageUrl = URL.createObjectURL(imageLists[i]);
             imageUrlLists.push(currentImageUrl);
+            /////
+            // console.log(imageLists[i])
+            // formData.append("file", imageLists[i])
         }
         if (imageUrlLists.length > 3) {
             imageLists = imageLists.slice(0, 3);
         }
         setUpimage(imageUrlLists);
+
+        // for (let key of formData.keys()) {
+        //     console.log(key);
+        //   }
+          
+        //   // FormData의 value 확인
+        //   for (let value of formData.values()) {
+        //     console.log(value);
+        //   }
+      
     }
-    // console.log(Upimage)
+    
+    
+    /////////test/////////
+    // const test = async()=>{
+    //     try {
+    //    const {data} =  await instance.post("admin", formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   });
+    //     } catch(error){
+    //       window.alert(error) 
+    //     }
+    // }
     //멀티 이미지 지우기
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
     };
     // console.log(Upimage);
+   
+
 
     const ReviewUpload = () => {
         dispatch()
@@ -239,8 +269,6 @@ const ReviewModal = (props) => {
                                     <span style={{ fontWeight: "bold" }}>
                                         해시태그
                                     </span>
-
-
                                     <div style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -266,13 +294,8 @@ const ReviewModal = (props) => {
                                                 )
                                             })}
                                         </TagBox>
-
                                     </div>
-
                                 </div>
-
-
-
                                 <div
                                     style={{
                                         marginTop: "20px",
@@ -295,6 +318,17 @@ const ReviewModal = (props) => {
                                     <span style={{ fontWeight: "bold" }}>
                                         리뷰 사진 업로드
                                     </span>
+                                    
+
+                                    <button
+                                    onClick={()=>{
+                                        test()
+                                    }}>tset</button>
+
+
+
+
+
                                     <div style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -305,7 +339,11 @@ const ReviewModal = (props) => {
                                             htmlFor="input-file"
                                             onChange={handleAddImages}
                                             style={{ marginTop: "15px" }}>
-                                            <input type="file" id="input-file" multiple />
+                                            <input 
+                                            type="file"
+                                            id="input-file"
+                                            // multiple
+                                             />
                                         </label>
                                         <div
                                             style={{

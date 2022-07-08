@@ -22,7 +22,7 @@ export const ReviewReg = createAsyncThunk(
 
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
-     async (searchName,dispacth) => {
+     async (searchName, thunkAPI) => {
         // console.log(searchName, "아아아", dispacth);
         try {
             const {data} =  await instance.get(`cafes/${searchName}`);

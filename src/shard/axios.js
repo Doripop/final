@@ -21,3 +21,18 @@ instance.interceptors.request.use(
     }
 );
 
+
+// instance.interceptors.response.use(
+//     (config)=>{
+//         console.log(config);
+//         const token = localStorage.getItem("token");
+//         if(token) {
+//             config.headers["Authorization"] = `Bearer ${token}` //access token
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         console.log(error);
+//         return Promise.reject(error)
+//     }
+// );
