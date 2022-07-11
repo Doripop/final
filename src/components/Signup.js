@@ -21,7 +21,7 @@ const Signup = () => {
     return (
         <>
       <SignupBtn onClick={openModal}><SiGnuprivacyguard/></SignupBtn>
-      <SignupModal open={modalOpen} close={closeModal} header="😁Logoipsum">
+      <SignupModal open={modalOpen} close={closeModal} header="😁Exotic">
       </SignupModal>
 
         </>
