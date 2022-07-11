@@ -4,13 +4,24 @@ import styled from "styled-components";
 import { MdDeliveryDining } from 'react-icons/md';
 import { AiFillSound } from 'react-icons/ai';
 
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 
-const DetailHome = () => {
+import { DetailCafeHome } from "../../redux/modules/AllSlice";
+
+
+const DetailHome = (props) => {
+
+    const dispatch = useDispatch()
+    const {cafeid} = props
+    console.log(cafeid.id)
 
     React.useEffect(()=>{
-        //홈 정보 받아오기
-    },[])
+        //메뉴 정보 받아오기
+        dispatch(DetailCafeHome(cafeid.id))
+        //이부분은 그냥 카페아이디 파람으로 넘길곳
+    },[dispatch])
+    const list = useSelector((state) => state.AllSlice.DetailCafeList);
+    
     
     return (
         <>

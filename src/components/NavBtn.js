@@ -13,27 +13,29 @@ const NavBtn = () => {
                 <CafeReg />
                 <Review />
             </TopMenu>
-        <BottomMenu>
+
+            <BottomMenu>
+                <p>근처에 있는카페!</p>
                 <Select>
                     <option>선택</option>
                     <option>서울</option>
                     <option>인천</option>
                     <option>경기도</option>
                 </Select>
-                
-                <p>근처에 있는카페!</p>
+
+
                 <Alignment>
-                <AliBtn>
-                    좋아요
-                </AliBtn>
-                <AliBtn>
-                    별점순
-                </AliBtn>
-                <AliBtn>
-                    최신순
-                </AliBtn>
+                    <AliBtn>
+                        좋아요
+                    </AliBtn>
+                    <AliBtn>
+                        별점순
+                    </AliBtn>
+                    <AliBtn>
+                        최신순
+                    </AliBtn>
                 </Alignment>
-        </BottomMenu>
+            </BottomMenu>
         </>
     );
 }

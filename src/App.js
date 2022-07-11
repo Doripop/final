@@ -6,7 +6,7 @@ import Detail from "./components/detail";
 import Header from "./components/header";
 import { instance } from "./shard/axios";
 import Search from "./components/Search";
-
+import Mypage from "./components/Mypages/Mypage";
 
 function App() {
 
@@ -28,8 +28,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/search/:text/*" element={<Search />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}

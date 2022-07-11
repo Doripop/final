@@ -17,7 +17,9 @@ const Search = () => {
 
 
     React.useEffect(()=>{
-        dispacth(CafeSearch(parm.text))  
+        dispacth(CafeSearch({
+            keyword : parm.text
+        }))  
         //parm.text 
         console.log("2")
     },[parm.text])

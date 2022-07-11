@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { DetailCafePost } from "../../redux/modules/AllSlice";
 
 
-const DetailReview = () => {
+const DetailReview = (props) => {
 
+    const dispatch = useDispatch()
+    const {cafeid} = props
+    console.log(cafeid.id)
     React.useEffect(()=>{
         //리뷰 정보 받아오기
-    },[])
+        dispatch(DetailCafePost(cafeid.id))
+    },[dispatch])
+    const list = useSelector((state) => state.AllSlice.DetailCafePostList);
     
     return (
         <>
@@ -17,6 +23,11 @@ const DetailReview = () => {
                 <button>좋아요순</button>
             </Alignment>
             <Review>리뷰페이지</Review>
+
+
+
+
+            {/* 댓글 처리 */}
         </>
     );
 

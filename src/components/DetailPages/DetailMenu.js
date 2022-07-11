@@ -4,14 +4,22 @@ import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
 
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { DetailCafeMenu } from "../../redux/modules/AllSlice";
 
-const DetailMenu = () => {
 
+
+const DetailMenu = (props) => {
+    const dispatch = useDispatch()
+    const {cafeid} = props
+    console.log(cafeid.id)
     React.useEffect(()=>{
         //메뉴 정보 받아오기
-    },[])
-
+      dispatch(DetailCafeMenu(cafeid.id))
+    },[dispatch])
+    const list = useSelector((state) => state.AllSlice.DetailCafeMenuList);
+    
+    
     return (
         <>
             <Menu>

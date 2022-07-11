@@ -4,9 +4,22 @@ import Banner from "./Banner";
 import DetailHome from "./DetailPages/DetailHome";
 import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux"
+import { DetailCafeBanner } from "../redux/modules/AllSlice";
 
 const Detail = () => {
 
+
+    const parm = useParams();
+    const dispatch = useDispatch();
+    //parm에 카페아이디 주세요]
+    React.useEffect(()=>{
+        dispatch(DetailCafeBanner(parm.id))
+    },[dispatch, parm.id])
+
+    const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
+    
 
     const [Menu, setMenu] = useState("A")
 
@@ -28,9 +41,9 @@ const Detail = () => {
             </Container>
             <div>
                 {
-                Menu === "A" && <DetailHome /> ||
-                Menu === "B" && <DetailMenu /> ||
-                Menu === "C" && <DetailReview />
+                Menu === "A" && <DetailHome cafeid = {parm} /> ||
+                Menu === "B" && <DetailMenu cafeid = {parm} /> ||
+                Menu === "C" && <DetailReview cafeid = {parm} />
             }
             </div>
             
