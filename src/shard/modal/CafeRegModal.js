@@ -180,11 +180,11 @@ const CafeReg = (props) => {
 };
 
 const postCodeStyle = {
-  padding: "30px",
+  // padding: "30px",
   background: "white",
-  width: "271px",
+  width: "305px",
   // maxWidth: "300px",
-  height: "150px",
+  height: "205px",
   border: "2px solid #d2d2d2",
   position: "inherit",
   // backgroundColor: "orange",

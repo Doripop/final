@@ -39,9 +39,9 @@ const SignupModal = (props) => {
     }
 
     const NumberCheck = (e) => {
-    const Rule =[]
-    const justNumber = e.split("-");
-    const CheckRule = justNumber.map((item, i) => {
+        const Rule =[]
+        const justNumber = e.split("-");
+        const CheckRule = justNumber.map((item, i) => {
             Rule.push(item.length)   
        })
    

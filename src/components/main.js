@@ -9,7 +9,7 @@ import ScrollBtn from "./ScrollBtn";
 
 const Main = () => {
 
-
+  
     return (
         <>
             <div>
