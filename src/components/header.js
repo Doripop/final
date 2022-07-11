@@ -28,18 +28,13 @@ const Header = () => {
                     <Logo onClick={() => {
                         localStorage.clear();
                         window.location.replace("/");
-<<<<<<< HEAD
                     }}>😁Exotic</Logo>
-                    <SearchInput type="text" placeholder="서울특별시 용산구, 42 디저트카페">
-=======
-                    }}>😁Logoipsum</Logo>
                     <SearchInput 
                     type="text" 
                     placeholder="서울특별시 용산구, 42 디저트카페"
                     ref={searchItem}
                     onKeyPress={(e)=>{onKeyPress(e)}}
                     >
->>>>>>> 2a49f71401ce2a4e17e615135735f1a12ea848b3
                     </SearchInput>
                     <div>
                     <Login />

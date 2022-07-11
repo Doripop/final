@@ -28,6 +28,8 @@ const SignupModal = (props) => {
     const Check = useRef("")
     const Businessname = useRef("")
     const Businessnumber = useRef("")
+    const Userfile = useRef("")
+    const Businessfile = useRef("")
     const [role, setRole] = useState("user")
     const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
@@ -58,10 +60,10 @@ const SignupModal = (props) => {
          }
          checkSum += parseInt((Arr[8] * BusinessCheck[8] / 10, 10));
          Math.floor(BusinessCheck[9] === (10 - (checkSum % 10)))
-            return true
-        }
-        return false 
-        }
+         return true
+       }
+       return false 
+    }
 
     
     async function userRegister() {
@@ -88,6 +90,8 @@ const SignupModal = (props) => {
                     nickname: Nic.current.value,
                     Businessnumber: role == "user" ? "" : Businessnumber.current.value,
                     Businessname: role == "user" ? "" : Businessname.current.value,
+                    Userfile: role == "user" ? "user" : Userfile.current.value,
+                    Businessfile: role == "owner" ? "owner" : Businessfile.current.value,
                     role: role
                 })
                 // close();
@@ -105,6 +109,34 @@ const SignupModal = (props) => {
             }
         }
     }
+
+        //imageUpload
+        const [Upimage, setUpimage] = useState([]);
+    
+        const handleAddImages = (e) => {
+            const imageLists = e.target.files;
+            let imageUrlLists = [...Upimage];
+
+            // console.log(imageLists);
+           
+            for (let i = 0; i < imageLists.length; i++) {
+                const currentImageUrl = URL.createObjectURL(imageLists[i]);
+                imageUrlLists.push(currentImageUrl);
+                /////
+                // console.log(imageLists[i])
+                // formData.append("file", imageLists[i])
+            }
+            if (imageUrlLists.length > 1) {
+                imageLists = imageLists.slice(0, 1);
+            }
+            setUpimage(imageUrlLists);
+
+        }
+        
+        //멀티 이미지 지우기
+        const handleDeleteImage = (id) => {
+            setUpimage(Upimage.filter((_, index) => index !== id));
+        };
 
     return (
         <>
@@ -162,6 +194,52 @@ const SignupModal = (props) => {
                             <div>
                                 <InputBox ref={Check} type="password" placeholder="PASSWORD CHECK" />
                             </div>
+                            {/* 로고/프로필 이미지 업로드 시작 */}
+                            <div
+                                    style={{
+                                        marginTop: "20px",
+                                    }}>
+                                    <div className={role === "user" ? "user" : "owner"}>
+                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                        로고 사진 업로드
+                                    </span>
+                                    </div>
+                                    <div className={role === "owner" ? "user" : "owner"}>
+                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                        프로필 사진 업로드
+                                    </span>
+                                    </div>
+                                    <div style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        flexDirection: "column",
+                                    }}>
+
+                                        <label
+                                            htmlFor="input-file"
+                                            onChange={handleAddImages}
+                                            style={{ marginTop: "15px" }}>
+                                            <input 
+                                            type="file"
+                                            id="input-file"
+                                             />
+                                        </label>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                flexWrap:"wrap"
+                                            }}>
+                                            {Upimage.map((image, i) => (
+                                                <div key={i}>
+                                                    <img style={{ width: "100px", height: "100px" }} src={image} alt={`${image}-${i}`} onClick={() => handleDeleteImage(i)} />
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {/* 로고/프로필 이미지 업로드 끝 */}
                         </Body>
                         <Footer>
                             <button className="close" onClick={() => { userRegister() }}>가입하기</button>
