@@ -6,6 +6,19 @@ const initialState = {
 }
 
 
+export const ReviewCreate = createAsyncThunk(
+    'AllSlice/ReviewCreate',
+     async (reviewInfo) => {
+        console.log(reviewInfo)
+        try {
+            const {data} =  await instance.get(`api/${reviewInfo.cafeid}/posts`, reviewInfo.formdata);
+            // console.log(data);
+            return data
+        } catch(error){
+            window.alert(error) 
+        }
+    }
+)
 
 export const ReviewReg = createAsyncThunk(
     'AllSlice/CafeAddInfo',

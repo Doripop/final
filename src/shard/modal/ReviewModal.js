@@ -6,6 +6,7 @@ import { AiOutlineClose } from "react-icons/ai"
 import { ImSearch } from "react-icons/im"
 import { BsStarFill, BsStar } from "react-icons/bs"
 import { useDispatch } from "react-redux";
+import { ReviewCreate } from "../../redux/modules/AllSlice";
 
 
 const ReviewModal = (props) => {
@@ -13,7 +14,8 @@ const ReviewModal = (props) => {
     const dispatch = useDispatch();
     const { open, close } = props;
     const [star, setStar] = useState(0);
-
+    const review = useRef("")
+    const formData = new FormData()
 
     // React.useEffect(()=>{
     //     dispatch() get요청 보내면서 위도 경도 메인에서 받아와서 보내기
@@ -22,11 +24,11 @@ const ReviewModal = (props) => {
 
     //자동완성 기능 
     const wholeTextArray = [
-        { cafe: "대원 카페", address: "상암2동" },
-        { cafe: "원티드 카페", address: "상암6동" },
-        { cafe: "도리 카페", address: "상암7동" },
-        { cafe: "알리 카페", address: "상암10동" },
-        { cafe: "말보로 카페", address: "본리동" },
+        { cafe: "대원 카페", address: "상암2동", cafeid : 123 },
+        { cafe: "원티드 카페", address: "상암6동", cafeid : 321 },
+        { cafe: "도리 카페", address: "상암7동" , cafeid : 222},
+        { cafe: "알리 카페", address: "상암10동", cafeid : 231 },
+        { cafe: "말보로 카페", address: "본리동", cafeid : 3120},
     ]
     // const wholeTextArray = [
     //     'apple',
@@ -61,14 +63,16 @@ const ReviewModal = (props) => {
     }
 
     const clickDropDownItem = (clickedItem) => {
+        console.log(clickedItem)
         setInputValue(`${clickedItem.cafe}:${clickedItem.address}`)
         setSendCafe({
+            cafeid : clickedItem.cafeid,
             cafe: clickedItem.cafe,
             address: clickedItem.address
         })
         setIsHaveInputValue(false)
     }
-    // console.log(sendCafe); 이부분이 보내는 부분 axios로 post 하기
+    //이부분이 보내는 부분 axios로 post 하기
     const handleDropDownKey = (e) => {
         //input에 값이 있을때만 작동
         if (isHaveInputValue) {
@@ -97,7 +101,7 @@ const ReviewModal = (props) => {
     const [tagItem, setTagItem] = useState('')
     const [tagList, setTagList] = useState([])
     // console.log(tagList);
-    // console.log(tagItem)
+   
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
             submitTagItem()
@@ -116,6 +120,9 @@ const ReviewModal = (props) => {
         const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
         setTagList(filteredTagList)
     }
+
+
+    
     //imageUpload
 
 
@@ -143,7 +150,7 @@ const ReviewModal = (props) => {
         //     console.log(key);
         //   }
           
-        //   // FormData의 value 확인
+        //   FormData의 value 확인
         //   for (let value of formData.values()) {
         //     console.log(value);
         //   }
@@ -172,11 +179,27 @@ const ReviewModal = (props) => {
 
 
     const ReviewUpload = () => {
-        dispatch()
+        const sendData = {
+            star : star,
+            hashtag : tagList,
+            contents : review.current.value,
+        }
+        const json = JSON.stringify(sendData);
+        const blob = new Blob([json], {type : "application/json"})
+        formData.append("reviews", blob)
+
+        // FormData의 value 확인
+          for (let value of formData.values()) {
+            console.log(value);
+          }
+        dispatch(ReviewCreate({
+            formdata :formData, 
+            cafeid :sendCafe.cafeid
+        }))
     }
    
 
-
+    console.log(sendCafe.cafeid, star, tagList); 
 
     return (
         <>
@@ -219,7 +242,8 @@ const ReviewModal = (props) => {
                                             <DropDownItem
                                                 key={dropDownIndex}
                                                 onClick={() => clickDropDownItem(
-                                                    {
+                                                    {   
+                                                        cafeid: dropDownItem.cafeid,
                                                         cafe: dropDownItem.cafe,
                                                         address: dropDownItem.address
                                                     },
@@ -307,7 +331,7 @@ const ReviewModal = (props) => {
                                         display: "flex",
                                         justifyContent: "center"
                                     }}>
-                                        <ReviewArea placeholder="리뷰를 작성해주세요" />
+                                        <ReviewArea ref={review} placeholder="리뷰를 작성해주세요" />
                                     </div>
                                 </div>
 
@@ -366,7 +390,7 @@ const ReviewModal = (props) => {
                             display: "flex",
                             justifyContent: "center"
                         }}>
-                            <UploadBtn className="close" onClick={close}>게시하기</UploadBtn>
+                            <UploadBtn className="close" onClick={()=>{ReviewUpload()}}>게시하기</UploadBtn>
                         </div>
                     </section>
                 ) : null}

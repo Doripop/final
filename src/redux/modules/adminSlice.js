@@ -72,10 +72,18 @@ export const CafeApprove = createAsyncThunk(
         try {
             const {data} = await instance.patch(`api/registers/${id.regid}/${id.permit}`)
             // const {data} = await instance.get('admin')
-            thunkAPI.dispatch(adminAllList(id.id))
-            return data.result === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.result;
+
+
+
+            //스탠다드 리듀서가 아니게 된다 크리에이트에이청크 쓰는 순간...
+            // thunkAPI.dispatch(adminAllList(id.id))
+            ///////////////////////////////////////
+
+
+
+            // return data.result === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.result;
             // console.log(data[0].permit);
-            // return data.permit == true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.permit;
+            return  data.permit === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.permit;
         } catch(error){
             window.alert(error) 
         }
