@@ -4,20 +4,9 @@ import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
 import {AiOutlineClose} from "react-icons/ai"
-
-//Image import
-import coffee1 from "../../css/coffee1.jpg";
-import coffee2 from "../../css/coffee2.jpg";
-import coffee3 from "../../css/coffee3.jpg";
-import coffee4 from "../../css/coffee4.jpg";
-
+import {AiFillLock} from "react-icons/ai"
 
 const SignupModal = (props) => {
-
-    //Image array
-    const backgroundArr = [coffee1,coffee2,coffee3,coffee4];
-    const randomIndex = Math.floor(Math.random() * backgroundArr.length);
-    const backgroundImg = backgroundArr[randomIndex];
 
     const { open, close, header } = props;
 
@@ -142,7 +131,7 @@ const SignupModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-                    <section style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+                    <section>
                         <div 
                             onClick={close}
                             style={{display:"flex",justifyContent:"flex-end"}}
@@ -153,7 +142,7 @@ const SignupModal = (props) => {
                             {header}
                         </Header>
                         <Body>
-                            <div>
+                            <RadioGroup>
                                 <input
                                     type="radio"
                                     id="사용자"
@@ -174,7 +163,7 @@ const SignupModal = (props) => {
                                     }}
                                 />
                                 <FormCheckText htmlFor="사장님">사장님</FormCheckText>
-                            </div>
+                            </RadioGroup>
                             <div className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
                                 <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" />
@@ -183,16 +172,18 @@ const SignupModal = (props) => {
                                 >확인</button>
                             </div>
                             <div>
-                                <InputBox ref={Nic} type="text" placeholder="NICKNAME" />
+                                <InputBox ref={Nic} type="text" placeholder="닉네임" />
                             </div>
                             <div>
-                                <InputBox ref={Email} type="email" placeholder="EMAIL" />
+                                <InputBox ref={Email} type="email" placeholder="이메일" />
                             </div>
                             <div>
-                                <InputBox ref={Password} type="password" placeholder="PASSWORD" />
+                                <InputBox ref={Password} type="password" placeholder="비밀번호">
+                                </InputBox><LockIcon><AiFillLock/></LockIcon>
                             </div>
                             <div>
-                                <InputBox ref={Check} type="password" placeholder="PASSWORD CHECK" />
+                                <InputBox ref={Check} type="password" placeholder="비밀번호 확인">
+                                </InputBox><LockIcon><AiFillLock/></LockIcon>
                             </div>
                             {/* 로고/프로필 이미지 업로드 시작 */}
                             <div
@@ -200,12 +191,12 @@ const SignupModal = (props) => {
                                         marginTop: "20px",
                                     }}>
                                     <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         로고 사진 업로드
                                     </span>
                                     </div>
                                     <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         프로필 사진 업로드
                                     </span>
                                     </div>
@@ -255,13 +246,13 @@ const SignupModal = (props) => {
 const Header = styled.header`
     display: flex; 
     justify-content: center;
-    height: 150px;
+    height: 100px;
     text-align: center;
-    margin-top: 80px; 
+    margin-top: 40px; 
 
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: black;
 `;
 
 const Body = styled.body`
@@ -279,6 +270,10 @@ const Body = styled.body`
         color: white;
         background-color: black;
     }
+`;
+
+const RadioGroup = styled.div`
+    margin-bottom: 20px;
 `;
 
 const FormCheckText = styled.label`
@@ -299,22 +294,26 @@ const FormCheckText = styled.label`
 `;
 
 const InputBox = styled.input`
-    width: 300px;
-    height: 50px;
+    width: 290px;
+    height: 40px;
     background: transparent;
-    color: white;
+    color: black;
+    margin-top: 10px;
+    border: 2px solid #F0F4C3;
 
     font-size: 20px;
 
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
-    border-bottom-color: white;
-
     ::placeholder {
-        color: white;  
+        font-size: 15px;
+        color: gray;  
     }
+`;
+
+const LockIcon = styled.span`
+    font-size: 20px;
+    margin: 0px;
+    padding: -10px;
+    margin-left: -20px; 
 `;
 
 const Footer = styled.footer`
@@ -323,6 +322,8 @@ const Footer = styled.footer`
     margin: 0 auto;
 
     & button {
+        width: 200px;
+        height: 50px;
         color: white;
         background-color: black;
     }

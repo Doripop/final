@@ -2,13 +2,13 @@ import React from "react";
 
 // CSS 관련 Imports
 import styled from 'styled-components'
-import { VscArrowUp } from 'react-icons/vsc'
+import { RiArrowUpSFill } from 'react-icons/ri'
 
 
 const ScrollBtn = (props) => {
 
   return (
-    <Btn onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}> <VscArrowUp/> </Btn>
+    <Btn onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}> <RiArrowUpSFill size="40"/> </Btn>
   )
 
 }
