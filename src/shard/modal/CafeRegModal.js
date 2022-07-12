@@ -78,15 +78,26 @@ const CafeReg = (props) => {
       return alert("상세주소를 입력해주세요")
     } else {
       try {
-        const { data } = await instance.post("user-login", {
-          name: Cafe_Name.current.value,
-          address: address,
-          addressDetail: Detail_Address.current.value,
-          zoneNum: zone,
-          Latitude: latitude,
-          Longitude: longitude,
-          oldAddress: query
-        });
+        // if(role == user) {
+          const { data } = await instance.post("api/user/regist-cafe", {
+            name: Cafe_Name.current.value,
+            address: address,
+            addressDetail: Detail_Address.current.value,
+            zoneNum: zone,
+            Latitude: latitude,
+            Longitude: longitude,
+            oldAddress: query
+          });
+        // } else {
+        //   const { data } = await instance.post("api/owner/regist-cafe", {
+        //     address: address,
+        //     addressDetail: Detail_Address.current.value,
+        //     zoneNum: zone,
+        //     Latitude: latitude,
+        //     Longitude: longitude,
+        //     oldAddress: query
+        //   });
+        // }
         // console.log(data);
         
       } catch (error) {
@@ -127,6 +138,7 @@ const CafeReg = (props) => {
             ):(
               <div>
               파람에서 받거나 데이터베이스에 get요청으로 받아온 사장님이 가입할떄 나온 상호명
+              ---로그인할때 로컬스토리지에 저장해놓은 값 불러오기 ( 상호명 )
               </div>
               )} */}
                 <h1>원하시는 카페를 등록해주세요!</h1>
@@ -164,7 +176,9 @@ const CafeReg = (props) => {
               </Body>
               <BtnBox>
                  <BtnAdd
-                onClick={() => { CafeAdd() }}
+                onClick={() => { 
+                  CafeAdd();
+                }}
               >카페신청하기
               </BtnAdd>
               </BtnBox>

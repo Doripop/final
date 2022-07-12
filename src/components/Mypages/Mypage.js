@@ -6,9 +6,10 @@ import { useDispatch } from "react-redux";
 import cat from "../../css/coffee2.jpg"
 //아이콘
 import { RiPencilFill } from 'react-icons/ri'
+//컴포넌트
 import ModifyInfo from "./ModifyInfo";
 import ModifyCafe from "./ModifyCafe";
-
+import MyReview from "./MyReview";
 
 const Mypage = () => {
 
@@ -24,7 +25,7 @@ const Mypage = () => {
 
 
     return (
-        
+
         <>
             <Page>
                 <div
@@ -132,7 +133,7 @@ const Mypage = () => {
 
                         {
                             userSubMenu === "A" && <ModifyInfo /> ||
-                            userSubMenu === "B" && <ModifyCafe />
+                            userSubMenu === "B" && <MyReview />
                         }
 
 

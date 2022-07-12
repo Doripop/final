@@ -9,13 +9,14 @@ import Reject from "./AdminPages/Reject";
 import AllList from "./AdminPages/AllList";
 import RealAllCafe from "./AdminPages/RealAllCafe";
 
+import {BsCheckSquare} from "react-icons/bs";
+import {BsCheckSquareFill} from "react-icons/bs";
 
 const Admin = () => {
 
     const [subMenu, setSubMenu] = useState("A")
- 
-    const dispatch = useDispatch()
 
+    const dispatch = useDispatch()
 
     return (
         <Container>
@@ -24,26 +25,34 @@ const Admin = () => {
                     오늘도 일해주세요!<br />
                     관리자님!
                 </h2>
-                <button
-                onClick={()=>{setSubMenu("A")}}
+                <AdminBtn
+                onClick={()=>{
+                    setSubMenu("A")
+                }}
                 >
                     전체 신청 리스트 37개 &gt;
-                </button>
-                <button
-                onClick={()=>{setSubMenu("B")}}
+                </AdminBtn>
+                <AdminBtn
+                onClick={()=>{
+                    setSubMenu("B")
+                }}
                 >
-                   승인된 목록 //거절기능없음 37개 &gt;
-                </button>
-                <button
-                onClick={()=>{setSubMenu("C")}}
+                   <BsCheckSquare size="15" color="green"/>승인된 목록 // 거절기능없음 37개 &gt;
+                </AdminBtn>
+                <AdminBtn
+                onClick={()=>{
+                    setSubMenu("C")
+                }}
                 >
-                    최종 거절 카페 37개 &gt;
-                </button>
-                <button
-                onClick={()=>{setSubMenu("D")}}
+                    <BsCheckSquareFill size="15" color="green"/>최종 거절 카페 37개 &gt;
+                </AdminBtn>
+                <AdminBtn
+                onClick={()=>{
+                    setSubMenu("D")
+                }}
                 >
                    모든 등록된 카페 // 삭제가능 37개 &gt;
-                </button>
+                </AdminBtn>
             </LeftContent>
             <ReightContent>
                 {
@@ -66,6 +75,7 @@ const Admin = () => {
                     {/* {list?.map((item, i) => (
                         <Card
                         key={i}>
+                            asdasdasd
                             <h3>{item.cafename}</h3>
                             <p>
                                 {item.address} <br />
@@ -76,7 +86,6 @@ const Admin = () => {
                             <button>거절</button>
                         </Card>
                     ))} */}
-
                 </List>
             </ReightContent>
         </Container>
@@ -95,6 +104,7 @@ const Container = styled.div`
 
 const LeftContent = styled.div`
     width: 240px;
+    height: 100px;
 
     & button {
         width: 240px;
@@ -122,6 +132,24 @@ const Card = styled.div`
         cursor: pointer;
         background-color: transparent;
         border-radius: 50px;
+    }
+`;
+
+const AdminBtn = styled.button`
+    width: 235px;
+    height: 100px;
+    font-size: 13px;
+    padding: 5px;
+    margin-bottom: 5px;
+    color: black;
+
+    cursor: pointer;
+
+    background-color: white;
+    border: 1px solid green;
+
+    :hover {
+        background-color: #69F0AE;
     }
 `;
 

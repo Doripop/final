@@ -28,7 +28,7 @@ const Header = () => {
                     <Logo onClick={() => {
                         localStorage.clear();
                         window.location.replace("/");
-                    }}>😁Logoipsum</Logo>
+                    }}>😁Exotic</Logo>
                     <SearchInput 
                     type="text" 
                     placeholder="서울특별시 용산구, 42 디저트카페"

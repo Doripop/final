@@ -17,6 +17,7 @@ import coffee4 from "../../css/coffee4.jpg";
 import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
+import axios from "axios";
 
 const LoginModal = (props) => {
     const userID = useRef("")
@@ -39,20 +40,19 @@ const LoginModal = (props) => {
     
     const userLogin = async()=>{
             try {
-           const {data} =  await instance.post("user-login",{
+           const {data} =  await axios.post("http://54.180.88.20/api/user/signin",{
             email : userID.current.value,
             password : userPW.current.value
            });
-
-            // localStorage.setItem("token", data.token)
-            // localStorage.setItem("token", data.re_token) 
-
-            // window.setTimeout(()=>{
-            //     reLogin()
-            // }, 590000)
-
+            localStorage.setItem("token", data.data.accessToken)
+            localStorage.setItem("refreshtoken", data.data.refreshToken) 
             } catch(error){
-              window.alert(error) 
+                // eslint-disable-next-line default-case
+                switch (error.response.data.message) {
+                    case "아이디 혹은 비밀번호가 틀렸습니다.":
+                        alert("아이디 혹은 비밀번호가 틀렸습니다.");
+                        break;
+                }
             }
         }
     const {open, close , header} = props;
@@ -77,7 +77,7 @@ const LoginModal = (props) => {
                         <div>
                             <InputBox ref={userPW} type="password" placeholder="PASSWORD" />
                         </div>
-                        <NaverLogin
+                        {/* <NaverLogin
                             clientId={'Khwo3ZGcF4998EqdYc6y'}
                             callbackURL="http://localhost:3000/"
                             render={renderProps => (
@@ -103,7 +103,7 @@ const LoginModal = (props) => {
                                     <Img_sns src={googleImg} resizeMode={'contain'}/>
                                 </div>
                             )}
-                        />
+                        /> */}
                     </Body>
                     <Footer>
                         <button className="close" onClick={userLogin}>로그인</button>
