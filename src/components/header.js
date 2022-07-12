@@ -1,26 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Login from "./login";
 import Signup from "./Signup";
 import styled from 'styled-components';
 
 import "../shard/Header.css"
 import { useNavigate } from "react-router-dom";
+import { LogOut } from "../redux/modules/AllSlice";
+import { useDispatch } from "react-redux";
 
 
 
 const Header = () => {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const [isLogin, setIsLogin] = useState(null)
     const searchItem = useRef("")
     const onKeyPress = (e) => {
         if ( e.key === 'Enter') {
             navigate(`/search/${searchItem.current.value}`)
         }
     }
-    
-
-    
+    React.useEffect(()=>{
+        setIsLogin(localStorage.getItem("token"))
+    },[isLogin])
+     
+    const LogOutBtn = () => {
+        dispatch(LogOut())
+    }
+  
     return (
         <>
             <div className="header">
@@ -37,8 +45,24 @@ const Header = () => {
                     >
                     </SearchInput>
                     <div>
-                    <Login />
-                    <Signup />
+                    {!isLogin ? (
+                        <>
+                            <Login />
+                            <Signup />
+                        </>
+                        
+                    ): (
+                        <>
+                            <h1 style={{
+                                color:"white",
+                                fontSize:"20px",
+                                cursor : "pointer"
+                            }}
+                            onClick = {()=>{LogOutBtn()}}
+                            >LOGOUT</h1>
+                        </>
+                    )}
+                    
                     </div>
                 </div>
             </div>

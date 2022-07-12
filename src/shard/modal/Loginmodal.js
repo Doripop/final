@@ -22,7 +22,7 @@ import axios from "axios";
 const LoginModal = (props) => {
     const userID = useRef("")
     const userPW = useRef("")
-
+    const {open, close , header} = props;
     const clickSnsLoginKakao = (e) => {
         let kakaoid = e.profile.id; // 카카오에서 제공한 ID
     };
@@ -46,6 +46,7 @@ const LoginModal = (props) => {
            });
             localStorage.setItem("token", data.data.accessToken)
             localStorage.setItem("refreshtoken", data.data.refreshToken) 
+            close()
             } catch(error){
                 // eslint-disable-next-line default-case
                 switch (error.response.data.message) {
@@ -55,7 +56,7 @@ const LoginModal = (props) => {
                 }
             }
         }
-    const {open, close , header} = props;
+    
     return (
         <>
         <div className={open ? 'openModal modal' : 'modal'}>
