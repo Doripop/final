@@ -12,22 +12,6 @@ const CardList = () => {
                 </img>
                 <div>카페 이름</div>
             </Content>
-            <Content>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2YqmDa-4CIjjAIcpWo3EXK8FKX6uwNu-oVA&usqp=CAU"
-                    alt="#사진"
-                >
-                </img>
-                <div>카페 이름</div>
-            </Content>
-            <Content>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2YqmDa-4CIjjAIcpWo3EXK8FKX6uwNu-oVA&usqp=CAU"
-                    alt="#사진"
-                >
-                </img>
-                <div>카페 이름</div>
-            </Content>
         </Container>
     );
 }
@@ -35,9 +19,7 @@ const CardList = () => {
 const Container = styled.div`
     width: 1200px;
     height: 390px;
-
     margin: 0px auto 0px auto;
-
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -6,6 +6,21 @@ const initialState = {
 }
 
 
+export const LogOut = createAsyncThunk(
+    'AllSlice/LogOut',
+    async () =>{
+        try{
+            const {data} = await instance.post("/api/user/signout")
+            console.log(data)
+            localStorage.removeItem("refreshtoken")
+            localStorage.removeItem("token")
+        } catch(error){
+            console.log(error)
+            window.alert(error)
+        }
+    }
+)
+
 export const ReviewCreate = createAsyncThunk(
     'AllSlice/ReviewCreate',
      async (reviewInfo) => {
@@ -15,6 +30,7 @@ export const ReviewCreate = createAsyncThunk(
             // console.log(data);
             return data
         } catch(error){
+            console.log(error)
             window.alert(error) 
         }
     }

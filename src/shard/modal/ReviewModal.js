@@ -21,7 +21,7 @@ const ReviewModal = (props) => {
     //     dispatch() get요청 보내면서 위도 경도 메인에서 받아와서 보내기
     // },[])
 
-
+    
     //자동완성 기능 
     const wholeTextArray = [
         { cafe: "대원 카페", address: "상암2동", cafeid : 123 },
