@@ -21,10 +21,9 @@ const Login = () => {
 
     return (
         <>
-      <LoginBtn onClick={openModal}><FiLogIn/></LoginBtn>
-      <LoginModal open={modalOpen} close={closeModal} header="로그인">
-      </LoginModal>
-
+          <LoginBtn onClick={openModal}><FiLogIn/></LoginBtn>
+          <LoginModal open={modalOpen} close={closeModal} header="😁Exotic">
+          </LoginModal>
         </>
     )
 }

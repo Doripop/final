@@ -17,14 +17,14 @@
 }
 
 .modal > section {
-    width: 370px;
-    height: 600px;
+    width: 400px;
+    height: 700px;
     max-width: 450px;
     margin: 0 auto;
     border-radius: 0.3rem;
     background-color: #fff;
-    animation: modal-show 0.3s;
-    overflow: hidden;
+    animation: modal-show 0.1s;
+    overflow: scroll;
 }
 
 .modal > section > footer {
@@ -35,8 +35,8 @@
 .modal > section > footer button {
     padding: 6px 12px;
     color: #fff;
-    background-color: transparent;
-    border-radius: 5px;
+    background-color: background-color;
+    /* border-radius: 5px; */
     font-size: 20px;
 }
 
@@ -50,8 +50,9 @@
     display: none;
 }
 
-.admin {
+.owner {
     display: flex;
+    flex-direction: column;
 }
 
 
