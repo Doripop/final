@@ -3,32 +3,30 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
-<<<<<<< HEAD
-import {AiOutlineClose} from "react-icons/ai"
-import {AiFillLock} from "react-icons/ai"
-
-const SignupModal = (props) => {
-
-=======
 import { AiOutlineClose } from "react-icons/ai"
-
-//Image import
-import coffee1 from "../../css/coffee1.jpg";
-import coffee2 from "../../css/coffee2.jpg";
-import coffee3 from "../../css/coffee3.jpg";
-import coffee4 from "../../css/coffee4.jpg";
+import { AiFillLock } from "react-icons/ai"
 import axios from "axios";
 
 
 const SignupModal = (props) => {
+    // 닉네임 정규표현식 (3자리 이상 9자리 이하 국문/영문/숫자)
+    const is_nickname = (Nic) => {
+        let _reg = /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{3,9}$/;
+        return _reg.test(Nic);
+    }
 
-    //Image array
-    const backgroundArr = [coffee1, coffee2, coffee3, coffee4];
-    const randomIndex = Math.floor(Math.random() * backgroundArr.length);
-    const backgroundImg = backgroundArr[randomIndex];
-    
+    //이메일 정규표현식 (이메일 형식)
+    const is_email = (Email) => {
+        let _reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        return _reg.test(Email);
+    };
 
->>>>>>> 5bdc119554c459bc37114e9e1095162f59ae81b2
+    // 비밀번호 정규표현식 (8자리 이상 20자리 이하 영문대소문자, 특수문자 !@#$%^&.* 가능)
+    const is_password = (Password) => {
+        let _reg = /^[0-9a-zA-Z!@#$%^&.*]{8,20}$/;
+        return _reg.test(Password);
+    };
+
     const { open, close, header } = props;
 
     //입력받을 값
@@ -42,6 +40,7 @@ const SignupModal = (props) => {
     const Businessfile = useRef("")
     const [role, setRole] = useState("user")
     const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
 
     const userRole = (e) => {
 
@@ -176,12 +175,6 @@ const SignupModal = (props) => {
         setUpimage(imageUrlLists);
 
     }
-
-
-
-
-
-
     //멀티 이미지 지우기
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
@@ -191,13 +184,8 @@ const SignupModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-<<<<<<< HEAD
                     <section>
-                        <div 
-=======
-                    <section style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
                         <div
->>>>>>> 5bdc119554c459bc37114e9e1095162f59ae81b2
                             onClick={close}
                             style={{ display: "flex", justifyContent: "flex-end" }}
                         >
@@ -229,52 +217,39 @@ const SignupModal = (props) => {
                                 />
                                 <FormCheckText htmlFor="사장님">사장님</FormCheckText>
                             </RadioGroup>
-                            <div className={role == "user" ? "user" : "owner"}>
+                            <RadioBtn className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
                                 <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" />
                                 <button
                                     onClick={() => { NumberCheck(Businessnumber.current.value) }}
                                 >확인</button>
-                            </div>
+                            </RadioBtn>
                             <div>
-                                <InputBox ref={Nic} type="text" placeholder="닉네임" />
+                                <InputBox ref={Nic} type="text" placeholder="닉네임"/>
                             </div>
                             <div>
                                 <InputBox ref={Email} type="email" placeholder="이메일" />
                             </div>
                             <div>
                                 <InputBox ref={Password} type="password" placeholder="비밀번호">
-                                </InputBox><LockIcon><AiFillLock/></LockIcon>
+                                </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
                             </div>
                             <div>
                                 <InputBox ref={Check} type="password" placeholder="비밀번호 확인">
-                                </InputBox><LockIcon><AiFillLock/></LockIcon>
+                                </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
                             </div>
                             {/* 로고/프로필 이미지 업로드 시작 */}
                             <div
-<<<<<<< HEAD
-                                    style={{
-                                        marginTop: "20px",
-                                    }}>
-                                    <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
-                                        로고 사진 업로드
-                                    </span>
-                                    </div>
-                                    <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
-=======
                                 style={{
                                     marginTop: "20px",
                                 }}>
                                 <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         로고 사진 업로드
                                     </span>
                                 </div>
                                 <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
->>>>>>> 5bdc119554c459bc37114e9e1095162f59ae81b2
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         프로필 사진 업로드
                                     </span>
                                 </div>
@@ -354,6 +329,14 @@ const RadioGroup = styled.div`
     margin-bottom: 20px;
 `;
 
+const RadioBtn = styled.div`
+    margin-bottom: 8px;
+
+    & button {
+        width: 95px;
+    }
+`;
+
 const FormCheckText = styled.label`
     margin: 10px;
     width: 110px;
@@ -392,6 +375,12 @@ const LockIcon = styled.span`
     margin: 0px;
     padding: -10px;
     margin-left: -20px; 
+
+    .lock {
+        position: relative;
+        color: #00E676;
+        font-size: 20px;
+    }
 `;
 
 const Footer = styled.footer`
