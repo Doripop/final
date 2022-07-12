@@ -14,6 +14,7 @@ export const LogOut = createAsyncThunk(
             console.log(data)
             localStorage.removeItem("refreshtoken")
             localStorage.removeItem("token")
+            window.location.replace("/")
         } catch(error){
             console.log(error)
             window.alert(error)

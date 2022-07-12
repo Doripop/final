@@ -58,7 +58,7 @@ const Header = () => {
                                 fontSize:"20px",
                                 cursor : "pointer"
                             }}
-                            onClick = {()=>{LogOutBtn()}}
+                            onClick = {()=>{LogOutBtn();}}
                             >LOGOUT</h1>
                         </>
                     )}
