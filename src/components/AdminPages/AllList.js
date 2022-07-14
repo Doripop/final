@@ -26,10 +26,10 @@ const AllList = () => {
             {list?.map((item, i) => (
                 <Card
                     key={i}>
-                    <h3>{item.cafename}</h3>
+                    <h3>{item.cafename} </h3>
                     <p>
                         {item.address} <br />
-                        {item.addressdetail}<br />
+                        {item.addressdetail} <br />
                         {item.zonenum}
                     </p>
                     <button 

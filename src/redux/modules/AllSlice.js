@@ -12,14 +12,31 @@ export const LogOut = createAsyncThunk(
         try{
             const {data} = await instance.post("/api/user/signout")
             console.log(data)
-            localStorage.removeItem("refreshtoken")
-            localStorage.removeItem("token")
+            // localStorage.removeItem("refreshtoken")
+            // localStorage.removeItem("token")
+            localStorage.clear()
+            window.location.replace("/")
         } catch(error){
             console.log(error)
             window.alert(error)
         }
     }
 )
+
+
+export const MainReview = createAsyncThunk(
+    'AllSlice/MainReview',
+    async (region) => {
+        try {
+            const {data} = await instance.get(`api/posts/${region}`);
+            return data
+        }catch (error) {
+            console.log(error);
+            window.alert(error)
+        }
+    }
+)
+
 
 export const ReviewCreate = createAsyncThunk(
     'AllSlice/ReviewCreate',
@@ -147,6 +164,9 @@ const change = createSlice({
         },
         [DetailCafeBanner.fulfilled]: (state, action) => {
             state.DetailCafeBanner = action.payload
+        },
+        [MainReview.fulfilled]: (state, action) => {
+            state.MainReviewList = action.payload
         },
     }
 })

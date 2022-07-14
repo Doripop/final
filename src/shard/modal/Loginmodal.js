@@ -18,8 +18,10 @@ import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = (props) => {
+    const navigate = useNavigate()
     const userID = useRef("")
     const userPW = useRef("")
     const {open, close , header} = props;
@@ -45,8 +47,14 @@ const LoginModal = (props) => {
             password : userPW.current.value
            });
             localStorage.setItem("token", data.data.accessToken)
-            localStorage.setItem("refreshtoken", data.data.refreshToken) 
-            close()
+            localStorage.setItem("refreshtoken", data.data.refreshToken)
+            localStorage.setItem("nicname",data.data.nickname ) 
+            localStorage.setItem("role",data.data.role )
+            localStorage.setItem("profileimg",data.data.profileimg )
+            localStorage.setItem("logoimg",data.data.logoimg )
+            localStorage.setItem("cafename",data.data.businessname )
+            console.log(data)
+            // return data.result ? window.location.replace("/") : close();
             } catch(error){
                 // eslint-disable-next-line default-case
                 switch (error.response.data.message) {

@@ -24,7 +24,7 @@ const Success = () => {
                     <h3>{item.cafename}</h3>
                     <p>
                         {item.address} <br />
-                        {item.addressdetail}<br />
+                        {item.addressdetail} <br />
                         {item.zonenum}
                     </p>
                 </Card>

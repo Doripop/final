@@ -15,9 +15,9 @@ const initialState = {
 
 export const CafeApplyList = createAsyncThunk(
     'admin/ApplyInfo',
-     async (dispacth) => {
+     async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers");
             // console.log(data);
             // dispacth(listLoad(data));
             return data
@@ -29,9 +29,9 @@ export const CafeApplyList = createAsyncThunk(
 
 export const SuccessApplyList = createAsyncThunk(
     'admin/SuccessInfo',
-     async (dispacth) => {
+     async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers/permission");
             return data
         } catch(error){
             window.alert(error) 
@@ -43,7 +43,7 @@ export const CafeRejectList = createAsyncThunk(
     'admin/RejectInfo',
      async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers/rejection");
             return data
         } catch(error){
             window.alert(error) 
@@ -76,7 +76,7 @@ export const CafeApprove = createAsyncThunk(
 
 
             //스탠다드 리듀서가 아니게 된다 크리에이트에이청크 쓰는 순간...
-            // thunkAPI.dispatch(adminAllList(id.id))
+            thunkAPI.dispatch(adminAllList(id.id))
             ///////////////////////////////////////
 
 

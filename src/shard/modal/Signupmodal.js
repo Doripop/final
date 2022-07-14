@@ -165,42 +165,21 @@ const SignupModal = (props) => {
                     businessnum: role == "user" ? "" : Businessnumber.current.value,
                     businessname: role == "user" ? "" : Businessname.current.value,
                 }
-
-                console.log(Data);
-                // const json =JSON.stringify(Data);
-                // const blob = new Blob([json], {type : "application/json"})
-
-                // formdata.append("data", blob);
                 formdata.append("file", image);
-
-
-                // formdata.append("data", JSON.stringify(Data));
                 formdata.append("data", new Blob([JSON.stringify(Data)],
                  { type: "application/json" }
                  ));
-                // formdata.append("file", Upimage[0]);
-              
-
-                
-                // formdata.append("file", "");
-                
-
-                for (let value of formdata.values()) {
-                    console.log(value);
-                }
-                console.log("요청이 가나요?")
-
-
-
+                // for (let value of formdata.values()) {
+                //     console.log(value);
+                // }
                 const { data } = await axios.post(
                     "http://54.180.88.20/api/user/signup", formdata, 
                     {headers: {
                         "Content-Type": "multipart/form-data"
                     }}
                 )
-
-                console.log(data, "이게 될까요")
-                // console.log(data);
+                alert("회원가입이 완료되었습니다")
+                return data.result ?close() : null
                 // close();
             } catch (error) {
                 // eslint-disable-next-line default-case
