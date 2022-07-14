@@ -65,7 +65,7 @@ const Mypage = () => {
                                     fontSize: "18px"
                                 }}
                             >
-                                <RiPencilFill />
+                                <RiPencilFill className="ripen"/>
                             </span>
                         </span>
                     </ProfileImageBox>
@@ -74,10 +74,22 @@ const Mypage = () => {
                             <LeftContent>
                                 <button
                                     onClick={() => { setOwnerSubMenu("A") }}
-                                >사장님 정보 수정</button>
+                                >
+                                    <strong>
+                                    사장님 정보 수정
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &gt;
+                                    </strong>    
+                                </button>
                                 <button
                                     onClick={() => { setOwnerSubMenu("B") }}
-                                >카페 정보 수정</button>
+                                >
+                                    <strong>
+                                    카페 정보 수정
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &gt;
+                                    </strong>
+                                </button>
                             </LeftContent>
                             <div
                                 style={{
@@ -96,10 +108,22 @@ const Mypage = () => {
                             <LeftContent>
                                 <button
                                     onClick={() => { setUserSubMenu("A") }}
-                                >내 정보 수정</button>
+                                >
+                                    <strong>
+                                        내 정보 수정
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &gt;
+                                    </strong>    
+                                </button>
                                 <button
                                     onClick={() => { setUserSubMenu("B") }}
-                                >내가 쓴 리뷰 몰아보기</button>
+                                >
+                                    <strong>
+                                    내가 쓴 리뷰 몰아보기
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    &gt;
+                                    </strong>    
+                                </button>
                             </LeftContent>
                             <div
                                 style={{
@@ -154,11 +178,21 @@ const LeftContent = styled.div`
         :first-child {
             border-bottom :none;
         }
-        background-color :transparent;
-        border : 1px solid black;
-        border-radius : 3px;
-        width: 240px;
-        height: 40px;
+        width: 235px;
+        height: 50px;
+        font-size: 17px;
+        color: black;
+    
+        cursor: pointer;
+    
+        background-color: white;
+        border: 1px solid green;
+        border-radius: 3px;
+    
+        :hover {
+            background-color: #69F0AE;
+            color: white;
+        }
     }
 `;
 
@@ -171,12 +205,22 @@ const ProfileImageBox = styled.div`
     display : flex;
     flex-direction : column;
     align-items : center;
+    margin-bottom: 30px;
+
+    .ripen {
+        width: 20px;
+        height: 20px;
+        color: #000;
+        margin-left: 5px;
+        cursor: pointer;
+    }
 `;
 
 const ImageShape = styled.img`
     width : 86px;
     height : 86px;
     border-radius : 50px;
+    margin-bottom: 10px;
 `;
 
 export default Mypage;

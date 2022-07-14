@@ -9,23 +9,6 @@ import axios from "axios";
 
 
 const SignupModal = (props) => {
-    // 닉네임 정규표현식 (3자리 이상 9자리 이하 국문/영문/숫자)
-    const is_nickname = (Nic) => {
-        let _reg = /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{3,9}$/;
-        return _reg.test(Nic);
-    }
-
-    //이메일 정규표현식 (이메일 형식)
-    const is_email = (Email) => {
-        let _reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-        return _reg.test(Email);
-    };
-
-    // 비밀번호 정규표현식 (8자리 이상 20자리 이하 영문대소문자, 특수문자 !@#$%^&.* 가능)
-    const is_password = (Password) => {
-        let _reg = /^[0-9a-zA-Z!@#$%^&.*]{8,20}$/;
-        return _reg.test(Password);
-    };
 
     const { open, close, header } = props;
 
@@ -39,7 +22,88 @@ const SignupModal = (props) => {
     const Userfile = useRef("")
     const Businessfile = useRef("")
     const [role, setRole] = useState("user")
-    const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+    //이메일, 닉네임, 비밀번호 정규표현식
+    // const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    const reg_email = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const reg_nic = /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{3,9}$/;
+    const reg_pass = /^[0-9a-zA-Z!@#$%^&.*]{8,20}$/;
+
+    //유효성 알림
+    const [signNicAlert, setSignNicAlert] = useState('');
+    const [signEmailAlert, setSignEmailAlert] = useState('');
+    const [signPassAlert, setSignPassAlert] = useState('');
+    const [signCheckAlert, setSignCheckAlert] = useState('');
+
+    //사업자 등록 번호 하이픈 자동 추가(숫자만 작성가능)
+    const onBusinessChange = () => {
+        const bussnum = Businessnumber.current.value.replace(/\D+/g, "");
+        const numberLength = 10;
+
+        let result;
+        result = "";
+
+        for (let i = 0; i < bussnum.length && i < numberLength; i++) {
+            switch (i) {
+                case 3: 
+                    result += "-";
+                    break;
+
+                case 5:
+                    result += "-";
+                    break;
+
+                default:
+                    break;
+            }
+            result += bussnum[i];
+        }
+        Businessnumber.current.value = result;
+    }
+
+    // 닉네임 형식 체크
+    const onNicChange = () => {
+        const nic = Nic.current.value;
+        if (reg_nic.test(nic)) {
+            setSignNicAlert("")
+        } else {
+            setSignNicAlert("닉네임은 3~9글자,국문,영문,숫자로 작성해주세요.")
+        }
+    }
+
+    // 이메일 형식 체크
+    const onEmailChange = () => {
+        const email = Email.current.value;
+        if (reg_email.test(email)) {
+            setSignEmailAlert("")
+        } else {
+            setSignEmailAlert("이메일 형식으로 작성해주세요.")
+        }
+    }
+
+    // 비밀번호 형식 체크
+    const onPassChange = () => {
+        const pass = Password.current.value;
+        if (reg_pass.test(pass)) {
+            if (pass.search(/\s/) !== -1) {
+                setSignPassAlert("공백 없이 작성해주세요.")
+            } else {
+                setSignPassAlert("")
+            }
+        } else {
+            setSignPassAlert("영문,숫자 특수문자!@#$%^&를 포함한 8 이상으로 작성해주세요.")
+        }
+    }
+    // 비밀번호 확인 형식 체크
+    const onPassCheckChange = () => {
+        const pass = Password.current.value;
+        const passCheck = Check.current.value;
+        if (passCheck === pass) {
+            setSignCheckAlert("")
+        } else {
+            setSignCheckAlert("비밀번호가 일치하지 않습니다.")
+        }
+    }
 
 
     const userRole = (e) => {
@@ -219,24 +283,28 @@ const SignupModal = (props) => {
                             </RadioGroup>
                             <RadioBtn className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
-                                <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" />
+                                <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" onChange={onBusinessChange}/>
                                 <button
                                     onClick={() => { NumberCheck(Businessnumber.current.value) }}
                                 >확인</button>
                             </RadioBtn>
                             <div>
-                                <InputBox ref={Nic} type="text" placeholder="닉네임"/>
+                                <InputBox ref={Nic} type="text" placeholder="닉네임" onChange={onNicChange}/>
+                                <p>{signNicAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Email} type="email" placeholder="이메일" />
+                                <InputBox ref={Email} type="email" placeholder="이메일" onChange={onEmailChange}/>
+                                <p>{signEmailAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Password} type="password" placeholder="비밀번호">
+                                <InputBox ref={Password} type="password" placeholder="비밀번호" onChange={onPassChange}>
                                 </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
+                                <p>{signPassAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Check} type="password" placeholder="비밀번호 확인">
+                                <InputBox ref={Check} type="password" placeholder="비밀번호 확인" onChange={onPassCheckChange}>
                                 </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
+                                <p>{signCheckAlert}</p>
                             </div>
                             {/* 로고/프로필 이미지 업로드 시작 */}
                             <div
@@ -323,6 +391,11 @@ const Body = styled.body`
         color: white;
         background-color: black;
     }
+
+    & p {
+        font-size: 10px;
+        color: red;
+    }
 `;
 
 const RadioGroup = styled.div`
@@ -356,7 +429,7 @@ const FormCheckText = styled.label`
 
 const InputBox = styled.input`
     width: 290px;
-    height: 40px;
+    height: 20px;
     background: transparent;
     color: black;
     margin-top: 10px;
