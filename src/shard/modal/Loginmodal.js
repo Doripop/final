@@ -49,8 +49,12 @@ const LoginModal = (props) => {
             localStorage.setItem("token", data.data.accessToken)
             localStorage.setItem("refreshtoken", data.data.refreshToken)
             localStorage.setItem("nicname",data.data.nickname ) 
-            localStorage.setItem("role",data.data.role ) 
-            return data.result ? window.location.replace("/") : close();
+            localStorage.setItem("role",data.data.role )
+            localStorage.setItem("profileimg",data.data.profileimg )
+            localStorage.setItem("logoimg",data.data.logoimg )
+            localStorage.setItem("cafename",data.data.businessname )
+            console.log(data)
+            // return data.result ? window.location.replace("/") : close();
             } catch(error){
                 // eslint-disable-next-line default-case
                 switch (error.response.data.message) {

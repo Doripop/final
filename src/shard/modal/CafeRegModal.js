@@ -17,7 +17,9 @@ const CafeReg = (props) => {
   const modalClose = () => {
     setOpened(!opened);
   };
-
+  const role = localStorage.getItem("role")
+  const cafename = localStorage.getItem("cafename")
+  // console.log(cafename)
 
   //상세주소 입력값
   const Detail_Address = useRef(null);
@@ -78,7 +80,7 @@ const CafeReg = (props) => {
       return alert("상세주소를 입력해주세요")
     } else {
       try {
-        // if(role == user) {
+        if(role == "user") {
           const { data } = await instance.post("api/user/regist-cafe", {
             name: Cafe_Name.current.value,
             address: address,
@@ -88,16 +90,16 @@ const CafeReg = (props) => {
             Longitude: longitude,
             oldAddress: query
           });
-        // } else {
-        //   const { data } = await instance.post("api/owner/regist-cafe", {
-        //     address: address,
-        //     addressDetail: Detail_Address.current.value,
-        //     zoneNum: zone,
-        //     Latitude: latitude,
-        //     Longitude: longitude,
-        //     oldAddress: query
-        //   });
-        // }
+        } else {
+          const { data } = await instance.post("api/owner/regist-cafe", {
+            address: address,
+            addressDetail: Detail_Address.current.value,
+            zoneNum: zone,
+            Latitude: latitude,
+            Longitude: longitude,
+            oldAddress: query
+          });
+        }
         // console.log(data);
         
       } catch (error) {
@@ -129,7 +131,7 @@ const CafeReg = (props) => {
                 {header}
               </Header>
               <Body>
-                {/* {user ? (
+                {role == "user" ? (
             <div>
               <h1>원하시는 카페를 신청해주세요!</h1>
               상호명
@@ -137,13 +139,12 @@ const CafeReg = (props) => {
             </div>
             ):(
               <div>
-              파람에서 받거나 데이터베이스에 get요청으로 받아온 사장님이 가입할떄 나온 상호명
-              ---로그인할때 로컬스토리지에 저장해놓은 값 불러오기 ( 상호명 )
+                 등록하신 카페명 : {cafename}
               </div>
-              )} */}
-                <h1>원하시는 카페를 등록해주세요!</h1>
+              )}
+                {/* <h1>원하시는 카페를 등록해주세요!</h1>
                 <h3>상호명</h3>
-                <InputBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점" />
+                <InputBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점" /> */}
                 <h3>우편번호 찾기</h3>
                 <div style={{ display: "flex" }}>
                   <InputBox

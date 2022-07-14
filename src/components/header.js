@@ -60,6 +60,16 @@ const Header = () => {
                             }}
                             onClick = {()=>{LogOutBtn();}}
                             >LOGOUT</h1>
+
+                            <h1 style={{
+                                color:"white",
+                                fontSize:"20px",
+                                cursor : "pointer"
+                            }}
+                            onClick = {()=>{navigate("/mypage");}}
+                            >
+                                MYPAGE
+                            </h1>
                         </>
                     )}
                     

@@ -32,7 +32,7 @@ const RealAllCafe = () => {
                     <h3>{item.cafename}</h3>
                     <p>
                         {item.address} <br />
-                        {item.addressdetail}<br />
+                        {item.addressdetail} <br />
                         {item.zonenum}
                     </p>
                     <h5>거절되면 바로 페이지 삭제요청</h5>

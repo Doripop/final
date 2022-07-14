@@ -15,9 +15,9 @@ const initialState = {
 
 export const CafeApplyList = createAsyncThunk(
     'admin/ApplyInfo',
-     async (dispacth) => {
+     async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers");
             // console.log(data);
             // dispacth(listLoad(data));
             return data
@@ -29,9 +29,9 @@ export const CafeApplyList = createAsyncThunk(
 
 export const SuccessApplyList = createAsyncThunk(
     'admin/SuccessInfo',
-     async (dispacth) => {
+     async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers/permission");
             return data
         } catch(error){
             window.alert(error) 
@@ -43,7 +43,7 @@ export const CafeRejectList = createAsyncThunk(
     'admin/RejectInfo',
      async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("admin");
+            const {data} =  await instance.get("/api/registers/rejection");
             return data
         } catch(error){
             window.alert(error) 

@@ -18,7 +18,9 @@ const Mypage = () => {
     // React.useEffect(()=>{
     // ---> 유저 정보 role 요청하는거 api
     // },[])
-
+    const role = localStorage.getItem("role")
+    const nickname = localStorage.getItem("nicname")
+    console.log(role);
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");
@@ -34,23 +36,23 @@ const Mypage = () => {
                         flexDirection: "column",
                         padding: "20px"
                     }}>
-                    {/* {role === owner ? ( */}
+                    {role === "owner" ? (
                     <>
                         <h1>
                             오늘도 일해주세요! <br />
                             사장님!
                         </h1>
                     </>
-                    {/*                         
+                                            
                     ):(
                         <>
                             <h1>
                                 환영합니다!
-                                000님!
+                                {nickname}님!
                             </h1>
                         </>
                     )} 
-                    */}
+                
                     <ProfileImageBox>
                         <ImageShape src={cat} />
                         <span
@@ -69,8 +71,8 @@ const Mypage = () => {
                             </span>
                         </span>
                     </ProfileImageBox>
-                    {/* {role === "owner" ? (
-                        <> */}
+                    {role === "owner" ? (
+                        <>
                             <LeftContent>
                                 <button
                                     onClick={() => { setOwnerSubMenu("A") }}
@@ -89,9 +91,9 @@ const Mypage = () => {
                                 <span>Log Out</span>
                                 <span>폐업하기</span>
                             </div>
-                        {/* </>
+                        </>
 
-                    ) : ( */}
+                    ) : (
                         <>
                             <LeftContent>
                                 <button
@@ -111,12 +113,12 @@ const Mypage = () => {
                                 <span>Log Out</span>
                             </div>
                         </>
-                    {/* )} */}
+                     )} 
 
 
                 </div>
-                {/* {role === "owner": ? (
-                    <> */}
+                {role === "owner" ? (
+                    <>
                         
                         
                         
@@ -126,9 +128,9 @@ const Mypage = () => {
                         }
 
 
-                    {/* </>
+                    </>
                 ) : (
-                    <> */}
+                    <>
 
 
                         {
@@ -137,8 +139,8 @@ const Mypage = () => {
                         }
 
 
-                    {/* </>
-                )} */}
+                    </>
+                )}
 
                 {/* 컴포넌트 박아넣기 */}
 
