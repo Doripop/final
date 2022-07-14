@@ -1,7 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { MainReview } from '../redux/modules/AllSlice';
 
 const CardList = () => {
+    const dispatch = useDispatch()
+    React.useEffect(()=>{
+        dispatch(MainReview())
+    },[])
+    
     return (
         <Container>
             <Content>

@@ -76,7 +76,7 @@ export const CafeApprove = createAsyncThunk(
 
 
             //스탠다드 리듀서가 아니게 된다 크리에이트에이청크 쓰는 순간...
-            // thunkAPI.dispatch(adminAllList(id.id))
+            thunkAPI.dispatch(adminAllList(id.id))
             ///////////////////////////////////////
 
 

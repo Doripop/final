@@ -72,7 +72,7 @@ const CafeReg = (props) => {
   // }, 6000)
 
   const CafeAdd = async () => {
-    if (!Cafe_Name.current.value) {
+    if (role== "user" && !Cafe_Name.current.value) {
       return alert("카페명을 입력해주세요")
     } else if (!address || !zone) {
       return alert("우편주소를 입력해주세요")
@@ -82,28 +82,33 @@ const CafeReg = (props) => {
       try {
         if(role == "user") {
           const { data } = await instance.post("api/user/regist-cafe", {
-            name: Cafe_Name.current.value,
-            address: address,
-            addressDetail: Detail_Address.current.value,
-            zoneNum: zone,
-            Latitude: latitude,
-            Longitude: longitude,
-            oldAddress: query
+            cafename: Cafe_Name.current.value,
+            address: query,
+            addressdetail: Detail_Address.current.value,
+            zonenum: zone,
+            latitude: latitude,
+            longitude: longitude,
+            // oldAddress: query
           });
+          console.log(data);
         } else {
+          console.log("사장 등록 시작")
           const { data } = await instance.post("api/owner/regist-cafe", {
-            address: address,
-            addressDetail: Detail_Address.current.value,
-            zoneNum: zone,
-            Latitude: latitude,
-            Longitude: longitude,
-            oldAddress: query
+            address: query,
+            addressdetail: Detail_Address.current.value,
+            zonenum: zone,
+            latitude: latitude,
+            longitude: longitude,
+            // oldAddress: query
+            
           });
+          console.log(query);
+          console.log(data);
         }
         // console.log(data);
         
       } catch (error) {
-        // console.log(error);
+        console.log(error);
         window.alert(error)
       }
     }
@@ -142,9 +147,6 @@ const CafeReg = (props) => {
                  등록하신 카페명 : {cafename}
               </div>
               )}
-                {/* <h1>원하시는 카페를 등록해주세요!</h1>
-                <h3>상호명</h3>
-                <InputBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점" /> */}
                 <h3>우편번호 찾기</h3>
                 <div style={{ display: "flex" }}>
                   <AdressBox
