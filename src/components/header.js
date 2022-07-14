@@ -34,8 +34,7 @@ const Header = () => {
             <div className="header">
                 <div className="navBar">
                     <Logo onClick={() => {
-                        localStorage.clear();
-                        window.location.replace("/");
+                     navigate("/")
                     }}>😁Exotic</Logo>
                     <SearchInput 
                     type="text" 

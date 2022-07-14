@@ -2,10 +2,16 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 // import win from "global";
 import { instance } from "../../shard/axios";
 const initialState = {
-    user :[]
+    user :[],
+    city : []
 }
 
 
+
+
+
+
+//로그아웃
 export const LogOut = createAsyncThunk(
     'AllSlice/LogOut',
     async () =>{
@@ -29,6 +35,7 @@ export const MainReview = createAsyncThunk(
     async (region) => {
         try {
             const {data} = await instance.get(`api/posts/${region}`);
+            console.log(data)
             return data
         }catch (error) {
             console.log(error);
@@ -70,7 +77,7 @@ export const ReviewReg = createAsyncThunk(
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
      async (searchName, thunkAPI) => {
-        console.log(searchName, "아아아");
+        // console.log(searchName, "아아아");
         try {
             const {data} =  await instance.get("/api/search", searchName);
             // console.log(data);
@@ -142,6 +149,9 @@ const change = createSlice({
         // listup : (state, action) =>{
         //     state.user[0] = (action.payload)
         // }
+        citylist : (state, action) =>{
+            state.city = (action.payload);
+        }
     },
     extraReducers : {
         [CafeSearch.pending]: (state) => {
@@ -174,5 +184,5 @@ const change = createSlice({
 
 
 
-export const {} = change.actions
+export const {citylist} = change.actions
 export default change.reducer
