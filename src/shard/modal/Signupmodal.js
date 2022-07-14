@@ -4,22 +4,11 @@ import styled from "styled-components";
 import "./modal.css"
 import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
-
-//Image import
-import coffee1 from "../../css/coffee1.jpg";
-import coffee2 from "../../css/coffee2.jpg";
-import coffee3 from "../../css/coffee3.jpg";
-import coffee4 from "../../css/coffee4.jpg";
+import { AiFillLock } from "react-icons/ai"
 import axios from "axios";
 
 
 const SignupModal = (props) => {
-
-    //Image array
-    const backgroundArr = [coffee1, coffee2, coffee3, coffee4];
-    const randomIndex = Math.floor(Math.random() * backgroundArr.length);
-    const backgroundImg = backgroundArr[randomIndex];
-    
 
     const { open, close, header } = props;
 
@@ -33,7 +22,89 @@ const SignupModal = (props) => {
     const Userfile = useRef("")
     const Businessfile = useRef("")
     const [role, setRole] = useState("user")
-    const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+    //이메일, 닉네임, 비밀번호 정규표현식
+    // const reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    const reg_email = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const reg_nic = /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{3,9}$/;
+    const reg_pass = /^[0-9a-zA-Z!@#$%^&.*]{8,20}$/;
+
+    //유효성 알림
+    const [signNicAlert, setSignNicAlert] = useState('');
+    const [signEmailAlert, setSignEmailAlert] = useState('');
+    const [signPassAlert, setSignPassAlert] = useState('');
+    const [signCheckAlert, setSignCheckAlert] = useState('');
+
+    //사업자 등록 번호 하이픈 자동 추가(숫자만 작성가능)
+    const onBusinessChange = () => {
+        const bussnum = Businessnumber.current.value.replace(/\D+/g, "");
+        const numberLength = 10;
+
+        let result;
+        result = "";
+
+        for (let i = 0; i < bussnum.length && i < numberLength; i++) {
+            switch (i) {
+                case 3: 
+                    result += "-";
+                    break;
+
+                case 5:
+                    result += "-";
+                    break;
+
+                default:
+                    break;
+            }
+            result += bussnum[i];
+        }
+        Businessnumber.current.value = result;
+    }
+
+    // 닉네임 형식 체크
+    const onNicChange = () => {
+        const nic = Nic.current.value;
+        if (reg_nic.test(nic)) {
+            setSignNicAlert("")
+        } else {
+            setSignNicAlert("닉네임은 3~9글자,국문,영문,숫자로 작성해주세요.")
+        }
+    }
+
+    // 이메일 형식 체크
+    const onEmailChange = () => {
+        const email = Email.current.value;
+        if (reg_email.test(email)) {
+            setSignEmailAlert("")
+        } else {
+            setSignEmailAlert("이메일 형식으로 작성해주세요.")
+        }
+    }
+
+    // 비밀번호 형식 체크
+    const onPassChange = () => {
+        const pass = Password.current.value;
+        if (reg_pass.test(pass)) {
+            if (pass.search(/\s/) !== -1) {
+                setSignPassAlert("공백 없이 작성해주세요.")
+            } else {
+                setSignPassAlert("")
+            }
+        } else {
+            setSignPassAlert("영문,숫자 특수문자!@#$%^&를 포함한 8 이상으로 작성해주세요.")
+        }
+    }
+    // 비밀번호 확인 형식 체크
+    const onPassCheckChange = () => {
+        const pass = Password.current.value;
+        const passCheck = Check.current.value;
+        if (passCheck === pass) {
+            setSignCheckAlert("")
+        } else {
+            setSignCheckAlert("비밀번호가 일치하지 않습니다.")
+        }
+    }
+
 
     const userRole = (e) => {
 
@@ -147,12 +218,6 @@ const SignupModal = (props) => {
         setUpimage(imageUrlLists);
 
     }
-
-
-
-
-
-
     //멀티 이미지 지우기
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
@@ -162,7 +227,7 @@ const SignupModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-                    <section style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
+                    <section>
                         <div
                             onClick={close}
                             style={{ display: "flex", justifyContent: "flex-end" }}
@@ -173,7 +238,7 @@ const SignupModal = (props) => {
                             {header}
                         </Header>
                         <Body>
-                            <div>
+                            <RadioGroup>
                                 <input
                                     type="radio"
                                     id="사용자"
@@ -194,25 +259,31 @@ const SignupModal = (props) => {
                                     }}
                                 />
                                 <FormCheckText htmlFor="사장님">사장님</FormCheckText>
-                            </div>
-                            <div className={role == "user" ? "user" : "owner"}>
+                            </RadioGroup>
+                            <RadioBtn className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
-                                <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" />
+                                <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" onChange={onBusinessChange}/>
                                 <button
                                     onClick={() => { NumberCheck(Businessnumber.current.value) }}
                                 >확인</button>
+                            </RadioBtn>
+                            <div>
+                                <InputBox ref={Nic} type="text" placeholder="닉네임" onChange={onNicChange}/>
+                                <p>{signNicAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Nic} type="text" placeholder="NICKNAME" />
+                                <InputBox ref={Email} type="email" placeholder="이메일" onChange={onEmailChange}/>
+                                <p>{signEmailAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Email} type="email" placeholder="EMAIL" />
+                                <InputBox ref={Password} type="password" placeholder="비밀번호" onChange={onPassChange}>
+                                </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
+                                <p>{signPassAlert}</p>
                             </div>
                             <div>
-                                <InputBox ref={Password} type="password" placeholder="PASSWORD" />
-                            </div>
-                            <div>
-                                <InputBox ref={Check} type="password" placeholder="PASSWORD CHECK" />
+                                <InputBox ref={Check} type="password" placeholder="비밀번호 확인" onChange={onPassCheckChange}>
+                                </InputBox><LockIcon><AiFillLock className="lock"/></LockIcon>
+                                <p>{signCheckAlert}</p>
                             </div>
                             {/* 로고/프로필 이미지 업로드 시작 */}
                             <div
@@ -220,12 +291,12 @@ const SignupModal = (props) => {
                                     marginTop: "20px",
                                 }}>
                                 <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         로고 사진 업로드
                                     </span>
                                 </div>
                                 <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "white" }}>
+                                    <span style={{ fontWeight: "bold", color: "black" }}>
                                         프로필 사진 업로드
                                     </span>
                                 </div>
@@ -275,13 +346,13 @@ const SignupModal = (props) => {
 const Header = styled.header`
     display: flex; 
     justify-content: center;
-    height: 150px;
+    height: 100px;
     text-align: center;
-    margin-top: 80px; 
+    margin-top: 40px; 
 
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: black;
 `;
 
 const Body = styled.body`
@@ -298,6 +369,23 @@ const Body = styled.body`
         border: 1px solid black;
         color: white;
         background-color: black;
+    }
+
+    & p {
+        font-size: 10px;
+        color: red;
+    }
+`;
+
+const RadioGroup = styled.div`
+    margin-bottom: 20px;
+`;
+
+const RadioBtn = styled.div`
+    margin-bottom: 8px;
+
+    & button {
+        width: 95px;
     }
 `;
 
@@ -319,21 +407,31 @@ const FormCheckText = styled.label`
 `;
 
 const InputBox = styled.input`
-    width: 300px;
-    height: 50px;
+    width: 290px;
+    height: 20px;
     background: transparent;
-    color: white;
+    color: black;
+    margin-top: 10px;
+    border: 2px solid #F0F4C3;
 
     font-size: 20px;
 
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
-    border-bottom-color: white;
-
     ::placeholder {
-        color: white;  
+        font-size: 15px;
+        color: gray;  
+    }
+`;
+
+const LockIcon = styled.span`
+    font-size: 20px;
+    margin: 0px;
+    padding: -10px;
+    margin-left: -20px; 
+
+    .lock {
+        position: relative;
+        color: #00E676;
+        font-size: 20px;
     }
 `;
 
@@ -343,6 +441,8 @@ const Footer = styled.footer`
     margin: 0 auto;
 
     & button {
+        width: 200px;
+        height: 50px;
         color: white;
         background-color: black;
     }

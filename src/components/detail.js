@@ -4,12 +4,12 @@ import Banner from "./Banner";
 import DetailHome from "./DetailPages/DetailHome";
 import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
+import ScrollBtn from "./ScrollBtn";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafeBanner } from "../redux/modules/AllSlice";
 
 const Detail = () => {
-
 
     const parm = useParams();
     const dispatch = useDispatch();
@@ -28,15 +28,18 @@ const Detail = () => {
             <Banner />
             <Container>
                 <div>
-                    <button
-                    onClick={()=>{setMenu("A")}}
-                    >홈</button>
-                    <button
-                    onClick={()=>{setMenu("B")}}
-                    >메뉴</button>
-                    <button
-                    onClick={()=>{setMenu("C")}}
-                    >리뷰</button>
+                    <CategoryBox
+                    onClick={()=>{setMenu("A")}}>
+                    홈
+                    </CategoryBox>
+                    <CategoryBox
+                    onClick={()=>{setMenu("B")}}>
+                    메뉴
+                    </CategoryBox>
+                    <CategoryBox
+                    onClick={()=>{setMenu("C")}}>
+                    리뷰
+                    </CategoryBox>
                 </div>
             </Container>
             <div>
@@ -46,13 +49,12 @@ const Detail = () => {
                 Menu === "C" && <DetailReview cafeid = {parm} />
             }
             </div>
-            
-  
+            <ScrollBtn/>
         </>
     );
 }
 const Container = styled.div`
-    width: 1200px;
+    width: 1000px;
     height: 100%;
 
     margin: 0px auto;
@@ -69,6 +71,18 @@ const Container = styled.div`
         width: 200px;
         font-size: 30px;
         margin-right: 40px;
+    }
+`;
+
+const CategoryBox = styled.button`
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+    color: gray;
+    
+    &: hover {
+        color: black;
     }
 `;
 

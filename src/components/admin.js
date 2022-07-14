@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { InfoLoad, userInfoLoad } from "../redux/modules/adminSlice";
 
+import ScrollBtn from "./ScrollBtn";
+
 // 페이지네이션
 import Success from "./AdminPages/Success";
 import Reject from "./AdminPages/Reject";
@@ -88,6 +90,7 @@ const Admin = () => {
                     ))} */}
                 </List>
             </ReightContent>
+            <ScrollBtn/>
         </Container>
     );
 }

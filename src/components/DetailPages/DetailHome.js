@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { MdDeliveryDining } from 'react-icons/md';
+import { BiMap } from 'react-icons/bi';
 import { AiFillSound } from 'react-icons/ai';
 
 import {useDispatch, useSelector} from "react-redux"
@@ -26,65 +26,70 @@ const DetailHome = (props) => {
     return (
         <>
             <Home>
-                <h1><MdDeliveryDining/>title1</h1>
+                <h1>가게설명</h1>
             </Home>
             <Home2>
-                <h1><AiFillSound/>title2</h1>
-                <p>content</p>
+                <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
+                <p>매장에 대한 사장님 안내말씀 입니다.</p>
             </Home2>
             <Home3>
-                <h1><MdDeliveryDining/>title3</h1>
-                <p>Map</p>
+                <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
+                <img src="https://www.google.com/maps/vt/data=NiBmYD6c2Lu1yb2HAjcoHVtWRzh4k0Tfbj1Ruz2dIOQkI23ERKMu38P5x51Tht5HaqN42snplEb4F3fwRIGi1-59mFwd5y0n9RcY3H9WrRIux6sqx1bYztJcJXWExY5YP0gJupQ0PcPjDQay77eXsd4x8oGNG9nWwLhH1ABuEeA_4KxW" />
             </Home3>
         </>
     );
 }
 
 const Home = styled.div`
-    width: 1160px;
+    width: 960px;
     height: 100%;
 
     margin: 0px auto;
     padding: 20px;
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: flex-start;
 
     border-bottom: solid 1px black;
 `;
 
 const Home2 = styled.div`
-    width: 1160px;
+    width: 960px;
     height: 100%;
 
     margin: 0px auto;
     padding: 20px;
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: flex-start;
 
     border-bottom: solid 1px black;
 
     word-break:break-all;
+
+    .sound {
+        color: #00E676;
+    }
 `;
 
 const Home3 = styled.div`
-    width: 1160px;
+    width: 960px;
     height: 100%;
 
     margin: 0px auto;
     padding: 20px;
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: flex-start;
 
     border-bottom: solid 1px black;
+
+    .map {
+        color: #00E676;
+    }
 `;
 
 export default DetailHome;

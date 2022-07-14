@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import win from "global";
+// import win from "global";
 import { instance } from "../../shard/axios";
 const initialState = {
     user :[]

@@ -81,10 +81,10 @@ const LoginModal = (props) => {
                     </Header>
                     <Body>
                         <div>
-                            <InputBox ref={userID} type="email" placeholder="EMAIL" />
+                            <InputBox ref={userID} type="email" placeholder="E-mail" />
                         </div>
                         <div>
-                            <InputBox ref={userPW} type="password" placeholder="PASSWORD" />
+                            <InputBox ref={userPW} type="password" placeholder="Password" />
                         </div>
                         {/* <NaverLogin
                             clientId={'Khwo3ZGcF4998EqdYc6y'}
@@ -128,12 +128,13 @@ const LoginModal = (props) => {
 const Header = styled.header`
     display: flex; 
     justify-content: center;
-    height: 150px;
+    height: 100px;
     text-align: center;
-    margin-top: 80px; 
+    margin-top: 40px; 
     
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
+    font-family: "궁서";
     color: white;
 `;
 
@@ -144,10 +145,11 @@ const Body = styled.body`
 `;
 
 const InputBox = styled.input`
-    width: 300px;
+    width: 290px;
     height: 50px;
     background: transparent;
     color: white;
+    margin-bottom: 10px;
 
     font-size: 20px;
 
@@ -163,10 +165,10 @@ const InputBox = styled.input`
 `;
 
 const Img_sns = styled.img`
-    width: 300px;
-    height: 68px;
+    width: 290px;
+    height: 60px;
 
-    margin-top: 20px;
+    margin-top: 10px;
     cursor: pointer;
 `;
 
@@ -176,6 +178,8 @@ const Footer = styled.footer`
     margin: 0 auto;
 
     & button {
+        width: 290px;
+        height: 50px;
         color: white;
         background-color: black;
     }

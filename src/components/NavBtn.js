@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CafeReg from './CafeReg';
+import CeoCafeReg from './CeoCafeReg';
 //Icon import
 import { FiSearch } from 'react-icons/fi'
 import Review from './Review';
@@ -10,6 +11,7 @@ const NavBtn = () => {
     return (
         <>
             <TopMenu>
+                <CeoCafeReg/>
                 <CafeReg />
                 <Review />
             </TopMenu>

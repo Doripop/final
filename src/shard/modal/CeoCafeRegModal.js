@@ -17,9 +17,7 @@ const CafeReg = (props) => {
   const modalClose = () => {
     setOpened(!opened);
   };
-  const role = localStorage.getItem("role")
-  const cafename = localStorage.getItem("cafename")
-  // console.log(cafename)
+
 
   //상세주소 입력값
   const Detail_Address = useRef(null);
@@ -80,26 +78,15 @@ const CafeReg = (props) => {
       return alert("상세주소를 입력해주세요")
     } else {
       try {
-        if(role == "user") {
-          const { data } = await instance.post("api/user/regist-cafe", {
-            name: Cafe_Name.current.value,
-            address: address,
-            addressDetail: Detail_Address.current.value,
-            zoneNum: zone,
-            Latitude: latitude,
-            Longitude: longitude,
-            oldAddress: query
-          });
-        } else {
-          const { data } = await instance.post("api/owner/regist-cafe", {
-            address: address,
-            addressDetail: Detail_Address.current.value,
-            zoneNum: zone,
-            Latitude: latitude,
-            Longitude: longitude,
-            oldAddress: query
-          });
-        }
+        const { data } = await instance.post("user-login", {
+          name: Cafe_Name.current.value,
+          address: address,
+          addressDetail: Detail_Address.current.value,
+          zoneNum: zone,
+          Latitude: latitude,
+          Longitude: longitude,
+          oldAddress: query
+        });
         // console.log(data);
         
       } catch (error) {
@@ -131,7 +118,7 @@ const CafeReg = (props) => {
                 {header}
               </Header>
               <Body>
-                {role == "user" ? (
+                {/* {user ? (
             <div>
               <h1>원하시는 카페를 신청해주세요!</h1>
               상호명
@@ -139,12 +126,11 @@ const CafeReg = (props) => {
             </div>
             ):(
               <div>
-                 등록하신 카페명 : {cafename}
+              파람에서 받거나 데이터베이스에 get요청으로 받아온 사장님이 가입할떄 나온 상호명
               </div>
-              )}
-                {/* <h1>원하시는 카페를 등록해주세요!</h1>
-                <h3>상호명</h3>
-                <InputBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점" /> */}
+              )} */}
+                <h1>사장님의 카페를 등록해주세요!</h1>
+                <h3>상호명 (회원가입시 받을 값)</h3>
                 <h3>우편번호 찾기</h3>
                 <div style={{ display: "flex" }}>
                   <AdressBox
@@ -171,16 +157,13 @@ const CafeReg = (props) => {
                 <InputBox ref={Detail_Address} type="text" placeholder="상세주소를 입력해주세요" />
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span>*카페는 관리자 승인 후 업로드 됩니다.</span>
-                  <span>*카페 승인은 최소 1시간 소요 될 수 있습니다.</span>
+                  <span>*카페 관련 자세한 정보는 <br/>&nbsp;사장님 페이지에서 입력해주세요!</span>
                 </div>
               </Body>
               <BtnBox>
                  <BtnAdd
-                onClick={() => { 
-                  CafeAdd();
-                }}
-              >카페신청하기
+                onClick={() => { CafeAdd() }}
+              >카페 등록하기
               </BtnAdd>
               </BtnBox>
                 
