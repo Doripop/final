@@ -1,13 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { MainReview } from '../redux/modules/AllSlice';
 
 const CardList = () => {
+    const citylist = useSelector((state) => state.AllSlice.city);
+    console.log(citylist);
     const dispatch = useDispatch()
     React.useEffect(()=>{
-        dispatch(MainReview())
-    },[])
+        dispatch(MainReview(citylist))
+    },[dispatch,citylist])
     
     return (
         <>
