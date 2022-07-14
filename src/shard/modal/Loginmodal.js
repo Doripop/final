@@ -54,7 +54,7 @@ const LoginModal = (props) => {
             localStorage.setItem("logoimg",data.data.logoimg )
             localStorage.setItem("cafename",data.data.businessname )
             console.log(data)
-            // return data.result ? window.location.replace("/") : close();
+            return data.result ? window.location.replace("/") : close();
             } catch(error){
                 // eslint-disable-next-line default-case
                 switch (error.response.data.message) {

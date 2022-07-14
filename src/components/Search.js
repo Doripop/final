@@ -24,7 +24,7 @@ const Search = () => {
         console.log("2")
     },[parm.text])
 
-    // const searchList = useSelector((state) => state.AllSlice.dadasdadsad);
+    const searchList = useSelector((state) => state.AllSlice.dadasdadsad);
 
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
