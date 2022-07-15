@@ -102,8 +102,8 @@ const CafeReg = (props) => {
             // oldAddress: query
             
           });
-          console.log(query);
-          console.log(data);
+          // console.log(query);
+          // console.log(data);
         }
         // console.log(data);
         

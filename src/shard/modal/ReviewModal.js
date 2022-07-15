@@ -5,8 +5,8 @@ import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
 import { ImSearch } from "react-icons/im"
 import { BsStarFill, BsStar } from "react-icons/bs"
-import { useDispatch } from "react-redux";
-import { ReviewCreate } from "../../redux/modules/AllSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ReviewCreate, ReviewReg } from "../../redux/modules/AllSlice";
 
 
 const ReviewModal = (props) => {
@@ -17,32 +17,33 @@ const ReviewModal = (props) => {
     const review = useRef("")
     const formData = new FormData()
 
-    // React.useEffect(()=>{
-    //     dispatch() get요청 보내면서 위도 경도 메인에서 받아와서 보내기
-    // },[])
+    React.useEffect(()=>{
+        dispatch(ReviewReg()) 
+    },[dispatch])
+
+    const CafeList = useSelector((state) => state.AllSlice.AutoCafeSearch);
+    // console.log(CafeList.data)
+    
+    
 
     
     //자동완성 기능 
-    const wholeTextArray = [
-        { cafe: "대원 카페", address: "상암2동", cafeid : 123 },
-        { cafe: "원티드 카페", address: "상암6동", cafeid : 321 },
-        { cafe: "도리 카페", address: "상암7동" , cafeid : 222},
-        { cafe: "알리 카페", address: "상암10동", cafeid : 231 },
-        { cafe: "말보로 카페", address: "본리동", cafeid : 3120},
-    ]
-    // const wholeTextArray = [
-    //     'apple',
-    //     'banana',
-    //     'coding',
-    //     'javascript',
-    //     '원티드:원티드 카페 상암2동',
-    //     '프리온보딩',
-    //     '프론트엔드',
-    // ]
+    // const wholeTextArray = 
+    // [
+    //     { cafe: "대원 카페", address: "상암2동", cafeid : 123 },
+    //     { cafe: "원티드 카페", address: "상암6동", cafeid : 321 },
+    //     { cafe: "도리 카페", address: "상암7동" , cafeid : 222},
+    //     { cafe: "알리 카페", address: "상암10동", cafeid : 231 },
+    //     { cafe: "말보로 카페", address: "본리동", cafeid : 3120},
+    // ]  
+    
+    
+
     const [inputValue, setInputValue] = useState('')
     const [sendCafe, setSendCafe] = useState("")
     const [isHaveInputValue, setIsHaveInputValue] = useState(false)
-    const [dropDownList, setDropDownList] = useState(wholeTextArray)
+    const [dropDownList, setDropDownList] = useState(CafeList?.data)
+                                            // useState(wholeTextArray)
     const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
     // console.log(inputValue)
     const showDropDownList = () => {
@@ -50,9 +51,10 @@ const ReviewModal = (props) => {
             setIsHaveInputValue(false)
             setDropDownList([])
         } else {
-            const choosenTextList = wholeTextArray.filter(textItem =>
-                textItem.cafe.includes(inputValue)
+            const choosenTextList = CafeList?.data.filter(textItem =>
+                textItem.cafename.includes(inputValue)
             )
+
             setDropDownList(choosenTextList)
         }
     }
@@ -174,7 +176,7 @@ const ReviewModal = (props) => {
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
     };
-    // console.log(Upimage);
+ 
    
 
 
@@ -193,13 +195,13 @@ const ReviewModal = (props) => {
             console.log(value);
           }
         dispatch(ReviewCreate({
-            formdata :formData, 
-            cafeid :sendCafe.cafeid
+            formdata : formData, 
+            cafeid : sendCafe.cafeid
         }))
     }
    
 
-    console.log(sendCafe.cafeid, star, tagList); 
+    // console.log(sendCafe.cafeid, star, tagList); 
 
     return (
         <>
@@ -244,7 +246,7 @@ const ReviewModal = (props) => {
                                                 onClick={() => clickDropDownItem(
                                                     {   
                                                         cafeid: dropDownItem.cafeid,
-                                                        cafe: dropDownItem.cafe,
+                                                        cafe: dropDownItem.cafename,
                                                         address: dropDownItem.address
                                                     },
                                                 )}
@@ -254,7 +256,7 @@ const ReviewModal = (props) => {
                                                 }
                                             >
                                                 <span style={{ fontSize: "14px" }}>
-                                                    {dropDownItem.cafe}
+                                                    {dropDownItem.cafename}
                                                 </span><br />
                                                 <span style={{ fontSize: "12px" }}>
                                                     {dropDownItem.address}

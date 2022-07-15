@@ -1,9 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import axios from "axios";
 // import win from "global";
 import { instance } from "../../shard/axios";
 const initialState = {
     user :[],
-    city : []
+    city : [],
+    AutoCafeSearch :[],
+    MainReviewList : []
 }
 
 
@@ -33,8 +36,11 @@ export const LogOut = createAsyncThunk(
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
+        
+        const citydefault = region == "" ? "서울특별시" : region
+    
         try {
-            const {data} = await instance.get(`api/posts/${region}`);
+            const {data} = await instance.get(`api/posts/list/${citydefault}`);
             console.log(data)
             return data
         }catch (error) {
@@ -60,12 +66,14 @@ export const ReviewCreate = createAsyncThunk(
     }
 )
 
+
+//자동완성 카페 전체 리스트
 export const ReviewReg = createAsyncThunk(
     'AllSlice/CafeAddInfo',
      async (cafeDetail,dispacth) => {
         try {
-            const {data} =  await instance.get("cafes/{cafeId}");
-            // console.log(data);
+            const {data} =  await instance.get("api/cafes");
+            console.log(data);
             // dispacth(listLoad(data));
             return data
         } catch(error){
@@ -77,9 +85,9 @@ export const ReviewReg = createAsyncThunk(
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
      async (searchName, thunkAPI) => {
-        // console.log(searchName, "아아아");
+        console.log(searchName, "아아아");
         try {
-            const {data} =  await instance.get("/api/search", searchName);
+            const {data} =  await instance.post("/api/search", searchName);
             // console.log(data);
             // dispacth(listLoad(data));
             return data
@@ -177,6 +185,9 @@ const change = createSlice({
         },
         [MainReview.fulfilled]: (state, action) => {
             state.MainReviewList = action.payload
+        },
+        [ReviewReg.fulfilled]: (state, action) => {
+            state.AutoCafeSearch = action.payload
         },
     }
 })
