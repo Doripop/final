@@ -11,10 +11,10 @@ const AllList = () => {
     }, [dispatch]);
 
     const list = useSelector((state) => state.adminSlice.CafeInfo);
-    const CafeApply = (id, regid, permit ) =>{
+    // console.log(list.data.registerList)
+    const CafeApply = (regid, permit ) =>{
         // console.log(id,regid, permit)
         dispatch(CafeApprove({
-            id : id,
             regid : regid,
             permit : permit
         }))
@@ -22,25 +22,35 @@ const AllList = () => {
 
 
     return (
+        // <>
+        //     <div>
+        //         관리자 페이지
+        //     </div>
+        // </>
         <>
             {list?.map((item, i) => (
                 <Card
                     key={i}>
-                    <h3>{item.cafename} </h3>
+                    <h3>{item?.cafename} </h3>
                     <p>
-                        {item.address} <br />
-                        {item.addressdetail} <br />
-                        {item.zonenum}
+                        {item?.address} <br />
+                        {item?.addressdetail} <br />
+                        {item?.zonenum}
                     </p>
                     <button 
                     onClick={()=>{CafeApply(
-                        item.id,
-                        item.registerid, 
-                        item.permit
+                        item?.registerid, 
+                        true
                         ); 
              
                         }}>승인</button>
-                    <button>거절</button>
+                    <button
+                    onClick={()=>{CafeApply(
+                        item?.registerid, 
+                        false
+                        ); 
+             
+                        }}>거절</button>
                 </Card>
             ))}
         </>

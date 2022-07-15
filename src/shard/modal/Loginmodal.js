@@ -42,7 +42,7 @@ const LoginModal = (props) => {
     
     const userLogin = async()=>{
             try {
-           const {data} =  await axios.post("http://54.180.88.20/api/user/signin",{
+           const {data} =  await axios.post("https://kyuhong.shop/api/user/signin",{
             email : userID.current.value,
             password : userPW.current.value
            });
@@ -54,7 +54,7 @@ const LoginModal = (props) => {
             localStorage.setItem("logoimg",data.data.logoimg )
             localStorage.setItem("cafename",data.data.businessname )
             console.log(data)
-            return data.result ? window.location.replace("/") : close();
+            return data.data.role ==="admin"? navigate("/admin") : data.result ? window.location.replace("/") : close();
             } catch(error){
                 // eslint-disable-next-line default-case
                 switch (error.response.data.message) {
