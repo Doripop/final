@@ -37,7 +37,8 @@ const DetailReview = (props) => {
                     <input type="text" placeholder="댓글작성"></input>
                 </ReviewComment>
             </Review>
-            <Review>
+
+            {/* <Review>
                 <ReviewHeader>😁nickname</ReviewHeader>
                 <ReviewImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpr15n9yoaNwz_A5FUBcavnmA6FjsqUFifGA&usqp=CAU"/>
                 <ReviewStarLove>⭐별점 4점 🤍좋아요 3개</ReviewStarLove>
@@ -49,7 +50,7 @@ const DetailReview = (props) => {
                 <ReviewComment>
                     <input type="text" placeholder="댓글작성"></input>
                 </ReviewComment>
-            </Review>
+            </Review> */}
             {/* 댓글 처리 */}
         </ReviewContent>
     );
