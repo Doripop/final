@@ -9,7 +9,7 @@ const CardList = () => {
     const dispatch = useDispatch()
     React.useEffect(()=>{
         dispatch(MainReview(citylist))
-    },[dispatch,citylist])
+    },[dispatch, citylist])
     
     return (
         <>
