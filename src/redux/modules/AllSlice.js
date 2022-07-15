@@ -6,7 +6,8 @@ const initialState = {
     user :[],
     city : [],
     AutoCafeSearch :[],
-    MainReviewList : []
+    MainReviewList : [],
+    MyReview : []
 }
 
 
@@ -31,7 +32,19 @@ export const LogOut = createAsyncThunk(
         }
     }
 )
-
+//마이리뷰 불러오기
+export const MyReviewLoad = createAsyncThunk(
+    'AllSlice/MyReviewLoad',
+    async () => {
+        try {
+            const {data} = await instance.get("/api/user/posts")
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
 
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
@@ -56,8 +69,10 @@ export const ReviewCreate = createAsyncThunk(
      async (reviewInfo) => {
         console.log(reviewInfo)
         try {
-            const {data} =  await instance.get(`api/${reviewInfo.cafeid}/posts`, reviewInfo.formdata);
-            // console.log(data);
+            const {data} =  await instance.post(`api/${reviewInfo.cafeid}/posts`, reviewInfo.formdata,{headers: {
+                "Content-Type": "multipart/form-data"
+            }});
+            console.log(data);
             return data
         } catch(error){
             console.log(error)
@@ -189,6 +204,9 @@ const change = createSlice({
         },
         [ReviewReg.fulfilled]: (state, action) => {
             state.AutoCafeSearch = action.payload
+        },
+        [MyReviewLoad.fulfilled]: (state, action) => {
+            state.MyReview = action.payload.data
         },
     }
 })

@@ -173,7 +173,7 @@ const SignupModal = (props) => {
                 //     console.log(value);
                 // }
                 const { data } = await axios.post(
-                    "http://54.180.88.20/api/user/signup", formdata, 
+                    "https://kyuhong.shop/api/user/signup", formdata, 
                     {headers: {
                         "Content-Type": "multipart/form-data"
                     }}

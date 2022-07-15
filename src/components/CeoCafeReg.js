@@ -16,11 +16,11 @@ const CafeReg = () => {
     const closeModal = () => {
       setModalOpen(false);
     }
-
+   
 
     return (
         <>
-          <CafeBtn onClick={openModal}>사장님카페등록</CafeBtn>
+          <CafeBtn onClick={openModal}> 사장님카페등록</CafeBtn>
           <CeoCafeRegModal open={modalOpen} close={closeModal} header="사장님카페등록">
           </CeoCafeRegModal>
         </>

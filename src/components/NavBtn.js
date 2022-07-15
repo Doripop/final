@@ -8,13 +8,16 @@ import { FiSearch } from 'react-icons/fi'
 import Review from './Review';
 import { useDispatch } from 'react-redux';
 import { citylist } from '../redux/modules/AllSlice';
+import { useNavigate } from 'react-router-dom';
 
 const NavBtn = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const CityCheck = (e) => {
         dispatch(citylist(e.target.value))
     }
-     
+    
+
     return (
         <>
             <TopMenu>
@@ -26,9 +29,9 @@ const NavBtn = () => {
             <BottomMenu>
                 <p>근처에 있는카페!</p>
                 <Select
-                onChange={(e)=>{
-                    CityCheck(e)
-                }}
+                    onChange={(e) => {
+                        CityCheck(e)
+                    }}
                 >
                     <option value="서울특별시">서울특별시</option>
                     <option value="부산광역시">부산광역시</option>

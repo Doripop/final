@@ -15,10 +15,9 @@ const RealAllCafe = () => {
     const list = useSelector((state) => state.adminSlice.RealInfo);
     console.log(list)
 
-    const CafeDelete = (id, cafeid) =>{
+    const CafeDelete = (cafeid) =>{
         // console.log(id,regid, permit)
         dispatch(CafeRemove({
-            id : id,
             cafeid : cafeid
         }))
     }
@@ -39,7 +38,6 @@ const RealAllCafe = () => {
                     <button
                     onClick={()=>{
                         CafeDelete(
-                            item.id,
                             item.cafeid
                         )
                     }}

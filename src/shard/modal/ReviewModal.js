@@ -130,49 +130,31 @@ const ReviewModal = (props) => {
 
     const [Upimage, setUpimage] = useState([]);
     // const formData = new FormData();
-
+    
+   
     const handleAddImages = (e) => {
-        const imageLists = e.target.files;
+        const imageLists = e.target.files; 
+        
         let imageUrlLists = [...Upimage];
-       
-
+      
         for (let i = 0; i < imageLists.length; i++) {
+            
             const currentImageUrl = URL.createObjectURL(imageLists[i]);
             imageUrlLists.push(currentImageUrl);
-            /////
-            // console.log(imageLists[i])
+           
+            
             // formData.append("file", imageLists[i])
         }
         if (imageUrlLists.length > 3) {
             imageLists = imageLists.slice(0, 3);
         }
+       
         setUpimage(imageUrlLists);
-
-        // for (let key of formData.keys()) {
-        //     console.log(key);
-        //   }
-          
-        //   FormData의 value 확인
-        //   for (let value of formData.values()) {
-        //     console.log(value);
-        //   }
-      
+       
     }
     
-    
-    /////////test/////////
-    // const test = async()=>{
-    //     try {
-    //    const {data} =  await instance.post("admin", formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   });
-    //     } catch(error){
-    //       window.alert(error) 
-    //     }
-    // }
-    //멀티 이미지 지우기
+
+  
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
     };
@@ -186,10 +168,18 @@ const ReviewModal = (props) => {
             hashtag : tagList,
             contents : review.current.value,
         }
-        const json = JSON.stringify(sendData);
-        const blob = new Blob([json], {type : "application/json"})
-        formData.append("reviews", blob)
-
+        
+        // console.log(sendImg)
+        // for(let i = 0; i < Upimage.length; i++){
+        //     formData.append("file", Upimage[i])
+        // }
+        // formData.append("file", [...Upimage])
+        formData.append("data", new Blob([JSON.stringify(sendData)],
+                 { type: "application/json" }
+                 ));
+        
+        Upimage.forEach(image => formData.append("file",image))
+        // console.log(Upimage)
         // FormData의 value 확인
           for (let value of formData.values()) {
             console.log(value);
@@ -200,6 +190,8 @@ const ReviewModal = (props) => {
         }))
     }
    
+
+    
 
     // console.log(sendCafe.cafeid, star, tagList); 
 
