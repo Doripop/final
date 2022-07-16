@@ -6,44 +6,67 @@ import { GiCakeSlice } from 'react-icons/gi';
 
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafeMenu } from "../../redux/modules/AllSlice";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 
 const DetailMenu = (props) => {
-    const dispatch = useDispatch()
-    const {cafeid} = props
-    console.log(cafeid.id)
+    const params = useParams();
+    const dispatch = useDispatch();
+    const cafeId = Number(params.id);
+    const navigate = useNavigate();
+    // const cafeId = props
+    const menuList = useSelector((state) => state.AllSlice.DetailCafeMenu);
+    console.log(menuList)
+    console.log(cafeId.id)
     React.useEffect(()=>{
         //메뉴 정보 받아오기
-      dispatch(DetailCafeMenu(cafeid.id))
-    },[dispatch])
-    const list = useSelector((state) => state.AllSlice.DetailCafeMenu);
-    console.log(list)
+      dispatch(DetailCafeMenu(cafeId))
+    },[dispatch, cafeId])
     
     return (
         <>
             <CoffeeMenu>
-            <h1><SiBuymeacoffee className="coffee"/>&nbsp;커피메뉴&nbsp;&nbsp;&nbsp;</h1>
-            {list?.map((item, i) => (
-                <Coffee
-                    key={i}>
+                <h1><SiBuymeacoffee className="coffee"/>&nbsp;커피메뉴{menuList?.category}&nbsp;&nbsp;&nbsp;</h1>
+                    <Coffee
+                        id={menuList?.menuid}>
+                        <CoMenu src = {menuList?.menuimg}/>
+                        {menuList?.menuna}<br/>
+                        {menuList?.menuprice}
+                    </Coffee>
+                    <Coffee>
+                        <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS55NcjBojCxNAtexnVQPFbgyi7fJCibBOWjNoAoUMcfaQJKgV0iIUJTr4ziivTJzBQWYg&usqp=CAU"/>
+                        아메리카노<br/>
+                        3,000원
+                    </Coffee>
+                </CoffeeMenu>
+            <DessertMenu>
+                <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
+                <Dessert>
+                    <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
+                    수제케이크<br/>
+                    6,000원
+                </Dessert>
+                <Dessert>
+                    <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
+                    수제케이크<br/>
+                    6,000원
+                </Dessert>
+            </DessertMenu>
+        {/* {list?.map((item, i) => (
+            <div>
+            <DessertMenu>
+            <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴{item.category}</h1>
+                <Dessert
+                    key={i}
+                    id={item.menuid}>
                     <CoMenu>{item.menuimg}</CoMenu>
                     {item.menuna}<br/>
                     {item.menuprice}
-                </Coffee>
-            ))}
-            </CoffeeMenu>
-            <DessertMenu>
-            <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
-            {list?.map((item, i) => (
-                <Dessert
-                    key={i}>
-                    <CoMenu></CoMenu>
-                    {item.menuna}<br/>
-                    {item.menuprice}
                 </Dessert>
-            ))}
             </DessertMenu>
+            </div>
+            ))} */}
         </>
         
         // <>
@@ -60,25 +83,13 @@ const DetailMenu = (props) => {
         //             80,000원
         //         </Coffee>
         //     </CoffeeMenu>
-        //     <DessertMenu>
-        //         <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
-        //         <Dessert>
-        //             <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-        //             수제케이크<br/>
-        //             80,000원
-        //         </Dessert>
-        //         <Dessert>
-        //             <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-        //             수제케이크<br/>
-        //             80,000원
-        //         </Dessert>
-        //     </DessertMenu>
+
         // </>
     );
 }
 
 const CoffeeMenu = styled.div`
-    width: 960px;
+    width: 1000px;
 
     margin: 0 auto;
     padding: 20px;
@@ -121,7 +132,7 @@ const CoMenu = styled.img`
 `;
 
 const DessertMenu = styled.div`
-    width: 960px;
+    width: 1000px;
 
     margin: 0 auto;
     padding: 20px;

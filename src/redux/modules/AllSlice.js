@@ -140,7 +140,7 @@ export const DetailCafeMenu = createAsyncThunk(
     'AllSlice/DetailCafeMenu',
     async (cafeid) => {
         try{
-            const {data} = await instance.get(`api/cafes/${cafeid}/menu`)
+            const {data} = await instance.get(`api/cafes/${cafeid}/menus`)
             return data
         } catch(error) {
             window.alert(error)
@@ -152,7 +152,7 @@ export const DetailCafePost = createAsyncThunk(
     'AllSlice/DetailCafePost',
     async (cafeid) => {
         try{
-            const {data} = await instance.get(`api/cafes/${cafeid}/post`)
+            const {data} = await instance.get(`api/cafes/${cafeid}/posts`)
             return data
         } catch(error) {
             window.alert(error)
@@ -191,7 +191,6 @@ const change = createSlice({
         },
         [DetailCafeMenu.fulfilled]: (state, action) => {
             state.DetailCafeMenuList = action.payload
-            console.log(action.payload);
         },
         [DetailCafePost.fulfilled]: (state, action) => {
             state.DetailCafePostList = action.payload

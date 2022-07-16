@@ -12,39 +12,35 @@ import { DetailCafeHome } from "../../redux/modules/AllSlice";
 const DetailHome = (props) => {
 
     const dispatch = useDispatch()
-    const {cafeid} = props
-    console.log(cafeid.id)
+    const cafeId = Number(props);
+    console.log(cafeId);
 
+    const home = useSelector((state) => state.AllSlice.DetailCafeHome);
+    console.log(home)
+    
     React.useEffect(()=>{
         //메뉴 정보 받아오기
-        dispatch(DetailCafeHome(cafeid.id))
+        dispatch(DetailCafeHome(cafeId))
         //이부분은 그냥 카페아이디 파람으로 넘길곳
-    },[dispatch])
-    const list = useSelector((state) => state.AllSlice.DetailCafeHome);
-    console.log(list)
-    
+    },[dispatch, cafeId])
     return (
         <>
-            {list?.map((item, i) => (
-                <div>
-                    <Home
-                        key={i}>
-                        <h1>가게설명</h1>
-                        <p>{item.opentime}</p>
-                        <p>{item.closetime}</p>
-                        <p>{item.avgstar}</p>
-                    </Home>
-                    <Home2>
-                        <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
-                        <p>매장에 대한 사장님 안내말씀 입니다.</p>
-                        <p>{item.postCnt}</p>
-                    </Home2>
-                    <Home3>
-                        <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
-                        <img>{item.logoimg}</img>
-                    </Home3>
-                </div>
-            ))}
+            <Home
+                id={home?.cafeid}>
+                <h1>가게설명</h1>
+                <p>{home?.opentime}</p>
+                <p>{home?.closetime}</p>
+                <p>{home?.avgstar}</p>
+            </Home>
+            <Home2>
+                <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
+                <p>매장에 대한 사장님 안내말씀 입니다.</p>
+                <p>{home?.postCnt}</p>
+            </Home2>
+            <Home3>
+                <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
+                <img>{home?.logoimg}</img>
+            </Home3>
         </>
 
         // <>
