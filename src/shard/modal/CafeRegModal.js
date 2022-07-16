@@ -92,7 +92,7 @@ const CafeReg = (props) => {
           });
           console.log(data);
         } else {
-          console.log("사장 등록 시작")
+          console.log("사장 등록")
           const { data } = await instance.post("api/owner/regist-cafe", {
             address: query,
             addressdetail: Detail_Address.current.value,

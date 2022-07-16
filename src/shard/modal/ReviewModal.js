@@ -134,7 +134,7 @@ const ReviewModal = (props) => {
    
     const handleAddImages = (e) => {
         const imageLists = e.target.files; 
-        
+        formData.append(e.target.files)
         let imageUrlLists = [...Upimage];
       
         for (let i = 0; i < imageLists.length; i++) {
@@ -178,7 +178,7 @@ const ReviewModal = (props) => {
                  { type: "application/json" }
                  ));
         
-        Upimage.forEach(image => formData.append("file",image))
+        // Upimage.forEach(image => formData.append("file",image))
         // console.log(Upimage)
         // FormData의 value 확인
           for (let value of formData.values()) {

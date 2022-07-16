@@ -102,8 +102,8 @@ export const CafeSearch = createAsyncThunk(
      async (searchName, thunkAPI) => {
         console.log(searchName, "아아아");
         try {
-            const {data} =  await instance.post("/api/search", searchName);
-            // console.log(data);
+            const {data} =  await instance.get(`/api/search/${searchName}`, );
+            console.log(data);
             // dispacth(listLoad(data));
             return data
         } catch(error){
