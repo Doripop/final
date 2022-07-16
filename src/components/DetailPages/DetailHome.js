@@ -12,31 +12,50 @@ import { DetailCafeHome } from "../../redux/modules/AllSlice";
 const DetailHome = (props) => {
 
     const dispatch = useDispatch()
-    const {cafeid} = props
-    console.log(cafeid.id)
+    const cafeId = Number(props);
+    console.log(cafeId);
 
+    const home = useSelector((state) => state.AllSlice.DetailCafeHome);
+    console.log(home)
+    
     React.useEffect(()=>{
         //메뉴 정보 받아오기
-        dispatch(DetailCafeHome(cafeid.id))
+        dispatch(DetailCafeHome(cafeId))
         //이부분은 그냥 카페아이디 파람으로 넘길곳
-    },[dispatch])
-    const list = useSelector((state) => state.AllSlice.DetailCafeList);
-    
-    
+    },[dispatch, cafeId])
     return (
         <>
-            <Home>
+            <Home
+                id={home?.cafeid}>
                 <h1>가게설명</h1>
+                <p>{home?.opentime}</p>
+                <p>{home?.closetime}</p>
+                <p>{home?.avgstar}</p>
             </Home>
             <Home2>
                 <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
                 <p>매장에 대한 사장님 안내말씀 입니다.</p>
+                <p>{home?.postCnt}</p>
             </Home2>
             <Home3>
                 <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
-                <img src="https://www.google.com/maps/vt/data=NiBmYD6c2Lu1yb2HAjcoHVtWRzh4k0Tfbj1Ruz2dIOQkI23ERKMu38P5x51Tht5HaqN42snplEb4F3fwRIGi1-59mFwd5y0n9RcY3H9WrRIux6sqx1bYztJcJXWExY5YP0gJupQ0PcPjDQay77eXsd4x8oGNG9nWwLhH1ABuEeA_4KxW" />
+                <img>{home?.logoimg}</img>
             </Home3>
         </>
+
+        // <>
+        //     <Home>
+        //         <h1>가게설명</h1>
+        //     </Home>
+        //     <Home2>
+        //         <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
+        //         <p>매장에 대한 사장님 안내말씀 입니다.</p>
+        //     </Home2>
+        //     <Home3>
+        //         <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
+        //         <img src="https://www.google.com/maps/vt/data=NiBmYD6c2Lu1yb2HAjcoHVtWRzh4k0Tfbj1Ruz2dIOQkI23ERKMu38P5x51Tht5HaqN42snplEb4F3fwRIGi1-59mFwd5y0n9RcY3H9WrRIux6sqx1bYztJcJXWExY5YP0gJupQ0PcPjDQay77eXsd4x8oGNG9nWwLhH1ABuEeA_4KxW" />
+        //     </Home3>
+        // </>
     );
 }
 

@@ -10,13 +10,13 @@ import { DetailCafePost } from "../../redux/modules/AllSlice";
 const DetailReview = (props) => {
 
     const dispatch = useDispatch()
-    const {cafeid} = props
-    console.log(cafeid.id)
+    const cafeId = Number(props);
+    console.log(cafeId)
     React.useEffect(()=>{
         //리뷰 정보 받아오기
-        dispatch(DetailCafePost(cafeid.id))
+        dispatch(DetailCafePost(cafeId))
     },[dispatch])
-    const list = useSelector((state) => state.AllSlice.DetailCafePostList);
+    const review = useSelector((state) => state.AllSlice.DetailCafePost);
     
     return (
         <ReviewContent>
@@ -24,19 +24,22 @@ const DetailReview = (props) => {
                 <AlignBtn>별점순</AlignBtn>
                 <AlignBtn>좋아요순</AlignBtn>
             </Alignment>
-            <Review>
-                <ReviewHeader>😁nickname</ReviewHeader>
-                <ReviewImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpr15n9yoaNwz_A5FUBcavnmA6FjsqUFifGA&usqp=CAU"/>
-                <ReviewStarLove>⭐별점 4점 🤍좋아요 3개</ReviewStarLove>
-                <ReviewUserInfo>nickname</ReviewUserInfo>
-                <ReviewTag>#사진맛집 #커피맛집 #뷰맛집</ReviewTag>
-                <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
-                <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
-                <ReviewDate>1일전</ReviewDate>
-                <ReviewComment>
-                    <input type="text" placeholder="댓글작성"></input>
-                </ReviewComment>
-            </Review>
+
+                <Review
+                    id={review?.postid}>
+                    <ReviewHeader>{review?.nickname}</ReviewHeader>
+                    <ReviewImg src = {review?.image}></ReviewImg>
+                    <ReviewStarLove>⭐{review?.star} 🤍{review?.likecnt}</ReviewStarLove>
+                    <ReviewUserInfo>{review?.nickname}</ReviewUserInfo>
+                    <ReviewTag>{review?.hashtagList}</ReviewTag>
+                    <ReviewContext>{review?.commentCnt}</ReviewContext>
+                    <ReviewCommentGroup>{review?.commentList}</ReviewCommentGroup>
+                    <ReviewDate>{review?.modifiedAt}</ReviewDate>
+                    <ReviewComment>
+                        <input type="text" placeholder="댓글작성"></input>
+                    </ReviewComment>
+                </Review>
+
             <Review>
                 <ReviewHeader>😁nickname</ReviewHeader>
                 <ReviewImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpr15n9yoaNwz_A5FUBcavnmA6FjsqUFifGA&usqp=CAU"/>
