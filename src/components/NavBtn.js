@@ -21,7 +21,7 @@ const NavBtn = () => {
     return (
         <>
             <TopMenu>
-                <CeoCafeReg />
+                {/* <CeoCafeReg /> */}
                 <CafeReg />
                 <Review />
             </TopMenu>

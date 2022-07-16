@@ -90,6 +90,7 @@ const CafeReg = (props) => {
             longitude: longitude,
             // oldAddress: query
           });
+          alert("등록이 완료되었습니다!")
           console.log(data);
         } else {
           console.log("사장 등록")
@@ -102,6 +103,7 @@ const CafeReg = (props) => {
             // oldAddress: query
             
           });
+          alert("등록이 완료되었습니다!")
           // console.log(query);
           // console.log(data);
         }
@@ -112,7 +114,6 @@ const CafeReg = (props) => {
         window.alert(error)
       }
     }
-    alert("등록이 완료되었습니다!")
     close();
   }
 
