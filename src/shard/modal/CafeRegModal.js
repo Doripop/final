@@ -90,9 +90,10 @@ const CafeReg = (props) => {
             longitude: longitude,
             // oldAddress: query
           });
+          alert("등록이 완료되었습니다!")
           console.log(data);
         } else {
-          console.log("사장 등록 시작")
+          console.log("사장 등록")
           const { data } = await instance.post("api/owner/regist-cafe", {
             address: query,
             addressdetail: Detail_Address.current.value,
@@ -102,6 +103,7 @@ const CafeReg = (props) => {
             // oldAddress: query
             
           });
+          alert("등록이 완료되었습니다!")
           // console.log(query);
           // console.log(data);
         }
@@ -112,7 +114,6 @@ const CafeReg = (props) => {
         window.alert(error)
       }
     }
-    alert("등록이 완료되었습니다!")
     close();
   }
 

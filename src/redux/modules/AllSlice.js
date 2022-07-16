@@ -28,7 +28,7 @@ export const LogOut = createAsyncThunk(
             window.location.replace("/")
         } catch(error){
             console.log(error)
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )
@@ -58,7 +58,7 @@ export const MainReview = createAsyncThunk(
             return data
         }catch (error) {
             console.log(error);
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )
@@ -76,7 +76,7 @@ export const ReviewCreate = createAsyncThunk(
             return data
         } catch(error){
             console.log(error)
-            window.alert(error) 
+            // window.alert(error) 
         }
     }
 )
@@ -92,7 +92,7 @@ export const ReviewReg = createAsyncThunk(
             // dispacth(listLoad(data));
             return data
         } catch(error){
-            window.alert(error) 
+            // window.alert(error) 
         }
     }
 )
@@ -102,12 +102,12 @@ export const CafeSearch = createAsyncThunk(
      async (searchName, thunkAPI) => {
         console.log(searchName, "아아아");
         try {
-            const {data} =  await instance.post("/api/search", searchName);
-            // console.log(data);
+            const {data} =  await instance.get(`/api/search/${searchName}`, );
+            console.log(data);
             // dispacth(listLoad(data));
             return data
         } catch(error){
-            window.alert(error) 
+            // window.alert(error) 
         }
     }
 )
@@ -119,7 +119,7 @@ export const DetailCafeBanner = createAsyncThunk(
             const {data} = await instance.get(`api/cafes/${cafeid}`)
             return data
         } catch(error) {
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )
@@ -131,7 +131,7 @@ export const DetailCafeHome = createAsyncThunk(
             const {data} = await instance.get(`api/cafes/${cafeid}/info`)
             return data
         } catch(error) {
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )
@@ -143,7 +143,7 @@ export const DetailCafeMenu = createAsyncThunk(
             const {data} = await instance.get(`api/cafes/${cafeid}/menus`)
             return data
         } catch(error) {
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )
@@ -155,7 +155,7 @@ export const DetailCafePost = createAsyncThunk(
             const {data} = await instance.get(`api/cafes/${cafeid}/posts`)
             return data
         } catch(error) {
-            window.alert(error)
+            // window.alert(error)
         }
     }
 )

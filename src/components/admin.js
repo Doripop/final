@@ -39,7 +39,7 @@ const Admin = () => {
                     setSubMenu("B")
                 }}
                 >
-                   <BsCheckSquare size="15" color="green"/>승인된 목록 // 거절기능없음 37개 &gt;
+                   <BsCheckSquare size="15" color="green"/>승인된 목록 &gt;
                 </AdminBtn>
                 <AdminBtn
                 onClick={()=>{
@@ -53,15 +53,15 @@ const Admin = () => {
                     setSubMenu("D")
                 }}
                 >
-                   모든 등록된 카페 // 삭제가능 37개 &gt;
+                   모든 등록된 카페 37개 &gt;
                 </AdminBtn>
             </LeftContent>
             <ReightContent>
                 {
                     subMenu === "A" && <h3>미처리</h3> ||
-                    subMenu === "B" && <h3>승인된 목록 //거절기능없음</h3> ||
+                    subMenu === "B" && <h3>승인된 목록</h3> ||
                     subMenu === "C" && <h3>거절 목록</h3> ||
-                    subMenu === "D" && <h3>모든 등록된 카페 // 삭제가능</h3>
+                    subMenu === "D" && <h3>모든 등록된 카페</h3>
 
                 }
                 <hr />
