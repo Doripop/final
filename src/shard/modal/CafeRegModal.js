@@ -48,6 +48,7 @@ const CafeReg = (props) => {
         // console.log(address, zonecode, query);
         return new Promise((resolve, reject) => {
           const geocoder = new daum.maps.services.Geocoder();
+          console.log(geocoder);
           geocoder.addressSearch(address, (result, status) => {
             if (status === daum.maps.services.Status.OK) {
               const { x, y } = result[0];
@@ -65,10 +66,12 @@ const CafeReg = (props) => {
         setLatitude(lat);
         setLongitude(lon);
       });
+      console.log(latitude, longitude, address, zone, query)
   };
-  // console.log(latitude, longitude, address, zone, query)
+  
   // window.setTimeout(() => {
   //   console.log(Detail_Address.current.value)
+  //   console.log(latitude, longitude, address, zone, query)
   // }, 6000)
 
   const CafeAdd = async () => {

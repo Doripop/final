@@ -12,7 +12,7 @@ const Search = () => {
     const pageSearch = useRef("");
     const dispacth = useDispatch();
     const navigate = useNavigate();
-
+    console.log(parm)
 
 
 
@@ -24,8 +24,8 @@ const Search = () => {
         console.log("2")
     },[parm.text])
 
-    const searchList = useSelector((state) => state.AllSlice.dadasdadsad);
-
+    const searchList = useSelector((state) => state.AllSlice.SearchCafeInfo);
+    console.log(searchList)
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
             navigate(`/search/${pageSearch.current.value}`);
@@ -39,7 +39,7 @@ const Search = () => {
 
     return (
         <>
-            <div style={{display:"flex", justifyContent:"center"}}>
+            <div style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
                 <SearchBar 
                 type="text"
                 ref={pageSearch}
@@ -47,13 +47,18 @@ const Search = () => {
                 placeholder = "검색어를 입력해주세요"
                 /> 
 
-                {/* {searchList?.map(()=>(
+                {searchList?.map((cafe,i)=>(
                     <>
-                        <div>
-                            
-                        </div>
+                        <CardBox
+                        onClick={()=>{navigate(`/detail/${cafe.cafeid}`)}}
+                        key={cafe.zonenum}>
+                            {cafe.address}
+                            {cafe.avgstar}
+                            {cafe.cafename}
+                            {cafe.zonenum}
+                        </CardBox>
                     </>
-                ))} */}
+                ))}
 
 
 
@@ -67,6 +72,13 @@ const SearchBar = styled.input`
     width: 691px;
     height: 50px;
     box-shadow: 0 4px 4px -4px black;
+`;
+
+const CardBox = styled.div`
+    width : 150px;
+    height : 150px;
+    box-shadow: 0 4px 4px -4px black;
+    border: 1px solid red;
 `;
 
 export default Search;

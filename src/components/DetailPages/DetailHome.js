@@ -7,22 +7,23 @@ import { AiFillSound } from 'react-icons/ai';
 import {useDispatch, useSelector} from "react-redux"
 
 import { DetailCafeHome } from "../../redux/modules/AllSlice";
+import { useParams } from "react-router-dom";
 
 
-const DetailHome = (props) => {
+const DetailHome = () => {
 
     const dispatch = useDispatch()
-    const cafeId = Number(props);
-    console.log(cafeId);
+    const parm = useParams()
+    console.log(parm);
 
-    const home = useSelector((state) => state.AllSlice.DetailCafeHome);
+    const home = useSelector((state) => state.AllSlice.DetailCafeList);
     console.log(home)
     
     React.useEffect(()=>{
         //메뉴 정보 받아오기
-        dispatch(DetailCafeHome(cafeId))
+        dispatch(DetailCafeHome(parm.id))
         //이부분은 그냥 카페아이디 파람으로 넘길곳
-    },[dispatch, cafeId])
+    },[dispatch])
     return (
         <>
             <Home
