@@ -102,12 +102,13 @@ export const CafeSearch = createAsyncThunk(
      async (searchName, thunkAPI) => {
         console.log(searchName, "아아아");
         try {
-            const {data} =  await instance.get(`/api/search/${searchName}`, );
+            const {data} =  await instance.get(`/api/search/${searchName.keyword}`, );
             console.log(data);
             // dispacth(listLoad(data));
             return data
         } catch(error){
-            // window.alert(error) 
+            // console.log(error.response.data.message)
+            window.alert(error.response.data.message) 
         }
     }
 )
@@ -115,8 +116,10 @@ export const CafeSearch = createAsyncThunk(
 export const DetailCafeBanner = createAsyncThunk(
     'AllSlice/DetailCafeBanner',
     async (cafeid) => {
+        console.log(cafeid)
         try{
             const {data} = await instance.get(`api/cafes/${cafeid}`)
+            console.log(data)
             return data
         } catch(error) {
             // window.alert(error)
@@ -129,6 +132,7 @@ export const DetailCafeHome = createAsyncThunk(
     async (cafeid) => {
         try{
             const {data} = await instance.get(`api/cafes/${cafeid}/info`)
+            console.log(data)
             return data
         } catch(error) {
             // window.alert(error)
@@ -141,6 +145,7 @@ export const DetailCafeMenu = createAsyncThunk(
     async (cafeid) => {
         try{
             const {data} = await instance.get(`api/cafes/${cafeid}/menus`)
+            console.log(data)
             return data
         } catch(error) {
             // window.alert(error)
@@ -153,9 +158,10 @@ export const DetailCafePost = createAsyncThunk(
     async (cafeid) => {
         try{
             const {data} = await instance.get(`api/cafes/${cafeid}/posts`)
+            console.log(data)
             return data
         } catch(error) {
-            // window.alert(error)
+            window.alert(error)
         }
     }
 )
@@ -181,19 +187,19 @@ const change = createSlice({
             console.log("호출중")
         },
         [CafeSearch.fulfilled]: (state, action) => {
-            state.SearchCafeInfo = action.payload
+            state.SearchCafeInfo = action.payload.data
         },
         [CafeSearch.rejected]: (state) => {
             console.log("호출 실패")
         },
         [DetailCafeHome.fulfilled]: (state, action) => {
-            state.DetailCafeList = action.payload
+            state.DetailCafeList = action.payload.data
         },
         [DetailCafeMenu.fulfilled]: (state, action) => {
-            state.DetailCafeMenuList = action.payload
+            state.DetailCafeMenuList = action.payload.data
         },
         [DetailCafePost.fulfilled]: (state, action) => {
-            state.DetailCafePostList = action.payload
+            state.DetailCafePostList = action.payload.data
         },
         [DetailCafeBanner.fulfilled]: (state, action) => {
             state.DetailCafeBanner = action.payload

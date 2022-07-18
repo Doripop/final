@@ -129,20 +129,21 @@ const ReviewModal = (props) => {
 
 
     const [Upimage, setUpimage] = useState([]);
+    const [orginImg, setOrginImg] = useState([]);
     // const formData = new FormData();
     
    
     const handleAddImages = (e) => {
         const imageLists = e.target.files; 
-        formData.append(e.target.files)
+        
         let imageUrlLists = [...Upimage];
-      
+        let OrignImage = [...orginImg];
         for (let i = 0; i < imageLists.length; i++) {
-            
+            OrignImage.push(imageLists[i]);
             const currentImageUrl = URL.createObjectURL(imageLists[i]);
             imageUrlLists.push(currentImageUrl);
            
-            
+            console.log(OrignImage, " 146")
             // formData.append("file", imageLists[i])
         }
         if (imageUrlLists.length > 3) {
@@ -150,10 +151,10 @@ const ReviewModal = (props) => {
         }
        
         setUpimage(imageUrlLists);
-       
+        setOrginImg(OrignImage)
     }
     
-
+    // console.log(orginImg, "157 스테이트")
   
     const handleDeleteImage = (id) => {
         setUpimage(Upimage.filter((_, index) => index !== id));
@@ -177,7 +178,7 @@ const ReviewModal = (props) => {
         formData.append("data", new Blob([JSON.stringify(sendData)],
                  { type: "application/json" }
                  ));
-        
+        orginImg.forEach((file) => formData.append("files", file))
         // Upimage.forEach(image => formData.append("file",image))
         // console.log(Upimage)
         // FormData의 value 확인

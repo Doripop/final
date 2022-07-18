@@ -16,9 +16,9 @@ const DetailMenu = (props) => {
     const cafeId = Number(params.id);
     const navigate = useNavigate();
     // const cafeId = props
-    const menuList = useSelector((state) => state.AllSlice.DetailCafeMenu);
+    const menuList = useSelector((state) => state.AllSlice.DetailCafeMenuList);
     console.log(menuList)
-    console.log(cafeId.id)
+    // console.log(cafeId.id)
     React.useEffect(()=>{
         //메뉴 정보 받아오기
       dispatch(DetailCafeMenu(cafeId))

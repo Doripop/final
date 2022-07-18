@@ -15,6 +15,7 @@ const Header = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isLogin, setIsLogin] = useState(null)
+    const [role , setRole] = useState(null)
     const searchItem = useRef("")
     const onKeyPress = (e) => {
         if ( e.key === 'Enter') {
@@ -23,6 +24,7 @@ const Header = () => {
     }
     React.useEffect(()=>{
         setIsLogin(localStorage.getItem("token"))
+        setRole(localStorage.getItem("role"))
     },[isLogin])
      
     const LogOutBtn = () => {
@@ -65,7 +67,7 @@ const Header = () => {
                                 fontSize:"20px",
                                 cursor : "pointer"
                             }}
-                            onClick = {()=>{navigate("/mypage");}}
+                            onClick = {()=>{role === "admin" ? navigate("/admin") : navigate("/mypage");}}
                             >
                                 MYPAGE
                             </h1>

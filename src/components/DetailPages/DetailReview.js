@@ -5,18 +5,22 @@ import { FaComment } from "react-icons/fa";
 
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafePost } from "../../redux/modules/AllSlice";
+import { useParams } from "react-router-dom";
 
 
 const DetailReview = (props) => {
 
     const dispatch = useDispatch()
-    const cafeId = Number(props);
-    console.log(cafeId)
+    // const cafeId = Number(props);
+    // console.log(cafeId)
+    const parm = useParams();
+    // console.log(parm.id)
     React.useEffect(()=>{
         //리뷰 정보 받아오기
-        dispatch(DetailCafePost(cafeId))
+        dispatch(DetailCafePost(parm.id))
     },[dispatch])
-    const review = useSelector((state) => state.AllSlice.DetailCafePost);
+    const review = useSelector((state) => state.AllSlice.DetailCafePostList);
+    console.log(review)
     
     return (
         <ReviewContent>
