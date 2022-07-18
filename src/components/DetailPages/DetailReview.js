@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { FaComment } from "react-icons/fa";
 
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { DetailCafePost } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
 
@@ -15,48 +15,42 @@ const DetailReview = (props) => {
     // console.log(cafeId)
     const parm = useParams();
     // console.log(parm.id)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         //리뷰 정보 받아오기
         dispatch(DetailCafePost(parm.id))
-    },[dispatch])
+    }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    console.log(review)
+    // console.log(review)
     
+    
+    
+
+
     return (
         <ReviewContent>
             <Alignment>
                 <AlignBtn>별점순</AlignBtn>
                 <AlignBtn>좋아요순</AlignBtn>
             </Alignment>
-
-                <Review
-                    id={review?.postid}>
-                    <ReviewHeader>{review?.nickname}</ReviewHeader>
-                    <ReviewImg src = {review?.image}></ReviewImg>
-                    <ReviewStarLove>⭐{review?.star} 🤍{review?.likecnt}</ReviewStarLove>
-                    <ReviewUserInfo>{review?.nickname}</ReviewUserInfo>
-                    <ReviewTag>{review?.hashtagList}</ReviewTag>
-                    <ReviewContext>{review?.commentCnt}</ReviewContext>
-                    <ReviewCommentGroup>{review?.commentList}</ReviewCommentGroup>
-                    <ReviewDate>{review?.modifiedAt}</ReviewDate>
-                    <ReviewComment>
-                        <input type="text" placeholder="댓글작성"></input>
-                    </ReviewComment>
-                </Review>
-
-            <Review>
-                <ReviewHeader>😁nickname</ReviewHeader>
-                <ReviewImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpr15n9yoaNwz_A5FUBcavnmA6FjsqUFifGA&usqp=CAU"/>
-                <ReviewStarLove>⭐별점 4점 🤍좋아요 3개</ReviewStarLove>
-                <ReviewUserInfo>nickname</ReviewUserInfo>
-                <ReviewTag>#사진맛집 #커피맛집 #뷰맛집</ReviewTag>
-                <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
-                <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
-                <ReviewDate>1일전</ReviewDate>
-                <ReviewComment>
-                    <input type="text" placeholder="댓글작성"></input>
-                </ReviewComment>
-            </Review>
+            {review?.map((item, i) => (
+                <>
+                    <Review key={item.postid}>
+                        <ReviewHeader>😁nickname</ReviewHeader>
+                        <ReviewImg src={item.image[0].img} />
+                        <ReviewStarLove>⭐별점 {item.star}점 🤍좋아요 {item.likecnt}개</ReviewStarLove>
+                        <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
+                        {item.hashtagList.map((t,i)=>(<ReviewTag>{t.hashtag}</ReviewTag>))}
+                        <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
+                        <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
+                        <ReviewDate>
+                         1일전-이부분 처리 서버에서 부탁하기
+                         </ReviewDate>
+                        <ReviewComment>
+                            <input type="text" placeholder="댓글작성"></input>
+                        </ReviewComment>
+                    </Review>
+                </>
+            ))}
             {/* 댓글 처리 */}
         </ReviewContent>
     );
