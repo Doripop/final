@@ -20,8 +20,25 @@ const DetailReview = () => {
         setUsername(localStorage.getItem("nicname"))
     }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
+    console.log(review+"000000000")
     
+    const [unclick, setUnclick] = useState("none")
+    const [click, setClick] = useState("flex")
+    const clickevent = () => {
+        setClick("none")
+        setUnclick("flex")
+    }
+    const unclickevent = () => {
+        setClick("flex")
+        setUnclick("none")
+    }
 
+    const nickname = useRef(null)
+    const contents = useRef(null)
+
+    const changeCom = () => {
+        dispatch(CreateComment(contents.current.value))
+    }
 
     
 
@@ -57,22 +74,26 @@ const DetailReview = () => {
                         <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
 
 
-                        <div>
+                        <ReviewComUp>
                             {item.commentList.map((comment, i)=>(
                                 <>
                                     <div>
-                                       <ReviewProfile src ={comment.profileimg}/>
-                                       {comment.nickname} : {comment.contents}
                                        {userName === comment.nickname ? (
-                                       <>
-                                        <button>수정</button>
-                                        <button>삭제</button>
-                                       </>):
+                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : 
+                                        <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
+                                            <input ref={contents} type="text" placeholder={comment.contents} style={{ display: unclick }}></input>
+                                            <Btn style={{ display: unclick }} onClick={() => { unclickevent(); changeCom() }}>수정</Btn>
+                                        <Btn
+                                            onClick={()=>{
+                                                
+                                            }}
+                                        >삭제</Btn>
+                                       </span>):
                                        (null)}
                                     </div>
                                 </>
                             ))}
-                        </div>
+                        </ReviewComUp>
 
                         <ReviewDate>
                          1일전-이부분 처리 서버에서 부탁하기
@@ -191,6 +212,26 @@ const ReviewCommentGroup = styled.div`
     color: gray;
 `;
 
+const ReviewComUp = styled.div`
+    width: 500px;
+    height: 30px;
+    margin-left: 20px;
+    line-height: 2;
+    color: gray;
+
+    input {
+        width: 200px;
+        margin-left: 5px;
+        background-repeat: no-repeat;
+        border: 1px solid #ccc;
+
+        :focus {
+            border-color:#0982f0;
+            outline: none;
+        }
+    }
+`;
+
 const ReviewDate = styled.div`
     width: 500px;
     height: 30px;
@@ -214,6 +255,11 @@ const ReviewComment = styled.div`
         border: 1px solid #ccc;
         padding: 5px 5px;
 
+        :focus {
+            border-color:#0982f0;
+            outline: none;
+        }
+
         ::placeholder {
             background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuxyawNNOaJGwlR1wUq1PSSeLw3YwLj0S1vA&usqp=CAU) ;
             background-size: contain;
@@ -230,5 +276,26 @@ const ReviewProfile = styled.img`
     width :20px;
     height : 20px;
     border-radius : 20px;
+`;
+
+const Btn = styled.button`
+    width: 50px;
+    height: 25px;
+    /* display: flex; */
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 5px;
+    color: black;
+    border: none;
+    background-color: transparent;
+    margin-left:20px;
+    margin-top: 3px;
+    cursor: pointer;
+    justify-content:center;
+
+    &: hover {
+        color: white;
+        background-color: black;
+    }
 `;
 export default DetailReview;
