@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { FaComment } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux"
-import { DetailCafePost } from "../../redux/modules/AllSlice";
+import { CreateComment, DetailCafePost } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
 
 
-const DetailReview = (props) => {
+const DetailReview = () => {
 
     const dispatch = useDispatch()
-    // const cafeId = Number(props);
-    // console.log(cafeId)
+    const [comment, setComment] = useState("")
     const parm = useParams();
-    // console.log(parm.id)
     React.useEffect(() => {
-        //리뷰 정보 받아오기
         dispatch(DetailCafePost(parm.id))
     }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    // console.log(review)
     
+
+
     
+
+    const keyPress = (e, id) => {
+        if(e.key === "Enter"){
+            // console.log(ReviewComment.current.value )
+            dispatch(CreateComment({
+                contents : comment,
+                postid : id
+            }))
+        }
+    }
+
     
+  
 
 
     return (
@@ -35,7 +45,7 @@ const DetailReview = (props) => {
             {review?.map((item, i) => (
                 <>
                     <Review key={item.postid}>
-                        <ReviewHeader>😁nickname</ReviewHeader>
+                        <ReviewHeader> 😁nickname</ReviewHeader>
                         <ReviewImg src={item.image[0].img} />
                         <ReviewStarLove>⭐별점 {item.star}점 🤍좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
@@ -46,7 +56,14 @@ const DetailReview = (props) => {
                          1일전-이부분 처리 서버에서 부탁하기
                          </ReviewDate>
                         <ReviewComment>
-                            <input type="text" placeholder="댓글작성"></input>
+                            <input 
+                            type= "text"
+                            onChange={(e)=>{
+                                setComment(e.target.value)
+                            }}
+                            placeholder="댓글작성"
+                            onKeyUp={(e)=>{keyPress(e, item.postid)}}
+                            />
                         </ReviewComment>
                     </Review>
                 </>

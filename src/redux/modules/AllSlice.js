@@ -46,6 +46,20 @@ export const MyReviewLoad = createAsyncThunk(
     }
 )
 
+//디테일페이지 리뷰에 댓글 작성
+export const CreateComment = createAsyncThunk (
+    'AllSlice/CreateComment',
+    async (contents) => {
+        try {
+            console.log(contents)
+            const {data} = await instance.post(`api/posts/${contents.postid}/comments`,{contents : contents.contents})
+            console.log(data)
+        }catch(error){
+            console.log(error)
+        }
+    }
+)
+
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
@@ -196,7 +210,7 @@ const change = createSlice({
             state.DetailCafeList = action.payload.data
         },
         [DetailCafeMenu.fulfilled]: (state, action) => {
-            state.DetailCafeMenuList = action.payload.data
+            state.DetailCafeMenuList = action.payload.data.menuList
         },
         [DetailCafePost.fulfilled]: (state, action) => {
             state.DetailCafePostList = action.payload.data
