@@ -13,8 +13,11 @@ const DetailReview = () => {
     const dispatch = useDispatch()
     const [comment, setComment] = useState("")
     const parm = useParams();
+    const [userName, setUsername] = useState("")
+
     React.useEffect(() => {
         dispatch(DetailCafePost(parm.id))
+        setUsername(localStorage.getItem("nicname"))
     }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
     
@@ -52,6 +55,25 @@ const DetailReview = () => {
                         {item.hashtagList.map((t,i)=>(<ReviewTag>{t.hashtag}</ReviewTag>))}
                         <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
                         <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
+
+
+                        <div>
+                            {item.commentList.map((comment, i)=>(
+                                <>
+                                    <div>
+                                       <ReviewProfile src ={comment.profileimg}/>
+                                       {comment.nickname} : {comment.contents}
+                                       {userName === comment.nickname ? (
+                                       <>
+                                        <button>수정</button>
+                                        <button>삭제</button>
+                                       </>):
+                                       (null)}
+                                    </div>
+                                </>
+                            ))}
+                        </div>
+
                         <ReviewDate>
                          1일전-이부분 처리 서버에서 부탁하기
                          </ReviewDate>
@@ -68,7 +90,7 @@ const DetailReview = () => {
                     </Review>
                 </>
             ))}
-            {/* 댓글 처리 */}
+            
         </ReviewContent>
     );
 
@@ -204,5 +226,9 @@ const ReviewComment = styled.div`
     }
 `;
 
-
+const ReviewProfile = styled.img`
+    width :20px;
+    height : 20px;
+    border-radius : 20px;
+`;
 export default DetailReview;
