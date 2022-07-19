@@ -43,7 +43,7 @@ const DetailMenu = (props) => {
                 ))}
                 </CoffeeMenu>
             <DessertMenu>
-                <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
+                <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
                 {menuList?.map((item, i) => (
                     <>
                     <Dessert
