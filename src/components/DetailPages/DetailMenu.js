@@ -27,18 +27,20 @@ const DetailMenu = (props) => {
     return (
         <>
             <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee"/>&nbsp;커피메뉴{menuList?.category}&nbsp;&nbsp;&nbsp;</h1>
+                <SiBuymeacoffee className="coffee"/>커피메뉴
+                {menuList?.map((item, i) => (
+                    <>
                     <Coffee
-                        id={menuList?.menuid}>
-                        <CoMenu src = {menuList?.menuimg}/>
-                        {menuList?.menuna}<br/>
-                        {menuList?.menuprice}
+                        id={item.menuid}>
+                        <CoMenu src = {item.menuimg}/>
+                        <p>
+                        {item.category}<br/>
+                        {item.menuname}<br/>
+                        {item.menuprice}
+                        </p>
                     </Coffee>
-                    <Coffee>
-                        <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS55NcjBojCxNAtexnVQPFbgyi7fJCibBOWjNoAoUMcfaQJKgV0iIUJTr4ziivTJzBQWYg&usqp=CAU"/>
-                        아메리카노<br/>
-                        3,000원
-                    </Coffee>
+                    </>
+                ))}
                 </CoffeeMenu>
             <DessertMenu>
                 <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
@@ -54,7 +56,7 @@ const DetailMenu = (props) => {
                 </Dessert>
             </DessertMenu>
         {/* {list?.map((item, i) => (
-            <div>
+            
             <DessertMenu>
             <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴{item.category}</h1>
                 <Dessert
@@ -65,7 +67,7 @@ const DetailMenu = (props) => {
                     {item.menuprice}
                 </Dessert>
             </DessertMenu>
-            </div>
+            
             ))} */}
         </>
         
