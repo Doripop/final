@@ -34,14 +34,14 @@ const DetailHome = () => {
                 <p>매장에 대한 사장님 안내말씀 입니다.</p>
             </Home2>
             <Home3>
-                <h1><BiMap className="map"/>서울특별시 관악구 관천로 69-1</h1>
-                <p>
+                <h1><BiMap className="map"/>
                     {home?.address}
                     {home?.addressdetail}&nbsp;
                     {home?.zonenum} <br/>
+                </h1>
+                <p>
                     {home?.latitude} <br/>
                     {home?.longitude}
-
                 </p>
             </Home3>
         </>

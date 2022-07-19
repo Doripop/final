@@ -27,16 +27,16 @@ const DetailMenu = (props) => {
     return (
         <>
             <CoffeeMenu>
-                <SiBuymeacoffee className="coffee"/>커피메뉴
+                <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
                 {menuList?.map((item, i) => (
                     <>
                     <Coffee
                         id={item.menuid}>
                         <CoMenu src = {item.menuimg}/>
                         <p>
-                        {item.category}<br/>
-                        {item.menuname}<br/>
-                        {item.menuprice}
+                            {item.category}<br/>
+                            {item.menuname}<br/>
+                            {item.menuprice}
                         </p>
                     </Coffee>
                     </>
@@ -44,16 +44,19 @@ const DetailMenu = (props) => {
                 </CoffeeMenu>
             <DessertMenu>
                 <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴</h1>
-                <Dessert>
-                    <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-                    수제케이크<br/>
-                    6,000원
-                </Dessert>
-                <Dessert>
-                    <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-                    수제케이크<br/>
-                    6,000원
-                </Dessert>
+                {menuList?.map((item, i) => (
+                    <>
+                    <Dessert
+                        id={item.menuid}>
+                        <CoMenu src = {item.menuimg}/>
+                        <p>
+                            {item.category}<br/>
+                            {item.menuname}<br/>
+                            {item.menuprice}
+                        </p>
+                    </Dessert>
+                    </>
+                ))}
             </DessertMenu>
         {/* {list?.map((item, i) => (
             

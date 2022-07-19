@@ -196,7 +196,7 @@ const change = createSlice({
             state.DetailCafeList = action.payload.data
         },
         [DetailCafeMenu.fulfilled]: (state, action) => {
-            state.DetailCafeMenuList = action.payload.data
+            state.DetailCafeMenuList = action.payload.data.menuList
         },
         [DetailCafePost.fulfilled]: (state, action) => {
             state.DetailCafePostList = action.payload.data
