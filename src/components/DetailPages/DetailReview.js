@@ -79,7 +79,7 @@ const DetailReview = () => {
                                 <>
                                     <div>
                                        {userName === comment.nickname ? (
-                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : 
+                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : {comment.contents}
                                         <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
                                             <input ref={contents} type="text" placeholder={comment.contents} style={{ display: unclick }}></input>
                                             <Btn style={{ display: unclick }} onClick={() => { unclickevent(); changeCom() }}>수정</Btn>
@@ -88,8 +88,13 @@ const DetailReview = () => {
                                                 
                                             }}
                                         >삭제</Btn>
-                                       </span>):
-                                       (null)}
+                                       </span>) : (
+                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : {comment.contents}
+
+                                       </span>
+                                       )
+                                       }
+                                       
                                     </div>
                                 </>
                             ))}
@@ -257,7 +262,6 @@ const ReviewComment = styled.div`
 
         :focus {
             border-color:#0982f0;
-            outline: none;
         }
 
         ::placeholder {
