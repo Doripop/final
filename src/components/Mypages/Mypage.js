@@ -10,17 +10,26 @@ import { RiPencilFill } from 'react-icons/ri'
 import ModifyInfo from "./ModifyInfo";
 import ModifyCafe from "./ModifyCafe";
 import MyReview from "./MyReview";
+import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
 
 
     // const dispatch = useDispatch()
-    // React.useEffect(()=>{
-    // ---> 유저 정보 role 요청하는거 api
-    // },[])
-    const role = localStorage.getItem("role")
-    const nickname = localStorage.getItem("nicname")
-    console.log(role);
+    const navigate = useNavigate()
+    const [role, setRole] = useState("")
+    const [nickname, setNickname] = useState("")
+    const [isLogin, setLogin] = useState("")
+    React.useEffect(()=>{
+        setRole(localStorage.getItem("role"));
+        setNickname(localStorage.getItem("nicname"));
+        if(!localStorage.getItem("token")){
+            navigate("/")
+        }
+    },[])
+    
+    
+    console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");

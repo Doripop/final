@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { FaComment } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux"
-import { CreateComment, DetailCafePost } from "../../redux/modules/AllSlice";
+import { ApplyLike, CreateComment, DeleteMyComment, DetailCafePost, ModifyMyCommnet } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
+import { instance } from "../../shard/axios";
 
 
 const DetailReview = () => {
@@ -14,14 +15,17 @@ const DetailReview = () => {
     const [comment, setComment] = useState("")
     const parm = useParams();
     const [userName, setUsername] = useState("")
+    const [isLogin, setIsLogin] = useState("")
+    const [Like, setLike] = useState(false)
 
     React.useEffect(() => {
         dispatch(DetailCafePost(parm.id))
         setUsername(localStorage.getItem("nicname"))
+        setIsLogin(localStorage.getItem("token"))
     }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    console.log(review+"000000000")
-    
+    console.log(review)
+
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
     const clickevent = () => {
@@ -36,25 +40,77 @@ const DetailReview = () => {
     const nickname = useRef(null)
     const contents = useRef(null)
 
-    const changeCom = () => {
-        dispatch(CreateComment(contents.current.value))
-    }
+    // const changeCom = () => {
+    //     dispatch(CreateComment(contents.current.value))
+    // }
 
-    
+
 
     const keyPress = (e, id) => {
-        if(e.key === "Enter"){
-            // console.log(ReviewComment.current.value )
+        if (e.key === "Enter") {
             dispatch(CreateComment({
-                contents : comment,
-                postid : id
+                contents: comment,
+                postid: id,
+                nickname: localStorage.getItem("nicname"),
+                profileimg: localStorage.getItem("profileimg")
             }))
         }
     }
 
-    
-  
 
+
+
+
+
+    // 댓글 수정
+    const [ChangeReview, setChangeReview] = useState("")
+    const ModifyComment = (e) => {
+        setChangeReview(e.target.value)
+    }
+    const SendModify = (commentid, postid, contents) => {
+        dispatch(ModifyMyCommnet({
+            commentid: commentid,
+            contents: contents,
+            nickname: localStorage.getItem("nicname"),
+            profileimg: localStorage.getItem("profileimg"),
+            postid: postid,
+        }))
+    }
+
+    //댓글 삭제
+    const SendDelete = (commentid, postid) => {
+        // console.log(commentid)
+        dispatch(DeleteMyComment({
+            commentid: commentid,
+            postid: postid
+        }))
+    }
+    //좋아요 기능
+    const LikeClick = async (postid) => {
+        console.log(postid, Like)
+        if (!isLogin) {
+            return window.alert("로그인 후 이용해주세요!")
+        } else if (Like == false) {
+            console.log("실행")
+            // setLike(true)
+            // dispatch(ApplyLike(postid))
+
+            const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
+            setLike(data.result)
+
+        } else if (Like == true) {
+
+            const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
+            setLike(data.result)
+
+            // setLike(false)
+            // dispatch(ApplyLike(postid))
+        } else {
+            window.alert("중복요청")
+        }
+    }
 
     return (
         <ReviewContent>
@@ -67,56 +123,88 @@ const DetailReview = () => {
                     <Review key={item.postid}>
                         <ReviewHeader> 😁nickname</ReviewHeader>
                         <ReviewImg src={item.image[0].img} />
-                        <ReviewStarLove>⭐별점 {item.star}점 🤍좋아요 {item.likecnt}개</ReviewStarLove>
+                        <ReviewStarLove>⭐별점 {item.star}점
+
+                            <span
+                                onClick={() => {
+                                    LikeClick({
+                                        postid: item.postid
+                                    })
+                                }}
+                            >{Like ?
+                                (<span
+                                    style={{ backgroundColor: "red" }}
+                                >🤍</span>)
+                                : (<span>🤍</span>)}</span>
+
+                            좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
-                        {item.hashtagList.map((t,i)=>(<ReviewTag>{t.hashtag}</ReviewTag>))}
+                        {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
                         <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
                         <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
 
 
                         <ReviewComUp>
-                            {item.commentList.map((comment, i)=>(
+                            {item.commentList.map((comment, i) => (
                                 <>
                                     <div>
-                                       {userName === comment.nickname ? (
-                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : {comment.contents}
-                                        <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
-                                            <input ref={contents} type="text" placeholder={comment.contents} style={{ display: unclick }}></input>
-                                            <Btn style={{ display: unclick }} onClick={() => { unclickevent(); changeCom() }}>수정</Btn>
-                                        <Btn
-                                            onClick={()=>{
-                                                
-                                            }}
-                                        >삭제</Btn>
-                                       </span>) : (
-                                       <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : {comment.contents}
+                                        {userName === comment.nickname ? (
+                                            <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}
+                                                <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
+                                                <input
+                                                    onChange={(e) => {
+                                                        ModifyComment(e)
+                                                    }}
+                                                    type="text"
+                                                    placeholder={comment.contents}
+                                                    style={{ display: unclick }}
+                                                />
+                                                <Btn style={{ display: unclick }}
+                                                    onClick={() => {
+                                                        unclickevent();
+                                                        // changeCom();
+                                                        SendModify(
+                                                            comment.commentid,
+                                                            item.postid,
+                                                            ChangeReview)
+                                                    }}>수정</Btn>
+                                                <Btn
+                                                    onClick={() => {
+                                                        SendDelete(
+                                                            comment.commentid,
+                                                            item.postid
+                                                        )
+                                                    }}
+                                                >삭제</Btn>
+                                            </span>) : (
+                                            <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}
 
-                                       </span>
-                                       )
-                                       }
-                                       
+                                            </span>
+                                        )
+                                        }
+
                                     </div>
                                 </>
                             ))}
                         </ReviewComUp>
 
                         <ReviewDate>
-                         1일전-이부분 처리 서버에서 부탁하기
-                         </ReviewDate>
+                            1일전-이부분 처리 서버에서 부탁하기
+                        </ReviewDate>
                         <ReviewComment>
-                            <input 
-                            type= "text"
-                            onChange={(e)=>{
-                                setComment(e.target.value)
-                            }}
-                            placeholder="댓글작성"
-                            onKeyUp={(e)=>{keyPress(e, item.postid)}}
+                            <input
+                                type="text"
+                                onChange={(e) => {
+                                    setComment(e.target.value)
+                                }}
+                                placeholder="댓글작성"
+                                onKeyPress={(e) => { keyPress(e, item.postid) }}
                             />
                         </ReviewComment>
                     </Review>
                 </>
             ))}
-            
+
         </ReviewContent>
     );
 
@@ -297,7 +385,7 @@ const Btn = styled.button`
     cursor: pointer;
     justify-content:center;
 
-    &: hover {
+    & hover {
         color: white;
         background-color: black;
     }
