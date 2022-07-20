@@ -10,13 +10,14 @@ import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 
 //Image import
-import coffee1 from "../../css/coffee1.jpg";
-import coffee2 from "../../css/coffee2.jpg";
-import coffee3 from "../../css/coffee3.jpg";
-import coffee4 from "../../css/coffee4.jpg";
+import backImg1 from "../../css/cafeImg1.jpg";
+import backImg2 from "../../css/cafeImg2.jpg";
+import backImg3 from "../../css/cafeImg3.jpg";
+import backImg4 from "../../css/cafeImg4.jpg";
 import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
+import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +37,7 @@ const LoginModal = (props) => {
     };
    
     //Image array
-    const backgroundArr = [coffee1,coffee2,coffee3,coffee4];
+    const backgroundArr = [backImg1,backImg2,backImg3,backImg4];
     const randomIndex = Math.floor(Math.random() * backgroundArr.length);
     const backgroundImg = backgroundArr[randomIndex];
     
@@ -78,6 +79,7 @@ const LoginModal = (props) => {
                         <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
                     </div>
                     <Header>
+                        <img className="logoImg" src={Logo_Cat}/>
                         {header}
                     </Header>
                     <Body>
@@ -135,7 +137,6 @@ const Header = styled.header`
     
     font-size: 40px;
     font-weight: bold;
-    font-family: "궁서";
     color: white;
 `;
 

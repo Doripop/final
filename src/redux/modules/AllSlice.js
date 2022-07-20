@@ -65,7 +65,7 @@ export const MainReview = createAsyncThunk(
     async (region) => {
         
         const citydefault = region == "" ? "서울특별시" : region
-    
+        
         try {
             const {data} = await instance.get(`api/posts/list/${citydefault}`);
             console.log(data)
@@ -219,7 +219,7 @@ const change = createSlice({
             state.DetailCafeBanner = action.payload
         },
         [MainReview.fulfilled]: (state, action) => {
-            state.MainReviewList = action.payload
+            state.MainReviewList = action.payload.data
         },
         [ReviewReg.fulfilled]: (state, action) => {
             state.AutoCafeSearch = action.payload
