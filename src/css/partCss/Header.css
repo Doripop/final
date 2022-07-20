@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+
+.navBar {
+    background-color: #19221f;
+    display: flex;
+    justify-content: space-between;
+    /* space-between */
+    align-items: center;
+    padding: 29px 20px;
+    width: 100%;
+    min-width: 375px;
+}
+
+.logoImg {
+    width: 45px;
+    height: 50px;
+}
+/* 
+.navBar_Login {
+
+} */
+/* 
+@media screen and (max-width:375px) {
+    .navBar {
+        justify-content: space-between;
+        display: none;
+    }
+    
+} */

@@ -39,7 +39,7 @@ const Search = () => {
 
     return (
         <>
-            <div style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
+            <div style={{display:"grid", justifyContent:"center", flexDirection:"row"}}>
                 <SearchBar 
                 type="text"
                 ref={pageSearch}
@@ -53,15 +53,12 @@ const Search = () => {
                         onClick={()=>{navigate(`/detail/${cafe.cafeid}`)}}
                         key={cafe.zonenum}>
                             {cafe.address}
-                            {cafe.avgstar}
+                            {cafe.avgstar}<br/>
                             {cafe.cafename}
                             {cafe.zonenum}
                         </CardBox>
                     </>
                 ))}
-
-
-
             </div>
         </>
     )
@@ -75,10 +72,19 @@ const SearchBar = styled.input`
 `;
 
 const CardBox = styled.div`
-    width : 150px;
-    height : 150px;
+    position: relative;
+    height : 50px;
     box-shadow: 0 4px 4px -4px black;
-    border: 1px solid red;
+    border: 1px solid gray;
+    margin-top: 20px;
+    text-align: center;
+
+    justify-content: center;
+
+    border-left-width:0; 
+    border-right-width:0; 
+    border-top-width:0;
+    border-bottom-width:1;
 `;
 
 export default Search;

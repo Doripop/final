@@ -155,11 +155,6 @@ export const MainReview = createAsyncThunk(
     async (region) => {
 
         const citydefault = region == "" ? "서울특별시" : region
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> fd86ab80d88cd01fa317b97f531023844951ed65
         try {
             const { data } = await instance.get(`api/posts/list/${citydefault}`);
             console.log(data)

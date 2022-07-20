@@ -3,7 +3,7 @@ import Login from "./login";
 import Signup from "./Signup";
 import styled from 'styled-components';
 
-import "../shard/Header.css"
+import "../css/partCss/Header.css"
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "../redux/modules/AllSlice";
 import { useDispatch } from "react-redux";
