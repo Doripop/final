@@ -123,7 +123,7 @@ const Coffee = styled.div`
     margin-left: 100px; 
     text-align: center;
 
-    &: hover {
+    & hover {
         cursor: default;
         box-shadow : 0px 3px 0px 0px #E0E0E0;
     }
@@ -166,7 +166,7 @@ const Dessert = styled.div`
     margin-left: 100px; 
     text-align: center;
 
-    &: hover {
+    & hover {
         cursor: default;
         box-shadow : 0px 3px 0px 0px #E0E0E0;
     }
