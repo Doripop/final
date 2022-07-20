@@ -5,6 +5,7 @@ import DetailHome from "./DetailPages/DetailHome";
 import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
 import ScrollBtn from "./ScrollBtn";
+import ReviewBtn from "./ReviewBtn";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafeBanner } from "../redux/modules/AllSlice";
@@ -49,6 +50,7 @@ const Detail = () => {
                 Menu === "C" && <DetailReview cafeid = {parm} />
             }
             </div>
+            <ReviewBtn/>
             <ScrollBtn/>
         </>
     );

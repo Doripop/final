@@ -5,6 +5,7 @@ import Banner from "./Banner";
 import NavBtn from "./NavBtn";
 import CardList from "./CardList";
 import ScrollBtn from "./ScrollBtn";
+import ReviewBtn from "./ReviewBtn";
 
 
 const Main = () => {
@@ -16,6 +17,7 @@ const Main = () => {
                 <Banner/>
                 <NavBtn/>
                 <CardList/>
+                <ReviewBtn/>
                 <ScrollBtn/>
             </div>
         </>

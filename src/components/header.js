@@ -7,6 +7,7 @@ import "../shard/Header.css"
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "../redux/modules/AllSlice";
 import { useDispatch } from "react-redux";
+import Logo_Cat from "../css/Logo_Cat_lattee.png"
 
 
 
@@ -37,7 +38,7 @@ const Header = () => {
                 <div className="navBar">
                     <Logo onClick={() => {
                      navigate("/")
-                    }}>😁Exotic</Logo>
+                    }}><img className="logoImg" src={Logo_Cat}/>Exotic</Logo>
                     <SearchInput 
                     type="text" 
                     placeholder="서울특별시 용산구, 42 디저트카페"
