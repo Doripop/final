@@ -126,6 +126,30 @@ export const DeleteMyComment = createAsyncThunk(
 )
 
 
+//좋아요 클릭/해제
+// export const ApplyLike = createAsyncThunk(
+//     'AllSlice/ApplyLike',
+//     async (postid) => {
+//         try {
+
+//             console.log(postid)
+//             const { data } = await instance.post(`api/${postid}/like`)
+//             console.log(data)
+
+//         }catch(error){
+//             console.log(error)
+//         }
+//     }
+// )
+
+
+
+
+
+
+
+
+
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
