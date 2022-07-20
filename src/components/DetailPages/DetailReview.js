@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaComment } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux"
-import { CreateComment, DetailCafePost } from "../../redux/modules/AllSlice";
+import { CreateComment, DeleteMyComment, DetailCafePost, ModifyMyCommnet } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
 
 
@@ -20,7 +20,7 @@ const DetailReview = () => {
         setUsername(localStorage.getItem("nicname"))
     }, [dispatch])
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    console.log(review+"000000000")
+    console.log(review)
     
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
@@ -36,26 +36,53 @@ const DetailReview = () => {
     const nickname = useRef(null)
     const contents = useRef(null)
 
-    const changeCom = () => {
-        dispatch(CreateComment(contents.current.value))
-    }
+    // const changeCom = () => {
+    //     dispatch(CreateComment(contents.current.value))
+    // }
 
     
-
+  
     const keyPress = (e, id) => {
         if(e.key === "Enter"){
-            // console.log(ReviewComment.current.value )
             dispatch(CreateComment({
                 contents : comment,
-                postid : id
+                postid : id,
+                nickname : localStorage.getItem("nicname"),
+                profileimg : localStorage.getItem("profileimg")
             }))
         }
     }
 
+
     
+
+
+
+    // 댓글 수정
+    const [ChangeReview, setChangeReview] = useState("")
+    const ModifyComment = (e) =>{
+        setChangeReview(e.target.value)
+    }
+    const SendModify = (commentid, postid,contents) => {
+        dispatch(ModifyMyCommnet({
+            commentid : commentid,
+            contents : contents,
+            nickname : localStorage.getItem("nicname"),
+            profileimg : localStorage.getItem("profileimg"),
+            postid : postid,         
+        }))
+    }
   
-
-
+    //댓글 삭제
+    const SendDelete = (commentid, postid) => {
+        // console.log(commentid)
+        dispatch(DeleteMyComment({
+            commentid : commentid,
+            postid : postid
+        }))
+    }
+    
+ 
     return (
         <ReviewContent>
             <Alignment>
@@ -81,11 +108,28 @@ const DetailReview = () => {
                                        {userName === comment.nickname ? (
                                        <span style={{ display: "flex" }}><ReviewProfile src ={comment.profileimg}/>{item.nickname} : {comment.contents}
                                         <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
-                                            <input ref={contents} type="text" placeholder={comment.contents} style={{ display: unclick }}></input>
-                                            <Btn style={{ display: unclick }} onClick={() => { unclickevent(); changeCom() }}>수정</Btn>
+                                            <input 
+                                            onChange={(e)=>{
+                                                ModifyComment(e)
+                                            }}
+                                            type="text" 
+                                            placeholder={comment.contents} 
+                                            style={{ display: unclick }}
+                                            />
+                                            <Btn style={{ display: unclick }} 
+                                            onClick={() => { 
+                                                unclickevent();
+                                                // changeCom();
+                                                SendModify(
+                                                    comment.commentid,
+                                                    item.postid,
+                                                    ChangeReview) }}>수정</Btn>
                                         <Btn
                                             onClick={()=>{
-                                                
+                                                SendDelete(
+                                                    comment.commentid,
+                                                    item.postid
+                                                )  
                                             }}
                                         >삭제</Btn>
                                        </span>) : (
@@ -104,13 +148,13 @@ const DetailReview = () => {
                          1일전-이부분 처리 서버에서 부탁하기
                          </ReviewDate>
                         <ReviewComment>
-                            <input 
+                            <input
                             type= "text"
                             onChange={(e)=>{
                                 setComment(e.target.value)
                             }}
                             placeholder="댓글작성"
-                            onKeyUp={(e)=>{keyPress(e, item.postid)}}
+                            onKeyPress={(e)=>{keyPress(e, item.postid)}}
                             />
                         </ReviewComment>
                     </Review>
