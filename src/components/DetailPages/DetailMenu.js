@@ -58,38 +58,7 @@ const DetailMenu = (props) => {
                     </>
                 ))}
             </DessertMenu>
-        {/* {list?.map((item, i) => (
-            
-            <DessertMenu>
-            <h1><GiCakeSlice className="cake"/>&nbsp;디저트메뉴{item.category}</h1>
-                <Dessert
-                    key={i}
-                    id={item.menuid}>
-                    <CoMenu>{item.menuimg}</CoMenu>
-                    {item.menuna}<br/>
-                    {item.menuprice}
-                </Dessert>
-            </DessertMenu>
-            
-            ))} */}
         </>
-        
-        // <>
-        //     <CoffeeMenu>
-        //         <h1><SiBuymeacoffee className="coffee"/>&nbsp;커피메뉴&nbsp;&nbsp;&nbsp;</h1>
-        //         <Coffee>
-        //             <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-        //             아메리카노<br/>
-        //             80,000원
-        //         </Coffee>
-        //         <Coffee>
-        //             <CoMenu src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrtpWf-ty4r9WtYbsDYFgiXzEL2yYgN9yhZg&usqp=CAU"/>
-        //             아메리카노<br/>
-        //             80,000원
-        //         </Coffee>
-        //     </CoffeeMenu>
-
-        // </>
     );
 }
 
@@ -123,7 +92,7 @@ const Coffee = styled.div`
     margin-left: 100px; 
     text-align: center;
 
-    & hover {
+    : hover {
         cursor: default;
         box-shadow : 0px 3px 0px 0px #E0E0E0;
     }
@@ -166,7 +135,7 @@ const Dessert = styled.div`
     margin-left: 100px; 
     text-align: center;
 
-    & hover {
+    : hover {
         cursor: default;
         box-shadow : 0px 3px 0px 0px #E0E0E0;
     }

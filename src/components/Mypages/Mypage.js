@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 //예시 이미지
-import cat from "../../css/cafeImg1.jpg"
+import cat from "../../css/cafeImg/cafeImg1.jpg"
 //아이콘
 import { RiPencilFill } from 'react-icons/ri'
 //컴포넌트

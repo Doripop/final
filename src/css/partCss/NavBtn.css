@@ -1,0 +1,69 @@
+.navDiv{
+    padding: 0 auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.navSpan {
+    padding: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.RegiBtn {
+    padding: 0 auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.navSelect {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #00E676;
+    color: #00E676;
+    padding: 0 auto;
+    margin: 0 auto;
+}
+
+.navBomMenu {
+    margin-bottom: 30px;
+
+    padding: 0 auto;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.navAli {
+    margin-left: 1100px;
+}
+
+.navAli > button {
+    /* 
+    카페등록/리뷰등록 버튼도 중앙고정은 되지만 오른쪽 고정 시키면 확대 축소 했을때 무한정으로 늘어납니다.
+    다시 만져야됩니다..
+    */
+    width: 60px;
+    height: 20px;
+    outline: none;
+    margin-left:3px;
+    padding: 0 auto;
+    margin: 0px 2px 0px 0px;
+
+    background:transparent;
+
+    border-left-width:0; 
+    border-right-width:0; 
+    border-top-width:0;
+    border-bottom-width:1;
+
+    cursor: pointer;
+
+}
+
+.navAli > button:hover {
+    font-weight: bold;
+}
