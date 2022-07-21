@@ -4,16 +4,17 @@ import styled from 'styled-components';
 import { MainReview } from '../redux/modules/AllSlice';
 import { useNavigate } from "react-router-dom";
 
-const CardList = (props) => {
+const CardList = () => {
     const city = useSelector((state) => state.AllSlice.MainReviewList);
-   
+    const citychange = useSelector((state) => state.AllSlice.city);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
-        dispatch(MainReview(city))
-    },[dispatch])
-   
-    // console.log(city);
+        dispatch(MainReview(citychange))
+    },[citychange, dispatch])
+//    console.log(citychange)
+    
+    
     return (
         <>
         <Container>

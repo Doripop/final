@@ -3,11 +3,13 @@ import { configureStore } from "@reduxjs/toolkit";
 // import crud from "./modules/slice"
 import AllSlice from "./modules/AllSlice";
 import adminSlice from "./modules/adminSlice";
+import Likes from "./modules/Likes";
 
 const store =  configureStore({
   reducer: {
     AllSlice,
-    adminSlice
+    adminSlice,
+    Likes
   },
 });
 
