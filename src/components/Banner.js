@@ -6,10 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from './Button';
 
-import Cafe1 from '../css/cafe1.jpg'
-import Cafe2 from '../css/cafe2.jpg'
-import Cafe3 from '../css/cafe3.jpg'
-import Cafe4 from '../css/cafe4.jpg'
+import Cafe1 from '../css/cafeImg/cafe1.jpg'
+import Cafe2 from '../css/cafeImg/cafe2.jpg'
+import Cafe3 from '../css/cafeImg/cafe3.jpg'
+import Cafe4 from '../css/cafeImg/cafe4.jpg'
 
 const Banner = () => {
     const settings = {
@@ -44,7 +44,7 @@ const StyledSlider = styled(Slider)`
   .slick-list {  //슬라이드 스크린
     max-width: 1900px;
     min-width: 1050px;
-    width: 1500px;
+    width: 100%;
     margin: 0 auto;
     background-size: cover;
     background-position: 50% cover;

@@ -10,10 +10,10 @@ import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 
 //Image import
-import backImg1 from "../../css/cafeImg1.jpg";
-import backImg2 from "../../css/cafeImg2.jpg";
-import backImg3 from "../../css/cafeImg3.jpg";
-import backImg4 from "../../css/cafeImg4.jpg";
+import backImg1 from "../../css/cafeImg/cafeImg1.jpg";
+import backImg2 from "../../css/cafeImg/cafeImg2.jpg";
+import backImg3 from "../../css/cafeImg/cafeImg3.jpg";
+import backImg4 from "../../css/cafeImg/cafeImg4.jpg";
 import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
@@ -71,7 +71,7 @@ const LoginModal = (props) => {
         <>
         <div className={open ? 'openModal modal' : 'modal'}>
             {open ? (
-                <section style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+                <section className="modalBackImg" style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
                     <div 
                         onClick={close}
                         style={{display:"flex",justifyContent:"flex-end"}}

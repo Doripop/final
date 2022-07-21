@@ -188,14 +188,14 @@ const DetailReview = () => {
                             >{AllLikeList[i]?.postid === item.postid &&
                                 AllLikeList[i]?.like ?
                                 (<span
-                                    style={{ backgroundColor: "red" }}
-                                >🤍</span>)
+                                    style={{ color: "red" }}
+                                >❤</span>)
                                 : (<span>🤍</span>)}</span>
 
                             좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
-                        <ReviewContext>커피 향에 반해버렸다...더보기</ReviewContext>
+                        <ReviewContext>{item.contents}</ReviewContext>
                         <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
 
 
@@ -232,9 +232,9 @@ const DetailReview = () => {
                                                     }}
                                                 >삭제</Btn>
                                             </span>) : (
-                                            <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}
-
+                                            <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
                                             </span>
+                                            
                                         )
                                         }
 
@@ -244,7 +244,7 @@ const DetailReview = () => {
                         </ReviewComUp>
 
                         <ReviewDate>
-                            1일전-이부분 처리 서버에서 부탁하기
+                            {item.modifiedAt}
                         </ReviewDate>
                         <ReviewComment>
                             <input
@@ -440,7 +440,7 @@ const Btn = styled.button`
     cursor: pointer;
     justify-content:center;
 
-    & hover {
+    : hover {
         color: white;
         background-color: black;
     }

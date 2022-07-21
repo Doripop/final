@@ -1,0 +1,52 @@
+.containDiv {
+    /* 
+    다시 만져야됩니다 width값 100%로 주면 화면 확대 축소 했을때 달라집니다.. 
+    대신 픽셀 값으로 주면 반응형은 안되지만 게시물 3개씩 정렬 됩니다.
+    */
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    position: relative;
+}
+
+.contentDiv {
+    width: 380px;
+    height: 380px;
+    border: none;
+    margin-right: 0px;
+
+    padding: 10px;
+    background-size: cover;
+    background-position: 50% center;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+}
+
+.contentDiv:hover {
+    box-shadow: 0px 0px 10px 3px #00E676;
+}
+
+.contentImg {
+    width: 380px;
+    height: 380px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: justify;
+    line-height: 1.7;
+}
+
+.contentTitle {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    margin-top: -44px;
+    margin-left: 260px; 
+    cursor: pointer;
+}
