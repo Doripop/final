@@ -74,7 +74,7 @@ const LoginModal = (props) => {
                 <section className="modalBackImg" style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
                     <div 
                         onClick={close}
-                        style={{display:"flex",justifyContent:"flex-end",color:"white"}}
+                        style={{display:"flex",justifyContent:"flex-end"}}
                     >
                         <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
                     </div>
@@ -89,7 +89,7 @@ const LoginModal = (props) => {
                         <div>
                             <InputBox ref={userPW} type="password" placeholder="Password" />
                         </div>
-                        <NaverLogin
+                        {/* <NaverLogin
                             clientId={'Khwo3ZGcF4998EqdYc6y'}
                             callbackURL="http://localhost:3000/"
                             render={renderProps => (
@@ -115,7 +115,7 @@ const LoginModal = (props) => {
                                     <Img_sns src={googleImg} resizeMode={'contain'}/>
                                 </div>
                             )}
-                        />
+                        /> */}
                     </Body>
                     <Footer>
                         <button className="close" onClick={userLogin}>로그인</button>

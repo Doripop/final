@@ -195,8 +195,8 @@ const DetailReview = () => {
                             좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
-                        <ReviewContext>{item.contents} <LoadBtn>...더보기</LoadBtn></ReviewContext>
-                        <ReviewCommentGroup>댓글 10개 <LoadBtn>...모두 보기</LoadBtn></ReviewCommentGroup>
+                        <ReviewContext>{item.contents}</ReviewContext>
+                        <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
 
 
                         <ReviewComUp>
@@ -343,12 +343,6 @@ const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
     margin-left: 20px;
-`;
-
-const LoadBtn = styled.button`
-    border: none;
-    background:transparent;
-    cursor: pointer;
 `;
 
 const ReviewContext = styled.div`
