@@ -14,7 +14,11 @@ export const MyReviewCreate = createAsyncThunk(
     async (myReview) => {
         console.log(myReview)
         try {
-            const { data } = await instance.post(`api/${myReview.cafeid}/posts`)
+            const { data } = await instance.post(`api/${myReview.cafeid}/posts`, myReview.formdata, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
             console.log(data);
             return data
         } catch (error) {
@@ -29,7 +33,7 @@ export const MyReviewLoad = createAsyncThunk(
     'Review/MyReviewLoad',
     async (reviewInfo) => {
         try {
-            const { data } = await instance.get("/api/posts")
+            const { data } = await instance.get("/api/user/posts")
             console.log(data)
             return data
         } catch (error) {
@@ -44,7 +48,7 @@ export const MyReviewModify = createAsyncThunk(
     async (myRreview) => {
         try {
             console.log(myRreview)
-            const { data } = await instance.patch(`api/posts/${myRreview.postid}`)
+            const { data } = await instance.patch(`api/posts/${myRreview.postid}`, { contents: myRreview.contents })
             const ChangeReview = {
                 contents: myRreview.contents,
                 star: myRreview.star,
