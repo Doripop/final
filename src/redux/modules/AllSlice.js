@@ -155,11 +155,7 @@ export const MainReview = createAsyncThunk(
     async (region) => {
 
         const citydefault = region == "" ? "서울특별시" : region
-<<<<<<< HEAD
         
-=======
-
->>>>>>> fd86ab80d88cd01fa317b97f531023844951ed65
         try {
             const { data } = await instance.get(`api/posts/list/${citydefault}`);
             console.log(data)
@@ -170,6 +166,7 @@ export const MainReview = createAsyncThunk(
         }
     }
 )
+
 
 //카페리뷰 작성
 export const ReviewCreate = createAsyncThunk(
@@ -280,6 +277,8 @@ const change = createSlice({
         citylist: (state, action) => {
             state.city = (action.payload);
         }
+
+        
     },
     extraReducers: {
         [CafeSearch.pending]: (state) => {
@@ -358,3 +357,4 @@ const change = createSlice({
 
 export const { citylist } = change.actions
 export default change.reducer
+

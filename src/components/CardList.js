@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const CardList = (props) => {
     const city = useSelector((state) => state.AllSlice.MainReviewList);
+   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
         dispatch(MainReview(city))
     },[dispatch])
-    
-    console.log(city);
+   
+    // console.log(city);
     return (
         <>
         <Container>
@@ -57,7 +58,7 @@ const Content = styled.div`
     background-repeat: no-repeat;
 
     cursor: pointer;
-    &: hover {
+    & hover {
         box-shadow: 0px 0px 10px 3px #00E676;
     }
 `;
