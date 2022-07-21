@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import '../css/partCss/Admin.css'
 import { InfoLoad, userInfoLoad } from "../redux/modules/adminSlice";
 
 import ScrollBtn from "./ScrollBtn";
@@ -21,42 +22,42 @@ const Admin = () => {
     const dispatch = useDispatch()
 
     return (
-        <Container>
-            <LeftContent>
+        <div className="conDiv">
+            <div className="leftConDiv">
                 <h2>
                     오늘도 일해주세요!<br />
                     관리자님!
                 </h2>
-                <AdminBtn
+                <button
                 onClick={()=>{
                     setSubMenu("A")
                 }}
                 >
                     전체 신청 리스트 37개 &gt;
-                </AdminBtn>
-                <AdminBtn
+                </button>
+                <button
                 onClick={()=>{
                     setSubMenu("B")
                 }}
                 >
                    <BsCheckSquare size="15" color="green"/>승인된 목록 &gt;
-                </AdminBtn>
-                <AdminBtn
+                </button>
+                <button
                 onClick={()=>{
                     setSubMenu("C")
                 }}
                 >
                     <BsCheckSquareFill size="15" color="green"/>최종 거절 카페 37개 &gt;
-                </AdminBtn>
-                <AdminBtn
+                </button>
+                <button
                 onClick={()=>{
                     setSubMenu("D")
                 }}
                 >
                    모든 등록된 카페 37개 &gt;
-                </AdminBtn>
-            </LeftContent>
-            <ReightContent>
+                </button>
+            </div>
+            <div className="rightConDiv">
                 {
                     subMenu === "A" && <h3>미처리</h3> ||
                     subMenu === "B" && <h3>승인된 목록</h3> ||
@@ -65,7 +66,7 @@ const Admin = () => {
 
                 }
                 <hr />
-                <List>
+                <div className="listDiv">
                     {
                         subMenu === "A" && <AllList /> ||
                         subMenu === "B" && <Success /> ||
@@ -87,11 +88,11 @@ const Admin = () => {
                             <button>승인</button>
                             <button>거절</button>
                         </Card>
-                    ))} */}
-                </List>
-            </ReightContent>
+                    ))}  */}
+                </div>
+            </div>
             <ScrollBtn/>
-        </Container>
+        </div>
     );
 }
 const Container = styled.div`
@@ -109,10 +110,6 @@ const LeftContent = styled.div`
     width: 240px;
     height: 100px;
 
-    & button {
-        width: 240px;
-        height: 40px;
-    }
 `;
 const ReightContent = styled.div`
     width: 700px;
@@ -139,8 +136,8 @@ const Card = styled.div`
 `;
 
 const AdminBtn = styled.button`
-    width: 235px;
-    height: 100px;
+    width: 240px;
+    height: 40px;
     font-size: 13px;
     padding: 5px;
     margin-bottom: 5px;

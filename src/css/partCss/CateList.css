@@ -3,6 +3,7 @@
     다시 만져야됩니다 width값 100%로 주면 화면 확대 축소 했을때 달라집니다.. 
     대신 픽셀 값으로 주면 반응형은 안되지만 게시물 3개씩 정렬 됩니다.
     */
+
     width: 1200px;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -12,7 +13,7 @@
     align-items: center;
     justify-content: space-evenly;
 
-    position: relative;
+
 }
 
 .contentDiv {
@@ -27,6 +28,7 @@
     background-repeat: no-repeat;
 
     cursor: pointer;
+    position: relative;
 }
 
 .contentDiv:hover {
@@ -44,7 +46,7 @@
 
 .contentTitle {
     font-size: 15px;
-    color: black;
+    color: #00E676;
     font-weight: bold;
     margin-top: -44px;
     margin-left: 260px; 

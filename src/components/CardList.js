@@ -23,7 +23,7 @@ const CardList = (props) => {
                 key={item.postid}
                 >
                     <img className='contentImg' src={item.img}/>
-                    <p className='contentTitle'>{item.cafename}</p>
+                    <p className='contentTitle'>#{item.cafename}</p>
                 </div>
             </>
             ))}
