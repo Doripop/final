@@ -1,23 +1,28 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MyReviewLoad } from "../../redux/modules/AllSlice";
+import { ReviewCreate, ReviewLoad, ReviewModify, ReviewDelete } from "../../redux/modules/Review";
+import styled from "styled-components";
 
 
 const MyReview = () => {
     const dispatch = useDispatch()
+    const Reviewlist = useSelector((state) => state.AllSlice.MyReview);
+    const ReviewUpdate = useSelector((state) => state.Review.MyReviewModify)
+    console.log(ReviewUpdate, "왜 안나오냐..........")
+    // console.log(Reviewlist)
+
     React.useEffect(() => {
         dispatch(MyReviewLoad())
     }, [])
-    const Reviewlist = useSelector((state) => state.AllSlice.MyReview);
-    console.log(Reviewlist)
     return (
         <>
             {Reviewlist?.map((item, i) => (
-                <div>
+                <ConDiv>
                     리뷰 갯수 : {item.commentCnt}
                     내 리뷰 : {item.commentList.map((t,i)=>{
                         <>
-                            <span>{t.contents}</span>
+                            <span>게시글 : {t.contents}</span>
                             <span>{t.nickname}</span>
                             <span>{t.profileimg}</span>
                         </>
@@ -25,21 +30,23 @@ const MyReview = () => {
                     })}
                     {item.hashtagList.map((t,i)=>(
                         <>
-                            {t.hashtag}
+                            {t.hashtag} <br/>
                         </>
                     ))}
                     <image src = {item.image[0].img}></image>
-                    {item.likecnt}
-                    {item.modifiedAt}
-                    {item.nickname}
-                    {item.star}
-                </div>
+                    {item.likecnt} <br/>
+                    {item.modifiedAt} <br/>
+                    {item.nickname} <br/>
+                    별점: {item.star}<button>수정</button>
+                </ConDiv>
             ))}
 
         </>
     )
 }
 
+const ConDiv = styled.div`
 
+`;
 
 export default MyReview;
