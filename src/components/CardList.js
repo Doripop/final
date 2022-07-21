@@ -4,15 +4,17 @@ import '../css/partCss/CateList.css'
 import { MainReview } from '../redux/modules/AllSlice';
 import { useNavigate } from "react-router-dom";
 
-const CardList = (props) => {
+const CardList = () => {
     const city = useSelector((state) => state.AllSlice.MainReviewList);
+    const citychange = useSelector((state) => state.AllSlice.city);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
-        dispatch(MainReview(city))
-    },[dispatch])
+        dispatch(MainReview(citychange))
+    },[citychange, dispatch])
+//    console.log(citychange)
     
-    console.log(city);
+    
     return (
         <>
         <div className='containDiv'>
