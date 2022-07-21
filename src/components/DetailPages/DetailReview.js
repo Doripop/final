@@ -4,27 +4,44 @@ import styled from "styled-components";
 import { FaComment } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux"
-import { ApplyLike, CreateComment, DeleteMyComment, DetailCafePost, ModifyMyCommnet } from "../../redux/modules/AllSlice";
+import { ApplyLike, CreateComment, DeleteMyComment, DeletePost, DetailCafePost, LikeCountAdd, LikeCountMinus, ModifyMyCommnet } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
 import { instance } from "../../shard/axios";
+import { LikeInfoLoad, LikeList, UnLikeList } from "../../redux/modules/Likes";
 
 
 const DetailReview = () => {
+
+
+    const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
+    const review = useSelector((state) => state.AllSlice.DetailCafePostList);
+    // console.log(AllLikeList)
+    console.log(review, "지금필요한게 이거")
+
 
     const dispatch = useDispatch()
     const [comment, setComment] = useState("")
     const parm = useParams();
     const [userName, setUsername] = useState("")
     const [isLogin, setIsLogin] = useState("")
-    const [Like, setLike] = useState(false)
+    const [Like, setLike] = useState([])
+
+
 
     React.useEffect(() => {
-        dispatch(DetailCafePost(parm.id))
         setUsername(localStorage.getItem("nicname"))
-        setIsLogin(localStorage.getItem("token"))
-    }, [dispatch])
-    const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    console.log(review)
+        setIsLogin(localStorage.getItem("token")) 
+        dispatch(LikeInfoLoad(parm.id))
+        dispatch(DetailCafePost(parm.id))
+        setLike(AllLikeList)
+        
+    }, [dispatch,Like])
+
+
+    
+
+    // console.log(review)
+    console.log(Like)
 
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
@@ -86,31 +103,55 @@ const DetailReview = () => {
         }))
     }
     //좋아요 기능
+
     const LikeClick = async (postid) => {
-        console.log(postid, Like)
+        console.log()
+
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
-        } else if (Like == false) {
+        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
+            AllLikeList[postid.i]?.like === false) {
             console.log("실행")
-            // setLike(true)
-            // dispatch(ApplyLike(postid))
-
             const { data } = await instance.post(`api/${postid.postid}/like`)
-            console.log(data)
-            setLike(data.result)
+            dispatch(LikeList({
+                postid: postid.postid,
+                like: data.result
+            }))
 
-        } else if (Like == true) {
 
+
+            //test
+            dispatch(LikeCountAdd({
+                postid: postid.postid
+            }))
+
+            //test
+
+
+
+        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
+            AllLikeList[postid.i]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
-            console.log(data)
-            setLike(data.result)
+            dispatch(UnLikeList({
+                postid: postid.postid,
+                like: data.result
+            }))
 
-            // setLike(false)
-            // dispatch(ApplyLike(postid))
+
+
+            //test
+            dispatch(LikeCountMinus({
+                postid: postid.postid
+            }))
+            //test
+
         } else {
-            window.alert("중복요청")
+            window.alert("유효하지 않은 요청입니다.")
         }
     }
+
+
+
 
     return (
         <ReviewContent>
@@ -121,17 +162,31 @@ const DetailReview = () => {
             {review?.map((item, i) => (
                 <>
                     <Review key={item.postid}>
-                        <ReviewHeader> 😁nickname</ReviewHeader>
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "row"
+                            }}>
+                            <ReviewHeader> 😁nickname</ReviewHeader>
+                            {userName === item.nickname ?
+                                (<span
+                                    onClick={() => {
+                                        dispatch(DeletePost(item.postid))
+                                    }}
+                                >삭제</span>) : (null)}
+                        </div>
                         <ReviewImg src={item.image[0].img} />
                         <ReviewStarLove>⭐별점 {item.star}점
 
                             <span
                                 onClick={() => {
                                     LikeClick({
-                                        postid: item.postid
+                                        postid: item.postid,
+                                        i: i
                                     })
                                 }}
-                            >{Like ?
+                            >{AllLikeList[i]?.postid === item.postid &&
+                                AllLikeList[i]?.like ?
                                 (<span
                                     style={{ color: "red" }}
                                 >❤</span>)

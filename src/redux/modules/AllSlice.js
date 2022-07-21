@@ -126,35 +126,33 @@ export const DeleteMyComment = createAsyncThunk(
 )
 
 
-//좋아요 클릭/해제
-// export const ApplyLike = createAsyncThunk(
-//     'AllSlice/ApplyLike',
-//     async (postid) => {
-//         try {
-
-//             console.log(postid)
-//             const { data } = await instance.post(`api/${postid}/like`)
-//             console.log(data)
-
-//         }catch(error){
-//             console.log(error)
-//         }
-//     }
-// )
 
 
 
 
 
+//게시글 삭제
 
-
+export const DeletePost = createAsyncThunk(
+        'AllSlice/DeletePost',
+        async (postid) => {
+            try {
+                console.log(postid)
+                const { data } = await instance.delete(`api/posts/${postid}`)
+                console.log(data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+    )
 
 
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
-
+        console.log(region)
         const citydefault = region == "" ? "서울특별시" : region
+        
         try {
             const { data } = await instance.get(`api/posts/list/${citydefault}`);
             console.log(data)
@@ -165,6 +163,7 @@ export const MainReview = createAsyncThunk(
         }
     }
 )
+
 
 //카페리뷰 작성
 export const ReviewCreate = createAsyncThunk(
@@ -273,8 +272,27 @@ const change = createSlice({
         //     state.user[0] = (action.payload)
         // }
         citylist: (state, action) => {
+           
             state.city = (action.payload);
+        },
+        LikeCountAdd : (state, action) =>{
+          
+            const Index = state.DetailCafePostList.findIndex((List) => {
+                return List.postid === action.payload.postid
+            })
+            
+            state.DetailCafePostList[Index].likecnt += 1
+        },
+        LikeCountMinus : (state, action) =>{
+           
+            const Index = state.DetailCafePostList.findIndex((List) => {
+                return List.postid === action.payload.postid
+            })
+            
+            state.DetailCafePostList[Index].likecnt -= 1
         }
+
+        
     },
     extraReducers: {
         [CafeSearch.pending]: (state) => {
@@ -310,15 +328,14 @@ const change = createSlice({
             // console.log(action.payload.data)
         },
         [CreateComment.fulfilled]: (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             const index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
             state.DetailCafePostList[index].commentList.push(action.payload.comment)
-            // console.log(action.payload)
         },
         [ModifyMyCommnet.fulfilled]: (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
@@ -329,7 +346,7 @@ const change = createSlice({
             state.DetailCafePostList[Index].commentList[CommentIndex] = action.payload.comment
         },
         [DeleteMyComment.fulfilled]: (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
@@ -339,9 +356,6 @@ const change = createSlice({
             state.DetailCafePostList[Index].commentList = state.DetailCafePostList[Index].commentList.filter((list, index)=>{
                 return CommentIndex !== index;
             })
-
-            // state.DetailCafePostList = action.payload.data
-            // console.log(action.payload.data)
         },
 
     }
@@ -351,5 +365,6 @@ const change = createSlice({
 
 
 
-export const { citylist } = change.actions
+export const { citylist ,LikeCountAdd, LikeCountMinus} = change.actions
 export default change.reducer
+
