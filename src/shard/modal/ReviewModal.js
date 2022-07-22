@@ -22,22 +22,7 @@ const ReviewModal = (props) => {
     },[dispatch])
 
     const CafeList = useSelector((state) => state.AllSlice.AutoCafeSearch);
-    // console.log(CafeList.data)
-    
-    
 
-    
-    //자동완성 기능 
-    // const wholeTextArray = 
-    // [
-    //     { cafe: "대원 카페", address: "상암2동", cafeid : 123 },
-    //     { cafe: "원티드 카페", address: "상암6동", cafeid : 321 },
-    //     { cafe: "도리 카페", address: "상암7동" , cafeid : 222},
-    //     { cafe: "알리 카페", address: "상암10동", cafeid : 231 },
-    //     { cafe: "말보로 카페", address: "본리동", cafeid : 3120},
-    // ]  
-    
-    
 
     const [inputValue, setInputValue] = useState('')
     const [sendCafe, setSendCafe] = useState("")
@@ -45,7 +30,7 @@ const ReviewModal = (props) => {
     const [dropDownList, setDropDownList] = useState(CafeList?.data)
                                             // useState(wholeTextArray)
     const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
-    // console.log(inputValue)
+  
     const showDropDownList = () => {
         if (inputValue === '') {
             setIsHaveInputValue(false)

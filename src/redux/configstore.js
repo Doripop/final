@@ -4,12 +4,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import AllSlice from "./modules/AllSlice";
 import adminSlice from "./modules/adminSlice";
 import Likes from "./modules/Likes";
+import MypageSlice from "./modules/MypageSlice";
+
+
 
 const store =  configureStore({
   reducer: {
     AllSlice,
     adminSlice,
-    Likes
+    Likes,
+    MypageSlice
   },
 });
 

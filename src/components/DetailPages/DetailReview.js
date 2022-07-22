@@ -117,18 +117,11 @@ const DetailReview = () => {
                 postid: postid.postid,
                 like: data.result
             }))
-
-
-
             //test
             dispatch(LikeCountAdd({
                 postid: postid.postid
             }))
-
             //test
-
-
-
         } else if (AllLikeList[postid.i]?.postid === postid.postid &&
             AllLikeList[postid.i]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
@@ -136,15 +129,11 @@ const DetailReview = () => {
                 postid: postid.postid,
                 like: data.result
             }))
-
-
-
             //test
             dispatch(LikeCountMinus({
                 postid: postid.postid
             }))
             //test
-
         } else {
             window.alert("유효하지 않은 요청입니다.")
         }
