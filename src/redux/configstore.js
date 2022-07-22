@@ -7,13 +7,15 @@ import Likes from "./modules/Likes";
 import MypageSlice from "./modules/MypageSlice";
 
 
+import Review from "./modules/Review";
 
 const store =  configureStore({
   reducer: {
     AllSlice,
     adminSlice,
     Likes,
-    MypageSlice
+    MypageSlice,
+    Review
   },
 });
 
