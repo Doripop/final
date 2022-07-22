@@ -32,19 +32,7 @@ export const LogOut = createAsyncThunk(
         }
     }
 )
-//마이리뷰 불러오기
-export const MyReviewLoad = createAsyncThunk(
-    'AllSlice/MyReviewLoad',
-    async () => {
-        try {
-            const { data } = await instance.get("/api/user/posts")
-            console.log(data)
-            return data
-        } catch (error) {
-            console.log(error)
-        }
-    }
-)
+
 
 //디테일페이지 리뷰 불러오기
 export const DetailCafePost = createAsyncThunk(
@@ -265,12 +253,6 @@ const change = createSlice({
     name: "AllSlice",
     initialState,
     reducers: {
-        // listadd : (state, action) => {
-        //     state.kang.push(action.payload);
-        // }, 
-        // listup : (state, action) =>{
-        //     state.user[0] = (action.payload)
-        // }
         citylist: (state, action) => {
            
             state.city = (action.payload);
@@ -290,7 +272,7 @@ const change = createSlice({
             })
             
             state.DetailCafePostList[Index].likecnt -= 1
-        }
+        },
 
         
     },
@@ -308,7 +290,7 @@ const change = createSlice({
             state.DetailCafeList = action.payload.data
         },
         [DetailCafeMenu.fulfilled]: (state, action) => {
-            state.DetailCafeMenuList = action.payload.data.menuList
+            state.DetailCafeMenuList = action.payload.data
         },
         [DetailCafeBanner.fulfilled]: (state, action) => {
             state.DetailCafeBanner = action.payload
@@ -318,9 +300,6 @@ const change = createSlice({
         },
         [ReviewReg.fulfilled]: (state, action) => {
             state.AutoCafeSearch = action.payload
-        },
-        [MyReviewLoad.fulfilled]: (state, action) => {
-            state.MyReview = action.payload.data
         },
         //디테일페이지 리뷰관리
         [DetailCafePost.fulfilled]: (state, action) => {
@@ -365,6 +344,6 @@ const change = createSlice({
 
 
 
-export const { citylist ,LikeCountAdd, LikeCountMinus} = change.actions
+export const { citylist ,LikeCountAdd, LikeCountMinus } = change.actions
 export default change.reducer
 

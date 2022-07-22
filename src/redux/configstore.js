@@ -4,6 +4,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import AllSlice from "./modules/AllSlice";
 import adminSlice from "./modules/adminSlice";
 import Likes from "./modules/Likes";
+import MypageSlice from "./modules/MypageSlice";
+
+
 import Review from "./modules/Review";
 
 const store =  configureStore({
@@ -11,6 +14,7 @@ const store =  configureStore({
     AllSlice,
     adminSlice,
     Likes,
+    MypageSlice,
     Review
   },
 });

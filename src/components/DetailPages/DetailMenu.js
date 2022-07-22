@@ -28,7 +28,7 @@ const DetailMenu = (props) => {
         <>
             <CoffeeMenu>
                 <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
-                {menuList?.map((item, i) => (
+                {menuList?.drink.map((item, i) => (
                     <>
                     <Coffee
                         id={item.menuid}>
@@ -44,7 +44,7 @@ const DetailMenu = (props) => {
                 </CoffeeMenu>
             <DessertMenu>
                 <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
-                {menuList?.map((item, i) => (
+                {menuList?.dessert.map((item, i) => (
                     <>
                     <Dessert
                         id={item.menuid}>
@@ -135,7 +135,7 @@ const Dessert = styled.div`
     margin-left: 100px; 
     text-align: center;
 
-    : hover {
+    & hover {
         cursor: default;
         box-shadow : 0px 3px 0px 0px #E0E0E0;
     }
