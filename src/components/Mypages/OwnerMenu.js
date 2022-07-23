@@ -1,9 +1,16 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddCafeMenu, OwnerCafeMeunLoad } from "../../redux/modules/MypageSlice";
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
+import '../../css/partCss/OwnerCafeMenu.css'
+import ScrollBtn from '../ScrollBtn';
+
+import Cafe1 from '../../css/cafeImg/cafe1.jpg'
 
 const OwnerMenu = () => {
 
@@ -34,29 +41,42 @@ const OwnerMenu = () => {
         dispatch(AddCafeMenu(formData))
        
     }
+    // 화폐 단위 쉼표처리 
+    // .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
     React.useEffect(() => {
         dispatch(OwnerCafeMeunLoad())
     }, [dispatch])
 
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slideToShow: 1,
+        slideToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000
+    };
+
     return (
         <>
-            <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
+        <div>
+            <StyledSlider {...settings}>
+                <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
+            </StyledSlider>
+            <div className="coffeeMenuDiv">
+                <h1><SiBuymeacoffee className="coffeeIcon" />커피메뉴</h1>
                 {OwnerMenuInfo?.drink.map((item, i) => (
-                    <>
-                        <Coffee
+                        <div className="coffeeDiv"
                             id={item.menuid}>
-                            <CoMenu src={item.menuimg} />
+                            <img className="coMenuDiv" src={item.menuimg} />
                             <p>
                                 {item.category}<br />
                                 {item.menuname}<br />
-                                {item.menuprice}
+                                {item.menuprice}원<br />
                             </p>
-                        </Coffee>
-                    </>
+                        </div>
                 ))}
-                <Coffee>
+                <div className="plusCoMenuDiv">
                     <input
                         onChange={(e) => {
                             MenuImage(e)
@@ -80,27 +100,26 @@ const OwnerMenu = () => {
                             }))
                         }}
                     >추가하기</button>
-                </Coffee>
-            </CoffeeMenu>
+                </div>
+            </div>
 
 
-            <DessertMenu>
-                <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
+            <div className="coffeeMenuDiv">
+                <h1><GiCakeSlice className="dessertIcon" />디저트메뉴</h1>
                 {OwnerMenuInfo?.dessert.map((item, i) => (
                     <>
-                        <Dessert
+                        <div className="coffeeDiv"
                             id={item.menuid}>
-                            <CoMenu src={item.menuimg} />
+                            <img className="coMenuDiv" src={item.menuimg}/>
                             <p>
                                 {item.category}<br />
                                 {item.menuname}<br />
-                                {item.menuprice}
+                                {item.menuprice}원<br />
                             </p>
-
-                        </Dessert>
+                        </div>
                     </>
                 ))}
-                <Coffee>
+                <div className="plusCoMenuDiv">
                     <input
                         type="file"
                         onChange={(e) => {
@@ -124,16 +143,40 @@ const OwnerMenu = () => {
                             }))
                         }}
                     >추가하기</button>
-                </Coffee>
-            </DessertMenu>
+                </div>
+            </div>
+            <ScrollBtn/>
+            </div>
         </>
     )
 }
 
+const StyledSlider = styled(Slider)`
+   //슬라이드 컨테이너 영역
+   position: relative;
+   height: 370px; 
+   width: 100%;
+   margin-bottom: 40px;
+   box-sizing: border-box;
+
+  .slick-list {  //슬라이드 스크린
+    max-width: 1900px;
+    min-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: 50% cover;
+    background-repeat: no-repeat;
+  }
+
+  .slick-slide div { //슬라이더  컨텐츠
+    cursor: pointer;
+    outline: none;
+  }
+`;
+
 const CoffeeMenu = styled.div`
     width: 1000px;
-
-    margin: 0 auto;
     padding: 20px;
 
     border-bottom: 1px solid black;
@@ -176,8 +219,6 @@ const CoMenu = styled.img`
 
 const DessertMenu = styled.div`
     width: 1000px;
-
-    margin: 0 auto;
     padding: 20px;
 
     border-bottom: 1px solid black;

@@ -30,7 +30,7 @@ const RealAllCafe = () => {
                     key={i}>
                     <h3>{item.cafename}</h3>
                     <p>
-                        {item.address} <br />
+                        {item.address}&nbsp;
                         {item.addressdetail} <br />
                         {item.zonenum}
                     </p>
@@ -41,7 +41,7 @@ const RealAllCafe = () => {
                             item.cafeid
                         )
                     }}
-                    >삭제</button>
+                    >⨉</button>
                 </Card>
             ))}
         </>
@@ -52,15 +52,24 @@ const RealAllCafe = () => {
 
 const Card = styled.div`
     width: 200px;
-    height: 170px;
-    border: 2px solid black;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 5px;
     margin-right: 30px;
 
-    & button {
-        margin: 0 auto 0 auto;
+    h3 {font-size: 15px;}
+    h5 {font-size: 10px;}
+
+    p {font-size: 10px;}
+
+    button {
+        margin-right:10px;
+        float: right;
         cursor: pointer;
-        background-color: transparent;
+        color: white;
+        background-color: #69F0AE;
         border-radius: 50px;
+        border: 1px solid #69F0AE;
     }
 `;
 

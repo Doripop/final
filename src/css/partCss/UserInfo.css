@@ -1,0 +1,39 @@
+.conDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.inputBox {
+    width: 290px;
+    height: 40px;
+}
+
+.spanLock {
+    font-size: 20px;
+    margin: 0px;
+    padding: -10px;
+    margin-left: -20px; 
+}
+
+.lock {
+    color: #00E676;
+    font-size: 15px;
+}
+
+.checkText{
+    font-size: 10px;
+    color:red;
+    margin-bottom: 30px;
+}
+
+.changeBtn {
+    position: relative;
+    width: 200px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
