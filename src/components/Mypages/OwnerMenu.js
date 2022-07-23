@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddCafeMenu, OwnerCafeMeunLoad } from "../../redux/modules/MypageSlice";
+import { AddCafeMenu, DeleteCafeMenu, OwnerCafeMeunLoad } from "../../redux/modules/MypageSlice";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -74,6 +74,11 @@ const OwnerMenu = () => {
                                 {item.menuname}<br />
                                 {item.menuprice}원<br />
                             </p>
+                            <button
+                            onClick={()=>{
+                                dispatch(DeleteCafeMenu(item.menuid))
+                            }}
+                            >삭제</button>
                         </div>
                 ))}
                 <div className="plusCoMenuDiv">
@@ -116,6 +121,11 @@ const OwnerMenu = () => {
                                 {item.menuname}<br />
                                 {item.menuprice}원<br />
                             </p>
+                            <button
+                            onClick={()=>{
+                                dispatch(DeleteCafeMenu(item.menuid))
+                            }}
+                            >삭제</button>
                         </div>
                     </>
                 ))}

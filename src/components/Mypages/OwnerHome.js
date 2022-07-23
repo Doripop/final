@@ -45,122 +45,178 @@ const OwnerHome = () => {
         autoplaySpeed: 5000
     };
 
+    const [page, setPage] = useState("A")
     return (
         <>
-            <div>
-                <StyledSlider {...settings}>
-                    <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
-                </StyledSlider>
-                <div>
-                    {OwnerInfoBenner?.avgstar} 별점<br/>
-                    {OwnerInfoBenner?.cafename}카페이름 <br/>
-                    {OwnerInfoBenner?.opentime}여는시간 <br/>
-                    {OwnerInfoBenner?.closetime}닫는시간 <br/>
-                    {OwnerInfoBenner?.postCnt} 리뷰갯수 <br/>
-                    {OwnerInfoBenner?.imageList.map((item, i)=>(
-                        <>
-                           배너이미지 <img src = {item.logoimg} /> 
-                        </>
-                         
-                    ))}
-                    
-                </div>
-            </div>
-            <div className="delivery">
-                {/* 배달 */}
-                <div className="deliveryDiv">
-                    <label className="deliveryLabelOne">
-                        <input
-                            type="radio"
-                            id="가능"
-                            name="배달"
-                            checked={
-                                Delivery === true
-                            }
-                            onClick={() => {
-                                setDelivery(true)
-                            }}
-                            value="Delivery"
-                        // onChange={(e) => {}}
-                        /><MdDeliveryDining className="icon"/>배달 가능 매장입니다!
-                    </label>
-                    <label className="deliveryLabelOne">
-                        <input
-                            type="radio"
-                            id="불가능"
-                            name="배달"
-                            checked={
-                                Delivery === false
-                            }
-                            onClick={() => {
-                                setDelivery(false)
-                            }}
-                            value="NonDelivery"
-                        // onChange={(e) => {}}
-                        /><GiShop className="icon"/>매장만 이용 가능합니다!
-                    </label>
-                </div>
-                
-
-                {/* 가게설명 */}
-
-                <div className="shopDiv">
-                    <h3>가게 설명</h3>
-                    <textarea
-                        ref={intro}
-                        defaultValue={OwnerInfoList?.intro}
-                    />
-                </div>
 
 
-                {/* 사장님 공지 */}
-                <div className="ceoDiv">
-                    <h3><AiFillSound className="icon"/>사장님이 안내 드립니다!</h3>
-                    <textarea
-                        ref={notice}
-                        defaultValue={OwnerInfoList?.notice}
-                    />
-                </div>
+            {page === "A" && (
+                <div
+                    style={{ display: "flex", flexDirection: "column" }}>
+                    <Home id={OwnerInfoList?.cafeid}>
+                        {OwnerInfoList?.dilivery ?
+                            (
+                                <>
+                                    <MdDeliveryDining className="icon" />배달 가능 매장입니다!
+                                </>
+                            ) : (
+                                <>
+                                    <GiShop className="icon" />매장만 이용 가능합니다!
+                                </>
+                            )}
 
-                {/* 위치정보 */}
-                <div className="mapDiv">
-                    <h3>
-                        <BiMap className="icon"/>
-                        주소 :{OwnerInfoList?.address}/{OwnerInfoList?.addressdetail} <br />
-                        우편번호 : {OwnerInfoList?.zonenum}
-                    </h3>
-                    지도 + 위도{OwnerInfoList?.latitude}+경도{OwnerInfoList?.longitude}
-                </div>
+                        <h1>가게설명</h1>
+                        {OwnerInfoList?.intro}
+                    </Home>
+                    <Home2>
+                        <h1><AiFillSound className="sound" />사장님이 안내드립니다.</h1>
+                        <p>{OwnerInfoList?.notice}</p>
+                    </Home2>
+                    <Home3>
+                        <h1><BiMap className="map" />
+                            {OwnerInfoList?.address}
+                            {OwnerInfoList?.addressdetail}&nbsp;
+                            {OwnerInfoList?.zonenum} <br />
+                        </h1>
+                        <p>
+                            {OwnerInfoList?.latitude} <br />
+                            {OwnerInfoList?.longitude}
+                        </p>
+                        <div className="buttonDiv">
+                            <button
+                                onClick={() => {
+                                    setPage("B")
+                                }}
+                            >
+                                수정하기
+                            </button>
+                        </div>
+                    </Home3>
+                </div>)
+                || page === "B" && (
+                    <>
+                        <div>
+                            <StyledSlider {...settings}>
+                                <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
+                            </StyledSlider>
+                            <div>
+                                {OwnerInfoBenner?.avgstar} 별점<br />
+                                {OwnerInfoBenner?.cafename}카페이름 <br />
+                                {OwnerInfoBenner?.opentime}여는시간 <br />
+                                {OwnerInfoBenner?.closetime}닫는시간 <br />
+                                {OwnerInfoBenner?.postCnt} 리뷰갯수 <br />
+                                {OwnerInfoBenner?.imageList.map((item, i) => (
+                                    <>
+                                        배너이미지 <img src={item.logoimg} />
+                                    </>
+
+                                ))}
+
+                            </div>
+                        </div>
+                        <div className="delivery">
+                            {/* 배달 */}
+                            <div className="deliveryDiv">
+                                <label className="deliveryLabelOne">
+                                    <input
+                                        type="radio"
+                                        id="가능"
+                                        name="배달"
+                                        checked={
+                                            Delivery === true
+                                        }
+                                        onClick={() => {
+                                            setDelivery(true)
+                                        }}
+                                        value="Delivery"
+                                 
+                                    /><MdDeliveryDining className="icon" />배달 가능 매장입니다!
+                                </label>
+                                <label className="deliveryLabelOne">
+                                    <input
+                                        type="radio"
+                                        id="불가능"
+                                        name="배달"
+                                        checked={
+                                            Delivery === false
+                                        }
+                                        onClick={() => {
+                                            setDelivery(false)
+                                        }}
+                                        value="NonDelivery"
+                                   
+                                    /><GiShop className="icon" />매장만 이용 가능합니다!
+                                </label>
+                            </div>
 
 
-                <div className="buttonDiv">
-                    <button
-                    onClick={()=>{
-                        dispatch(
-                            ModifyOwnerCafe({
-                                intro : intro.current.value,
-                                notice : notice.current.value,
-                                address : OwnerInfoList?.address,
-                                addressdetail : OwnerInfoList.addressdetail,
-                                zonenum : OwnerInfoList?.zonenum,
-                                latitude : OwnerInfoList?.latitude,
-                                longitude : OwnerInfoList?.longitude,
-                                opentime : OwnerInfoBenner?.opentime,
-                                closetime : OwnerInfoBenner?.closetime,
-                                delivery : Delivery 
-                            })
-                        )
-                    }}
-                    >
-                        수정하기
-                    </button>
-                    <button>
-                        저장하기
-                    </button>
-                </div>
+                            {/* 가게설명 */}
+
+                            <div className="shopDiv">
+                                <h3>가게 설명</h3>
+                                <textarea
+                                    ref={intro}
+                                    defaultValue={OwnerInfoList?.intro}
+                                />
+                            </div>
 
 
-            </div>
+                            {/* 사장님 공지 */}
+                            <div className="ceoDiv">
+                                <h3><AiFillSound className="icon" />사장님이 안내 드립니다!</h3>
+                                <textarea
+                                    ref={notice}
+                                    defaultValue={OwnerInfoList?.notice}
+                                />
+                            </div>
+
+                            {/* 위치정보 */}
+                            <div className="mapDiv">
+                                <h3>
+                                    <BiMap className="icon" />
+                                    주소 :{OwnerInfoList?.address}/{OwnerInfoList?.addressdetail} <br />
+                                    우편번호 : {OwnerInfoList?.zonenum}
+                                </h3>
+                                지도 + 위도{OwnerInfoList?.latitude}+경도{OwnerInfoList?.longitude}
+                            </div>
+
+
+                            <div className="buttonDiv">
+                                <button
+                                    onClick={() => {
+                                        dispatch(
+                                            ModifyOwnerCafe({
+                                                intro: intro.current.value,
+                                                notice: notice.current.value,
+                                                address: OwnerInfoList?.address,
+                                                addressdetail: OwnerInfoList.addressdetail,
+                                                zonenum: OwnerInfoList?.zonenum,
+                                                latitude: OwnerInfoList?.latitude,
+                                                longitude: OwnerInfoList?.longitude,
+                                                opentime: OwnerInfoBenner?.opentime,
+                                                closetime: OwnerInfoBenner?.closetime,
+                                                delivery: Delivery
+                                            })
+                                        );
+                                        setPage("A")
+                                    }}
+                                >
+                                    수정하기
+                                </button>
+                                <button>
+                                    저장하기
+                                </button>
+                            </div>
+
+
+                        </div>
+                    </>
+                )}
+
+
+
+
+
         </>
     )
 }
@@ -189,4 +245,55 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
+const Home = styled.div`
+    width: 960px;
+    height: 100%;
+
+    margin: 0px auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-bottom: solid 1px black;
+`;
+
+const Home2 = styled.div`
+    width: 960px;
+    height: 100%;
+
+    margin: 0px auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-bottom: solid 1px black;
+
+    word-break:break-all;
+
+    .sound {
+        color: #00E676;
+    }
+`;
+
+const Home3 = styled.div`
+    width: 960px;
+    height: 100%;
+
+    margin: 0px auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-bottom: solid 1px black;
+
+    .map {
+        color: #00E676;
+    }
+`;
 export default OwnerHome;

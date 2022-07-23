@@ -14,6 +14,7 @@ import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
 import ScrollBtn from "../ScrollBtn";
 
+
 const Mypage = () => {
 
 
@@ -130,6 +131,11 @@ const Mypage = () => {
                             OwnerSubMenu === "A" && <ModifyInfo /> ||
                             OwnerSubMenu === "B" && <ModifyCafe />
                         }
+
+                        {/* {               
+                            OwnerSubMenu === "A" && <ModifyInfo />||
+                            OwnerSubMenu === "B" && <OwnerDefaultHome /> 
+                        } */}
 
 
                     </>

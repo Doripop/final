@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Banner from "./Banner";
 import DetailHome from "./DetailPages/DetailHome";
 import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
@@ -9,6 +8,7 @@ import ReviewBtn from "./ReviewBtn";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafeBanner } from "../redux/modules/AllSlice";
+import DetailBanner from "./DetailPages/DetailBenner";
 
 const Detail = () => {
 
@@ -20,13 +20,13 @@ const Detail = () => {
     },[dispatch, parm.id])
 
     const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
-    
+    console.log(list?.data.imageList)
 
     const [Menu, setMenu] = useState("A")
 
     return (
         <>
-            <Banner />
+            <DetailBanner image = {list?.data.imageList} />
             <Container>
                 <div>
                     <CategoryBox
