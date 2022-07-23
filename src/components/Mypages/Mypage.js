@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import '../../css/partCss/UserPage.css'
+import '../../css/partCss/UserPage.css';
 
 //예시 이미지
 import cat from "../../css/cafeImg/cafeImg1.jpg"
