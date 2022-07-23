@@ -156,7 +156,7 @@ const DetailReview = () => {
                                 display: "flex",
                                 flexDirection: "row"
                             }}>
-                            <ReviewHeader> 😁nickname</ReviewHeader>
+                            <ReviewHeader>{item.nickname}</ReviewHeader>
                             {userName === item.nickname ?
                                 (<span
                                     onClick={() => {
@@ -184,17 +184,19 @@ const DetailReview = () => {
                             좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
-                        <ReviewContext>{item.contents}</ReviewContext>
-                        <ReviewCommentGroup>댓글 10개 모두 보기</ReviewCommentGroup>
-
-
+                        <ReviewContext>
+                            {item.contents}
+                        </ReviewContext>
+                        <ReviewCommentGroup>
+                            <details>
+                            <summary>댓글 모두 보기</summary>
                         <ReviewComUp>
                             {item.commentList.map((comment, i) => (
                                 <>
                                     <div>
                                         {userName === comment.nickname ? (
                                             <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}
-                                                <Btn style={{ display: click }} onClick={() => { clickevent() }}>수정</Btn>
+                                                <Btn style={{ display: click }} onClick={() => { clickevent() }}>🖊</Btn>
                                                 <input
                                                     onChange={(e) => {
                                                         ModifyComment(e)
@@ -211,7 +213,7 @@ const DetailReview = () => {
                                                             comment.commentid,
                                                             item.postid,
                                                             ChangeReview)
-                                                    }}>수정</Btn>
+                                                    }}>🖊</Btn>
                                                 <Btn
                                                     onClick={() => {
                                                         SendDelete(
@@ -219,19 +221,19 @@ const DetailReview = () => {
                                                             item.postid
                                                         )
                                                     }}
-                                                >삭제</Btn>
+                                                >⨉</Btn>
                                             </span>) : (
                                             <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
                                             </span>
                                             
                                         )
                                         }
-
                                     </div>
                                 </>
                             ))}
                         </ReviewComUp>
-
+                        </details>
+                        </ReviewCommentGroup>
                         <ReviewDate>
                             {item.modifiedAt}
                         </ReviewDate>
@@ -255,13 +257,12 @@ const DetailReview = () => {
 }
 
 const ReviewContent = styled.div`
-    width: 1000px;
-    height: 100%;
-    margin: 0px auto;
+    width: 500px;
+    margin: 0 auto;
 `;
 
 const Alignment = styled.div`
-    width: 1000px;
+    width: 600px;
     height: 100%;
     
     margin: 0px auto;
@@ -290,8 +291,7 @@ const AlignBtn = styled.button`
 `;
 
 const Review = styled.div`
-    width: 500px;
-    height: 809px;
+    position: relative;
 
     margin: 30px auto 0px auto;
 
@@ -303,12 +303,10 @@ const Review = styled.div`
 `;
 
 const ReviewHeader = styled.div`
-    width: 500px;
-    height: 60px;
+    position: relative;
     font-size: 30px;
     font-weight: bold;
-    // text-align: justify;
-    line-height: 1.7;
+    margin-left: -240px;
 `;
 
 const ReviewImg = styled.img`
@@ -320,12 +318,15 @@ const ReviewStarLove = styled.div`
     width: 500px;
     height: 20px;
     margin-left: 20px;
+    margin-bottom: 10px;
 `;
 
 const ReviewUserInfo = styled.div`
     width: 500px;
     height: 20px;
     margin-left: 20px;
+    font-size: 20px;
+    margin-bottom: 10px;
 `;
 
 const ReviewTag = styled.div`
@@ -335,29 +336,39 @@ const ReviewTag = styled.div`
 `;
 
 const ReviewContext = styled.div`
-    width: 500px;
-    height: 50px;
-    margin-left: 20px;
-    line-height: 3;
+    width: 480px;
+    margin-top: 10px;
+    margin-top: 10px;
 `;
 
 const ReviewCommentGroup = styled.div`
-    width: 500px;
-    height: 30px;
-    margin-left: 20px;
-    line-height: 2;
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
     color: gray;
+    margin-left: -20px;
+
+    details {
+        font: 16px "Open Sans", sans-serif;
+        float: left;
+            padding: .5em .5em 0;
+      }
+      
+    summary {
+        margin-left: 20px;
+        cursor: pointer;
+        list-style: none;
+    }
 `;
 
 const ReviewComUp = styled.div`
     width: 500px;
-    height: 30px;
     margin-left: 20px;
     line-height: 2;
     color: gray;
 
     input {
-        width: 200px;
+        position: relative;
         margin-left: 5px;
         background-repeat: no-repeat;
         border: 1px solid #ccc;
@@ -409,29 +420,24 @@ const ReviewComment = styled.div`
 `;
 
 const ReviewProfile = styled.img`
-    width :20px;
+    width : 20px;
     height : 20px;
     border-radius : 20px;
 `;
 
 const Btn = styled.button`
-    width: 50px;
-    height: 25px;
+    position: relative;
     /* display: flex; */
     -webkit-box-align: center;
     align-items: center;
-    padding: 0px 5px;
     color: black;
     border: none;
     background-color: transparent;
-    margin-left:20px;
-    margin-top: 3px;
     cursor: pointer;
     justify-content:center;
 
     : hover {
-        color: white;
-        background-color: black;
+        color: red;
     }
 `;
 export default DetailReview;

@@ -1,0 +1,161 @@
+.conReviewDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.reviewDiv {
+    width: 500px;
+
+    margin: 30px auto 0px auto;
+
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.oneDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.reviewDivHeader {
+    position: relative;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: -240px;
+}
+
+.reviewImg {
+    width: 500px;
+    height: 500px;
+}
+
+.reviewDivStarLove {
+    width: 500px;
+    height: 20px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.reviewUserInfo {
+    width: 500px;
+    height: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.reviewTag {
+    width: 500px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.reviewContextDiv {
+    width: 480px;
+    margin-left: -0px;
+    margin-top: 10px;
+}
+
+.reviewCommentGrp {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    color: gray;
+    margin-left: -10px;
+}
+
+.reviewCommentGrp>details{
+    font: 16px "Open Sans", sans-serif;
+    float: left;
+    padding: .5em .5em 0;
+}
+
+.reviewCommentGrp>details>summary{
+    margin-left: 20px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.reviewComUp {
+    width: 500px;
+    margin-left: 20px;
+    line-height: 2;
+    color: gray;
+}
+
+.reviewComUp>input {
+    position: relative;
+    margin-left: 5px;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+}
+
+.reviewComUp>input:focus {
+    border-color:#0982f0;
+    outline: none;
+}
+
+.reviewProfile {
+    width :20px;
+    height : 20px;
+    border-radius : 20px;
+}
+
+.reviewUpDeleteBtn {
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content:center;
+}
+
+.reviewUpDeleteBtn:hover {
+    color: red;
+}
+
+.reviewDate {
+    width: 500px;
+    height: 30px;
+    line-height: 2;
+    margin-left: 20px;
+    color: gray;
+}
+
+.reviewComment {
+    width: 500px;
+    height: 90px;
+
+    line-height: 5.5;
+}
+
+.reviewComment>input {
+    width: 470px;
+    height: 30px;
+    margin-top: 12px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+}
+
+.reviewComment>input:focus {
+    border-color:#0982f0;
+}
+
+.reviewComment>input::placeholder {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuxyawNNOaJGwlR1wUq1PSSeLw3YwLj0S1vA&usqp=CAU) ;
+    background-size: contain;
+    background-position:  1px center;
+    background-repeat: no-repeat;
+    text-align: center;
+    text-indent: 0;
+}
+

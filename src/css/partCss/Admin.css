@@ -3,20 +3,14 @@
     margin: 0 auto;
     margin-top: 30px;
 
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .leftConDiv {
-    width: 240px;
-    height: 100px;
-    position: relative;
+    margin: 0 auto;
 }
 
 .leftConDiv > button {
-    width: 240px;
+    width: 225px;
     height: 40px;
     font-size: 13px;
     padding: 5px;
@@ -30,12 +24,12 @@
     
 }
 
-.leftConDiv > button:hover {
+.leftConDiv>button:hover {
     background-color: #69F0AE;
 }
 
 .rightConDiv {
-    position: relative;
+    width: 900px;
 }
 
 .listDiv {

@@ -1,0 +1,27 @@
+.containerDiv {
+    margin: 0px auto;
+    padding: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    position: relative;
+    border-bottom: solid 1px black;
+}
+
+.categoryBox {
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.categoryBox:hover {
+    color: black;
+}

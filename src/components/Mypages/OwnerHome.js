@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ModifyOwnerCafe, OwnerCafeBenner, OwnerCafeLoad } from "../../redux/modules/MypageSlice";
+import '../../css/partCss/OwnerCafeHome.css';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
-
+import Cafe1 from '../../css/cafeImg/cafe1.jpg'
+import { MdDeliveryDining } from 'react-icons/md';
+import { GiShop } from 'react-icons/gi';
+import { AiFillSound } from 'react-icons/ai';
+import { BiMap } from 'react-icons/bi';
 
 
 const OwnerHome = () => {
@@ -28,11 +36,21 @@ const OwnerHome = () => {
         setDelivery(OwnerInfoList.delivery)
     }, [OwnerInfoList?.cafeid, OwnerInfoList.delivery, dispatch])
 
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slideToShow: 1,
+        slideToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000
+    };
 
     return (
         <>
             <div>
-                배너부분 만들어주세요 
+                <StyledSlider {...settings}>
+                    <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
+                </StyledSlider>
                 <div>
                     {OwnerInfoBenner?.avgstar} 별점<br/>
                     {OwnerInfoBenner?.cafename}카페이름 <br/>
@@ -48,17 +66,10 @@ const OwnerHome = () => {
                     
                 </div>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center"
-                }}>
+            <div className="delivery">
                 {/* 배달 */}
-                <div
-                    style={{ display: "flex", flexDirection: "row" }}>
-                    <label
-                        style={{ display: "flex", flexDirection: "row" }}>
+                <div className="deliveryDiv">
+                    <label className="deliveryLabelOne">
                         <input
                             type="radio"
                             id="가능"
@@ -71,10 +82,9 @@ const OwnerHome = () => {
                             }}
                             value="Delivery"
                         // onChange={(e) => {}}
-                        />배달 가능 매장입니다!
+                        /><MdDeliveryDining className="icon"/>배달 가능 매장입니다!
                     </label>
-                    <label
-                        style={{ display: "flex", flexDirection: "row" }}>
+                    <label className="deliveryLabelOne">
                         <input
                             type="radio"
                             id="불가능"
@@ -87,17 +97,14 @@ const OwnerHome = () => {
                             }}
                             value="NonDelivery"
                         // onChange={(e) => {}}
-                        />매장만 이용 가능합니다!
+                        /><GiShop className="icon"/>매장만 이용 가능합니다!
                     </label>
                 </div>
+                
 
                 {/* 가게설명 */}
 
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}>
+                <div className="shopDiv">
                     <h3>가게 설명</h3>
                     <textarea
                         ref={intro}
@@ -107,12 +114,8 @@ const OwnerHome = () => {
 
 
                 {/* 사장님 공지 */}
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}>
-                    <h3>사장님이 안내 드립니다!</h3>
+                <div className="ceoDiv">
+                    <h3><AiFillSound className="icon"/>사장님이 안내 드립니다!</h3>
                     <textarea
                         ref={notice}
                         defaultValue={OwnerInfoList?.notice}
@@ -120,12 +123,9 @@ const OwnerHome = () => {
                 </div>
 
                 {/* 위치정보 */}
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}>
+                <div className="mapDiv">
                     <h3>
+                        <BiMap className="icon"/>
                         주소 :{OwnerInfoList?.address}/{OwnerInfoList?.addressdetail} <br />
                         우편번호 : {OwnerInfoList?.zonenum}
                     </h3>
@@ -133,9 +133,7 @@ const OwnerHome = () => {
                 </div>
 
 
-                <div
-                    style={{ display: "flex", flexDirection: "row" }}>
-
+                <div className="buttonDiv">
                     <button
                     onClick={()=>{
                         dispatch(
@@ -154,10 +152,10 @@ const OwnerHome = () => {
                         )
                     }}
                     >
-                        수정
+                        수정하기
                     </button>
                     <button>
-                        저장
+                        저장하기
                     </button>
                 </div>
 
@@ -167,6 +165,28 @@ const OwnerHome = () => {
     )
 }
 
+const StyledSlider = styled(Slider)`
+   //슬라이드 컨테이너 영역
+   position: relative;
+   height: 370px; 
+   width: 100%;
+   margin-bottom: 40px;
+   box-sizing: border-box;
 
+  .slick-list {  //슬라이드 스크린
+    max-width: 1900px;
+    min-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: 50% cover;
+    background-repeat: no-repeat;
+  }
+
+  .slick-slide div { //슬라이더  컨텐츠
+    cursor: pointer;
+    outline: none;
+  }
+`;
 
 export default OwnerHome;

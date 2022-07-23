@@ -13,6 +13,7 @@
     justify-content: space-evenly;
 
     position: relative;
+    /* position: absolute; */
 }
 
 .contentDiv {

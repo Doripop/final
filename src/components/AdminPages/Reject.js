@@ -22,7 +22,7 @@ const Reject = () => {
                     key={i}>
                     <h3>{item.cafename}</h3>
                     <p>
-                        {item.address} <br />
+                        {item.address}&nbsp;
                         {item.addressdetail} <br />
                         {item.zonenum}
                     </p>
@@ -36,15 +36,17 @@ const Reject = () => {
 
 const Card = styled.div`
     width: 200px;
-    height: 170px;
-    border: 2px solid black;
+    height: 120px;
+    border: 1px solid gray;
+    border-radius: 5px;
     margin-right: 30px;
 
-    & button {
-        margin: 0 auto 0 auto;
-        cursor: pointer;
-        background-color: transparent;
-        border-radius: 50px;
+    h3 {font-size: 15px;}
+
+    p {font-size: 10px;}
+        
+    :hover {
+        border: 2px solid #69F0AE;
     }
 `;
 

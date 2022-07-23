@@ -1,0 +1,58 @@
+.coffeeMenuDiv {
+    width: 1000px;
+    padding: 20px;
+
+    border-bottom: 1px solid black;
+    
+}
+
+.coffeeIcon {
+    color: #00E676;
+}
+
+.dessertIcon {
+    color: #00E676;
+}
+
+.coffeeDiv {
+    width: 350px;
+    height: 100px;
+    border: 1px solid black;
+    
+    flex-direction: column;
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 100px; 
+    text-align: center;
+}
+
+.coMenuDiv {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #EEE;
+    margin-left: -267px;
+    margin-top: 10px;
+}
+
+.coffeeDiv>p{
+    font-display: initial;
+    margin-top: -90px;
+}
+
+.plusCoMenuDiv {
+    width: 350px;
+    height: 100px;
+    border: 1px solid black;
+    
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 100px; 
+    text-align: center;
+}

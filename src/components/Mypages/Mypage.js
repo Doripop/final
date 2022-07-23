@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import '../../css/partCss/UserPage.css';
 
 //예시 이미지
 import cat from "../../css/cafeImg/cafeImg1.jpg"
@@ -11,6 +12,7 @@ import ModifyInfo from "./ModifyInfo";
 import ModifyCafe from "./ModifyCafe";
 import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
+import ScrollBtn from "../ScrollBtn";
 
 const Mypage = () => {
 
@@ -38,51 +40,36 @@ const Mypage = () => {
     return (
 
         <>
-            <Page>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: "20px"
-                    }}>
+            <div className="pageDiv">
+                <div className="changeDiv">
                     {role === "owner" ? (
                     <>
-                        <h1>
+                        <h2>
                             오늘도 일해주세요! <br />
                             사장님!
-                        </h1>
+                        </h2>
                     </>
                                             
                     ):(
                         <>
-                            <h1>
-                                환영합니다!
+                            <h2>
+                                환영합니다! <br />
                                 {nickname}님!
-                            </h1>
+                            </h2>
                         </>
                     )} 
                 
-                    <ProfileImageBox>
-                        <ImageShape src={cat} />
-                        <span
-                            style={{
-                                display: "flex"
-                            }}
-                        >로고 수정하기
-                            <span
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    fontSize: "18px"
-                                }}
-                            >
+                    <div className="profileImgBox">
+                        <img className="imageShape" src={cat} />
+                        <span className="imgBoxSpan">로고 수정하기
+                            <span className="imgBoxSpanChild">
                                 <RiPencilFill className="ripen"/>
                             </span>
                         </span>
-                    </ProfileImageBox>
+                    </div>
                     {role === "owner" ? (
                         <>
-                            <LeftContent>
+                            <div className="leftContent">
                                 <button
                                     onClick={() => { setOwnerSubMenu("A") }}
                                 >
@@ -101,14 +88,8 @@ const Mypage = () => {
                                     &gt;
                                     </strong>
                                 </button>
-                            </LeftContent>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "flex-start",
-                                    padding: " 10px"
-                                }}>
+                            </div>
+                            <div className="elimination">
                                 <span>Log Out</span>
                                 <span>폐업하기</span>
                             </div>
@@ -116,33 +97,23 @@ const Mypage = () => {
 
                     ) : (
                         <>
-                            <LeftContent>
+                            <div className="leftContent">
                                 <button
                                     onClick={() => { setUserSubMenu("A") }}
                                 >
                                     <strong>
-                                        내 정보 수정
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &gt;
+                                        내 정보 수정 &gt;
                                     </strong>    
                                 </button>
                                 <button
                                     onClick={() => { setUserSubMenu("B") }}
                                 >
                                     <strong>
-                                    내가 쓴 리뷰 몰아보기
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    &gt;
+                                    내가 쓴 리뷰 몰아보기 &gt;
                                     </strong>    
                                 </button>
-                            </LeftContent>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "flex-start",
-                                    padding: " 10px"
-                                }}>
+                            </div>
+                            <div className="elimination">
                                 <span>Log Out</span>
                             </div>
                         </>
@@ -177,61 +148,10 @@ const Mypage = () => {
 
                 {/* 컴포넌트 박아넣기 */}
 
-            </Page>
+            </div>
+            <ScrollBtn/>
         </>
     )
 }
-
-const LeftContent = styled.div`
-    width: 240px;
-
-    & button {
-        :first-child {
-            border-bottom :none;
-        }
-        width: 235px;
-        height: 50px;
-        font-size: 17px;
-        color: black;
-    
-        cursor: pointer;
-    
-        background-color: white;
-        border: 1px solid green;
-        border-radius: 3px;
-    
-        :hover {
-            background-color: #69F0AE;
-            color: white;
-        }
-    }
-`;
-
-const Page = styled.div`
-    display : flex;
-    flex-direction : row;
-`;
-
-const ProfileImageBox = styled.div`
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    margin-bottom: 30px;
-
-    .ripen {
-        width: 20px;
-        height: 20px;
-        color: #000;
-        margin-left: 5px;
-        cursor: pointer;
-    }
-`;
-
-const ImageShape = styled.img`
-    width : 86px;
-    height : 86px;
-    border-radius : 50px;
-    margin-bottom: 10px;
-`;
 
 export default Mypage;
