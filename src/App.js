@@ -7,6 +7,7 @@ import Header from "./components/header";
 import { instance } from "./shard/axios";
 import Search from "./components/Search";
 import Mypage from "./components/Mypages/Mypage";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -35,8 +36,8 @@ function App() {
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 
+      <Footer/>
     </div>
-
   );
 }
 
