@@ -1,0 +1,91 @@
+.delivery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deliveryDiv {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px black;
+}
+
+.deliveryLabelOne {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.deliveryLabelOne>input {
+    position: relative;
+    margin: 0px auto;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-bottom: solid 1px black;
+
+    word-break:break-all;
+}
+
+.icon {
+    margin-top: 5px;
+    color: #00E676;
+}
+
+.shopDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: solid 1px black;
+}
+
+.shopDiv>textarea {
+    width: 100%;
+    height: 6.25em;
+    resize: none;
+}
+
+.ceoDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: solid 1px black;
+}
+
+.ceoDiv>textarea {
+    width: 100%;
+    height: 6.25em;
+    resize: none;
+}
+
+.mapDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: solid 1px black;
+}
+
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.buttonDiv>button{
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    margin-right: 50px;
+}

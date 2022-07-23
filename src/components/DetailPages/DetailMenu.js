@@ -28,7 +28,7 @@ const DetailMenu = (props) => {
         <>
             <CoffeeMenu>
                 <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
-                {menuList?.map((item, i) => (
+                {menuList?.drink.map((item, i) => (
                     <>
                     <Coffee
                         id={item.menuid}>
@@ -44,7 +44,7 @@ const DetailMenu = (props) => {
                 </CoffeeMenu>
             <DessertMenu>
                 <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
-                {menuList?.map((item, i) => (
+                {menuList?.dessert.map((item, i) => (
                     <>
                     <Dessert
                         id={item.menuid}>

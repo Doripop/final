@@ -117,18 +117,11 @@ const DetailReview = () => {
                 postid: postid.postid,
                 like: data.result
             }))
-
-
-
             //test
             dispatch(LikeCountAdd({
                 postid: postid.postid
             }))
-
             //test
-
-
-
         } else if (AllLikeList[postid.i]?.postid === postid.postid &&
             AllLikeList[postid.i]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
@@ -136,15 +129,11 @@ const DetailReview = () => {
                 postid: postid.postid,
                 like: data.result
             }))
-
-
-
             //test
             dispatch(LikeCountMinus({
                 postid: postid.postid
             }))
             //test
-
         } else {
             window.alert("유효하지 않은 요청입니다.")
         }
@@ -167,7 +156,7 @@ const DetailReview = () => {
                                 display: "flex",
                                 flexDirection: "row"
                             }}>
-                            <ReviewHeader>nickname</ReviewHeader>
+                            <ReviewHeader>{item.nickname}</ReviewHeader>
                             {userName === item.nickname ?
                                 (<span
                                     onClick={() => {
@@ -199,7 +188,6 @@ const DetailReview = () => {
                             {item.contents}
                         </ReviewContext>
                         <ReviewCommentGroup>
-                            {item.comment === item.comment ? (
                             <details>
                             <summary>댓글 모두 보기</summary>
                         <ReviewComUp>
@@ -245,10 +233,6 @@ const DetailReview = () => {
                             ))}
                         </ReviewComUp>
                         </details>
-                        ) : (
-                            <span style={{ display: "flex", marginLeft: "28px"}}>등록된 댓글이 없습니다.</span>
-                        )
-                        }
                         </ReviewCommentGroup>
                         <ReviewDate>
                             {item.modifiedAt}
@@ -322,8 +306,7 @@ const ReviewHeader = styled.div`
     position: relative;
     font-size: 30px;
     font-weight: bold;
-    // text-align: justify;
-    line-height: 1.7;
+    margin-left: -240px;
 `;
 
 const ReviewImg = styled.img`
@@ -335,6 +318,7 @@ const ReviewStarLove = styled.div`
     width: 500px;
     height: 20px;
     margin-left: 20px;
+    margin-bottom: 10px;
 `;
 
 const ReviewUserInfo = styled.div`
@@ -342,6 +326,7 @@ const ReviewUserInfo = styled.div`
     height: 20px;
     margin-left: 20px;
     font-size: 20px;
+    margin-bottom: 10px;
 `;
 
 const ReviewTag = styled.div`
@@ -352,7 +337,8 @@ const ReviewTag = styled.div`
 
 const ReviewContext = styled.div`
     width: 480px;
-    margin-left: -0px;
+    margin-top: 10px;
+    margin-top: 10px;
 `;
 
 const ReviewCommentGroup = styled.div`

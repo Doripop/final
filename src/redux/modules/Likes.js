@@ -51,9 +51,15 @@ const Likes = createSlice({
         }
     },
     extraReducers : {
+
+
         [LikeInfoLoad.fulfilled]: (state, action) => {
+        if(localStorage.getItem("token")){
             state.LikeInfo = action.payload.data
         }
+        }
+
+        
     }
   }
 )
