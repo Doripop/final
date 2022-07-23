@@ -12,16 +12,16 @@ const CardList = () => {
     React.useEffect(()=>{
         dispatch(MainReview(citychange))
     },[citychange, dispatch])
-//    console.log(citychange)
+   console.log(city)
     
     
     return (
         <>
         <div className='containDiv'>
-            {city?.map((item)=>(
+            {city?.map((item,i)=>(
             <>
                 <div className='contentDiv'
-                onClick={() => {navigate(`/detail/${city?.cafeid}`)}}
+                onClick={() => {navigate(`/detail/${city[i]?.cafeid}`)}}
                 key={item.postid}
                 >
                     <img className='contentImg' src={item.img}/>

@@ -20,7 +20,11 @@ const DetailReview = () => {
 
 
     const dispatch = useDispatch()
+
+   
     const [comment, setComment] = useState("")
+
+
     const parm = useParams();
     const [userName, setUsername] = useState("")
     const [isLogin, setIsLogin] = useState("")
@@ -41,7 +45,7 @@ const DetailReview = () => {
     
 
     // console.log(review)
-    console.log(Like)
+    // console.log(Like)
 
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
@@ -195,7 +199,9 @@ const DetailReview = () => {
                                 <>
                                     <div>
                                         {userName === comment.nickname ? (
-                                            <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}
+                                            <span style={{ display: "flex" }}>
+                                                <ReviewProfile src={comment.profileimg} />
+                                                {comment.nickname} : {comment.contents}
                                                 <Btn style={{ display: click }} onClick={() => { clickevent() }}>🖊</Btn>
                                                 <input
                                                     onChange={(e) => {
@@ -244,7 +250,7 @@ const DetailReview = () => {
                                     setComment(e.target.value)
                                 }}
                                 placeholder="댓글작성"
-                                onKeyPress={(e) => { keyPress(e, item.postid) }}
+                                onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
                     </Review>

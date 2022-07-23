@@ -282,7 +282,7 @@ const ReviewModal = (props) => {
                                     }}>
                                         <Hashtag
                                             type="text"
-                                            placeholder="#감성 카페 #라떼 맛집"
+                                            placeholder="태그 내용 입력 후 엔터를 눌러주세요!"
                                             tabIndex={2}
                                             onChange={(e) => setTagItem(e.target.value)}
                                             onKeyPress={onKeyPress}
@@ -324,10 +324,7 @@ const ReviewModal = (props) => {
                                     </span>
                                     
 
-                                    <button
-                                    onClick={()=>{
-                                        test()
-                                    }}>tset</button>
+                                  
 
 
 

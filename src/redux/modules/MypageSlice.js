@@ -156,6 +156,7 @@ export const ModifyOwnerCafe = createAsyncThunk(
             console.log(contents)
             const { data } = await instance.patch("api/owner/info", contents)
             console.log(data)
+            window.alert("수정이 완료되었습니다.")
             // return data
         } catch (error) {
             console.log(error)
@@ -170,6 +171,22 @@ export const AddCafeMenu = createAsyncThunk(
         try {
             console.log(item)
             const { data } = await instance.post("api/owner/menus", item)
+            console.log(data)
+            // return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+
+//사장님 메뉴 삭제
+export const DeleteCafeMenu = createAsyncThunk(
+    'MypageSlice/DeleteCafeMenu',
+    async (menuid) => {
+        try {
+            console.log(menuid)
+            const { data } = await instance.delete(`api/owner/menus/${menuid}`)
             console.log(data)
             // return data
         } catch (error) {
@@ -259,6 +276,7 @@ const MypageSlice = createSlice({
             state.OwnerInfo = action.payload.data
         },
         [OwnerCafeBenner.fulfilled]: (state, action) => {
+            console.log(action.payload)
             state.OwnerInfoBenner = action.payload.data
         },
         // [ModifyOwnerCafe.fulfilled]: (state, action) => {

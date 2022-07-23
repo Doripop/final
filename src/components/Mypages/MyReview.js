@@ -172,7 +172,9 @@ const MyReview = () => {
                                     <>
                                         <div>
                                             {userName === comment.nickname ? (
-                                                <span style={{ display: "flex" }}><img className="reviewProfile" src={comment.profileimg} />{item.nickname} : {comment.contents}
+                                                <span style={{ display: "flex" }}>
+                                                    <img className="reviewProfile" src={comment.profileimg} />
+                                                    {comment.nickname} : {comment.contents} 
                                                     <button className="reviewUpDeleteBtn" style={{ display: click }} onClick={() => { clickevent() }}>🖊</button>
                                                     <input
                                                         onChange={(e) => {
