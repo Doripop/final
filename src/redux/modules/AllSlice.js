@@ -167,8 +167,10 @@ export const ReviewCreate = createAsyncThunk(
                     "Content-Type": "multipart/form-data"
                 }
             });
+            window.alert(data.message) 
             console.log(data);
-            return data
+            return data.result ? 
+            window.location.replace("/") : window.alert("게시글 작성에 실패하였습니다.")
         } catch (error) {
             console.log(error)
             // window.alert(error) 
