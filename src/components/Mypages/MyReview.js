@@ -4,7 +4,7 @@ import { DeleteMyComment, DeletePost, LikeCountAdd, LikeCountMinus, ModifyMyComm
 import '../../css/partCss/UserReview.css';
 import { useParams } from "react-router-dom";
 import { instance } from "../../shard/axios";
-import { MyCreateComment, MyLikeCountAdd, MyLikeCountMinus, MyLikeInfoLoad, MyLikeListInfo, MypageModifyMyCommnet, MyReviewLoad, MyUnLikeListInfo, MypageDeleteMyComment} from "../../redux/modules/MypageSlice";
+import { MyCreateComment, MyLikeCountAdd, MyLikeCountMinus, MyLikeInfoLoad, MyLikeListInfo, MypageModifyMyCommnet, MyReviewLoad, MyUnLikeListInfo, MypageDeleteMyComment, MypageDeletePost} from "../../redux/modules/MypageSlice";
 
 const MyReview = () => {
     const dispatch = useDispatch()
@@ -133,7 +133,7 @@ const MyReview = () => {
                                 {userName === item.nickname ?
                                     (<span
                                         onClick={() => {
-                                            dispatch(DeletePost(item.postid))
+                                            dispatch(MypageDeletePost(item.postid))
                                         }}
                                     >삭제</span>) : (null)}
                             </div>

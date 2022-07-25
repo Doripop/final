@@ -19,9 +19,7 @@ const Search = () => {
     React.useEffect(()=>{
         dispacth(CafeSearch({
             keyword : parm.text
-        }))  
-        //parm.text 
-        console.log("2")
+        })) 
     },[parm.text])
 
     const searchList = useSelector((state) => state.AllSlice.SearchCafeInfo);
@@ -29,7 +27,6 @@ const Search = () => {
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
             navigate(`/search/${pageSearch.current.value}`);
-            console.log("1")
         }
     }
     

@@ -42,6 +42,24 @@ export const MyLikeInfoLoad = createAsyncThunk(
     }
 ) 
 
+
+//마이페이지 리뷰 포스트 삭제
+
+export const MypageDeletePost = createAsyncThunk(
+    'MypageSlice/MypageDeletePost',
+    async (postid) => {
+        try {
+            console.log(postid)
+            const { data } = await instance.delete(`api/posts/${postid}`)
+            console.log(data)
+            return postid
+        }catch(error){
+            console.log(error)
+        }
+    }
+)
+
+
 //마이페이지 댓글 달기
 export const MyCreateComment = createAsyncThunk(
     'MypageSlice/MyCreateComment',
@@ -235,9 +253,23 @@ const MypageSlice = createSlice({
         },
     },
     extraReducers : {
+
+        //마이페이지 리뷰 로드
         [MyReviewLoad.fulfilled]: (state, action) => {
             state.MyReview = action.payload.data
         },
+        //마이페이지 리뷰 포스트 삭제
+        [MypageDeletePost.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            const Index = state.MyReview.findIndex((List) => {
+                return List.postid === action.payload
+            })
+            console.log(Index, "삭제인덱스")
+            state.MyReview = state.MyReview.filter((list, index)=>{
+                return Index !== index;
+            })
+        },
+
         [MyLikeInfoLoad.fulfilled]: (state, action) => {
         if(localStorage.getItem("token")){
             state.MyLikeInfo = action.payload.data

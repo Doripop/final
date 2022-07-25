@@ -40,7 +40,7 @@ export const DetailCafePost = createAsyncThunk(
     async (cafeid) => {
         try {
             const { data } = await instance.get(`api/cafes/${cafeid}/posts`)
-            console.log(data)
+            // console.log(data)
             return data
         } catch (error) {
             window.alert(error)
@@ -128,11 +128,14 @@ export const DeletePost = createAsyncThunk(
                 console.log(postid)
                 const { data } = await instance.delete(`api/posts/${postid}`)
                 console.log(data)
+                return postid
             }catch(error){
                 console.log(error)
             }
         }
     )
+
+    
 
 
 export const MainReview = createAsyncThunk(
@@ -295,6 +298,7 @@ const change = createSlice({
         [DetailCafeBanner.fulfilled]: (state, action) => {
             state.DetailCafeBanner = action.payload
         },
+        //메인 리뷰 지역별 정렬
         [MainReview.fulfilled]: (state, action) => {
             state.MainReviewList = action.payload.data
         },
@@ -334,6 +338,16 @@ const change = createSlice({
             })
             state.DetailCafePostList[Index].commentList = state.DetailCafePostList[Index].commentList.filter((list, index)=>{
                 return CommentIndex !== index;
+            })
+        },
+
+        // 디테일 페이지 포스트 삭제
+        [DeletePost.fulfilled]: (state, action) => {
+            const Index = state.DetailCafePostList.findIndex((List) => {
+                return List.postid === action.payload
+            })
+            state.DetailCafePostList = state.DetailCafePostList.filter((list, index)=>{
+                return Index !== index;
             })
         },
 
