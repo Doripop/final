@@ -17,6 +17,7 @@ const NavBtn = () => {
     
 
     return (
+        <div className='container'>
         <div className='navDiv'>
             <span className='navSpan'>
                 <div className='RegiBtn'>
@@ -27,7 +28,7 @@ const NavBtn = () => {
             </span>
 
             <div className='navBomMenu'>
-                <p>근처에 있는카페!</p>
+                <p>근처에 있는카페!</p>&nbsp;
                 <select className='navSelect'
                     onChange={(e) => {
                         CityCheck(e)
@@ -51,7 +52,7 @@ const NavBtn = () => {
                     <option value="제주특별자치도">제주특별자치도</option>
                     <option value="세종특별자치시">세종특별자치시</option>
                 </select>
-
+                </div>
 
                 <div className='navAli'>
                     <button>
@@ -64,7 +65,8 @@ const NavBtn = () => {
                         최신순
                     </button>
                 </div>
-            </div>
+            
+        </div>
         </div>
     );
 }
