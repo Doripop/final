@@ -1,9 +1,9 @@
 .navDiv{
+    width: 100%;
     padding: 0 auto;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 .navSpan {
     padding: 0 auto;
@@ -46,8 +46,7 @@
     카페등록/리뷰등록 버튼도 중앙고정은 되지만 오른쪽 고정 시키면 확대 축소 했을때 무한정으로 늘어납니다.
     다시 만져야됩니다..
     */
-    width: 60px;
-    height: 20px;
+    position: relative;
     outline: none;
     margin-left:3px;
     padding: 0 auto;
