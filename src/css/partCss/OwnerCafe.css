@@ -1,13 +1,22 @@
 .containerDiv {
+    width: 1000px;
+    height: 100%;
+
     margin: 0px auto;
-    padding: 0 auto;
+
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 
     position: relative;
     border-bottom: solid 1px black;
+}
+
+.containerDiv>button {
+    width: 200px;
+    font-size: 30px;
+    margin-right: 40px;
 }
 
 .categoryBox {

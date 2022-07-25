@@ -60,9 +60,9 @@ const OwnerMenu = () => {
     return (
         <>
         <div>
-            <StyledSlider {...settings}>
+            {/* <StyledSlider {...settings}>
                 <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
-            </StyledSlider>
+            </StyledSlider> */}
             <div className="coffeeMenuDiv">
                 <h1><SiBuymeacoffee className="coffeeIcon" />커피메뉴</h1>
                 {OwnerMenuInfo?.drink.map((item, i) => (
@@ -73,12 +73,13 @@ const OwnerMenu = () => {
                                 {item.category}<br />
                                 {item.menuname}<br />
                                 {item.menuprice}원<br />
-                            </p>
+                            <button>수정</button>
                             <button
                             onClick={()=>{
                                 dispatch(DeleteCafeMenu(item.menuid))
                             }}
                             >삭제</button>
+                            </p>
                         </div>
                 ))}
                 <div className="plusCoMenuDiv">
@@ -120,12 +121,13 @@ const OwnerMenu = () => {
                                 {item.category}<br />
                                 {item.menuname}<br />
                                 {item.menuprice}원<br />
-                            </p>
+                            <button>수정</button>    
                             <button
                             onClick={()=>{
                                 dispatch(DeleteCafeMenu(item.menuid))
                             }}
                             >삭제</button>
+                            </p>
                         </div>
                     </>
                 ))}
@@ -160,105 +162,5 @@ const OwnerMenu = () => {
         </>
     )
 }
-
-const StyledSlider = styled(Slider)`
-   //슬라이드 컨테이너 영역
-   position: relative;
-   height: 370px; 
-   width: 100%;
-   margin-bottom: 40px;
-   box-sizing: border-box;
-
-  .slick-list {  //슬라이드 스크린
-    max-width: 1900px;
-    min-width: 1050px;
-    width: 100%;
-    margin: 0 auto;
-    background-size: cover;
-    background-position: 50% cover;
-    background-repeat: no-repeat;
-  }
-
-  .slick-slide div { //슬라이더  컨텐츠
-    cursor: pointer;
-    outline: none;
-  }
-`;
-
-const CoffeeMenu = styled.div`
-    width: 1000px;
-    padding: 20px;
-
-    border-bottom: 1px solid black;
-    
-    h1 {
-        cursor: default;
-    }
-
-    .coffee {
-        color: #00E676;
-    }
-`;
-
-const Coffee = styled.div`
-    width: 350px;
-    height: 100px;
-    border: 1px solid black;
-    
-    flex-direction:column;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-    margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
-
-    & hover {
-        cursor: default;
-        box-shadow : 0px 3px 0px 0px #E0E0E0;
-    }
-`;
-
-const CoMenu = styled.img`
-    width: 80px;
-    height: 80px;
-    border: 1px solid #EEE;
-    margin-right: 20px;
-`;
-
-const DessertMenu = styled.div`
-    width: 1000px;
-    padding: 20px;
-
-    border-bottom: 1px solid black;
-
-    h1 {
-        cursor: default;
-    }
-
-    .cake {
-        color: #00E676;
-    }
-`;
-
-const Dessert = styled.div`
-    width: 350px;
-    height: 100px;
-    border: 1px solid black;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-    margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
-
-    & hover {
-        cursor: default;
-        box-shadow : 0px 3px 0px 0px #E0E0E0;
-    }
-`;
 
 export default OwnerMenu;
