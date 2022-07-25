@@ -79,7 +79,7 @@ const Footer = (props) => {
             <div>
               <div>최서윤</div>
               <div>Design</div>
-              <a href=''><AiFillGithub/></a>
+              <a href='https://www.naver.com'><AiFillGithub/></a>
             </div>
           </FooterRightDivTwo>
         </FooterRight>
@@ -89,21 +89,20 @@ const Footer = (props) => {
 
 const Foot = styled.div`
   width: 100%;
-  margin: auto;
   border: none;
-  font-weight: 400;
+  background-color: #19221f;
   letter-spacing: -0.2px;
   display: flex;
-  background-color: #19221f;
-  min-height: 100%;
-  height : auto;
-  min-height: 100%;
+  flex-direction: row;
+  height: 420px;
+  margin-top: 200px;
+  position: relative;
 `;
 
 const FooterLeft = styled.div`
-  width: 50%;
+  width: 100%;
   border: none;
-  margin: 20px;
+  margin: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,9 +124,9 @@ const FooterLeft = styled.div`
 `;
 
 const FooterRight = styled.div`
-  width: 50%;
+  width: 100%;
   border: none;
-  margin: 20px;
+  margin: 30px;
   padding: 20px;
   display: flex;
   flex-direction: column;
