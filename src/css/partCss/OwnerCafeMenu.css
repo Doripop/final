@@ -1,9 +1,8 @@
 .coffeeMenuDiv {
     width: 1000px;
-    padding: 20px;
+    margin: 0 auto;
 
     border-bottom: 1px solid black;
-    
 }
 
 .coffeeIcon {
@@ -23,10 +22,11 @@
     display: inline-block;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     margin-right: 30px;
-    margin-left: 100px; 
+    margin-left: 100px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .coMenuDiv {
