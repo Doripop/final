@@ -1,10 +1,10 @@
 .pageDiv {
-    display : flex;
+    display : flow-root;
     flex-direction : row;
 }
 
 .changeDiv {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     padding: 20px;
     text-align: center;

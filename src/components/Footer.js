@@ -94,8 +94,7 @@ const Foot = styled.div`
   letter-spacing: -0.2px;
   display: flex;
   flex-direction: row;
-  height: 420px;
-  margin-top: 200px;
+  margin-top: 30%;
   position: relative;
 `;
 
@@ -131,7 +130,7 @@ const FooterRight = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: white;
 
 `;
