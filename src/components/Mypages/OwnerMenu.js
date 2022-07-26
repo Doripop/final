@@ -72,6 +72,7 @@ const OwnerMenu = () => {
                             <p>
                                 {item.category}<br />
                                 {item.menuname}<br />
+                                <br />
                                 {item.menuprice}원<br />
                             <button>수정</button>
                             <button
@@ -120,6 +121,7 @@ const OwnerMenu = () => {
                             <p>
                                 {item.category}<br />
                                 {item.menuname}<br />
+                                <br />
                                 {item.menuprice}원<br />
                             <button>수정</button>    
                             <button

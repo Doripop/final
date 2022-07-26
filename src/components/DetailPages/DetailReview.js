@@ -169,7 +169,7 @@ const DetailReview = () => {
                                 >삭제</span>) : (null)}
                         </div>
                         <ReviewImg src={item.image[0].img} />
-                        <ReviewStarLove>⭐별점 {item.star}점
+                        <ReviewStarLove>⭐별점 {item.star}점&nbsp;
 
                             <span
                                 onClick={() => {
@@ -265,6 +265,7 @@ const DetailReview = () => {
 const ReviewContent = styled.div`
     width: 500px;
     margin: 0 auto;
+    font-family: 'Arita-dotum-Medium';
 `;
 
 const Alignment = styled.div`
@@ -339,6 +340,8 @@ const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
     margin-left: 20px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const ReviewContext = styled.div`

@@ -16,7 +16,6 @@ const CardList = () => {
     
     
     return (
-        <>
         <div className='containDiv'>
             {city?.map((item,i)=>(
             <>
@@ -30,7 +29,6 @@ const CardList = () => {
             </>
             ))}
         </div>
-        </>
     );
 }
 

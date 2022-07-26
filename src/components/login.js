@@ -22,7 +22,7 @@ const Login = () => {
     return (
         <>
           <LoginBtn onClick={openModal}><FiLogIn/></LoginBtn>
-          <LoginModal open={modalOpen} close={closeModal} header="Exotic">
+          <LoginModal open={modalOpen} close={closeModal} header="BLANK">
           </LoginModal>
         </>
     )

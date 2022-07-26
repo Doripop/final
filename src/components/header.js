@@ -42,7 +42,7 @@ const Header = () => {
                 <div className="navBar">
                     <Logo onClick={() => {
                      navigate("/")
-                    }}><img className="logoImg" src={Logo_Cat}/>Exotic</Logo>
+                    }}><img className="logoImg" src={Logo_Cat}/>BLANK</Logo>
                     <SearchInput 
                     type="text" 
                     placeholder="서울특별시 용산구, 42 디저트카페"
@@ -108,8 +108,8 @@ const Logo = styled.button`
     border: none;
     background-color: transparent;
     font-size: 30px;
-    font-weight: 500;
     font-family: 'Arita-dotum-Medium';
+
 `;
 
 export default Header;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import '../../css/partCss/UserPage.css';
+import { LogOut } from "../../redux/modules/AllSlice";
 
 //예시 이미지
 import cat from "../../css/cafeImg/cafeImg1.jpg"
@@ -18,7 +19,7 @@ import ScrollBtn from "../ScrollBtn";
 const Mypage = () => {
 
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
@@ -31,7 +32,9 @@ const Mypage = () => {
         }
     },[])
     
-    
+    const LogOutBtn = () => {
+        dispatch(LogOut())
+    }
     console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
@@ -91,7 +94,7 @@ const Mypage = () => {
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span>Log Out</span>
+                                <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
                                 <span>폐업하기</span>
                             </div>
                         </>
@@ -115,7 +118,7 @@ const Mypage = () => {
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span>Log Out</span>
+                                <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
                             </div>
                         </>
                      )} 
