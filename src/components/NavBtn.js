@@ -37,6 +37,7 @@ const NavBtn = () => {
                             CityCheck(e)
                         }}
                     >
+                        <option value="전지역">전체 지역</option>
                         <option value="서울특별시">서울특별시</option>
                         <option value="부산광역시">부산광역시</option>
                         <option value="대구광역시">대구광역시</option>

@@ -14,13 +14,15 @@ import ModifyCafe from "./ModifyCafe";
 import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
 import ScrollBtn from "../ScrollBtn";
+import OwnerShutDown from "./OwnerShutDown";
+
 
 
 const Mypage = () => {
 
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
     const [isLogin, setLogin] = useState("")
@@ -94,8 +96,13 @@ const Mypage = () => {
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
-                                <span>폐업하기</span>
+                                <span
+                                style={{cursor:"pointer"}}
+                                onClick={()=>{
+                                    dispatch(LogOut())
+                                }}>Log Out</span>
+                           
+                                <OwnerShutDown/>
                             </div>
                         </>
 
