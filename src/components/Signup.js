@@ -8,7 +8,7 @@ import { SiGnuprivacyguard } from 'react-icons/si'
 const Signup = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
-  
+
   const openModal = () => {
     setModalOpen(true);
   }
@@ -18,14 +18,21 @@ const Signup = () => {
   }
 
 
+<<<<<<< HEAD
     return (
         <>
       <SignupBtn onClick={openModal}><SiGnuprivacyguard/></SignupBtn>
       <SignupModal open={modalOpen} close={closeModal} header="BLANK 회원가입">
+=======
+  return (
+    <>
+      <SignupBtn onClick={openModal}><SiGnuprivacyguard /></SignupBtn>
+      <SignupModal open={modalOpen} close={closeModal} header="😁Exotic 회원가입">
+>>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
       </SignupModal>
 
-        </>
-    )
+    </>
+  )
 }
 
 const SignupBtn = styled.button`
@@ -37,4 +44,4 @@ const SignupBtn = styled.button`
   font-weight: 500; 
 `;
 
-export default  Signup;
+export default Signup;

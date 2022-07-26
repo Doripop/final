@@ -7,7 +7,7 @@ import styled from "styled-components";
 const Review = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
-  
+
   const openModal = () => {
     setModalOpen(true);
   }
@@ -17,14 +17,14 @@ const Review = () => {
   }
 
 
-    return (
-        <>
+  return (
+    <>
       <ReviewBtn onClick={openModal}>리뷰작성</ReviewBtn>
       <ReviewModal open={modalOpen} close={closeModal}>
       </ReviewModal>
 
-        </>
-    )
+    </>
+  )
 }
 
 const ReviewBtn = styled.button`
@@ -41,4 +41,4 @@ const ReviewBtn = styled.button`
 `;
 
 
-export default  Review;
+export default Review;

@@ -9,7 +9,7 @@ import MypageSlice from "./modules/MypageSlice";
 
 import Review from "./modules/Review";
 
-const store =  configureStore({
+const store = configureStore({
   reducer: {
     AllSlice,
     adminSlice,

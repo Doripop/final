@@ -21,8 +21,8 @@ const Detail = () => {
 
     const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
     console.log(list?.data.imageList)
-
-    const [Menu, setMenu] = useState("A")
+    console.log(parm["*"])
+    const [Menu, setMenu] = useState(parm["*"]==="review"?"C":"A")
 
     return (
         <>

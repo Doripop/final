@@ -21,9 +21,9 @@ const ReviewBtn = (props) => {
 
   return (
     <>
-    <Btn onClick={openModal}></Btn>
-    <ReviewModal open={modalOpen} close={closeModal}>
-    </ReviewModal>
+      <Btn onClick={openModal}></Btn>
+      <ReviewModal open={modalOpen} close={closeModal}>
+      </ReviewModal>
     </>
   )
 

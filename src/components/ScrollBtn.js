@@ -9,7 +9,7 @@ const ScrollBtn = (props) => {
 
   return (
     <div>
-    <Btn onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}> <RiArrowUpSFill size="40"/> </Btn>
+      <Btn onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}> <RiArrowUpSFill size="40" /> </Btn>
     </div>
   )
 

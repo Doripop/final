@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
 
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { DetailCafeMenu } from "../../redux/modules/AllSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -19,17 +19,18 @@ const DetailMenu = (props) => {
     const menuList = useSelector((state) => state.AllSlice.DetailCafeMenuList);
     console.log(menuList)
     // console.log(cafeId.id)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         //메뉴 정보 받아오기
-      dispatch(DetailCafeMenu(cafeId))
-    },[dispatch, cafeId])
-    
+        dispatch(DetailCafeMenu(cafeId))
+    }, [dispatch, cafeId])
+
     return (
         <>
             <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
+                <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
                 {menuList?.drink.map((item, i) => (
                     <>
+<<<<<<< HEAD
                     <Coffee
                         id={item.menuid}>
                         <CoMenu src = {item.menuimg}/>
@@ -40,13 +41,25 @@ const DetailMenu = (props) => {
                             {item.menuprice}원
                         </p>
                     </Coffee>
+=======
+                        <Coffee
+                            id={item.menuid}>
+                            <CoMenu src={item.menuimg} />
+                            <p>
+                                {item.category}<br />
+                                {item.menuname}<br />
+                                {item.menuprice}
+                            </p>
+                        </Coffee>
+>>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
                     </>
                 ))}
-                </CoffeeMenu>
+            </CoffeeMenu>
             <DessertMenu>
-                <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
+                <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
                 {menuList?.dessert.map((item, i) => (
                     <>
+<<<<<<< HEAD
                     <Dessert
                         id={item.menuid}>
                         <CoMenu src = {item.menuimg}/>
@@ -57,6 +70,17 @@ const DetailMenu = (props) => {
                             {item.menuprice}원
                         </p>
                     </Dessert>
+=======
+                        <Dessert
+                            id={item.menuid}>
+                            <CoMenu src={item.menuimg} />
+                            <p>
+                                {item.category}<br />
+                                {item.menuname}<br />
+                                {item.menuprice}
+                            </p>
+                        </Dessert>
+>>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
                     </>
                 ))}
             </DessertMenu>

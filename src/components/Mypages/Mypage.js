@@ -24,17 +24,23 @@ const Mypage = () => {
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
     const [isLogin, setLogin] = useState("")
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setRole(localStorage.getItem("role"));
         setNickname(localStorage.getItem("nicname"));
-        if(!localStorage.getItem("token")){
+        if (!localStorage.getItem("token")) {
             navigate("/")
         }
+<<<<<<< HEAD
     },[])
     
     const LogOutBtn = () => {
         dispatch(LogOut())
     }
+=======
+    }, [])
+
+
+>>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
     console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
@@ -47,27 +53,27 @@ const Mypage = () => {
             <div className="pageDiv">
                 <div className="changeDiv">
                     {role === "owner" ? (
-                    <>
-                        <h2>
-                            오늘도 일해주세요! <br />
-                            사장님!
-                        </h2>
-                    </>
-                                            
-                    ):(
+                        <>
+                            <h2>
+                                오늘도 일해주세요! <br />
+                                사장님!
+                            </h2>
+                        </>
+
+                    ) : (
                         <>
                             <h2>
                                 환영합니다! <br />
                                 {nickname}님!
                             </h2>
                         </>
-                    )} 
-                
+                    )}
+
                     <div className="profileImgBox">
                         <img className="imageShape" src={cat} />
                         <span className="imgBoxSpan">로고 수정하기
                             <span className="imgBoxSpanChild">
-                                <RiPencilFill className="ripen"/>
+                                <RiPencilFill className="ripen" />
                             </span>
                         </span>
                     </div>
@@ -78,18 +84,18 @@ const Mypage = () => {
                                     onClick={() => { setOwnerSubMenu("A") }}
                                 >
                                     <strong>
-                                    사장님 정보 수정
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &gt;
-                                    </strong>    
+                                        사장님 정보 수정
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &gt;
+                                    </strong>
                                 </button>
                                 <button
                                     onClick={() => { setOwnerSubMenu("B") }}
                                 >
                                     <strong>
-                                    카페 정보 수정
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &gt;
+                                        카페 정보 수정
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &gt;
                                     </strong>
                                 </button>
                             </div>
@@ -107,58 +113,44 @@ const Mypage = () => {
                                 >
                                     <strong>
                                         내 정보 수정 &gt;
-                                    </strong>    
+                                    </strong>
                                 </button>
                                 <button
                                     onClick={() => { setUserSubMenu("B") }}
                                 >
                                     <strong>
-                                    내가 쓴 리뷰 몰아보기 &gt;
-                                    </strong>    
+                                        내가 쓴 리뷰 몰아보기 &gt;
+                                    </strong>
                                 </button>
                             </div>
                             <div className="elimination">
                                 <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
                             </div>
                         </>
-                     )} 
+                    )}
 
 
                 </div>
                 {role === "owner" ? (
                     <>
-                        
-                        
-                        
                         {
                             OwnerSubMenu === "A" && <ModifyInfo /> ||
                             OwnerSubMenu === "B" && <ModifyCafe />
                         }
-
-                        {/* {               
-                            OwnerSubMenu === "A" && <ModifyInfo />||
-                            OwnerSubMenu === "B" && <OwnerDefaultHome /> 
-                        } */}
-
-
                     </>
                 ) : (
                     <>
-
-
                         {
                             userSubMenu === "A" && <ModifyInfo /> ||
                             userSubMenu === "B" && <MyReview />
                         }
-
-
                     </>
                 )}
 
                 {/* 컴포넌트 박아넣기 */}
 
             </div>
-            <ScrollBtn/>
+            <ScrollBtn />
         </>
     )
 }
