@@ -22,6 +22,12 @@ const DetailReview = () => {
     const dispatch = useDispatch()
 
 
+
+    //정렬하기
+    const [sort, setSort] = useState("")
+
+
+
     const [comment, setComment] = useState("")
 
 
@@ -36,10 +42,13 @@ const DetailReview = () => {
         setUsername(localStorage.getItem("nicname"))
         setIsLogin(localStorage.getItem("token"))
         dispatch(LikeInfoLoad(parm.id))
-        dispatch(DetailCafePost(parm.id))
+        dispatch(DetailCafePost({
+            id: parm.id,
+            sort: sort
+        }))
         setLike(AllLikeList)
 
-    }, [dispatch, Like])
+    }, [dispatch, Like, sort])
 
 
 
@@ -146,11 +155,21 @@ const DetailReview = () => {
 
 
 
+
     return (
         <ReviewContent>
             <Alignment>
-                <AlignBtn>별점순</AlignBtn>
-                <AlignBtn>좋아요순</AlignBtn>
+                <AlignBtn
+                    onClick={() => {
+                        setSort("star")
+                    }}
+                >별점순</AlignBtn>
+                <AlignBtn
+                    onClick={() => {
+                        setSort("like")
+                    }}>좋아요순</AlignBtn>
+
+
             </Alignment>
             {review?.map((item, i) => (
                 <>
@@ -173,7 +192,7 @@ const DetailReview = () => {
                                         <span
                                             onClick={() => {
                                                 dispatch(DeletePost({
-                                                    postid : item.postid,
+                                                    postid: item.postid,
                                                     // 인풋 값 받아서 수정
                                                 }))
                                             }}

@@ -14,35 +14,35 @@ import { DetailCafeBanner } from '../../redux/modules/AllSlice';
 const DetailBanner = (images) => {
   const parm = useParams();
   const dispatch = useDispatch();
-  React.useEffect(()=>{
-      dispatch(DetailCafeBanner(parm.id))
-  },[dispatch, parm.id])
+  React.useEffect(() => {
+    dispatch(DetailCafeBanner(parm.id))
+  }, [dispatch, parm.id])
 
   const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
   console.log(list?.data.imageList)
 
-  
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slideToShow: 1,
-        slideToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        nextArrow: <Button place="right" margin="0 0 0 590px"/>,
-        prevArrow: <Button margin="0 0 0 -590px"/>,
-    };
 
-    return (
-        <StyledSlider {...settings}>
-            {list?.data.imageList.map((item, i)=>(
-            <>
-                <div><img width={'1900px'} height={'370px'} src={item.img} alt='slider' /></div>
-            </>
-            ))}
-        </StyledSlider>
-      );
-    }
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slideToShow: 1,
+    slideToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    nextArrow: <Button place="right" margin="0 0 0 590px" />,
+    prevArrow: <Button margin="0 0 0 -590px" />,
+  };
+
+  return (
+    <StyledSlider {...settings}>
+      {list?.data.imageList.map((item, i) => (
+        <>
+          <div><img width={'1900px'} height={'370px'} src={item.img} alt='slider' /></div>
+        </>
+      ))}
+    </StyledSlider>
+  );
+}
 
 const StyledSlider = styled(Slider)`
    //슬라이드 컨테이너 영역

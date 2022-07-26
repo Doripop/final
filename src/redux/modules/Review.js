@@ -77,7 +77,7 @@ export const MyReviewDelete = createAsyncThunk(
             return {
                 postid: id.postid
             }
-        } catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -97,7 +97,7 @@ const review = createSlice({
 
         ReviewModify: (state, action) => {
             state.ReviewModify = (action.payload)
-            
+
         },
 
         ReviewDelete: (state, action) => {

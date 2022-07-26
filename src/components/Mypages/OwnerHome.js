@@ -129,7 +129,7 @@ const OwnerHome = () => {
                                             setDelivery(true)
                                         }}
                                         value="Delivery"
-                                 
+
                                     /><MdDeliveryDining className="icon" />배달 가능 매장입니다!
                                 </label>
                                 <label className="deliveryLabelOne">
@@ -144,7 +144,7 @@ const OwnerHome = () => {
                                             setDelivery(false)
                                         }}
                                         value="NonDelivery"
-                                   
+
                                     /><GiShop className="icon" />매장만 이용 가능합니다!
                                 </label>
                             </div>

@@ -41,14 +41,14 @@ const OwnerMenu = () => {
     const SendCafeMenu = (item) => {
         const formData = new FormData()
         console.log(item)
-       
+
         formData.append("data", new Blob([JSON.stringify(item)],
             { type: "application/json" }
         ));
         formData.append("file", menuImgae);
         dispatch(AddCafeMenu(
-             formData
-    ))
+            formData
+        ))
 
     }
     // 화폐 단위 쉼표처리 
@@ -144,9 +144,27 @@ const OwnerMenu = () => {
                                         </p>
                                     </>
                                 )}
+                            <button
+                                onClick={() => {
+                                    modifyDrinkMenu === "A" ?
+                                        setModifyDrinkMenu("B") :
+                                        dispatch(ModifyCafeMenu({
+                                            category: "drink",
+                                            menuname: ModifyName === "" ? item.menuname : ModifyName,
+                                            menuprice: ModifyPrice === "" ? item.menuprice : ModifyPrice,
+                                            menuid: item.menuid,
+                                            menuimg: item.menuimg
+                                        }));
+                                    setModifyDrinkMenu("A")
+                                }}>수정</button>
 
                         </div>
                     ))}
+                    {/* 이부분 어케하지 */}
+
+
+
+
                     <div className="plusCoMenuDiv">
                         <input
                             onChange={(e) => {
@@ -188,9 +206,9 @@ const OwnerMenu = () => {
                                             {item.menuname}<br />
                                             {item.menuprice}원<br />
                                             <button
-                                            onClick={()=>{
-                                                setModifyDessertMenu("B")
-                                            }}
+                                                onClick={() => {
+                                                    setModifyDessertMenu("B")
+                                                }}
                                             >수정</button>
                                             <button
                                                 onClick={() => {

@@ -158,7 +158,7 @@ export const OwnerCafeMeunLoad = createAsyncThunk(
     async () => {
         try {
             const { data } = await instance.get("api/owner/menus")
-            console.log(data,"이게")
+            console.log(data, "이게")
             return data
         } catch (error) {
             console.log(error)
@@ -175,7 +175,7 @@ export const ModifyOwnerCafe = createAsyncThunk(
             const { data } = await instance.patch("api/owner/info", contents)
             console.log(data)
             window.alert("수정이 완료되었습니다.")
-            // return data
+            return contents
         } catch (error) {
             console.log(error)
         }
@@ -190,15 +190,15 @@ export const AddCafeMenu = createAsyncThunk(
             console.log(item)
             const { data } = await instance.post("api/owner/menus", item)
             console.log(data)
-        const SendData = {
-                menuid : data?.data.menuid,
-                menuimg : data?.data.menuimg,
-                menuname : data?.data.menuname,
-                menuprice : data?.data.menuprice
+            const SendData = {
+                menuid: data?.data.menuid,
+                menuimg: data?.data.menuimg,
+                menuname: data?.data.menuname,
+                menuprice: data?.data.menuprice
             }
             return {
-                Data : SendData,
-                category : data?.data.category
+                Data: SendData,
+                category: data?.data.category
             }
         } catch (error) {
             console.log(error)
@@ -345,15 +345,18 @@ const MypageSlice = createSlice({
 
         //사장님 정보
         [OwnerCafeLoad.fulfilled]: (state, action) => {
+            console.log(action.payload.data, "384 홈 설명")
             state.OwnerInfo = action.payload.data
         },
         [OwnerCafeBenner.fulfilled]: (state, action) => {
             console.log(action.payload)
             state.OwnerInfoBenner = action.payload.data
         },
-        // [ModifyOwnerCafe.fulfilled]: (state, action) => {
-        //     state.OwnerInfo = action.payload.data
-        // },
+        //사장님 홈 정보 수정
+        [ModifyOwnerCafe.fulfilled]: (state, action) => {
+            console.log(action.payload,"수정된 정보")
+            state.OwnerInfo = action.payload
+        },
         //사장님 메뉴
         [OwnerCafeMeunLoad.fulfilled]: (state, action) => {
             console.log(action.payload.data, "풀필드")

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BiMap } from 'react-icons/bi';
 import { AiFillSound } from 'react-icons/ai';
 
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { DetailCafeHome } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
@@ -18,29 +18,30 @@ const DetailHome = () => {
 
     const home = useSelector((state) => state.AllSlice.DetailCafeList);
     console.log(home)
-    
-    React.useEffect(()=>{
+
+    React.useEffect(() => {
         //메뉴 정보 받아오기
         dispatch(DetailCafeHome(parm.id))
         //이부분은 그냥 카페아이디 파람으로 넘길곳
-    },[dispatch])
+    }, [dispatch])
     return (
         <>
             <Home id={home?.cafeid}>
-                    <h1>가게설명</h1>
+                <h1>가게 설명</h1>
+                {home?.intro}
             </Home>
             <Home2>
-                <h1><AiFillSound className="sound"/>사장님이 안내드립니다.</h1>
-                <p>매장에 대한 사장님 안내말씀 입니다.</p>
+                <h1><AiFillSound className="sound" />사장님이 안내드립니다.</h1>
+                <p>{home?.notice}</p>
             </Home2>
             <Home3>
-                <h1><BiMap className="map"/>
+                <h1><BiMap className="map" />
                     {home?.address}
                     {home?.addressdetail}&nbsp;
-                    {home?.zonenum} <br/>
+                    {home?.zonenum} <br />
                 </h1>
                 <p>
-                    {home?.latitude} <br/>
+                    {home?.latitude} <br />
                     {home?.longitude}
                 </p>
             </Home3>

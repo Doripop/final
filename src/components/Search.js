@@ -1,5 +1,5 @@
 
-import {useNavigate, useParams} from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +16,11 @@ const Search = () => {
 
 
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispacth(CafeSearch({
-            keyword : parm.text
-        })) 
-    },[parm.text])
+            keyword: parm.text
+        }))
+    }, [parm.text])
 
     const searchList = useSelector((state) => state.AllSlice.SearchCafeInfo);
     console.log(searchList)
@@ -29,28 +29,28 @@ const Search = () => {
             navigate(`/search/${pageSearch.current.value}`);
         }
     }
-    
+
 
     // console.log(parm.text) 파람으로 검색어 넘어오는 부분
-    
+
 
     return (
         <>
-            <div style={{display:"grid", justifyContent:"center", flexDirection:"row"}}>
-                <SearchBar 
-                type="text"
-                ref={pageSearch}
-                onKeyPress={onKeyPress}
-                placeholder = "검색어를 입력해주세요"
-                /> 
+            <div style={{ display: "grid", justifyContent: "center", flexDirection: "row" }}>
+                <SearchBar
+                    type="text"
+                    ref={pageSearch}
+                    onKeyPress={onKeyPress}
+                    placeholder="검색어를 입력해주세요"
+                />
 
-                {searchList?.map((cafe,i)=>(
+                {searchList?.map((cafe, i) => (
                     <>
                         <CardBox
-                        onClick={()=>{navigate(`/detail/${cafe.cafeid}`)}}
-                        key={cafe.zonenum}>
+                            onClick={() => { navigate(`/detail/${cafe.cafeid}`) }}
+                            key={cafe.zonenum}>
                             {cafe.address}
-                            {cafe.avgstar}<br/>
+                            {cafe.avgstar}<br />
                             {cafe.cafename}
                             {cafe.zonenum}
                         </CardBox>

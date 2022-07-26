@@ -5,6 +5,7 @@ import { instance } from "../../shard/axios";
 const initialState = {
     user: [],
     city: [],
+    sort:[],
     AutoCafeSearch: [],
     MainReviewList: [],
     MyReview: []
@@ -38,8 +39,9 @@ export const LogOut = createAsyncThunk(
 export const DetailCafePost = createAsyncThunk(
     'AllSlice/DetailCafePost',
     async (cafeid) => {
+        console.log(cafeid)
         try {
-            const { data } = await instance.get(`api/cafes/${cafeid}/posts`)
+            const { data } = await instance.get(`api/cafes/${cafeid.id}/posts/${cafeid.sort}`)
             // console.log(data)
             return data
         } catch (error) {
@@ -99,7 +101,7 @@ export const ModifyMyCommnet = createAsyncThunk(
 export const DeleteMyComment = createAsyncThunk(
     'AllSlice/DeleteMyComment',
     async (CommentId) => {
-        
+
         try {
             console.log(CommentId)
             const { data } = await instance.delete(`api/comments/${CommentId.commentid}`)
@@ -122,30 +124,30 @@ export const DeleteMyComment = createAsyncThunk(
 //게시글 삭제
 
 export const DeletePost = createAsyncThunk(
-        'AllSlice/DeletePost',
-        async (postid) => {
-            try {
-                console.log(postid)
-                const { data } = await instance.delete(`api/posts/${postid}`)
-                console.log(data)
-                return postid
-            }catch(error){
-                console.log(error)
-            }
+    'AllSlice/DeletePost',
+    async (postid) => {
+        try {
+            console.log(postid)
+            const { data } = await instance.delete(`api/posts/${postid}`)
+            console.log(data)
+            return postid
+        } catch (error) {
+            console.log(error)
         }
-    )
+    }
+)
 
-    
 
 
+//메인에서 리뷰 뷸러오기 디폴트 최신순 / 서울특별시
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
         console.log(region)
-        const citydefault = region == "" ? "서울특별시" : region
-        
+        const citydefault = region.city == "" ? "서울특별시" : region.city
+        console.log(citydefault)
         try {
-            const { data } = await instance.get(`api/posts/list/${citydefault}`);
+            const { data } = await instance.get(`api/posts/list/${citydefault}/${region.sort}`);
             console.log(data)
             return data
         } catch (error) {
@@ -154,6 +156,8 @@ export const MainReview = createAsyncThunk(
         }
     }
 )
+
+
 
 
 //카페리뷰 작성
@@ -167,10 +171,10 @@ export const ReviewCreate = createAsyncThunk(
                     "Content-Type": "multipart/form-data"
                 }
             });
-            window.alert(data.message) 
+            window.alert(data.message)
             console.log(data);
-            return data.result ? 
-            window.location.replace("/") : window.alert("게시글 작성에 실패하였습니다.")
+            return data.result ?
+                window.location.replace("/") : window.alert("게시글 작성에 실패하였습니다.")
         } catch (error) {
             console.log(error)
             // window.alert(error) 
@@ -259,27 +263,31 @@ const change = createSlice({
     initialState,
     reducers: {
         citylist: (state, action) => {
-           
+
             state.city = (action.payload);
         },
-        LikeCountAdd : (state, action) =>{
-          
+        sortList: (state, action) => {
+            console.log(action.payload)
+            state.sort = (action.payload);
+        },
+        LikeCountAdd: (state, action) => {
+
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
-            
+
             state.DetailCafePostList[Index].likecnt += 1
         },
-        LikeCountMinus : (state, action) =>{
-           
+        LikeCountMinus: (state, action) => {
+
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
-            
+
             state.DetailCafePostList[Index].likecnt -= 1
         },
 
-        
+
     },
     extraReducers: {
         [CafeSearch.pending]: (state) => {
@@ -338,7 +346,7 @@ const change = createSlice({
             const CommentIndex = state.DetailCafePostList[Index].commentList.findIndex((List) => {
                 return List.commentid === action.payload.commentid
             })
-            state.DetailCafePostList[Index].commentList = state.DetailCafePostList[Index].commentList.filter((list, index)=>{
+            state.DetailCafePostList[Index].commentList = state.DetailCafePostList[Index].commentList.filter((list, index) => {
                 return CommentIndex !== index;
             })
         },
@@ -348,7 +356,7 @@ const change = createSlice({
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload
             })
-            state.DetailCafePostList = state.DetailCafePostList.filter((list, index)=>{
+            state.DetailCafePostList = state.DetailCafePostList.filter((list, index) => {
                 return Index !== index;
             })
         },
@@ -360,6 +368,6 @@ const change = createSlice({
 
 
 
-export const { citylist ,LikeCountAdd, LikeCountMinus } = change.actions
+export const { sortList, citylist, LikeCountAdd, LikeCountMinus } = change.actions
 export default change.reducer
 

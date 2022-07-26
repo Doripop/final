@@ -13,18 +13,18 @@ const initialState = {
 export const LikeInfoLoad = createAsyncThunk(
     'Likes/LikesInfoList',
     async (cafeid) => {
-        if(localStorage.getItem("token")){
+        if (localStorage.getItem("token")) {
             try {
-                const {data} = await instance.get(`api/${cafeid}/like-list`)
+                const { data } = await instance.get(`api/${cafeid}/like-list`)
                 console.log(data)
                 return data;
-            } catch(error){
-                window.alert(error) 
+            } catch (error) {
+                window.alert(error)
             }
         }
-        
+
     }
-) 
+)
 
 
 
@@ -35,7 +35,7 @@ const Likes = createSlice({
         LikeList: (state, action) => {
             console.log(action.payload, "라이크")
             // state.LikeInfo.push(action.payload)
-            const Index = state.LikeInfo.findIndex((list)=>{
+            const Index = state.LikeInfo.findIndex((list) => {
                 return list.postid === action.payload.postid
             })
             console.log(Index)
@@ -43,25 +43,25 @@ const Likes = createSlice({
         },
         UnLikeList: (state, action) => {
             console.log(action.payload, "언라이크")
-            const Index = state.LikeInfo.findIndex((list)=>{
+            const Index = state.LikeInfo.findIndex((list) => {
                 return list.postid === action.payload.postid
             })
             console.log(Index)
             state.LikeInfo[Index] = action.payload
         }
     },
-    extraReducers : {
+    extraReducers: {
 
 
         [LikeInfoLoad.fulfilled]: (state, action) => {
-        if(localStorage.getItem("token")){
-            state.LikeInfo = action.payload.data
-        }
+            if (localStorage.getItem("token")) {
+                state.LikeInfo = action.payload.data
+            }
         }
 
-        
+
     }
-  }
+}
 )
 
 

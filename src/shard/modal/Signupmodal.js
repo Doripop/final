@@ -165,7 +165,9 @@ const SignupModal = (props) => {
                     businessnum: role == "user" ? "" : Businessnumber.current.value,
                     businessname: role == "user" ? "" : Businessname.current.value,
                 }
-                formdata.append("file", image);
+                formdata.append("file",  image);
+                
+                
                 formdata.append("data", new Blob([JSON.stringify(Data)],
                  { type: "application/json" }
                  ));

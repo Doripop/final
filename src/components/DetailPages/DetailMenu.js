@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
 
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { DetailCafeMenu } from "../../redux/modules/AllSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -19,42 +19,42 @@ const DetailMenu = (props) => {
     const menuList = useSelector((state) => state.AllSlice.DetailCafeMenuList);
     console.log(menuList)
     // console.log(cafeId.id)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         //메뉴 정보 받아오기
-      dispatch(DetailCafeMenu(cafeId))
-    },[dispatch, cafeId])
-    
+        dispatch(DetailCafeMenu(cafeId))
+    }, [dispatch, cafeId])
+
     return (
         <>
             <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
+                <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
                 {menuList?.drink.map((item, i) => (
                     <>
-                    <Coffee
-                        id={item.menuid}>
-                        <CoMenu src = {item.menuimg}/>
-                        <p>
-                            {item.category}<br/>
-                            {item.menuname}<br/>
-                            {item.menuprice}
-                        </p>
-                    </Coffee>
+                        <Coffee
+                            id={item.menuid}>
+                            <CoMenu src={item.menuimg} />
+                            <p>
+                                {item.category}<br />
+                                {item.menuname}<br />
+                                {item.menuprice}
+                            </p>
+                        </Coffee>
                     </>
                 ))}
-                </CoffeeMenu>
+            </CoffeeMenu>
             <DessertMenu>
-                <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
+                <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
                 {menuList?.dessert.map((item, i) => (
                     <>
-                    <Dessert
-                        id={item.menuid}>
-                        <CoMenu src = {item.menuimg}/>
-                        <p>
-                            {item.category}<br/>
-                            {item.menuname}<br/>
-                            {item.menuprice}
-                        </p>
-                    </Dessert>
+                        <Dessert
+                            id={item.menuid}>
+                            <CoMenu src={item.menuimg} />
+                            <p>
+                                {item.category}<br />
+                                {item.menuname}<br />
+                                {item.menuprice}
+                            </p>
+                        </Dessert>
                     </>
                 ))}
             </DessertMenu>
