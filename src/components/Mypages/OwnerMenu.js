@@ -28,6 +28,8 @@ const OwnerMenu = () => {
     //수정
     const [ModifyPrice, setModifyPrice] = useState("");
     const [ModifyName, setModifyName] = useState("");
+    const [A, setA] = useState([])
+    const [B, setB] = useState([])
     //수정 디저트
     const [ModifyDessertName, setModifyDessertName] = useState("")
     const [ModifyDessertPrice, setModifyDessertPrice] = useState("")
@@ -91,6 +93,7 @@ const OwnerMenu = () => {
                                         <button
                                             onClick={() => {
                                                 setModifyDrinkMenu("B")
+                                                setA(item.menuid)
                                             }}>수정</button>
                                         <button
                                             onClick={() => {
@@ -106,65 +109,71 @@ const OwnerMenu = () => {
                                 modifyDrinkMenu === "B" && (
 
                                     <>
-                                        <img className="coMenuDiv" src={item.menuimg} />
-                                        <p>
-                                            <input
-                                                type="text"
-                                                placeholder={item.menuname}
-                                                onChange={(e) => {
-                                                    setModifyName(e.target.value)
-                                                }}
-                                            /><br />
-                                            <input
-                                                type="text"
-                                                placeholder={item.menuprice}
-                                                onChange={(e) => {
-                                                    setModifyPrice(e.target.value)
-                                                }}
-                                            /><br />원<br />
-                                            <button
-                                                onClick={() => {
-                                                    dispatch(ModifyCafeMenu({
-                                                        category: "drink",
-                                                        menuname: ModifyName === "" ? item.menuname : ModifyName,
-                                                        menuprice: ModifyPrice === "" ? item.menuprice : ModifyPrice,
-                                                        menuid: item.menuid,
-                                                        menuimg: item.menuimg
-                                                    }));
-                                                    setModifyDrinkMenu("A")
-                                                }}>수정</button>
-                                            <button
-                                                onClick={() => {
-                                                    dispatch(DeleteCafeMenu({
-                                                        menuid: item.menuid,
-                                                        category: "drink"
-                                                    }))
-                                                }}
-                                            >삭제</button>
-                                        </p>
+                                        {A === item.menuid ? (
+                                            <>
+                                                <img className="coMenuDiv" src={item.menuimg} />
+                                                <p>
+                                                    <input
+                                                        type="text"
+                                                        placeholder={item.menuname}
+                                                        onChange={(e) => {
+                                                            setModifyName(e.target.value)
+                                                        }}
+                                                    /><br />
+                                                    <input
+                                                        type="text"
+                                                        placeholder={item.menuprice}
+                                                        onChange={(e) => {
+                                                            setModifyPrice(e.target.value)
+                                                        }}
+                                                    /><br />원<br />
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(ModifyCafeMenu({
+                                                                category: "drink",
+                                                                menuname: ModifyName === "" ? item.menuname : ModifyName,
+                                                                menuprice: ModifyPrice === "" ? item.menuprice : ModifyPrice,
+                                                                menuid: item.menuid,
+                                                                menuimg: item.menuimg
+                                                            }));
+                                                            setModifyDrinkMenu("A")
+                                                        }}>수정</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(DeleteCafeMenu({
+                                                                menuid: item.menuid,
+                                                                category: "drink"
+                                                            }))
+                                                        }}
+                                                    >삭제</button>
+                                                </p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img className="coMenuDiv" src={item.menuimg} />
+                                                <p>
+                                                    {item.menuname}<br />
+                                                    {item.menuprice}원<br />
+                                                    <button
+                                                        onClick={() => {
+                                                            setModifyDrinkMenu("B")
+                                                            setA(item.menuid)
+                                                        }}>수정</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(DeleteCafeMenu({
+                                                                menuid: item.menuid,
+                                                                category: "drink"
+                                                            }))
+                                                        }}
+                                                    >삭제</button>
+                                                </p>
+                                            </>
+                                        )}
                                     </>
                                 )}
-                            <button
-                                onClick={() => {
-                                    modifyDrinkMenu === "A" ?
-                                        setModifyDrinkMenu("B") :
-                                        dispatch(ModifyCafeMenu({
-                                            category: "drink",
-                                            menuname: ModifyName === "" ? item.menuname : ModifyName,
-                                            menuprice: ModifyPrice === "" ? item.menuprice : ModifyPrice,
-                                            menuid: item.menuid,
-                                            menuimg: item.menuimg
-                                        }));
-                                    setModifyDrinkMenu("A")
-                                }}>수정</button>
-
                         </div>
                     ))}
-                    {/* 이부분 어케하지 */}
-
-
-
-
                     <div className="plusCoMenuDiv">
                         <input
                             onChange={(e) => {
@@ -208,6 +217,7 @@ const OwnerMenu = () => {
                                             <button
                                                 onClick={() => {
                                                     setModifyDessertMenu("B")
+                                                    setB(item.menuid)
                                                 }}
                                             >수정</button>
                                             <button
@@ -222,42 +232,69 @@ const OwnerMenu = () => {
                                     </>
                                 ) || modifyDessertMenu === "B" && (
                                     <>
-                                        <img className="coMenuDiv" src={item.menuimg} />
-                                        <p>
-                                            <input
-                                                type="text"
-                                                placeholder={item.menuname}
-                                                onChange={(e) => {
-                                                    setModifyDessertName(e.target.value)
-                                                }}
-                                            /><br />
-                                            <input
-                                                type="text"
-                                                placeholder={item.menuprice}
-                                                onChange={(e) => {
-                                                    setModifyDessertPrice(e.target.value)
-                                                }}
-                                            /><br />원<br />
-                                            <button
-                                                onClick={() => {
-                                                    dispatch(ModifyCafeMenu({
-                                                        category: "dessert",
-                                                        menuname: ModifyDessertName === "" ? item.menuname : ModifyDessertName,
-                                                        menuprice: ModifyDessertPrice === "" ? item.menuprice : ModifyDessertPrice,
-                                                        menuid: item.menuid,
-                                                        menuimg: item.menuimg
-                                                    }));
-                                                    setModifyDessertMenu("A")
-                                                }}>수정</button>
-                                            <button
-                                                onClick={() => {
-                                                    dispatch(DeleteCafeMenu({
-                                                        menuid: item.menuid,
-                                                        category: "dessert"
-                                                    }))
-                                                }}
-                                            >삭제</button>
-                                        </p>
+                                        {B === item.menuid ? (
+                                            <>
+                                                <img className="coMenuDiv" src={item.menuimg} />
+                                                <p>
+                                                    <input
+                                                        type="text"
+                                                        placeholder={item.menuname}
+                                                        onChange={(e) => {
+                                                            setModifyDessertName(e.target.value)
+                                                        }}
+                                                    /><br />
+                                                    <input
+                                                        type="text"
+                                                        placeholder={item.menuprice}
+                                                        onChange={(e) => {
+                                                            setModifyDessertPrice(e.target.value)
+                                                        }}
+                                                    /><br />원<br />
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(ModifyCafeMenu({
+                                                                category: "dessert",
+                                                                menuname: ModifyDessertName === "" ? item.menuname : ModifyDessertName,
+                                                                menuprice: ModifyDessertPrice === "" ? item.menuprice : ModifyDessertPrice,
+                                                                menuid: item.menuid,
+                                                                menuimg: item.menuimg
+                                                            }));
+                                                            setModifyDessertMenu("A")
+                                                        }}>수정</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(DeleteCafeMenu({
+                                                                menuid: item.menuid,
+                                                                category: "dessert"
+                                                            }))
+                                                        }}
+                                                    >삭제</button>
+                                                </p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img className="coMenuDiv" src={item.menuimg} />
+                                                <p>
+                                                    {item.menuname}<br />
+                                                    {item.menuprice}원<br />
+                                                    <button
+                                                        onClick={() => {
+                                                            setModifyDessertMenu("B")
+                                                            setB(item.menuid)
+                                                        }}
+                                                    >수정</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            dispatch(DeleteCafeMenu({
+                                                                menuid: item.menuid,
+                                                                category: "dessert"
+                                                            }))
+                                                        }}
+                                                    >삭제</button>
+                                                </p>
+                                            </>
+                                        )}
+
                                     </>
                                 )}
 
