@@ -12,6 +12,7 @@ import Logo_Cat from "../css/Logo_Cat_lattee.png"
 //아이콘
 import {CgLogOut} from 'react-icons/cg'
 import {FaUserEdit} from 'react-icons/fa'
+import {HiSearch} from 'react-icons/fa'
 
 
 
@@ -42,14 +43,13 @@ const Header = () => {
                 <div className="navBar">
                     <Logo onClick={() => {
                      navigate("/")
-                    }}><img className="logoImg" src={Logo_Cat}/>BLANK</Logo>
+                    }}><img className="logoImg" src={Logo_Cat}/><div> BLANK</div></Logo>
                     <SearchInput 
                     type="text" 
                     placeholder="서울특별시 용산구, 42 디저트카페"
                     ref={searchItem}
                     onKeyPress={(e)=>{onKeyPress(e)}}
-                    >
-                    </SearchInput>
+                    />
                     <div>
                     {!isLogin ? (
                         <>
@@ -65,7 +65,7 @@ const Header = () => {
                                 cursor : "pointer"
                             }}
                             onClick = {()=>{LogOutBtn();}}
-                            >LOGOUT</h1>
+                            >logout</h1>
                             {/* <CgLogOut className="logout"/> 로그아웃 아이콘 */}
 
                             <h1 style={{
@@ -75,7 +75,7 @@ const Header = () => {
                             }}
                             onClick = {()=>{role === "admin" ? navigate("/admin") : navigate("/mypage");}}
                             >
-                                MYPAGE
+                                <FaUserEdit className="myPage"/>
                             </h1>
                             {/* <FaUserEdit/> 유저 아이콘 */}
                         </>
@@ -88,7 +88,7 @@ const Header = () => {
     )
 }
 const SearchInput = styled.input`
-    width: 600px;
+    width: 392px;
     height: 50px;
     background: #2b303b;
     border: none;
@@ -102,14 +102,19 @@ const SearchInput = styled.input`
     border-radius: 5px;
 `;
 
-const Logo = styled.button`
+const Logo = styled.div`
     color: white;
     cursor: pointer;
     border: none;
     background-color: transparent;
-    font-size: 30px;
+    font-weight: bold;
     font-family: 'Arita-dotum-Medium';
 
+    & div {
+        margin-top:15px;
+        margin-left: 20px;
+        font-size: 40px;
+    }
 `;
 
 export default Header;

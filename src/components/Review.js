@@ -32,7 +32,7 @@ const ReviewBtn = styled.button`
   height: 40px;
   color: white;
   font-family: 'Arita-dotum-Medium';
-  background-color: #00E676;
+  background-color: #3FC275;
   border-radius: 5px;
   border: none;
   outline: none;

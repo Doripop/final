@@ -463,6 +463,7 @@ const Title = styled.span`
     justify-content: flex-start;
     font-size: 30px;
     font-weight : bold;
+    
 `;
 
 const Body = styled.div`

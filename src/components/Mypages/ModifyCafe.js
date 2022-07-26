@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import OwnerHome from "./OwnerHome";
 import OwnerMenu from "./OwnerMenu";
 import Slider from 'react-slick';
@@ -11,6 +12,10 @@ import '../../css/partCss/OwnerCafe.css';
 const ModifyCafe = () => {
 
     const [subMenu, setSubMenu] = useState("A")
+
+    //카페베너
+    const OwnerInfoBenner = useSelector((state) => state.MypageSlice.OwnerInfoBenner);
+    console.log(OwnerInfoBenner)
     const settings = {
         infinite: true,
         speed: 500,
@@ -25,6 +30,13 @@ const ModifyCafe = () => {
             <StyledSlider {...settings}>
                 <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
             </StyledSlider>
+            <BannerDiv>
+                {OwnerInfoBenner?.cafename}카페이름 <br />
+                {OwnerInfoBenner?.avgstar} 별점
+                {OwnerInfoBenner?.postCnt} 리뷰갯수 <br />
+                Open {OwnerInfoBenner?.opentime}여는시간 <br />
+                Close {OwnerInfoBenner?.closetime}닫는시간 <br />
+            </BannerDiv>
             <div className="containerDiv">
                     <button className="categoryBox"
                         onClick={() => { setSubMenu("A") }}>
@@ -42,9 +54,8 @@ const ModifyCafe = () => {
 }
 const StyledSlider = styled(Slider)`
    //슬라이드 컨테이너 영역
-   position: relative;
    height: 370px; 
-   width: 100%;
+   width: 72%;
    margin-bottom: 40px;
    box-sizing: border-box;
 
@@ -65,10 +76,16 @@ const StyledSlider = styled(Slider)`
 `;
 
 const Container = styled.div`
-    width: 72%;
+    width: 69%;
     margin-left: 300px;
-    margin-top: -435.5px;
+    margin-top: -457px;
     font-family: 'Arita-dotum-Medium';
+`;
+
+const BannerDiv = styled.div`
+  position: relative;
+  margin-top: -115px;
+  padding: 10px;
 `;
 
 export default ModifyCafe;

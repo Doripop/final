@@ -53,13 +53,13 @@ const OwnerHome = () => {
                     <Home id={OwnerInfoList?.cafeid}>
                         {OwnerInfoList?.dilivery ?
                             (
-                                <>
+                                <h3>
                                     <MdDeliveryDining className="icon" />배달 가능 매장입니다!
-                                </>
+                                </h3>
                             ) : (
-                                <>
-                                    <GiShop className="icon" />매장만 이용 가능합니다!
-                                </>
+                                <h3>
+                                    <GiShop className="icon" /> 매장만 이용 가능합니다!
+                                </h3>
                             )}
 
                         <h1>가게설명</h1>
@@ -70,7 +70,7 @@ const OwnerHome = () => {
                         <p>{OwnerInfoList?.notice}</p>
                     </Home2>
                     <Home3>
-                        <h1><BiMap className="map" />
+                        <h1><BiMap className="map" />맵
                             {OwnerInfoList?.address}
                             {OwnerInfoList?.addressdetail}&nbsp;
                             {OwnerInfoList?.zonenum} <br />
@@ -93,15 +93,15 @@ const OwnerHome = () => {
                 || page === "B" && (
                     <>
                         <div>
-                            <StyledSlider {...settings}>
+                            {/* <StyledSlider {...settings}>
                                 <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
-                            </StyledSlider>
-                            <div>
-                                {OwnerInfoBenner?.avgstar} 별점<br />
+                            </StyledSlider> */}
+                            {/* <div className="shopInfo">
                                 {OwnerInfoBenner?.cafename}카페이름 <br />
-                                {OwnerInfoBenner?.opentime}여는시간 <br />
-                                {OwnerInfoBenner?.closetime}닫는시간 <br />
+                                {OwnerInfoBenner?.avgstar} 별점
                                 {OwnerInfoBenner?.postCnt} 리뷰갯수 <br />
+                                Open {OwnerInfoBenner?.opentime}여는시간 <br />
+                                Close {OwnerInfoBenner?.closetime}닫는시간 <br />
                                 {OwnerInfoBenner?.imageList.map((item, i) => (
                                     <>
                                         배너이미지 <img src={item.logoimg} />
@@ -109,7 +109,7 @@ const OwnerHome = () => {
 
                                 ))}
 
-                            </div>
+                            </div> */}
                         </div>
                         <div className="delivery">
                             {/* 배달 */}
@@ -256,11 +256,21 @@ const Home = styled.div`
     justify-content: flex-start;
 
     border-bottom: solid 1px black;
+
+    & h1 {
+        margin-left: 40px;
+    }
+
+    & h3 {
+        padding: 10px;
+        border-bottom: solid 1px black;
+    }
 `;
 
 const Home2 = styled.div`
     position: relative;
     margin: 0px auto;
+    padding: 10px;
 
     display: flex;
     flex-direction: column;
@@ -271,7 +281,7 @@ const Home2 = styled.div`
     word-break:break-all;
 
     .sound {
-        color: #00E676;
+        color: #3FC275;
     }
 `;
 
@@ -279,7 +289,7 @@ const Home3 = styled.div`
     position: relative; 
 
     margin: 0px auto;
-    padding: 20px;
+    padding: 10px;
 
     display: flex;
     flex-direction: column;
@@ -287,7 +297,7 @@ const Home3 = styled.div`
 
 
     .map {
-        color: #00E676;
+        color: #3FC275;
     }
 `;
 export default OwnerHome;
