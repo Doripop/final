@@ -1,13 +1,14 @@
-/* .delivery {
+.delivery {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .deliveryDiv {
+    position: relative;
     display: flex;
     flex-direction: row;
     border-bottom: solid 1px black;
+    align-items: center;
 }
 
 .deliveryLabelOne {
@@ -20,10 +21,6 @@
 }
 
 .deliveryLabelOne>input {
-    position: relative;
-    margin: 0px auto;
-    
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -34,25 +31,26 @@
 }
 
 .icon {
-    margin-top: 5px;
     color: #00E676;
 }
 
 .shopDiv {
+    width: 60%;
     display: flex;
     flex-direction: column;
+    margin-left: 30px;
     padding: 20px;
     font-size: 20px;
     border-bottom: solid 1px black;
 }
 
 .shopDiv>textarea {
-    width: 100%;
     height: 6.25em;
     resize: none;
 }
 
 .ceoDiv {
+    width: 60%;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -88,4 +86,4 @@
     color: white;
     cursor: pointer;
     margin-right: 50px;
-} */
+}

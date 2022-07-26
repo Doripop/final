@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    margin-top: -300px;
-    position: relative;
+    justify-content: center;
+    margin-top: -50px;
 }
 
 .containerDiv>button {
@@ -15,6 +14,7 @@
 }
 
 .categoryBox {
+    position: relative;
     border: none;
     font-weight: bold;
     background-color: transparent;
@@ -24,6 +24,7 @@
     flex-direction: row;
     align-items: center;
     position: relative;
+    margin-right: 60px;
 }
 
 .categoryBox:hover {

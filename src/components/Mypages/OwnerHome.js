@@ -48,11 +48,8 @@ const OwnerHome = () => {
     const [page, setPage] = useState("A")
     return (
         <>
-
-
             {page === "A" && (
-                <div
-                    style={{ display: "flex", flexDirection: "column" }}>
+                <Container>
                     <Home id={OwnerInfoList?.cafeid}>
                         {OwnerInfoList?.dilivery ?
                             (
@@ -92,7 +89,7 @@ const OwnerHome = () => {
                             </button>
                         </div>
                     </Home3>
-                </div>)
+                </Container>)
                 || page === "B" && (
                     <>
                         <div>
@@ -207,8 +204,6 @@ const OwnerHome = () => {
                                     저장하기
                                 </button>
                             </div>
-
-
                         </div>
                     </>
                 )}
@@ -245,50 +240,54 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
+const Container = styled.div`
+    position: relative;
+    font-family: 'Arita-dotum-Medium';
+`;
+
+
 const Home = styled.div`
-    // width: 100%;
+    position: relative;
 
-    // margin: 0px auto;
-    // padding: 20px;
+    margin: 0px auto;
 
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
-    // border-bottom: solid 1px black;
+    border-bottom: solid 1px black;
 `;
 
 const Home2 = styled.div`
-    // position: relative;
-    // margin: 0px auto;
+    position: relative;
+    margin: 0px auto;
 
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
-    // border-bottom: solid 1px black;
+    border-bottom: solid 1px black;
 
-    // word-break:break-all;
+    word-break:break-all;
 
-    // .sound {
-    //     color: #00E676;
-    // }
+    .sound {
+        color: #00E676;
+    }
 `;
 
 const Home3 = styled.div`
-    // position: relative; 
+    position: relative; 
 
-    // margin: 0px auto;
-    // padding: 20px;
+    margin: 0px auto;
+    padding: 20px;
 
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
-    // border-bottom: solid 1px black;
 
-    // .map {
-    //     color: #00E676;
-    // }
+    .map {
+        color: #00E676;
+    }
 `;
 export default OwnerHome;

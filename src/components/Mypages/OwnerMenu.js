@@ -72,7 +72,7 @@ const OwnerMenu = () => {
                             <p>
                                 {item.category}<br />
                                 {item.menuname}<br />
-                                
+                                <br/>
                                 {item.menuprice}원<br />
                             <button>수정</button>
                             <button
@@ -164,5 +164,29 @@ const OwnerMenu = () => {
         </>
     )
 }
+
+// const StyledSlider = styled(Slider)`
+//    //슬라이드 컨테이너 영역
+//    position: relative;
+//    height: 370px; 
+//    width: 100%;
+//    margin-bottom: 40px;
+//    box-sizing: border-box;
+
+//   .slick-list {  //슬라이드 스크린
+//     max-width: 1900px;
+//     min-width: 1050px;
+//     width: 0%;
+//     margin: 0 auto;
+//     background-size: cover;
+//     background-position: 50% cover;
+//     background-repeat: no-repeat;
+//   }
+
+//   .slick-slide div { //슬라이더  컨텐츠
+//     cursor: pointer;
+//     outline: none;
+//   }
+// `;
 
 export default OwnerMenu;
