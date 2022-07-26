@@ -37,12 +37,13 @@ const Success = () => {
 
 const Card = styled.div`
     width: 200px;
-    height: 120px;
+    height: 121px;
     border: 1px solid gray;
     border-radius: 5px;
     margin-right: 30px;
+    margin-bottom: 30px;
 
-    h3 {font-size: 15px;}
+    h3 {font-size: 12px;}
 
     p {font-size: 10px;}
     
@@ -54,7 +55,7 @@ const Card = styled.div`
     }
     
     :hover {
-        border: 2px solid #69F0AE;
+        border: 2px solid #3FC275;
     }
 `;
 

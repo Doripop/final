@@ -22,11 +22,10 @@ const Admin = () => {
     const dispatch = useDispatch()
 
     return (
-        <>
         <div className="conDiv">
             <div className="leftConDiv">
                 <h2>
-                    오늘도 일해주세요!
+                    오늘도 일해주세요!<br/>
                     관리자님!
                 </h2>
                 <button
@@ -79,69 +78,7 @@ const Admin = () => {
             </div>
             <ScrollBtn/>
         </div>
-        </>
     );
 }
-const Container = styled.div`
-    width: 1200px;
-    margin: 0 auto;
-    margin-top: 30px;
-
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-`;
-
-const LeftContent = styled.div`
-    width: 240px;
-    height: 100px;
-
-    & button {
-        width: 240px;
-        height: 40px;
-    }
-`;
-const ReightContent = styled.div`
-    width: 700px;
-`;
-
-const List = styled.div`
-    display: flex;
-    margin-top: 30px;
-    align-items: center;
-`;
-
-const Card = styled.div`
-    width: 200px;
-    height: 170px;
-    border: 2px solid black;
-    margin-right: 30px;
-
-    & button {
-        margin: 0 auto 0 auto;
-        cursor: pointer;
-        background-color: transparent;
-        border-radius: 50px;
-    }
-`;
-
-const AdminBtn = styled.button`
-    width: 235px;
-    height: 100px;
-    font-size: 13px;
-    padding: 5px;
-    margin-bottom: 5px;
-    color: black;
-
-    cursor: pointer;
-
-    background-color: white;
-    border: 1px solid green;
-
-    :hover {
-        background-color: #69F0AE;
-    }
-`;
 
 export default Admin;

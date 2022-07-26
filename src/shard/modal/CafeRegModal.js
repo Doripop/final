@@ -125,7 +125,7 @@ const CafeReg = (props) => {
   return (
     <>
 
-      <div className={open ? 'openModal modal' : 'modal'}>
+      <div className={open ? 'openModal modal' : 'modal'} style={{ fontFamily: 'Arita-dotum-Medium' }}>
         {open ? (
           <>
             <section>
@@ -133,7 +133,7 @@ const CafeReg = (props) => {
               onClick={close}
               style={{display:"flex",justifyContent:"flex-end"}}
               >
-                  <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
+                  <span style={{fontSize:"25px", cursor: "pointer", padding: 15}}><AiOutlineClose /></span>
               </div>
              
               <Header>
@@ -147,12 +147,12 @@ const CafeReg = (props) => {
             <input ref={Cafe_Name} type="text" placeholder="카페이름" />
             </div>
             ):(
-              <div>
+              <div style={{ fontFamily: 'Arita-dotum-Medium' }}>
                  등록하신 카페명 : {cafename}
               </div>
               )}
                 <h3>우편번호 찾기</h3>
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", fontFamily: 'Arita-dotum-Medium' }}>
                   <AdressBox
                     placeholder="우편번호"
                     name="address"
@@ -176,7 +176,7 @@ const CafeReg = (props) => {
                 <InputBox type="text" placeholder="도로명 주소" value={address} />
                 <InputBox ref={Detail_Address} type="text" placeholder="상세주소를 입력해주세요" />
 
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column", fontFamily: 'Arita-dotum-Medium' }}>
                   <span>*카페는 관리자 승인 후 업로드 됩니다.</span>
                   <span>*카페 승인은 최소 1시간 소요 될 수 있습니다.</span>
                 </div>
@@ -227,6 +227,7 @@ const Body = styled.body`
 
     & h1 {
       font-size: 22px;
+      font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -234,6 +235,7 @@ const InputBox = styled.input`
   width: 290px;
   height: 40px;
   margin-bottom: 10px;
+  font-family: 'Arita-dotum-Medium';
 
   border: 2px solid #F0F4C3;
   outline:none;
@@ -243,7 +245,7 @@ const AdressBox = styled.input`
   width: 185px;
   height: 40px;
   margin-bottom: 10px;
-
+  font-family: 'Arita-dotum-Medium';
   border: 2px solid #F0F4C3;
   outline:none;
 `;
@@ -252,6 +254,7 @@ const AdrBtn = styled.button`
   width: 100px;
   height: 45px;
   margin-left: 5px;
+  font-family: 'Arita-dotum-Medium';
 
   background-color: black;
   color: wheat;
@@ -271,6 +274,7 @@ const BtnAdd = styled.button`
   background-color: black;
   color: wheat;
   font-size: 20px;
+  font-family: 'Arita-dotum-Medium';
 `;
 
 export default CafeReg;

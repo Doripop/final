@@ -16,14 +16,12 @@ const ModifyCafe = () => {
         <>
            
             <div className="containerDiv">
-                <div>
                     <button className="categoryBox"
                         onClick={() => { setSubMenu("A") }}>
                         홈</button>
                     <button className="categoryBox"
-                        onClick={() => { setSubMenu("B") }}>
-                        메뉴</button>
-                </div>
+                    onClick={()=>{setSubMenu("B")}}>
+                    메뉴</button>
             </div>
             <div>
                 {

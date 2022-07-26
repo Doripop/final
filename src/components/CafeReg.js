@@ -32,7 +32,7 @@ const CafeBtn = styled.button`
   height: 40px;
   color: white;
   margin-right:10px;
-
+  font-family: 'Arita-dotum-Medium';
   background-color: #00E676;
   border-radius: 5px;
   border: none;

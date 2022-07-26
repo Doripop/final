@@ -15,6 +15,15 @@
     min-width: 375px;
 }
 
+.navBar>div {
+    display: flex;   
+}
+
+.navBar>div>h1 {
+    padding-right: 15px;
+    font-family: 'Arita-dotum-Medium';
+}
+
 .logoImg {
     width: 45px;
     height: 50px;
