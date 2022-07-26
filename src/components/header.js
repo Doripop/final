@@ -9,6 +9,10 @@ import { LogOut } from "../redux/modules/AllSlice";
 import { useDispatch } from "react-redux";
 import Logo_Cat from "../css/Logo_Cat_lattee.png"
 
+//아이콘
+import {CgLogOut} from 'react-icons/cg'
+import {FaUserEdit} from 'react-icons/fa'
+
 
 
 const Header = () => {
@@ -62,6 +66,7 @@ const Header = () => {
                             }}
                             onClick = {()=>{LogOutBtn();}}
                             >LOGOUT</h1>
+                            {/* <CgLogOut className="logout"/> 로그아웃 아이콘 */}
 
                             <h1 style={{
                                 color:"white",
@@ -72,6 +77,7 @@ const Header = () => {
                             >
                                 MYPAGE
                             </h1>
+                            {/* <FaUserEdit/> 유저 아이콘 */}
                         </>
                     )}
                     
@@ -87,6 +93,7 @@ const SearchInput = styled.input`
     background: #2b303b;
     border: none;
     font-size: 10pt;
+    font-family: 'Arita-dotum-Medium';
     float: left;
     color: white;
     padding-left: 45px;
@@ -102,6 +109,7 @@ const Logo = styled.button`
     background-color: transparent;
     font-size: 30px;
     font-weight: 500;
+    font-family: 'Arita-dotum-Medium';
 `;
 
 export default Header;

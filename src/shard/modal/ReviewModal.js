@@ -193,7 +193,7 @@ const ReviewModal = (props) => {
                                 justifyContent: "flex-end",
                                 cursor:"pointer"
                             }}>
-                            <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
+                            <span style={{ fontSize: "25px", cursor: "pointer", padding: 15 }}><AiOutlineClose /></span>
                         </div>
                         <div style={{ padding: "30px" }}>
                             <Title>
@@ -247,7 +247,7 @@ const ReviewModal = (props) => {
                         )}
                         <Body>
                             <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-                                <span style={{ fontWeight: "bold" }}>
+                                <span style={{ fontWeight: "bold"}}>
                                     별점
                                 </span>
                                 <div>
@@ -381,6 +381,7 @@ const InputBox = styled.div`
   flex-direction: row;
   justify-content:center;
   width : 100%;
+  font-family: 'Arita-dotum-Medium';
 `;
 
 const DeleteButton = styled.div`
@@ -390,7 +391,7 @@ const DropDownBox = styled.ul`
   width: 77%;
   display: block;
   margin: 0 auto;
-
+  font-family: 'Arita-dotum-Medium';
   padding: 8px 0;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -402,12 +403,12 @@ const DropDownBox = styled.ul`
 
 const DropDownItem = styled.li`
   padding: 0 16px;
+  font-family: 'Arita-dotum-Medium';
 
   &.selected {
     background-color: #3FC275;
   }
-`
-//////////////
+`;
 
 const TagItem = styled.div`
   display: flex;
@@ -420,6 +421,7 @@ const TagItem = styled.div`
   color: #3FC275;
   font-size: 13px;
   border : 1px solid #3fc275;
+  font-family: 'Arita-dotum-Medium';
 `;
 
 const Text = styled.span``;
@@ -428,6 +430,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Arita-dotum-Medium';
   width: 15px;
   height: 15px;
   margin-left: 5px;
@@ -497,6 +500,7 @@ const UploadBtn = styled.button`
     background-color : black;
     color : white;
     font-size : 20px; 
+    font-family: 'Arita-dotum-Medium';
 `;
 
 export default ReviewModal;

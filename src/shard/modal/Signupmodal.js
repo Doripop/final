@@ -399,10 +399,12 @@ const FormCheckText = styled.label`
     cursor: pointer;
     color: black;
     font-size: 20px;
+    font-family: 'Arita-dotum-Medium';
 
     &:hover{  
         color : black;
         font-weight: bold;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -430,7 +432,7 @@ const LockIcon = styled.span`
 
     .lock {
         position: relative;
-        color: #00E676;
+        color: #19221F;
         font-size: 20px;
     }
 `;

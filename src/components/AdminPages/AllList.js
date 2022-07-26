@@ -64,12 +64,13 @@ const AllList = () => {
 
 const Card = styled.div`
     width: 200px;
-    height: 120px;
+    height: 121px;
     border: 1px solid gray;
     border-radius: 5px;
     margin-right: 30px;
+    margin-bottom: 30px;
 
-    h3 {font-size: 15px;}
+    h3 {font-size: 12px;}
 
     p {font-size: 10px;}
 
@@ -79,9 +80,9 @@ const Card = styled.div`
         float: right;
         cursor: pointer;
         color: white;
-        background-color: #69F0AE;
+        background-color: #3FC275;
         border-radius: 50px;
-        border: 1px solid #69F0AE;
+        border: 1px solid #3FC275;
     }
 `;
 

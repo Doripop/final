@@ -26,14 +26,12 @@ const ModifyCafe = () => {
                 <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
             </StyledSlider> */}
             <div className="containerDiv">
-                <div>
                     <button className="categoryBox"
                     onClick={()=>{setSubMenu("A")}}>
                     홈</button>
                     <button className="categoryBox"
                     onClick={()=>{setSubMenu("B")}}>
                     메뉴</button>
-                </div>
             </div>
             <div>
                 {

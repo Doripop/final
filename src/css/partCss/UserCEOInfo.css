@@ -1,35 +1,36 @@
-/* 관리자페이지 */
-.conDiv {
-    display: inline-flex;
+/* 유저/사장 페이지 */
+.conDiv2 {
+    display: flex;
     justify-content: center;
-    /* flex-direction: column; */
-    /* align-items: center; */
+    flex-direction: column;
+    align-items: center;
+    margin-top: -300px;
 }
 
-.inputBox {
+.inputBox2 {
     width: 290px;
     height: 40px;
 }
 
-.spanLock {
+.spanLock2 {
     font-size: 20px;
     margin: 0px;
     padding: -10px;
     margin-left: -20px; 
 }
 
-.lock {
-    color: #3FC275;
+.lock2 {
+    color: #19221F;
     font-size: 15px;
 }
 
-.checkText{
+.checkText2{
     font-size: 10px;
     color:red;
     margin-bottom: 30px;
 }
 
-.changeBtn {
+.changeBtn2 {
     position: relative;
     width: 200px;
     height: 40px;

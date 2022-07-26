@@ -1,40 +1,46 @@
 .conDiv {
-    width: 1200px;
-    margin: 0 auto;
-    margin-top: 30px;
-
+    width: 100%;
+    display: flex;
+    font-family: 'Arita-dotum-Medium';
 }
 
 .leftConDiv {
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .leftConDiv > button {
-    width: 225px;
-    height: 40px;
+    width: 235px;
+    height: 50px;
+    margin: 0 auto;
     font-size: 13px;
-    padding: 5px;
-    margin-bottom: 5px;
     color: black;
 
+    font-family: 'Arita-dotum-Medium';
     cursor: pointer;
 
     background-color: white;
-    border: 1px solid green;
+    border: 1px solid #3FC275;
     
 }
 
 .leftConDiv>button:hover {
-    background-color: #69F0AE;
+    background-color: #3FC275;
 }
 
 .rightConDiv {
     width: 900px;
+    padding: 10px;
+    margin-right: 200px;
+    align-items: center;
 }
 
 .listDiv {
-    position: relative;
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;    
     margin-top: 30px;
     align-items: center;
 }

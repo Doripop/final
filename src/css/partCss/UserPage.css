@@ -1,6 +1,6 @@
 .pageDiv {
     display : flow-root;
-    flex-direction : row;
+    flex-direction : column;
 }
 
 .changeDiv {
@@ -62,7 +62,7 @@
     cursor: pointer;
 
     background-color: white;
-    border: 1px solid green;
+    border: 1px solid #3FC275;
     border-radius: 3px;
 
     display: flow-root;
@@ -70,7 +70,7 @@
 }
 
 .leftContent >button:hover{
-    background-color: #69F0AE;
+    background-color: #3FC275;
     color: white;
 }
 

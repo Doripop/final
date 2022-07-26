@@ -1,20 +1,17 @@
 .containerDiv {
-    width: 100%;
-
-    margin: 0px auto;
-
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-
+    margin-top: -300px;
     position: relative;
 }
 
 .containerDiv>button {
-    width: 200px;
     font-size: 30px;
-    margin-right: 40px;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Arita-dotum-Medium';
 }
 
 .categoryBox {
