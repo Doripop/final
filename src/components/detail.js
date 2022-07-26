@@ -73,6 +73,7 @@ const Container = styled.div`
         width: 200px;
         font-size: 30px;
         margin-right: 40px;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 

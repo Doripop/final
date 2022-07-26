@@ -21,7 +21,7 @@
     cursor: pointer;
     color: gray;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     position: relative;
 }

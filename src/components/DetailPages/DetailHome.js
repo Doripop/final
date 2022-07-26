@@ -59,7 +59,7 @@ const Home = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
+    font-family: 'Arita-dotum-Medium';
     border-bottom: solid 1px black;
 `;
 
@@ -77,7 +77,7 @@ const Home2 = styled.div`
     border-bottom: solid 1px black;
 
     word-break:break-all;
-
+    font-family: 'Arita-dotum-Medium';
     .sound {
         color: #00E676;
     }
@@ -89,7 +89,7 @@ const Home3 = styled.div`
 
     margin: 0px auto;
     padding: 20px;
-
+    font-family: 'Arita-dotum-Medium';
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

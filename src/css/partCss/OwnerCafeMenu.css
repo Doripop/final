@@ -1,16 +1,17 @@
 .coffeeMenuDiv {
     width: 1000px;
     margin: 0 auto;
+    margin-top: 30px;
 
     border-bottom: 1px solid black;
 }
 
 .coffeeIcon {
-    color: #00E676;
+    color: #3FC275;
 }
 
 .dessertIcon {
-    color: #00E676;
+    color: #3FC275;
 }
 
 .coffeeDiv {
@@ -33,13 +34,13 @@
     width: 80px;
     height: 80px;
     border: 1px solid #EEE;
-    margin-left: -267px;
+    margin-left: -250px;
     margin-top: 10px;
 }
 
 .coffeeDiv>p{
-    font-display: initial;
-    margin-top: -90px;
+    margin-top: -100px;
+    margin-left: 20px;
 }
 
 .plusCoMenuDiv {

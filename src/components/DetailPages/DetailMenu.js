@@ -30,15 +30,16 @@ const DetailMenu = (props) => {
                 <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
                 {menuList?.drink.map((item, i) => (
                     <>
-                        <Coffee
-                            id={item.menuid}>
-                            <CoMenu src={item.menuimg} />
-                            <p>
-                                {item.category}<br />
-                                {item.menuname}<br />
-                                {item.menuprice}
-                            </p>
-                        </Coffee>
+                    <Coffee
+                        id={item.menuid}>
+                        <CoMenu src = {item.menuimg}/>
+                        <p>
+                            {item.category}<br/>
+                            {item.menuname}<br/>
+                            <br/>
+                            {item.menuprice}원
+                        </p>
+                    </Coffee>
                     </>
                 ))}
             </CoffeeMenu>
@@ -46,15 +47,16 @@ const DetailMenu = (props) => {
                 <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
                 {menuList?.dessert.map((item, i) => (
                     <>
-                        <Dessert
-                            id={item.menuid}>
-                            <CoMenu src={item.menuimg} />
-                            <p>
-                                {item.category}<br />
-                                {item.menuname}<br />
-                                {item.menuprice}
-                            </p>
-                        </Dessert>
+                    <Dessert
+                        id={item.menuid}>
+                        <CoMenu src = {item.menuimg}/>
+                        <p>
+                            {item.category}<br/>
+                            {item.menuname}<br/>
+                            <br/>
+                            {item.menuprice}원
+                        </p>
+                    </Dessert>
                     </>
                 ))}
             </DessertMenu>
@@ -63,11 +65,11 @@ const DetailMenu = (props) => {
 }
 
 const CoffeeMenu = styled.div`
-    width: 1000px;
+    width: 63%;
 
     margin: 0 auto;
     padding: 20px;
-
+    font-family: 'Arita-dotum-Medium';
     border-bottom: 1px solid black;
     
     h1 {
@@ -89,8 +91,11 @@ const Coffee = styled.div`
     justify-content: flex-start;
     margin-bottom: 10px;
     margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
+    margin-left: 100px;
+
+    & p {
+        margin-top: -20px;
+    }
 
     : hover {
         cursor: default;
@@ -102,16 +107,16 @@ const CoMenu = styled.img`
     width: 80px;
     height: 80px;
     border: 1px solid #EEE;
+    margin-left: 20px;
     margin-right: 20px;
 `;
 
 const DessertMenu = styled.div`
-    width: 1000px;
+    width: 63%;
 
     margin: 0 auto;
     padding: 20px;
-
-    border-bottom: 1px solid black;
+    font-family: 'Arita-dotum-Medium';
 
     h1 {
         cursor: default;
@@ -132,8 +137,11 @@ const Dessert = styled.div`
     justify-content: flex-start;
     margin-bottom: 10px;
     margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
+    margin-left: 100px;
+
+    & p {
+        margin-top: -20px;
+    }
 
     : hover {
         cursor: default;

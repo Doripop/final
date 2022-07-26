@@ -232,7 +232,7 @@ const StyledSlider = styled(Slider)`
   .slick-list {  //슬라이드 스크린
     max-width: 1900px;
     min-width: 1050px;
-    width: 100%;
+    width: 0%;
     margin: 0 auto;
     background-size: cover;
     background-position: 50% cover;
@@ -246,54 +246,49 @@ const StyledSlider = styled(Slider)`
 `;
 
 const Home = styled.div`
-    width: 960px;
-    height: 100%;
+    // width: 100%;
 
-    margin: 0px auto;
-    padding: 20px;
+    // margin: 0px auto;
+    // padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    // border-bottom: solid 1px black;
 `;
 
 const Home2 = styled.div`
-    width: 960px;
-    height: 100%;
+    // position: relative;
+    // margin: 0px auto;
 
-    margin: 0px auto;
-    padding: 20px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    // border-bottom: solid 1px black;
 
-    border-bottom: solid 1px black;
+    // word-break:break-all;
 
-    word-break:break-all;
-
-    .sound {
-        color: #00E676;
-    }
+    // .sound {
+    //     color: #00E676;
+    // }
 `;
 
 const Home3 = styled.div`
-    width: 960px;
-    height: 100%;
+    // position: relative; 
 
-    margin: 0px auto;
-    padding: 20px;
+    // margin: 0px auto;
+    // padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    // border-bottom: solid 1px black;
 
-    .map {
-        color: #00E676;
-    }
+    // .map {
+    //     color: #00E676;
+    // }
 `;
 export default OwnerHome;

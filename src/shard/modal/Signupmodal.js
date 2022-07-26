@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import "./modal.css"
+import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
 import { AiFillLock } from "react-icons/ai"
@@ -234,9 +235,10 @@ const SignupModal = (props) => {
                             onClick={close}
                             style={{ display: "flex", justifyContent: "flex-end" }}
                         >
-                            <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
+                            <span style={{ fontSize: "25px", cursor: "pointer", padding: 15}}><AiOutlineClose /></span>
                         </div>
                         <Header>
+                            <img className="logoImg" src={Logo_Cat}/>
                             {header}
                         </Header>
                         <Body>
@@ -293,12 +295,12 @@ const SignupModal = (props) => {
                                     marginTop: "20px",
                                 }}>
                                 <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
+                                    <span style={{ fontWeight: "bold", color: "black", fontFamily: 'Arita-dotum-Medium'}}>
                                         로고 사진 업로드
                                     </span>
                                 </div>
                                 <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
+                                    <span style={{ fontWeight: "bold", color: "black", fontFamily: 'Arita-dotum-Medium'}}>
                                         프로필 사진 업로드
                                     </span>
                                 </div>
@@ -311,7 +313,7 @@ const SignupModal = (props) => {
                                     <label
                                         htmlFor="input-file"
                                         onChange={handleAddImages}
-                                        style={{ marginTop: "15px" }}>
+                                        style={{ marginTop: "15px", fontFamily: 'Arita-dotum-Medium'}}>
                                         <input
                                             type="file"
                                             id="input-file"
@@ -351,7 +353,7 @@ const Header = styled.header`
     height: 100px;
     text-align: center;
     margin-top: 40px; 
-
+    font-family: 'Arita-dotum-Medium';
     font-size: 30px;
     font-weight: bold;
     color: black;
@@ -376,6 +378,7 @@ const Body = styled.body`
     & p {
         font-size: 10px;
         color: red;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -388,6 +391,7 @@ const RadioBtn = styled.div`
 
     & button {
         width: 95px;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -417,12 +421,13 @@ const InputBox = styled.input`
     color: black;
     margin-top: 10px;
     border: 2px solid #F0F4C3;
-
+    font-family: 'Arita-dotum-Medium';
     font-size: 20px;
 
     ::placeholder {
         font-size: 15px;
         color: gray;  
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -447,6 +452,7 @@ const Footer = styled.footer`
     & button {
         width: 200px;
         height: 50px;
+        font-family: 'Arita-dotum-Medium';
         color: white;
         background-color: black;
     }

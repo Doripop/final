@@ -27,20 +27,6 @@
     overflow: scroll;
 }
 
-/*
-모달창 css 다 갈아야 될거 같습니다. 백그라운드 투명도 설정하면 버튼 인풋창 전부 투명도 적용 됩니다.
-.modalBackImg {
-    content:"";
-    opacity:0.5;
-    position:absolute;
-    top:0px;
-    left:0px;
-    right:0px;
-    bottom:0px;
-    background-color: #000;
-}
- */
-
 .modal > section > footer {
     padding: 12px 16px;
     text-align: right;

@@ -27,6 +27,7 @@
 .checkText2{
     font-size: 10px;
     color:red;
+    font-family: 'Arita-dotum-Medium';
     margin-bottom: 30px;
 }
 
@@ -37,4 +38,5 @@
     color: white;
     background-color: black;
     cursor: pointer;
+    font-family: 'Arita-dotum-Medium';
 }

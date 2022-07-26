@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import '../../css/partCss/UserPage.css';
+import { LogOut } from "../../redux/modules/AllSlice";
 
 //예시 이미지
 import cat from "../../css/cafeImg/cafeImg1.jpg"
@@ -14,13 +15,12 @@ import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
 import ScrollBtn from "../ScrollBtn";
 import OwnerShutDown from "./OwnerShutDown";
-import { LogOut } from "../../redux/modules/AllSlice";
+
 
 
 const Mypage = () => {
 
 
-    // const dispatch = useDispatch()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [role, setRole] = useState("")
@@ -32,9 +32,11 @@ const Mypage = () => {
         if (!localStorage.getItem("token")) {
             navigate("/")
         }
-    }, [])
-
-
+    },[])
+    
+    const LogOutBtn = () => {
+        dispatch(LogOut())
+    }
     console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
@@ -123,7 +125,7 @@ const Mypage = () => {
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span>Log Out</span>
+                                <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
                             </div>
                         </>
                     )}

@@ -36,8 +36,8 @@
 .navSelect {
     width: 118px;
     height: 30px;
-    border: 1px solid #00E676;
-    color: #00E676;
+    border: 1px solid #3FC275;
+    color: #3FC275;
 
     position: relative;
     font-family: 'Arita-dotum-Medium';
@@ -68,16 +68,12 @@
     margin: 0px 2px 0px 0px;
     font-family: 'Arita-dotum-Medium';
     background:transparent;
-
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
+    border: none;
 
     cursor: pointer;
 
 }
 
 .navAli > button:hover {
-    font-weight: bold;
+    text-decoration: underline;
 }

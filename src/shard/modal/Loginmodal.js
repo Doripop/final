@@ -10,10 +10,10 @@ import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 
 //Image import
-import backImg1 from "../../css/cafeImg/cafeImg1.jpg";
-import backImg2 from "../../css/cafeImg/cafeImg2.jpg";
-import backImg3 from "../../css/cafeImg/cafeImg3.jpg";
-import backImg4 from "../../css/cafeImg/cafeImg4.jpg";
+import backImg1 from "../../css/cafeImg1.jpg";
+import backImg2 from "../../css/cafeImg2.jpg";
+import backImg3 from "../../css/cafeImg3.jpg";
+import backImg4 from "../../css/cafeImg4.jpg";
 import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
@@ -76,7 +76,7 @@ const LoginModal = (props) => {
                         onClick={close}
                         style={{display:"flex",justifyContent:"flex-end"}}
                     >
-                        <span style={{fontSize:"25px", cursor: "pointer"}}><AiOutlineClose /></span>
+                        <span style={{fontSize:"25px", cursor: "pointer", color: "white", padding: 15}}><AiOutlineClose /></span>
                     </div>
                     <Header>
                         <img className="logoImg" src={Logo_Cat}/>
@@ -134,7 +134,7 @@ const Header = styled.header`
     height: 100px;
     text-align: center;
     margin-top: 40px; 
-    
+    font-family: 'Arita-dotum-Medium';
     font-size: 40px;
     font-weight: bold;
     color: white;
@@ -144,6 +144,7 @@ const Body = styled.body`
     display: flex; 
     flex-direction: column;
     align-items: center;
+    
 `;
 
 const InputBox = styled.input`
@@ -152,7 +153,7 @@ const InputBox = styled.input`
     background: transparent;
     color: white;
     margin-bottom: 10px;
-
+    font-family: 'Arita-dotum-Medium';
     font-size: 20px;
 
     border-left-width:0; 
@@ -182,6 +183,7 @@ const Footer = styled.footer`
     & button {
         width: 290px;
         height: 50px;
+        font-family: 'Arita-dotum-Medium';
         color: white;
         background-color: black;
     }
