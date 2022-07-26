@@ -18,17 +18,10 @@ const Signup = () => {
   }
 
 
-<<<<<<< HEAD
     return (
         <>
       <SignupBtn onClick={openModal}><SiGnuprivacyguard/></SignupBtn>
       <SignupModal open={modalOpen} close={closeModal} header="BLANK 회원가입">
-=======
-  return (
-    <>
-      <SignupBtn onClick={openModal}><SiGnuprivacyguard /></SignupBtn>
-      <SignupModal open={modalOpen} close={closeModal} header="😁Exotic 회원가입">
->>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
       </SignupModal>
 
     </>

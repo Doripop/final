@@ -30,17 +30,11 @@ const Mypage = () => {
         if (!localStorage.getItem("token")) {
             navigate("/")
         }
-<<<<<<< HEAD
     },[])
     
     const LogOutBtn = () => {
         dispatch(LogOut())
     }
-=======
-    }, [])
-
-
->>>>>>> 9af61a79cec71d5cc36936c798807726832b8171
     console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
