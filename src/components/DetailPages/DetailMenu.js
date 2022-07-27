@@ -65,7 +65,7 @@ const DetailMenu = (props) => {
 }
 
 const CoffeeMenu = styled.div`
-    width: 63%;
+    width: 1000px;
 
     margin: 0 auto;
     padding: 20px;
@@ -112,7 +112,7 @@ const CoMenu = styled.img`
 `;
 
 const DessertMenu = styled.div`
-    width: 63%;
+    width: 1000px;
 
     margin: 0 auto;
     padding: 20px;

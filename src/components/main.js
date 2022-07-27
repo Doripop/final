@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./header";
 import Banner from "./Banner";
@@ -8,9 +8,10 @@ import ScrollBtn from "./ScrollBtn";
 import ReviewBtn from "./ReviewBtn";
 
 
+
 const Main = () => {
 
-  
+   
     return (
         <>
             <div>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { InfoLoad, userInfoLoad } from "../redux/modules/adminSlice";
+import { AllRegCafe, CafeApplyList, CafeRejectList, InfoLoad, SuccessApplyList, userInfoLoad } from "../redux/modules/adminSlice";
 
 import ScrollBtn from "./ScrollBtn";
 import '../css/partCss/Admin.css';
@@ -15,11 +15,30 @@ import RealAllCafe from "./AdminPages/RealAllCafe";
 import {BsCheckSquare} from "react-icons/bs";
 import {BsCheckSquareFill} from "react-icons/bs";
 
+
+
+
+
 const Admin = () => {
 
     const [subMenu, setSubMenu] = useState("A")
 
     const dispatch = useDispatch()
+
+    //갯수 불러오기 
+    React.useEffect(()=>{
+        dispatch(CafeApplyList())
+        dispatch(AllRegCafe())
+        dispatch((CafeRejectList()))
+        dispatch(SuccessApplyList())
+    },[])
+
+    const list = useSelector((state) => state.adminSlice.CafeInfo);
+    const list1 = useSelector((state) => state.adminSlice.SuccessInfo);
+    const list2 = useSelector((state) => state.adminSlice.RejectInfo);
+    const list3 = useSelector((state) => state.adminSlice.RealInfo);
+    
+
 
     return (
         <div className="conDiv">
@@ -33,28 +52,28 @@ const Admin = () => {
                     setSubMenu("A")
                 }}
                 >
-                    전체 신청 리스트 37개 &gt;
+                    전체 신청 리스트 {list?.length}개 &gt;
                 </button>
                 <button
                 onClick={()=>{
                     setSubMenu("B")
                 }}
                 >
-                   <BsCheckSquare size="15" color="green"/>승인된 목록 &gt;
+                   <BsCheckSquare size="15" color="green"/>승인된 목록 {list1?.length}개&gt;
                 </button>
                 <button
                 onClick={()=>{
                     setSubMenu("C")
                 }}
                 >
-                    <BsCheckSquareFill size="15" color="green"/>최종 거절 카페 37개 &gt;
+                    <BsCheckSquareFill size="15" color="green"/>최종 거절 카페 {list2?.length}개 &gt;
                 </button>
                 <button
                 onClick={()=>{
                     setSubMenu("D")
                 }}
                 >
-                   모든 등록된 카페 37개 &gt;
+                   모든 등록된 카페 {list3?.length}개 &gt;
                 </button>
             </div>
             <div className="rightConDiv">

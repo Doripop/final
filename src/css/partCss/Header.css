@@ -16,6 +16,7 @@
 }
 
 .navBar>div {
+    margin-top: 22px;
     display: flex;   
 }
 
@@ -25,8 +26,8 @@
 }
 
 .logoImg {
-    width: 45px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 /* 
 .navBar_Login {
@@ -40,3 +41,7 @@
     }
     
 } */
+
+.myPage {
+    font-size: 25px;
+}

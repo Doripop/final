@@ -16,10 +16,19 @@ const Review = () => {
     setModalOpen(false);
   }
 
+  const [isLogin, setIsLogin] = useState(null);
+    React.useEffect(()=>{
+      setIsLogin(localStorage?.getItem("token")) 
+    },[localStorage.getItem("token")])
+    console.log(isLogin)
 
   return (
     <>
-      <ReviewBtn onClick={openModal}>리뷰작성</ReviewBtn>
+      <ReviewBtn
+      onClick={()=>{
+            !isLogin ? alert("로그인이 필요한 서비스 입니다!") 
+            : openModal()
+          }}>리뷰작성</ReviewBtn>
       <ReviewModal open={modalOpen} close={closeModal}>
       </ReviewModal>
 
@@ -32,7 +41,7 @@ const ReviewBtn = styled.button`
   height: 40px;
   color: white;
   font-family: 'Arita-dotum-Medium';
-  background-color: #00E676;
+  background-color: #3FC275;
   border-radius: 5px;
   border: none;
   outline: none;
