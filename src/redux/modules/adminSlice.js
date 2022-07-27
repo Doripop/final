@@ -1,67 +1,67 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { instance } from "../../shard/axios"
 
 
 
 const initialState = {
-    CafeInfo:[],
-    SuccessInfo:[],
-    RejectInfo : [],
-    RealInfo : []
+    CafeInfo: [],
+    SuccessInfo: [],
+    RejectInfo: [],
+    RealInfo: []
 
 }
 
 
 export const CafeApplyList = createAsyncThunk(
     'admin/ApplyInfo',
-     async (thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("/api/registers");
+            const { data } = await instance.get("/api/registers");
             // console.log(data);
             // dispacth(listLoad(data));
             return data
-        } catch(error){
-            window.alert(error) 
+        } catch (error) {
+            window.alert(error)
         }
     }
 )
 
 export const SuccessApplyList = createAsyncThunk(
     'admin/SuccessInfo',
-     async (thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("/api/registers/permission");
+            const { data } = await instance.get("/api/registers/permission");
             console.log(data)
             return data
-        } catch(error){
-            window.alert(error) 
+        } catch (error) {
+            window.alert(error)
         }
     }
 )
 
 export const CafeRejectList = createAsyncThunk(
     'admin/RejectInfo',
-     async (thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("/api/registers/rejection");
+            const { data } = await instance.get("/api/registers/rejection");
             console.log(data)
             return data
-        } catch(error){
-            window.alert(error) 
+        } catch (error) {
+            window.alert(error)
         }
     }
 )
 
 export const AllRegCafe = createAsyncThunk(
     'admin/AllRegInfo',
-     async (thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const {data} =  await instance.get("/api/registeredcafe");
+            const { data } = await instance.get("/api/registeredcafe");
             console.log(data)
             return data
-        } catch(error){
-            window.alert(error) 
+        } catch (error) {
+            window.alert(error)
         }
     }
 )
@@ -71,10 +71,10 @@ export const AllRegCafe = createAsyncThunk(
 // id 로는 삭제 진행 \\ reg id + false 로는 페이지 생성요청
 export const CafeApprove = createAsyncThunk(
     'admin/ApproveCafe',
-    async (id , thunkAPI) => {
+    async (id, thunkAPI) => {
         console.log(id)
         try {
-            const {data} = await instance.patch(`api/registers/${id.regid}/${id.permit}`)
+            const { data } = await instance.patch(`api/registers/${id.regid}/${id.permit}`)
             // const {data} = await instance.get('admin')
 
 
@@ -87,23 +87,23 @@ export const CafeApprove = createAsyncThunk(
 
             // return data.result === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.result;
             // console.log(data[0].permit);
-            return  id.permit === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.permit;
-        } catch(error){
-            window.alert(error) 
+            return id.permit === true ? thunkAPI.dispatch(CreateCafePage(id.regid)) : data.permit;
+        } catch (error) {
+            window.alert(error)
         }
     }
-) 
+)
 
 export const CreateCafePage = createAsyncThunk(
     'admin/CreatePage',
     async (id) => {
         // console.log("넘어 오면 좋겠는데")
-        try{
-            const {data} = await instance.post(`api/registers/${id}`)
+        try {
+            const { data } = await instance.post(`api/registers/${id}`)
             // const {data} =await instance.get('admin')
             console.log(data)
             return data;
-        }catch(error){
+        } catch (error) {
             window.alert(error)
         }
     }
@@ -112,38 +112,38 @@ export const CreateCafePage = createAsyncThunk(
 
 export const CafeRemove = createAsyncThunk(
     'admin/RemoveCafe',
-    async (id , thunkAPI) => {
+    async (id, thunkAPI) => {
         console.log(id);
         try {
-            const {data} = await instance.delete(`api/registers/${id.cafeid}`)
+            const { data } = await instance.delete(`api/registers/${id.cafeid}`)
             console.log(data)
-             thunkAPI.dispatch(adminFinalList(id.cafeid))
+            thunkAPI.dispatch(adminFinalList(id.cafeid))
             return data;
-        } catch(error){
-            window.alert(error) 
+        } catch (error) {
+            window.alert(error)
         }
     }
-) 
+)
 
 
 
 const admin = createSlice({
-    name : "userInfoSlice",
+    name: "userInfoSlice",
     initialState,
-    reducers : {
-        adminAllList : (state, action) => {
-           state.CafeInfo = state.CafeInfo.filter((item, index)=>{
+    reducers: {
+        adminAllList: (state, action) => {
+            state.CafeInfo = state.CafeInfo.filter((item, index) => {
                 return parseInt(item.registerid) !== parseInt(action.payload)
             })
-        }, 
-        adminFinalList : (state, action) =>{
-            state.RealInfo = state.RealInfo.filter((item, index)=>{
+        },
+        adminFinalList: (state, action) => {
+            state.RealInfo = state.RealInfo.filter((item, index) => {
                 return parseInt(item.cafeid) !== parseInt(action.payload)
             })
         }
     },
-    extraReducers : {
-       
+    extraReducers: {
+
         [CafeApplyList.fulfilled]: (state, action) => {
             console.log(action.payload)
             state.CafeInfo = action.payload.data.registerList
@@ -163,5 +163,5 @@ const admin = createSlice({
 
 
 
-export const {adminAllList, adminFinalList} = admin.actions
+export const { adminAllList, adminFinalList } = admin.actions
 export default admin.reducer

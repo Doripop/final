@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import ReviewModal from "../shard/modal/ReviewModal";
 
 // CSS 관련 Imports
-import styled from 'styled-components'
-import { RiArrowUpSFill } from 'react-icons/ri'
-import Btn_Cat from '../css/Btn_Cat_lattee.png'
+import styled from 'styled-components';
+import Btn_Cat from '../css/Btn_Cat_lattee.png';
 
 
 const ReviewBtn = (props) => {
@@ -19,11 +18,20 @@ const ReviewBtn = (props) => {
     setModalOpen(false);
   }
 
+  const [isLogin, setIsLogin] = useState(null);
+  React.useEffect(()=>{
+    setIsLogin(localStorage?.getItem("token")) 
+  },[localStorage.getItem("token")])
+  console.log(isLogin)
+
   return (
     <>
-    <Btn onClick={openModal}></Btn>
-    <ReviewModal open={modalOpen} close={closeModal}>
-    </ReviewModal>
+      <Btn onClick={()=>{
+        !isLogin ? alert("로그인이 필요한 서비스입니다!")
+        :openModal()
+      }}></Btn>
+      <ReviewModal open={modalOpen} close={closeModal}>
+      </ReviewModal>
     </>
   )
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import '../../css/partCss/UserPage.css';
+import { LogOut } from "../../redux/modules/AllSlice";
 
 //예시 이미지
 import cat from "../../css/cafeImg/cafeImg1.jpg"
@@ -13,29 +14,46 @@ import ModifyCafe from "./ModifyCafe";
 import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
 import ScrollBtn from "../ScrollBtn";
+import OwnerShutDown from "./OwnerShutDown";
+
+
 
 const Mypage = () => {
 
 
-    // const dispatch = useDispatch()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
     const [isLogin, setLogin] = useState("")
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setRole(localStorage.getItem("role"));
         setNickname(localStorage.getItem("nicname"));
-        if(!localStorage.getItem("token")){
+        if (!localStorage.getItem("token")) {
             navigate("/")
         }
     },[])
     
-    
+    const LogOutBtn = () => {
+        dispatch(LogOut())
+    }
     console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");
 
+    const MyprofileImg = localStorage?.getItem("profileimg")
+
+    const [unclick, setUnclick] = useState("none")
+    const [click, setClick] = useState("flex")
+    const clickevent = () => {
+        setClick("none")
+        setUnclick("flex")
+    }
+    const unclickevent = () => {
+        setClick("flex")
+        setUnclick("none")
+    }
 
     return (
 
@@ -43,29 +61,46 @@ const Mypage = () => {
             <div className="pageDiv">
                 <div className="changeDiv">
                     {role === "owner" ? (
-                    <>
-                        <h2>
-                            오늘도 일해주세요! <br />
-                            사장님!
-                        </h2>
-                    </>
-                                            
-                    ):(
+                        <>
+                            <h2>
+                                오늘도 일해주세요! <br />
+                                사장님!
+                            </h2>
+                        </>
+
+                    ) : (
                         <>
                             <h2>
                                 환영합니다! <br />
                                 {nickname}님!
                             </h2>
                         </>
-                    )} 
-                
+                    )}
+
                     <div className="profileImgBox">
-                        <img className="imageShape" src={cat} />
-                        <span className="imgBoxSpan">로고 수정하기
-                            <span className="imgBoxSpanChild">
-                                <RiPencilFill className="ripen"/>
+                        {role === "owner" ? (
+                        <>
+                            <img className="imageShape" src={MyprofileImg} />
+                            <span className="imgBoxSpan">로고 수정하기
+                                <span className="imgBoxSpanChild">
+                                    <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
+                                    <input type="file" style={{ display: unclick, marginLeft: "10px" }}/>
+                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                </span>
                             </span>
-                        </span>
+                        </>
+                        ): (
+                        <>
+                            <img className="imageShape" src={MyprofileImg} />
+                            <span className="imgBoxSpan">프로필 수정하기
+                                <span className="imgBoxSpanChild">
+                                    <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
+                                    <input type="file" style={{ display: unclick }}/>
+                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                </span>
+                            </span>
+                        </>
+                        )}
                     </div>
                     {role === "owner" ? (
                         <>
@@ -74,24 +109,29 @@ const Mypage = () => {
                                     onClick={() => { setOwnerSubMenu("A") }}
                                 >
                                     <strong>
-                                    사장님 정보 수정
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &gt;
-                                    </strong>    
+                                        사장님 정보 수정
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &gt;
+                                    </strong>
                                 </button>
                                 <button
                                     onClick={() => { setOwnerSubMenu("B") }}
                                 >
                                     <strong>
-                                    카페 정보 수정
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &gt;
+                                        카페 정보 수정
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &gt;
                                     </strong>
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span>Log Out</span>
-                                <span>폐업하기</span>
+                                <span
+                                style={{cursor:"pointer"}}
+                                onClick={()=>{
+                                    dispatch(LogOut())
+                                }}>Log Out</span>
+                           
+                                <OwnerShutDown/>
                             </div>
                         </>
 
@@ -103,53 +143,44 @@ const Mypage = () => {
                                 >
                                     <strong>
                                         내 정보 수정 &gt;
-                                    </strong>    
+                                    </strong>
                                 </button>
                                 <button
                                     onClick={() => { setUserSubMenu("B") }}
                                 >
                                     <strong>
-                                    내가 쓴 리뷰 몰아보기 &gt;
-                                    </strong>    
+                                        내가 쓴 리뷰 몰아보기 &gt;
+                                    </strong>
                                 </button>
                             </div>
                             <div className="elimination">
-                                <span>Log Out</span>
+                                <span onClick = {()=>{LogOutBtn();}}>Log Out</span>
                             </div>
                         </>
-                     )} 
+                    )}
 
 
                 </div>
                 {role === "owner" ? (
                     <>
-                        
-                        
-                        
                         {
                             OwnerSubMenu === "A" && <ModifyInfo /> ||
                             OwnerSubMenu === "B" && <ModifyCafe />
                         }
-
-
                     </>
                 ) : (
                     <>
-
-
                         {
                             userSubMenu === "A" && <ModifyInfo /> ||
                             userSubMenu === "B" && <MyReview />
                         }
-
-
                     </>
                 )}
 
                 {/* 컴포넌트 박아넣기 */}
 
             </div>
-            <ScrollBtn/>
+            <ScrollBtn />
         </>
     )
 }

@@ -1,27 +1,37 @@
 .containerDiv {
-    margin: 0px auto;
-    padding: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-
-    position: relative;
-    border-bottom: solid 1px black;
-}
-
-.categoryBox {
-    border: none;
-    font-weight: bold;
-    background-color: transparent;
-    cursor: pointer;
-    color: gray;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    font-family: 'Arita-dotum-Medium';
+}
+
+.containerDiv>button {
+    width: 224px;
+    height: 40px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arita-dotum-Medium';
+    
+}
+
+.categoryBox {
+    position: relative;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: D9D9D9;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-right: 60px;
+    text-align: center;
+    border: none;
 }
 
 .categoryBox:hover {
-    color: black;
+    border-bottom: 1px solid black;
 }

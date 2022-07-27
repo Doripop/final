@@ -1,13 +1,14 @@
 .pageDiv {
-    display : flex;
-    flex-direction : row;
+    display : flow-root;
+    flex-direction : column;
 }
 
 .changeDiv {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     padding: 20px;
     text-align: center;
+    font-family: 'Arita-dotum-Medium';
 }
 
 .proileImgBox {
@@ -21,13 +22,15 @@
 .imgBoxSpan{
     display: flex;
     align-items: center;
-    position: relative;
-    margin-left: 60px;
+    /* position: relative;
+    margin-left: 60px; */
     margin-bottom: 10px;
+    flex-direction: column;
 }
 
 .imgBoxSpanChild {
     display: flex;
+    flex-direction: column;
     align-items: center;
     font-size: 18px;
 }
@@ -60,9 +63,9 @@
     color: black;
 
     cursor: pointer;
-
+    font-family: 'Arita-dotum-Medium';
     background-color: white;
-    border: 1px solid green;
+    border: 1px solid #3FC275;
     border-radius: 3px;
 
     display: flow-root;
@@ -70,7 +73,7 @@
 }
 
 .leftContent >button:hover{
-    background-color: #69F0AE;
+    background-color: #3FC275;
     color: white;
 }
 
@@ -83,4 +86,5 @@
 
 .elimination>span {
     color: gray;
+    cursor: pointer;
 }

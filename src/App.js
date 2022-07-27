@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/detail/:id/*" element={<Detail />} />
         <Route path="/search/:text/*" element={<Search />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
@@ -40,5 +40,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

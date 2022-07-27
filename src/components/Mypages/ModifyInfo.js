@@ -1,5 +1,6 @@
-import React,{useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import '../../css/partCss/UserInfo.css';
+import '../../css/partCss/UserCEOInfo.css';
 import { AiFillLock } from "react-icons/ai"
 
 const ModifyInfo = () => {
@@ -10,9 +11,9 @@ const ModifyInfo = () => {
 
     const [role, setRole] = useState("")
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setRole(localStorage.getItem("role"));
-    },[])
+    }, [])
 
     //닉네임, 비밀번호 정규표현식
     const reg_nic = /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{3,9}$/;
@@ -58,44 +59,44 @@ const ModifyInfo = () => {
             setSignCheckAlert("비밀번호가 일치하지 않습니다.")
         }
     }
-    
+
     return (
         <>
             {role === "user" ? (
-            <div className="conDiv">
+            <div className="conDiv2">
                 <div>
-                    <input ref={Nic} className="inputBox" type="text" placeholder="닉네임" onChange={onNicChange}>
-                    </input><span className="spanLock"><AiFillLock className="lock"/></span>
-                    <p className="checkText">{signNicAlert}</p>
+                    <input ref={Nic} className="inputBox2" type="text" placeholder="닉네임" onChange={onNicChange}>
+                    </input><span className="spanLock2"><AiFillLock className="lock2"/></span>
+                    <p className="checkText2">{signNicAlert}</p>
                 </div>
                 <div>
-                    <input ref={Password} className="inputBox" type="password" placeholder="비밀번호" onChange={onPassChange}>
-                    </input><span className="spanLock"><AiFillLock className="lock"/></span>
-                    <p className="checkText">{signPassAlert}</p>
+                    <input ref={Password} className="inputBox2" type="password" placeholder="비밀번호" onChange={onPassChange}>
+                    </input><span className="spanLock2"><AiFillLock className="lock2"/></span>
+                    <p className="checkText2">{signPassAlert}</p>
                 </div>
                 <div>
-                    <input ref={Check} className="inputBox" type="password" placeholder="비밀번호확인" onChange={onPassCheckChange}>
-                    </input><span className="spanLock"><AiFillLock className="lock"/></span>
-                    <p className="checkText">{signCheckAlert}</p>
+                    <input ref={Check} className="inputBox2" type="password" placeholder="비밀번호확인" onChange={onPassCheckChange}>
+                    </input><span className="spanLock2"><AiFillLock className="lock2"/></span>
+                    <p className="checkText2">{signCheckAlert}</p>
                 </div>
-                <button className="changeBtn">변경하기</button>
+                <button className="changeBtn2">변경하기</button>
             </div>
             ) : (
-            <div className="conDiv">
+            <div className="conDiv2">
                 <div>
-                    <input ref={Password} className="inputBox" type="password" placeholder="비밀번호" onChange={onPassChange}>
-                    </input><span className="spanLock"><AiFillLock className="lock"/></span>
-                    <p className="checkText">{signPassAlert}</p>
+                    <input ref={Password} className="inputBox2" type="password" placeholder="비밀번호" onChange={onPassChange}>
+                    </input><span className="spanLock2"><AiFillLock className="lock2"/></span>
+                    <p className="checkText2">{signPassAlert}</p>
                 </div>
                 <div>
-                    <input ref={Check} className="inputBox" type="password" placeholder="비밀번호확인" onChange={onPassCheckChange}>
-                    </input><span className="spanLock"><AiFillLock className="lock"/></span>
-                    <p className="checkText">{signCheckAlert}</p>
+                    <input ref={Check} className="inputBox2" type="password" placeholder="비밀번호확인" onChange={onPassCheckChange}>
+                    </input><span className="spanLock2"><AiFillLock className="lock2"/></span>
+                    <p className="checkText2">{signCheckAlert}</p>
                 </div>
-                <button className="changeBtn">변경하기</button>
+                <button className="changeBtn2">변경하기</button>
             </div>    
             )
-        }
+            }
         </>
     )
 }

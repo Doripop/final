@@ -6,7 +6,7 @@ import { instance } from "../../shard/axios"
 
 const initialState = {
     MyLikeInfo: [],
-    OwnerInfo : []
+    OwnerInfo: []
 
 }
 
@@ -29,18 +29,36 @@ export const MyReviewLoad = createAsyncThunk(
 export const MyLikeInfoLoad = createAsyncThunk(
     'MypageSlice/MyLikesInfoList',
     async (cafeid) => {
-        if(localStorage.getItem("token")){
+        if (localStorage.getItem("token")) {
             try {
-                const {data} = await instance.get(`api/user/like-list`)
+                const { data } = await instance.get(`api/user/like-list`)
                 console.log(data)
                 return data;
-            } catch(error){
-                window.alert(error) 
+            } catch (error) {
+                window.alert(error)
             }
         }
-        
+
     }
-) 
+)
+
+
+//마이페이지 리뷰 포스트 삭제
+
+export const MypageDeletePost = createAsyncThunk(
+    'MypageSlice/MypageDeletePost',
+    async (postid) => {
+        try {
+            console.log(postid)
+            const { data } = await instance.delete(`api/posts/${postid}`)
+            console.log(data)
+            return postid
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 
 //마이페이지 댓글 달기
 export const MyCreateComment = createAsyncThunk(
@@ -92,7 +110,7 @@ export const MypageModifyMyCommnet = createAsyncThunk(
 export const MypageDeleteMyComment = createAsyncThunk(
     'MypageSlice/MypageDeleteMyComment',
     async (CommentId) => {
-        
+
         try {
             console.log(CommentId)
             const { data } = await instance.delete(`api/comments/${CommentId.commentid}`)
@@ -140,7 +158,7 @@ export const OwnerCafeMeunLoad = createAsyncThunk(
     async () => {
         try {
             const { data } = await instance.get("api/owner/menus")
-            console.log(data)
+            console.log(data, "이게")
             return data
         } catch (error) {
             console.log(error)
@@ -156,7 +174,8 @@ export const ModifyOwnerCafe = createAsyncThunk(
             console.log(contents)
             const { data } = await instance.patch("api/owner/info", contents)
             console.log(data)
-            // return data
+            window.alert("수정이 완료되었습니다.")
+            return contents
         } catch (error) {
             console.log(error)
         }
@@ -171,7 +190,62 @@ export const AddCafeMenu = createAsyncThunk(
             console.log(item)
             const { data } = await instance.post("api/owner/menus", item)
             console.log(data)
-            // return data
+            const SendData = {
+                menuid: data?.data.menuid,
+                menuimg: data?.data.menuimg,
+                menuname: data?.data.menuname,
+                menuprice: data?.data.menuprice
+            }
+            return {
+                Data: SendData,
+                category: data?.data.category
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+
+//사장님 메뉴 삭제
+export const DeleteCafeMenu = createAsyncThunk(
+    'MypageSlice/DeleteCafeMenu',
+    async (menuid) => {
+        try {
+            console.log(menuid)
+            const { data } = await instance.delete(`api/owner/menus/${menuid.menuid}`)
+            console.log(data)
+            return menuid
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+//사장님 메뉴 수정
+export const ModifyCafeMenu = createAsyncThunk(
+    'MypageSlice/ModifyCafeMenu',
+    async (MenuInfo) => {
+        try {
+            console.log(MenuInfo)
+            const { data } = await instance.patch(`/api/owner/menus/${MenuInfo.menuid}`, {
+                category: MenuInfo.category,
+                menuname: MenuInfo.menuname,
+                menuprice: MenuInfo.menuprice
+            })
+
+            const ChangeMenu = {
+                category: MenuInfo.category,
+                menuname: MenuInfo.menuname,
+                menuprice: MenuInfo.menuprice,
+                menuimg: MenuInfo.menuimg,
+                menuid: MenuInfo.menuid
+            }
+            console.log(data)
+
+            return {
+                menu: ChangeMenu,
+                menuid: MenuInfo.menuid
+            }
         } catch (error) {
             console.log(error)
         }
@@ -186,7 +260,7 @@ const MypageSlice = createSlice({
         MyLikeListInfo: (state, action) => {
             console.log(action.payload, "라이크")
             // state.LikeInfo.push(action.payload)
-            const Index = state.MyLikeInfo.findIndex((list)=>{
+            const Index = state.MyLikeInfo.findIndex((list) => {
                 return list.postid === action.payload.postid
             })
             console.log(Index)
@@ -194,37 +268,52 @@ const MypageSlice = createSlice({
         },
         MyUnLikeListInfo: (state, action) => {
             console.log(action.payload, "언라이크")
-            const Index = state.MyLikeInfo.findIndex((list)=>{
+            const Index = state.MyLikeInfo.findIndex((list) => {
                 return list.postid === action.payload.postid
             })
             console.log(Index)
             state.MyLikeInfo[Index] = action.payload
         },
-        MyLikeCountAdd : (state, action) =>{
-          
+        MyLikeCountAdd: (state, action) => {
+
             const Index = state.MyReview.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
-            
+
             state.MyReview[Index].likecnt += 1
         },
-        MyLikeCountMinus : (state, action) =>{
-           
+        MyLikeCountMinus: (state, action) => {
+
             const Index = state.MyReview.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
-            
+
             state.MyReview[Index].likecnt -= 1
         },
     },
-    extraReducers : {
+    extraReducers: {
+
+        //마이페이지 리뷰 로드
         [MyReviewLoad.fulfilled]: (state, action) => {
             state.MyReview = action.payload.data
         },
+        //마이페이지 리뷰 포스트 삭제
+        [MypageDeletePost.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            const Index = state.MyReview.findIndex((List) => {
+                return List.postid === action.payload
+            })
+            console.log(Index, "삭제인덱스")
+            state.MyReview = state.MyReview.filter((list, index) => {
+                return Index !== index;
+            })
+        },
+
         [MyLikeInfoLoad.fulfilled]: (state, action) => {
-        if(localStorage.getItem("token")){
-            state.MyLikeInfo = action.payload.data
-        }},
+            if (localStorage.getItem("token")) {
+                state.MyLikeInfo = action.payload.data
+            }
+        },
         [MyCreateComment.fulfilled]: (state, action) => {
             const index = state.MyReview.findIndex((List) => {
                 return List.postid === action.payload.postid
@@ -248,7 +337,7 @@ const MypageSlice = createSlice({
             const CommentIndex = state.MyReview[Index].commentList.findIndex((List) => {
                 return List.commentid === action.payload.commentid
             })
-            state.MyReview[Index].commentList = state.MyReview[Index].commentList.filter((list, index)=>{
+            state.MyReview[Index].commentList = state.MyReview[Index].commentList.filter((list, index) => {
                 return CommentIndex !== index;
             })
         },
@@ -256,25 +345,52 @@ const MypageSlice = createSlice({
 
         //사장님 정보
         [OwnerCafeLoad.fulfilled]: (state, action) => {
+            console.log(action.payload.data, "384 홈 설명")
             state.OwnerInfo = action.payload.data
         },
         [OwnerCafeBenner.fulfilled]: (state, action) => {
+            console.log(action.payload)
             state.OwnerInfoBenner = action.payload.data
         },
-        // [ModifyOwnerCafe.fulfilled]: (state, action) => {
-        //     state.OwnerInfo = action.payload.data
-        // },
+        //사장님 홈 정보 수정
+        [ModifyOwnerCafe.fulfilled]: (state, action) => {
+            console.log(action.payload,"수정된 정보")
+            state.OwnerInfo = action.payload
+        },
         //사장님 메뉴
         [OwnerCafeMeunLoad.fulfilled]: (state, action) => {
             console.log(action.payload.data, "풀필드")
             state.OwnerMenuInfo = action.payload.data
         },
+        //사장님 메뉴 추가
+        [AddCafeMenu.fulfilled]: (state, action) => {
+            console.log(action.payload, "추가아아아아아아아")
+            state.OwnerMenuInfo[action.payload.category].push(action.payload.Data)
+        },
+        //사장님 메뉴 수정
+        [ModifyCafeMenu.fulfilled]: (state, action) => {
+            console.log(action.payload, "수정")
+            const type = action.payload.menu.category
+            const Index = state.OwnerMenuInfo[type].findIndex((list) => {
+                return list.menuid === action.payload.menuid
+            })
+            console.log(Index, "좀 찾아줘라")
+            state.OwnerMenuInfo[type][Index] = action.payload.menu
+        },
+        //사장님 메뉴 삭제
+        [DeleteCafeMenu.fulfilled]: (state, action) => {
+            console.log(action.payload, "삭제")
+            const type = action.payload.category
+            state.OwnerMenuInfo[type] = state.OwnerMenuInfo[type].filter((list, i) => {
+                return action.payload.menuid !== list.menuid
+            })
+        },
     }
-  }
+}
 )
 
 
 
 
-export const { MyLikeListInfo, MyUnLikeListInfo, MyLikeCountAdd, MyLikeCountMinus} = MypageSlice.actions
+export const { MyLikeListInfo, MyUnLikeListInfo, MyLikeCountAdd, MyLikeCountMinus } = MypageSlice.actions
 export default MypageSlice.reducer

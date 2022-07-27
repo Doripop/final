@@ -6,32 +6,18 @@ const FooterLeft = (props) => {
     return (
       <React.Fragment>
           <Titcc>
-            <Happy>고객행복센터</Happy>
+            <Happy>BLANK</Happy>
             <FooterL>
-              <h2>
-                <Tit>1644-1107</Tit>
-              </h2>
+                <Tit>FE Git: https://github.com/Doripop/final.git</Tit>
+                <Tit>BE Git : </Tit>
               <RightContents>
                 <DD>365고객센터</DD>
                 <Dd>오전 7시 - 오후 7시</Dd>
               </RightContents>
             </FooterL>
             <FooterL1>
-              <h3>
-                <Kakao>카카오톡 문의</Kakao>
-              </h3>
               <RightContents>
-                <DD>365고객센터</DD>
-                <Dd>오전 7시 - 오후 7시</Dd>
-              </RightContents>
-            </FooterL1>
-            <FooterL1>
-              <h3>
-                <Kakao>1:1 문의</Kakao>
-              </h3>
-              <RightContents>
-                <DD>24시간 접수 가능</DD>
-                <Dd>고객센터 운영시간에 순차적으로 답변해드리겠습니다.</Dd>
+                <DD>2022 BLANK Co.All rights Reserved.</DD>
               </RightContents>
             </FooterL1>
           </Titcc>
@@ -44,11 +30,10 @@ const Titcc = styled.div`
     width:  50%
 `;
 
-const Happy = styled.h3`
+const Happy = styled.h1`
     text-align : left;
     padding : 29px 0 2px;
     font-weight : 700;
-    font-size : 20px;
     color : #333;
     line-height : 24px;
 `;
@@ -58,6 +43,8 @@ const FooterL = styled.div`
     overflow : hidden;
     padding-top : 5px;
     height : 77px;
+    flex-direction: column;
+    
 `;
 
 const FooterL1 = styled.div`
@@ -77,7 +64,7 @@ const RightContents = styled.dl`
 const Tit = styled.span`
     padding-top : 4px;
     font-weight : 600;
-    font-size : 36px;
+    font-size : 15px;
     color : #333;
     line-height : 36px;
     letter-spacing : -.5px;

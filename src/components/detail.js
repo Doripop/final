@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Banner from "./Banner";
 import DetailHome from "./DetailPages/DetailHome";
 import DetailMenu from "./DetailPages/DetailMenu";
 import DetailReview from "./DetailPages/DetailReview";
@@ -9,6 +8,7 @@ import ReviewBtn from "./ReviewBtn";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import { DetailCafeBanner } from "../redux/modules/AllSlice";
+import DetailBanner from "./DetailPages/DetailBenner";
 
 const Detail = () => {
 
@@ -20,13 +20,13 @@ const Detail = () => {
     },[dispatch, parm.id])
 
     const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
-    
-
-    const [Menu, setMenu] = useState("A")
+    console.log(list?.data.imageList)
+    console.log(parm["*"])
+    const [Menu, setMenu] = useState(parm["*"]==="review"?"C":"A")
 
     return (
         <>
-            <Banner />
+            <DetailBanner image = {list?.data.imageList} />
             <Container>
                 <div>
                     <CategoryBox
@@ -60,7 +60,7 @@ const Container = styled.div`
     height: 100%;
 
     margin: 0px auto;
-
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,13 +73,14 @@ const Container = styled.div`
         width: 200px;
         font-size: 30px;
         margin-right: 40px;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
 const CategoryBox = styled.button`
-    border: none;
+    border: 1px solid #D9D9D9;
     font-weight: bold;
-    background-color: transparent;
+    background-color: #D9D9D9;
     cursor: pointer;
     color: gray;
     

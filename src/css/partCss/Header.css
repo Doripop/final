@@ -15,9 +15,19 @@
     min-width: 375px;
 }
 
+.navBar>div {
+    margin-top: 22px;
+    display: flex;   
+}
+
+.navBar>div>h1 {
+    padding-right: 15px;
+    font-family: 'Arita-dotum-Medium';
+}
+
 .logoImg {
-    width: 45px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 /* 
 .navBar_Login {
@@ -31,3 +41,7 @@
     }
     
 } */
+
+.myPage {
+    font-size: 25px;
+}

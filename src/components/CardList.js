@@ -7,21 +7,24 @@ import { useNavigate } from "react-router-dom";
 const CardList = () => {
     const city = useSelector((state) => state.AllSlice.MainReviewList);
     const citychange = useSelector((state) => state.AllSlice.city);
+    const sort = useSelector((state) => state.AllSlice.sort);
+    console.log(sort)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
-        dispatch(MainReview(citychange))
-    },[citychange, dispatch])
-//    console.log(citychange)
+        dispatch(MainReview(
+            {city : citychange,
+            sort: sort}))
+    },[citychange, dispatch, sort])
+   console.log(city)
     
     
     return (
-        <>
         <div className='containDiv'>
-            {city?.map((item)=>(
+            {city?.map((item,i)=>(
             <>
                 <div className='contentDiv'
-                onClick={() => {navigate(`/detail/${city?.cafeid}`)}}
+                onClick={() => {navigate(`/detail/${city[i]?.cafeid}/review`)}}
                 key={item.postid}
                 >
                     <img className='contentImg' src={item.img}/>
@@ -30,7 +33,6 @@ const CardList = () => {
             </>
             ))}
         </div>
-        </>
     );
 }
 

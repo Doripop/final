@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import "./modal.css"
+import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import { instance } from "../axios";
 import { AiOutlineClose } from "react-icons/ai"
 import { AiFillLock } from "react-icons/ai"
@@ -165,21 +166,29 @@ const SignupModal = (props) => {
                     businessnum: role == "user" ? "" : Businessnumber.current.value,
                     businessname: role == "user" ? "" : Businessname.current.value,
                 }
-                formdata.append("file", image);
+                formdata.append("file",  image);
+                
+                
                 formdata.append("data", new Blob([JSON.stringify(Data)],
                  { type: "application/json" }
                  ));
                 // for (let value of formdata.values()) {
                 //     console.log(value);
                 // }
-                const { data } = await axios.post(
-                    "https://kyuhong.shop/api/user/signup", formdata, 
-                    {headers: {
-                        "Content-Type": "multipart/form-data"
-                    }}
-                )
-                alert("회원가입이 완료되었습니다")
-                return data.result ?close() : null
+                if(!image) {
+                    const {data} = await axios.post("https://kyuhong.shop/api/user/signup", Data)
+                    alert("회원가입이 완료되었습니다")
+                    return data.result ?close() : null
+                } else {
+                    const { data } = await axios.post(
+                        "https://kyuhong.shop/api/user/signup-image", formdata, 
+                        {headers: {
+                            "Content-Type": "multipart/form-data"
+                        }}
+                    )
+                    alert("회원가입이 완료되었습니다")
+                    return data.result ?close() : null
+                }
                 // close();
             } catch (error) {
                 // eslint-disable-next-line default-case
@@ -232,7 +241,7 @@ const SignupModal = (props) => {
                             onClick={close}
                             style={{ display: "flex", justifyContent: "flex-end" }}
                         >
-                            <span style={{ fontSize: "25px", cursor: "pointer" }}><AiOutlineClose /></span>
+                            <span style={{ fontSize: "25px", cursor: "pointer", padding: 15}}><AiOutlineClose /></span>
                         </div>
                         <Header>
                             {header}
@@ -263,9 +272,9 @@ const SignupModal = (props) => {
                             <RadioBtn className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
                                 <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" onChange={onBusinessChange}/>
-                                <button
+                                {/* <button
                                     onClick={() => { NumberCheck(Businessnumber.current.value) }}
-                                >확인</button>
+                                >확인</button> */}
                             </RadioBtn>
                             <div>
                                 <InputBox ref={Nic} type="text" placeholder="닉네임" onChange={onNicChange}/>
@@ -291,12 +300,12 @@ const SignupModal = (props) => {
                                     marginTop: "20px",
                                 }}>
                                 <div className={role === "user" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
+                                    <span style={{ fontWeight: "bold", color: "black", fontFamily: 'Arita-dotum-Medium'}}>
                                         로고 사진 업로드
                                     </span>
                                 </div>
                                 <div className={role === "owner" ? "user" : "owner"}>
-                                    <span style={{ fontWeight: "bold", color: "black" }}>
+                                    <span style={{ fontWeight: "bold", color: "black", fontFamily: 'Arita-dotum-Medium'}}>
                                         프로필 사진 업로드
                                     </span>
                                 </div>
@@ -309,7 +318,7 @@ const SignupModal = (props) => {
                                     <label
                                         htmlFor="input-file"
                                         onChange={handleAddImages}
-                                        style={{ marginTop: "15px" }}>
+                                        style={{ marginTop: "15px", fontFamily: 'Arita-dotum-Medium'}}>
                                         <input
                                             type="file"
                                             id="input-file"
@@ -349,8 +358,8 @@ const Header = styled.header`
     height: 100px;
     text-align: center;
     margin-top: 40px; 
-
-    font-size: 30px;
+    font-family: 'Arita-dotum-Medium';
+    font-size: 38px;
     font-weight: bold;
     color: black;
 `;
@@ -374,6 +383,7 @@ const Body = styled.body`
     & p {
         font-size: 10px;
         color: red;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -386,6 +396,7 @@ const RadioBtn = styled.div`
 
     & button {
         width: 95px;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -399,26 +410,29 @@ const FormCheckText = styled.label`
     cursor: pointer;
     color: black;
     font-size: 20px;
+    font-family: 'Arita-dotum-Medium';
 
     &:hover{  
         color : black;
         font-weight: bold;
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
 const InputBox = styled.input`
-    width: 290px;
-    height: 20px;
+    width: 300px;
+    height: 40px;
     background: transparent;
     color: black;
     margin-top: 10px;
     border: 2px solid #F0F4C3;
-
+    font-family: 'Arita-dotum-Medium';
     font-size: 20px;
 
     ::placeholder {
         font-size: 15px;
         color: gray;  
+        font-family: 'Arita-dotum-Medium';
     }
 `;
 
@@ -430,7 +444,7 @@ const LockIcon = styled.span`
 
     .lock {
         position: relative;
-        color: #00E676;
+        color: #19221F;
         font-size: 20px;
     }
 `;
@@ -443,6 +457,7 @@ const Footer = styled.footer`
     & button {
         width: 200px;
         height: 50px;
+        font-family: 'Arita-dotum-Medium';
         color: white;
         background-color: black;
     }

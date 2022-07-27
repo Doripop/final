@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { SiBuymeacoffee } from 'react-icons/si';
 import { GiCakeSlice } from 'react-icons/gi';
 
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { DetailCafeMenu } from "../../redux/modules/AllSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -19,15 +19,15 @@ const DetailMenu = (props) => {
     const menuList = useSelector((state) => state.AllSlice.DetailCafeMenuList);
     console.log(menuList)
     // console.log(cafeId.id)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         //메뉴 정보 받아오기
-      dispatch(DetailCafeMenu(cafeId))
-    },[dispatch, cafeId])
-    
+        dispatch(DetailCafeMenu(cafeId))
+    }, [dispatch, cafeId])
+
     return (
         <>
             <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee"/>커피메뉴</h1>
+                <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
                 {menuList?.drink.map((item, i) => (
                     <>
                     <Coffee
@@ -36,14 +36,15 @@ const DetailMenu = (props) => {
                         <p>
                             {item.category}<br/>
                             {item.menuname}<br/>
-                            {item.menuprice}
+                            <br/>
+                            {item.menuprice}원
                         </p>
                     </Coffee>
                     </>
                 ))}
-                </CoffeeMenu>
+            </CoffeeMenu>
             <DessertMenu>
-                <h1><GiCakeSlice className="cake"/>디저트메뉴</h1>
+                <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
                 {menuList?.dessert.map((item, i) => (
                     <>
                     <Dessert
@@ -52,7 +53,8 @@ const DetailMenu = (props) => {
                         <p>
                             {item.category}<br/>
                             {item.menuname}<br/>
-                            {item.menuprice}
+                            <br/>
+                            {item.menuprice}원
                         </p>
                     </Dessert>
                     </>
@@ -67,7 +69,7 @@ const CoffeeMenu = styled.div`
 
     margin: 0 auto;
     padding: 20px;
-
+    font-family: 'Arita-dotum-Medium';
     border-bottom: 1px solid black;
     
     h1 {
@@ -89,8 +91,11 @@ const Coffee = styled.div`
     justify-content: flex-start;
     margin-bottom: 10px;
     margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
+    margin-left: 100px;
+
+    & p {
+        margin-top: -20px;
+    }
 
     : hover {
         cursor: default;
@@ -102,6 +107,7 @@ const CoMenu = styled.img`
     width: 80px;
     height: 80px;
     border: 1px solid #EEE;
+    margin-left: 20px;
     margin-right: 20px;
 `;
 
@@ -110,8 +116,7 @@ const DessertMenu = styled.div`
 
     margin: 0 auto;
     padding: 20px;
-
-    border-bottom: 1px solid black;
+    font-family: 'Arita-dotum-Medium';
 
     h1 {
         cursor: default;
@@ -132,8 +137,11 @@ const Dessert = styled.div`
     justify-content: flex-start;
     margin-bottom: 10px;
     margin-right: 30px;
-    margin-left: 100px; 
-    text-align: center;
+    margin-left: 100px;
+
+    & p {
+        margin-top: -20px;
+    }
 
     : hover {
         cursor: default;
