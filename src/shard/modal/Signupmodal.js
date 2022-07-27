@@ -244,7 +244,6 @@ const SignupModal = (props) => {
                             <span style={{ fontSize: "25px", cursor: "pointer", padding: 15}}><AiOutlineClose /></span>
                         </div>
                         <Header>
-                            <img className="logoImg" src={Logo_Cat}/>
                             {header}
                         </Header>
                         <Body>
@@ -273,9 +272,9 @@ const SignupModal = (props) => {
                             <RadioBtn className={role == "user" ? "user" : "owner"}>
                                 <InputBox ref={Businessname} type="text" placeholder="상호명을 입력해주세요" />
                                 <InputBox ref={Businessnumber} type="text" placeholder="사업자등록번호" onChange={onBusinessChange}/>
-                                <button
+                                {/* <button
                                     onClick={() => { NumberCheck(Businessnumber.current.value) }}
-                                >확인</button>
+                                >확인</button> */}
                             </RadioBtn>
                             <div>
                                 <InputBox ref={Nic} type="text" placeholder="닉네임" onChange={onNicChange}/>
@@ -360,7 +359,7 @@ const Header = styled.header`
     text-align: center;
     margin-top: 40px; 
     font-family: 'Arita-dotum-Medium';
-    font-size: 30px;
+    font-size: 38px;
     font-weight: bold;
     color: black;
 `;
@@ -421,8 +420,8 @@ const FormCheckText = styled.label`
 `;
 
 const InputBox = styled.input`
-    width: 290px;
-    height: 20px;
+    width: 300px;
+    height: 40px;
     background: transparent;
     color: black;
     margin-top: 10px;

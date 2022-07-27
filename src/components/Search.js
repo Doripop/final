@@ -92,23 +92,11 @@ const SearchBar = styled.input`
     height: 50px;
     margin-top: 80px;
     font-family: 'Arita-dotum-Medium';
-    // margin-left: 10px;
-    // background-repeat: no-repeat;
-    // border: 1px solid #ccc;
-    // padding: 5px 5px;
-
-    //     :focus {
-    //         border-color:#0982f0;
-    //     }
-
-    //     ::placeholder {
-    //         background-size: contain;
-    //         background-position:  1px center;
-    //         background-repeat: no-repeat;
-    //         text-align: center;
-    //         text-indent: 0;
-    //         font-family: 'Arita-dotum-Medium';
-    //     }
+    font-size: 10pt;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 `;
 
 const CardBox = styled.div`

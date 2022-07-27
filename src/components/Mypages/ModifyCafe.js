@@ -129,7 +129,7 @@ const StyledSlider = styled(Slider)`
 const Container = styled.div`
     width: 69%;
     margin-left: 300px;
-    margin-top: -457px;
+    margin-top: -452px;
     font-family: 'Arita-dotum-Medium';
 `;
 

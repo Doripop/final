@@ -181,7 +181,8 @@ const DetailReview = () => {
                             }}>
                             <ReviewHeader>
                                 <ReviewProfile src={item.profileimg}/>
-                                {item.nickname}
+                                &nbsp;{item.nickname}
+                                <span>⋯</span>
                             </ReviewHeader>
                             {userName === item.nickname ?
                                 (
@@ -206,7 +207,7 @@ const DetailReview = () => {
                                 ) : (null)}
                         </div>
                         <ReviewImg src={item.image[0].img} />
-                        <ReviewStarLove>⭐별점 {item.star}점&nbsp;
+                        <ReviewStarLove>★ 별점 {item.star}점&nbsp;
 
                             <span
                                 onClick={() => {
@@ -219,10 +220,10 @@ const DetailReview = () => {
                                 AllLikeList[i]?.like ?
                                 (<span
                                     style={{ color: "red" }}
-                                >❤</span>)
-                                : (<span>🤍</span>)}</span>
+                                > ❤ </span>)
+                                : (<span> 🤍 </span>)}</span>
 
-                            좋아요 {item.likecnt}개</ReviewStarLove>
+                             좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
                         <ReviewContext>
@@ -245,7 +246,6 @@ const DetailReview = () => {
                                                                 ModifyComment(e)
                                                             }}
                                                             type="text"
-                                                            placeholder={comment.contents}
                                                             style={{ display: unclick }}
                                                         />
                                                         <Btn style={{ display: unclick }}
@@ -286,7 +286,7 @@ const DetailReview = () => {
                                 onChange={(e) => {
                                     setComment(e.target.value)
                                 }}
-                                placeholder="댓글작성"
+                                placeholder="댓글달기"
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
@@ -351,6 +351,10 @@ const ReviewHeader = styled.div`
     font-size: 30px;
     font-weight: bold;
     margin-left: -240px;
+
+    &span {
+        
+    }
 `;
 
 const ReviewImg = styled.img`
@@ -469,6 +473,7 @@ const ReviewProfile = styled.img`
     width : 20px;
     height : 20px;
     border-radius : 20px;
+    margin: 3px;
 `;
 
 const Btn = styled.button`

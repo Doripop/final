@@ -104,6 +104,10 @@ const Home = styled.div`
     justify-content: flex-start;
     font-family: 'Arita-dotum-Medium';
     border-bottom: solid 1px black;
+
+    h1 {
+        margin-left: 33px;
+    }
 `;
 
 const Home2 = styled.div`

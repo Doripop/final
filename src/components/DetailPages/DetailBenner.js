@@ -37,7 +37,7 @@ const DetailBanner = (images) => {
     <StyledSlider {...settings}>
       {list?.data.imageList.map((item, i) => (
         <>
-          <div><img width={'1900px'} height={'370px'} src={item.img} alt='slider' /></div>
+          <div><img width={'1797px'} height={'400px'} src={item.img} alt='slider' /></div>
         </>
       ))}
     </StyledSlider>
