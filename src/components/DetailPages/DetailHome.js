@@ -66,9 +66,7 @@ const DetailHome = () => {
                     {home?.zonenum} <br />
                 </h1>
                 <p>
-                    {/* {home?.latitude} <br />
-                    {home?.longitude} */}
-
+                   
 
                     {/* 지도 */}
                     <div
