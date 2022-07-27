@@ -80,7 +80,7 @@ const LoginModal = (props) => {
                         <span style={{fontSize:"25px", cursor: "pointer", color: "white", padding: 15}}><AiOutlineClose /></span>
                     </div>
                     <Header>
-                        <img className="logoImg" src={Logo_Cat}/>
+                        <img className="logoImg" src={Logo_Cat}/>&nbsp;
                         {header}
                     </Header>
                     <Body>
@@ -146,14 +146,13 @@ const LoginModal = (props) => {
 }
 
 const Header = styled.header`
-    display: flex; 
+    display: flow-root; 
     justify-content: center;
     height: 100px;
     text-align: center;
     margin-top: 40px; 
-    font-family: 'Arita-dotum-Medium';
-    font-size: 40px;
-    font-weight: bold;
+    font-family: 'BMJUA';
+    font-size: 50px;
     color: white;
 `;
 
@@ -165,11 +164,12 @@ const Body = styled.body`
 `;
 
 const InputBox = styled.input`
-    width: 290px;
-    height: 50px;
+    width: 300px;
+    height: 25.5px;
     background: transparent;
     color: white;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
     font-family: 'Arita-dotum-Medium';
     font-size: 20px;
 
@@ -198,8 +198,9 @@ const Footer = styled.footer`
     margin: 0 auto;
 
     & button {
-        width: 290px;
+        width: 305px;
         height: 50px;
+        margin-top: 30px;
         font-family: 'Arita-dotum-Medium';
         color: white;
         background-color: black;

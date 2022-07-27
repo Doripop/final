@@ -107,8 +107,7 @@ const Logo = styled.div`
     cursor: pointer;
     border: none;
     background-color: transparent;
-    font-weight: bold;
-    font-family: 'Arita-dotum-Medium';
+    font-family: 'BMJUA';
 
     & div {
         margin-top:15px;

@@ -50,6 +50,7 @@
 }
 
 .shopDiv>textarea {
+    width: 100%;
     height: 6.25em;
     resize: none;
 }

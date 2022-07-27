@@ -184,7 +184,7 @@ const OwnerHome = () => {
 
                             {/* 가게설명 */}
 
-                            <div className="shopDiv">
+                            <div className="ceoDiv">
                                 <h3>가게 설명</h3>
                                 <textarea
                                     ref={intro}
