@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ModifyOwnerCafe, OwnerCafeBenner, OwnerCafeLoad } from "../../redux/modules/MypageSlice";
 import '../../css/partCss/OwnerCafeHome.css';
@@ -46,6 +46,26 @@ const OwnerHome = () => {
     };
 
     const [page, setPage] = useState("A")
+
+    //지도 테스트
+    const options = {
+        center: new window.kakao.maps.LatLng(OwnerInfoList?.latitude, OwnerInfoList?.longitude),
+        level: 3,
+    };
+
+
+    const container = useRef(null);
+
+
+    React.useEffect(() => {
+        const map = new window.kakao.maps.Map(container.current, options);
+        const markerPosition = new window.kakao.maps.LatLng(OwnerInfoList?.latitude, OwnerInfoList?.longitude);
+        const marker = new window.kakao.maps.Marker({
+            position: markerPosition
+        });
+        marker.setMap(map);
+    }, [OwnerInfoList?.latitude, OwnerInfoList?.longitude]);
+
     return (
         <>
             {page === "A" && (
@@ -70,14 +90,29 @@ const OwnerHome = () => {
                         <p>{OwnerInfoList?.notice}</p>
                     </Home2>
                     <Home3>
-                        <h1><BiMap className="map" />맵
+                        <h1><BiMap className="map" />
                             {OwnerInfoList?.address}
                             {OwnerInfoList?.addressdetail}&nbsp;
                             {OwnerInfoList?.zonenum} <br />
                         </h1>
                         <p>
-                            {OwnerInfoList?.latitude} <br />
-                            {OwnerInfoList?.longitude}
+                            {/* 지도 */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}>
+                                <div
+                                    className="map"
+                                    style={{
+                                        width: "800px",
+                                        height: "300px",
+                                    }}
+                                    ref={container}
+                                ></div>
+                            </div>
+
+                            {/* 지도 */}
                         </p>
                         <div className="buttonDiv">
                             <button
