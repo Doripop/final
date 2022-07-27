@@ -22,20 +22,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const LoginModal = (props) => {
+
+
+
     const navigate = useNavigate()
     const userID = useRef("")
     const userPW = useRef("")
     const {open, close , header} = props;
-    const clickSnsLoginKakao = (e) => {
-        let kakaoid = e.profile.id; // 카카오에서 제공한 ID
-    };
-    const clickSnsLoginNaver = (e) => {
-        let naverid = e.id; // 네이버에서 제공한 ID
-    };
-    const clickSnsLoginGoogle = (e) => {
-        let googleid = e.Ft.NT; // 구글에서 제공한 ID
-    };
-   
+    
+
+    //카카오
+    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize?client_id=0fad600f70237d21a6baebc379896fbd&redirect_uri=http://localhost:8080/api/oauth2/kakao&response_type=code"
+    const kakao = () =>{
+        window.location.href = KAKAO_AUTH_URL
+    }
+
     //Image array
     const backgroundArr = [backImg1,backImg2,backImg3,backImg4];
     const randomIndex = Math.floor(Math.random() * backgroundArr.length);
@@ -116,6 +117,22 @@ const LoginModal = (props) => {
                                 </div>
                             )}
                         /> */}
+
+
+                        {/* 카카오톡 로그인 */}
+                        <AuthBtn 
+                        onClick={()=>{
+                            kakao()
+                        }}>
+                            <img 
+                            style={{
+                                width:"288px",
+                                height:"50px",
+                                marginLeft:"-5px"
+                            }}
+                            src={kakaoImg} />
+                        </AuthBtn>
+
                     </Body>
                     <Footer>
                         <button className="close" onClick={userLogin}>로그인</button>
@@ -187,6 +204,12 @@ const Footer = styled.footer`
         color: white;
         background-color: black;
     }
+`;
+
+const AuthBtn = styled.button`
+    width : 290px;
+    height : 50px;
+    background-color: transparent;
 `;
 
 export default LoginModal;
