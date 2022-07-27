@@ -42,7 +42,7 @@ const Mypage = () => {
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");
 
-
+    const MyprofileImg = localStorage?.getItem("profileimg")
     return (
 
         <>
@@ -66,7 +66,7 @@ const Mypage = () => {
                     )}
 
                     <div className="profileImgBox">
-                        <img className="imageShape" src={cat} />
+                        <img className="imageShape" src={MyprofileImg} />
                         <span className="imgBoxSpan">로고 수정하기
                             <span className="imgBoxSpanChild">
                                 <RiPencilFill className="ripen" />

@@ -179,7 +179,10 @@ const DetailReview = () => {
                                 display: "flex",
                                 flexDirection: "row"
                             }}>
-                            <ReviewHeader>{item.nickname}</ReviewHeader>
+                            <ReviewHeader>
+                                <ReviewProfile src={item.profileimg}/>
+                                {item.nickname}
+                            </ReviewHeader>
                             {userName === item.nickname ?
                                 (
                                     <>

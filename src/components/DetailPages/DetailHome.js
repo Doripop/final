@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { BiMap } from 'react-icons/bi';
@@ -12,6 +12,8 @@ import { useParams } from "react-router-dom";
 
 const DetailHome = () => {
 
+
+
     const dispatch = useDispatch()
     const parm = useParams()
     console.log(parm);
@@ -24,6 +26,29 @@ const DetailHome = () => {
         dispatch(DetailCafeHome(parm.id))
         //이부분은 그냥 카페아이디 파람으로 넘길곳
     }, [dispatch])
+
+
+    //지도 테스트
+    const options = {
+        center: new window.kakao.maps.LatLng(home?.latitude, home?.longitude),
+        level: 3,
+    };
+
+
+    const container = useRef(null);
+    
+
+    React.useEffect(() => {
+     const map = new window.kakao.maps.Map(container.current, options);
+     const markerPosition = new window.kakao.maps.LatLng(home?.latitude, home?.longitude); 
+     const marker = new window.kakao.maps.Marker({ 
+       position: markerPosition
+     }); 
+     marker.setMap(map); 
+    }, [home?.latitude, home?.longitude, options]);
+
+    
+
     return (
         <>
             <Home id={home?.cafeid}>
@@ -41,8 +66,28 @@ const DetailHome = () => {
                     {home?.zonenum} <br />
                 </h1>
                 <p>
-                    {home?.latitude} <br />
-                    {home?.longitude}
+                    {/* {home?.latitude} <br />
+                    {home?.longitude} */}
+
+
+                    {/* 지도 */}
+                    <div
+                    style={{
+                        display:"flex",
+                        justifyContent:"center"
+                    }}>
+                         <div
+                        className="map"
+                        style={{ 
+                            width: "800px",
+                            height: "300px",
+                        }}
+                        ref={container}
+                    ></div>
+                    </div>
+                   
+                    {/* 지도 */}
+
                 </p>
             </Home3>
         </>

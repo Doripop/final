@@ -22,11 +22,7 @@ const AllList = () => {
 
 
     return (
-        // <>
-        //     <div>
-        //         관리자 페이지
-        //     </div>
-        // </>
+      
         <>
             {list?.map((item, i) => (
                 <Card

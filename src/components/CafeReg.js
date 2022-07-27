@@ -11,16 +11,24 @@ const CafeReg = () => {
     
     const openModal = () => {
       setModalOpen(true);
+      console.log("아아아아아")
     }
 
     const closeModal = () => {
       setModalOpen(false);
     }
 
-
+    const [isLogin, setIsLogin] = useState(null);
+    React.useEffect(()=>{
+      setIsLogin(localStorage?.getItem("token")) 
+    },[localStorage.getItem("token")])
+    console.log(isLogin)
     return (
         <>
-          <CafeBtn onClick={openModal}>카페등록</CafeBtn>
+          <CafeBtn onClick={()=>{
+            !isLogin ? alert("로그인이 필요한 서비스 입니다!") 
+            : openModal()
+          }}>카페등록</CafeBtn>
           <CafeRegModal open={modalOpen} close={closeModal} header="카페등록">
           </CafeRegModal>
         </>
