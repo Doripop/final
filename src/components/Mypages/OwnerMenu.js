@@ -76,9 +76,7 @@ const OwnerMenu = () => {
     return (
         <>
             <div>
-                {/* <StyledSlider {...settings}>
-                <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
-            </StyledSlider> */}
+               
                 <div className="coffeeMenuDiv">
                     <h1><SiBuymeacoffee className="coffeeIcon" />커피메뉴</h1>
                     {OwnerMenuInfo?.drink.map((item, i) => (
