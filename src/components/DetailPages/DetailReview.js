@@ -182,27 +182,35 @@ const DetailReview = () => {
                             <ReviewHeader>
                                 <ReviewProfile src={item.profileimg}/>
                                 &nbsp;{item.nickname}
-                                <span>⋯</span>
+                                
                             </ReviewHeader>
                             {userName === item.nickname ?
                                 (
-                                    <>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost(item.postid))
-                                            }}
-                                        >삭제
-                                        </span>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost({
-                                                    postid: item.postid,
-                                                    // 인풋 값 받아서 수정
-                                                }))
-                                            }}
-                                        >수정
-                                        </span>
-                                    </>
+                                    <ReviewDrop>
+                                        <ul className="dep1">
+                                            <li>
+                                                ⋯
+                                                <ul className="dep2">
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost(item.postid))
+                                                        }}
+                                                    >
+                                                    삭제하기
+                                                    </li>
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost({
+                                                                postid: item.postid,
+                                                                // 인풋 값 받아서 수정
+                                                            }))
+                                                        }}
+                                                        >수정하기
+                                                    </li>
+                                                </ul>
+                                            </li>        
+                                        </ul>
+                                    </ReviewDrop>
 
                                 ) : (null)}
                         </div>
@@ -357,6 +365,36 @@ const ReviewHeader = styled.div`
     }
 `;
 
+const ReviewDrop = styled.div`
+    // margin: 0 auto;
+    // padding: 0 auto;
+    position: relative;
+    & ul, li {
+        list-style: none;
+    }
+
+    .dep2>li {
+        width: 100px;
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dep1>li {
+        display: block;
+        cursor: pointer;
+    }
+
+    .dep1>li:hover> .dep2 {
+        display: block;
+    }
+
+    .dep2 {
+        display: none;
+    }
+`;
+
 const ReviewImg = styled.img`
     width: 500px;
     height: 500px;
@@ -375,14 +413,15 @@ const ReviewUserInfo = styled.div`
     margin-left: 20px;
     font-size: 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
+    // margin-left: 18px;
+    display: contents;
 `;
 
 const ReviewContext = styled.div`

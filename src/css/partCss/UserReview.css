@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+    margin-top: -440px;
 }
 
 .reviewDiv {

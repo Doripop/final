@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import '../css/partCss/NavBtn.css';
 import CafeReg from './CafeReg';
-import CeoCafeReg from './CeoCafeReg';
 //Icon import
 import Review from './Review';
 import { useDispatch } from 'react-redux';

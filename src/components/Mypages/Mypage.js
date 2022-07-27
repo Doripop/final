@@ -43,6 +43,18 @@ const Mypage = () => {
     const [userSubMenu, setUserSubMenu] = useState("A");
 
     const MyprofileImg = localStorage?.getItem("profileimg")
+
+    const [unclick, setUnclick] = useState("none")
+    const [click, setClick] = useState("flex")
+    const clickevent = () => {
+        setClick("none")
+        setUnclick("flex")
+    }
+    const unclickevent = () => {
+        setClick("flex")
+        setUnclick("none")
+    }
+
     return (
 
         <>
@@ -66,12 +78,29 @@ const Mypage = () => {
                     )}
 
                     <div className="profileImgBox">
-                        <img className="imageShape" src={MyprofileImg} />
-                        <span className="imgBoxSpan">로고 수정하기
-                            <span className="imgBoxSpanChild">
-                                <RiPencilFill className="ripen" />
+                        {role === "owner" ? (
+                        <>
+                            <img className="imageShape" src={MyprofileImg} />
+                            <span className="imgBoxSpan">로고 수정하기
+                                <span className="imgBoxSpanChild">
+                                    <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
+                                    <input type="file" style={{ display: unclick, marginLeft: "10px" }}/>
+                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                </span>
                             </span>
-                        </span>
+                        </>
+                        ): (
+                        <>
+                            <img className="imageShape" src={MyprofileImg} />
+                            <span className="imgBoxSpan">프로필 수정하기
+                                <span className="imgBoxSpanChild">
+                                    <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
+                                    <input type="file" style={{ display: unclick }}/>
+                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                </span>
+                            </span>
+                        </>
+                        )}
                     </div>
                     {role === "owner" ? (
                         <>
