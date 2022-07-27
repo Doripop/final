@@ -175,14 +175,20 @@ const SignupModal = (props) => {
                 // for (let value of formdata.values()) {
                 //     console.log(value);
                 // }
-                const { data } = await axios.post(
-                    "https://kyuhong.shop/api/user/signup", formdata, 
-                    {headers: {
-                        "Content-Type": "multipart/form-data"
-                    }}
-                )
-                alert("회원가입이 완료되었습니다")
-                return data.result ?close() : null
+                if(!image) {
+                    const {data} = await axios.post("https://kyuhong.shop/api/user/signup", Data)
+                    alert("회원가입이 완료되었습니다")
+                    return data.result ?close() : null
+                } else {
+                    const { data } = await axios.post(
+                        "https://kyuhong.shop/api/user/signup-image", formdata, 
+                        {headers: {
+                            "Content-Type": "multipart/form-data"
+                        }}
+                    )
+                    alert("회원가입이 완료되었습니다")
+                    return data.result ?close() : null
+                }
                 // close();
             } catch (error) {
                 // eslint-disable-next-line default-case
