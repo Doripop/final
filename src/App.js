@@ -8,6 +8,8 @@ import { instance } from "./shard/axios";
 import Search from "./components/Search";
 import Mypage from "./components/Mypages/Mypage";
 import Footer from "./components/Footer";
+import KakaoLogin from "./shard/KakaoLogin";
+import NaverLogin from "./shard/NaverLogin";
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/detail/:id/*" element={<Detail />} />
         <Route path="/search/*" element={<Search />} />
+        <Route path="/Ouath" element={<KakaoLogin />} />
+        <Route path="/Ouath" element={<NaverLogin />} />
+
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 

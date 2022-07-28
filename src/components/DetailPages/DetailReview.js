@@ -19,8 +19,8 @@ const DetailReview = () => {
     console.log(review, "지금필요한게 이거")
 
 
-    const LikeIndex = AllLikeList?.map((item,i)=>{
-        return review?.findIndex((list,k)=>{
+    const LikeIndex = review?.map((item,i)=>{
+        return AllLikeList?.findIndex((list,k)=>{
            return item.postid === list.postid
         })
         
@@ -133,11 +133,14 @@ const DetailReview = () => {
 
     const LikeClick = async (postid) => {
         console.log(postid)
-
+        const A = AllLikeList.findIndex((list)=>{
+            return list.postid === postid.postid
+        })
+        console.log(A)
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === false) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === false) {
             console.log("실행")
             const { data } = await instance.post(`api/${postid.postid}/like`)
             console.log(data)
@@ -150,8 +153,8 @@ const DetailReview = () => {
                 postid: postid.postid
             }))
             //test
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === true) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
             console.log(data)
             dispatch(UnLikeList({
@@ -237,7 +240,8 @@ const DetailReview = () => {
                                 onClick={() => {
                                     LikeClick({
                                         postid: review[i]?.postid,
-                                        i: LikeIndex[i],
+                                        i: i,
+                                        
                                     })
                                 }}
                             >{AllLikeList[LikeIndex[i]]?.postid === review[i]?.postid &&
@@ -245,7 +249,8 @@ const DetailReview = () => {
                                 (<span
                                     style={{ color: "red" }}
                                 > ❤ </span>)
-                                : (<span> 🤍 </span>)}</span>
+                                : (<span> 🤍 </span>)
+                                }</span>
 
                              좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
