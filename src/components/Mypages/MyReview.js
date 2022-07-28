@@ -208,7 +208,7 @@ const MyReview = () => {
                                                                 }}
                                                             >⨉</button>
                                                         </span>) : (
-                                                        <span style={{ display: "flex" }}><img className="reviewProfile" src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
+                                                        <span style={{ display: "flex" }}><img className="reviewProfile" src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
                                                         </span>
 
                                                     )
