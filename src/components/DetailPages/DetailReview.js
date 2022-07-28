@@ -441,8 +441,8 @@ const ReviewUserInfo = styled.div`
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    // margin-left: 18px;
-    display: contents;
+    margin-left: 18px;
+    // display: contents;
 `;
 
 const ReviewContext = styled.div`

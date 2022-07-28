@@ -1,9 +1,11 @@
 .containerDiv {
+    width: 1050px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     font-family: 'Arita-dotum-Medium';
+    border-bottom: 1px solid #D9D9D9;
 }
 
 .containerDiv>button {
@@ -20,7 +22,7 @@
     position: relative;
     border: 1px solid gray;
     font-weight: bold;
-    background-color: D9D9D9;
+    background-color: #D9D9D9;
     cursor: pointer;
     color: black;
     display: flex;
@@ -31,7 +33,7 @@
     text-align: center;
     border: none;
 }
-
+/* 
 .categoryBox:hover {
     border-bottom: 1px solid black;
-}
+} */

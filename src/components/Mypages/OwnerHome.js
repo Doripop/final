@@ -36,14 +36,6 @@ const OwnerHome = () => {
         setDelivery(OwnerInfoList.delivery)
     }, [OwnerInfoList?.cafeid, OwnerInfoList.delivery, dispatch])
 
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slideToShow: 1,
-        slideToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000
-    };
 
     const [page, setPage] = useState("A")
 
@@ -83,7 +75,7 @@ const OwnerHome = () => {
                             )}
 
                         <h1>가게설명</h1>
-                        {OwnerInfoList?.intro}
+                        <p>{OwnerInfoList?.intro}</p>
                     </Home>
                     <Home2>
                         <h1><AiFillSound className="sound" />사장님이 안내드립니다.</h1>
@@ -105,7 +97,7 @@ const OwnerHome = () => {
                                 <div
                                     className="map"
                                     style={{
-                                        width: "800px",
+                                        width: "686px",
                                         height: "300px",
                                     }}
                                     ref={container}
@@ -282,7 +274,7 @@ const Container = styled.div`
 
 
 const Home = styled.div`
-    position: relative;
+    position: relative; 
 
     margin: 0px auto;
 
@@ -290,33 +282,45 @@ const Home = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
 
     & h1 {
         margin-left: 40px;
     }
 
+    & p {
+        margin-left: 40px;
+    }
+
     & h3 {
-        padding: 10px;
-        border-bottom: solid 1px black;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 30px;
+        
+        border-bottom: solid 1px #D9D9D9;
     }
 `;
 
 const Home2 = styled.div`
-    position: relative;
+    position: relative; 
     margin: 0px auto;
-    padding: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
 
     word-break:break-all;
 
     .sound {
         color: #3FC275;
+    }
+
+    & p {
+        margin-left: 40px;
     }
 `;
 
@@ -324,12 +328,11 @@ const Home3 = styled.div`
     position: relative; 
 
     margin: 0px auto;
-    padding: 10px;
+
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
 
     .map {
         color: #3FC275;

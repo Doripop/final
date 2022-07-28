@@ -29,15 +29,18 @@ const DetailBanner = (images) => {
     slideToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    nextArrow: <Button place="right" margin="0 0 0 590px" />,
-    prevArrow: <Button margin="0 0 0 -590px" />,
   };
 
   return (
     <StyledSlider {...settings}>
       {list?.data.imageList.map((item, i) => (
         <>
-          <div><img width={'1797px'} height={'400px'} src={item.img} alt='slider' /></div>
+          <div>
+            {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
+            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
+            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
+            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
+          </div>
         </>
       ))}
     </StyledSlider>
@@ -46,7 +49,6 @@ const DetailBanner = (images) => {
 
 const StyledSlider = styled(Slider)`
    //슬라이드 컨테이너 영역
-   position: relative;
    height: 370px; 
    width: 100%;
    margin-bottom: 40px;
@@ -65,6 +67,8 @@ const StyledSlider = styled(Slider)`
   .slick-slide div { //슬라이더  컨텐츠
     cursor: pointer;
     outline: none;
+    display: flex;
+    width: 100%;
   }
 `;
 

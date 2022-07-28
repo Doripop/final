@@ -1,22 +1,28 @@
 .coffeeMenuDiv {
     position: relative;
 
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.coffeeMenuDiv>h1 {
+    font-size: 20px;
 }
 
 .coffeeIcon {
+    font-size: 24px;
     color: #3FC275;
 }
 
 .dessertIcon {
+    font-size: 24px;
     color: #3FC275;
 }
 
 .coffeeDiv {
     width: 350px;
     height: 100px;
-    border: 1px solid black;
-    
+    border: 1px solid #D9D9D9;
+    box-shadow : 1px 2px 2px 0px #969696;
     flex-direction: column;
     display: inline-block;
     align-items: center;
@@ -29,29 +35,94 @@
 }
 
 .coMenuDiv {
+    border-radius: 5px;
     width: 80px;
     height: 80px;
     border: 1px solid #EEE;
-    margin-left: -250px;
-    margin-top: 10px;
+    margin-left: -225px;
+    margin-top: 14px;
 }
 
 .coffeeDiv>p{
     margin-top: -80px;
     margin-left: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-align: initial;
+    padding-left: 110px;
+}
+
+.coffeeDiv>p>button{
+    width: 80px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #19221F;
+    color: #19221F;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 16px;
+    font-family: 'Arita-dotum-Medium';
+}
+
+.coffeeDiv>p>button:hover {
+    background-color: #19221F;
+    color: white;
+    cursor: pointer;
 }
 
 .plusCoMenuDiv {
     width: 350px;
     height: 100px;
-    border: 1px solid black;
-    
-    flex-direction: column;
+    border: 1px solid #D9D9D9;
+    box-shadow : 1px 2px 2px 0px #969696;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: baseline;
     margin-bottom: 10px;
     margin-right: 30px;
     margin-left: 100px; 
     text-align: center;
+}
+
+.plusCoMenuDiv > .input-file-button{
+    width: 60px;
+    height: 58px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    color: #D9D9D9;
+    cursor: pointer;
+    font-size: 55px;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+.plusCoMenuDiv > .textInputDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 15px;
+    font-family: 'Arita-dotum-Medium';
+}
+
+.textInputDiv>input {
+    border: none;
+    margin-bottom: 6px;
+    font-family: 'Arita-dotum-Medium';
+}
+
+.textInputDiv>input::placeholder {
+    color: 19221F;
+    font-weight: bold;
+}
+
+.textInputDiv>button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: 'Arita-dotum-Medium';
+    background-color: #19221F;
+    color: white;
 }
