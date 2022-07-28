@@ -1,4 +1,5 @@
-import { ReactComponent as searchIcon } from './searchIcon.svg';
+import { ReactComponent as SearchIcon } from './searchIcon.svg';
+import { ReactComponent as NoSearchIcon } from './noSearchIcon.svg';
 
 
-export { searchIcon };
+export { SearchIcon, NoSearchIcon };
