@@ -25,10 +25,10 @@ const Banner = () => {
 
     return (
         <StyledSlider {...settings}>
-            <div><img width={'1900px'} height={'370px'} src={Cafe1} alt='slider' /></div>
-            <div><img width={'1900px'} height={'370px'} src={Cafe2} alt='slider' /></div>
-            <div><img width={'1900px'} height={'370px'} src={Cafe3} alt='slider' /></div>
-            <div><img width={'1900px'} height={'370px'} src={Cafe4} alt='slider' /></div>
+            <div><img width={'1200px'} height={'370px'} src={Cafe1} alt='slider' /></div>
+            <div><img width={'1200px'} height={'370px'} src={Cafe2} alt='slider' /></div>
+            <div><img width={'1200px'} height={'370px'} src={Cafe3} alt='slider' /></div>
+            <div><img width={'1200px'} height={'370px'} src={Cafe4} alt='slider' /></div>
         </StyledSlider>
       );
     }

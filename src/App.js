@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom"
 import Main from "./components/main";
 import Admin from "./components/admin";
 import Detail from "./components/detail";
-import Header from "./components/header";
+import Header from "./components/Public/Header";
 import { instance } from "./shard/axios";
 import Search from "./components/Search";
 import Mypage from "./components/Mypages/Mypage";
-import Footer from "./components/Footer";
+import Footer from "./components/Public/Footer"
 import KakaoLogin from "./shard/KakaoLogin";
 import NaverLogin from "./shard/NaverLogin";
 import GoogleLogin from "react-google-login";
@@ -28,8 +28,8 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Header />
+<>
+      <div><Header/></div>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
@@ -41,10 +41,11 @@ function App() {
         <Route path="/Ouath" element={<GoogleLogin />} />
 
       </Routes>
-      {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 
-      <Footer/>
-    </div>
+    {/* <Footer/>  풋터 메인페이지에만 있음, 메인페이지 수정 예정 */}
+
+</>
+
   );
 }
 
