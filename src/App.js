@@ -8,6 +8,9 @@ import { instance } from "./shard/axios";
 import Search from "./components/Search";
 import Mypage from "./components/Mypages/Mypage";
 import Footer from "./components/Public/Footer"
+import KakaoLogin from "./shard/KakaoLogin";
+import NaverLogin from "./shard/NaverLogin";
+import GoogleLogin from "react-google-login";
 
 function App() {
 
@@ -32,11 +35,14 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/detail/:id/*" element={<Detail />} />
-        {/* <Route path="/" element={<Search />} /> */}
-        <Route path="/search/:text/*" element={<Search />} />
+        <Route path="/search/*" element={<Search />} />
+        <Route path="/Ouath" element={<KakaoLogin />} />
+        <Route path="/Ouath" element={<NaverLogin />} />
+        <Route path="/Ouath" element={<GoogleLogin />} />
+
       </Routes>
 
-    <Footer/>
+    {/* <Footer/>  풋터 메인페이지에만 있음, 메인페이지 수정 예정 */}
 
 </>
 

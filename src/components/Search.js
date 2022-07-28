@@ -9,31 +9,30 @@ import {searchIcon} from "../css/searchSVG/index"
 
 const Search = () => {
 
-    const parm = useParams();
+    
     const pageSearch = useRef("");
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(parm)
 
-
-
-    React.useEffect(() => {
-        dispacth(CafeSearch({
-            keyword: parm.text
-        }))
-    }, [parm.text])
 
     const searchList = useSelector((state) => state.AllSlice.SearchCafeInfo);
-    console.log(searchList)
+
+    React.useEffect(() => {
+     
+        
+    }, [searchList])
+    
+
+ 
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
-            navigate(`/search/${pageSearch.current.value}`);
+       
+            dispatch(CafeSearch({
+                keyword : e.target.value
+            }))
+        
         }
     }
-
-
-    // console.log(parm.text) 파람으로 검색어 넘어오는 부분
-
 
     return (
     
@@ -64,7 +63,9 @@ const Search = () => {
                 {searchList?.map((cafe, i) => (
                     <>
                         <CardBox
-                            onClick={() => { navigate(`/detail/${cafe.cafeid}`) }}
+                            onClick={() => { 
+                                navigate(`/detail/${cafe.cafeid}`) 
+                            }}
                             key={cafe.zonenum}>
                             {cafe.cafename} 별점{cafe.avgstar} 점<br />
                             {cafe.address}
@@ -134,23 +135,11 @@ const SearchBar = styled.input`
     height: 50px;
     margin-top: 80px;
     font-family: 'Arita-dotum-Medium';
-    // margin-left: 10px;
-    // background-repeat: no-repeat;
-    // border: 1px solid #ccc;
-    // padding: 5px 5px;
-
-    //     :focus {
-    //         border-color:#0982f0;
-    //     }
-
-    //     ::placeholder {
-    //         background-size: contain;
-    //         background-position:  1px center;
-    //         background-repeat: no-repeat;
-    //         text-align: center;
-    //         text-indent: 0;
-    //         font-family: 'Arita-dotum-Medium';
-    //     }
+    font-size: 10pt;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 `;
 
 const CardBox = styled.div`

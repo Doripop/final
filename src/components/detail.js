@@ -60,7 +60,7 @@ const Container = styled.div`
     height: 100%;
 
     margin: 0px auto;
-
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -78,9 +78,9 @@ const Container = styled.div`
 `;
 
 const CategoryBox = styled.button`
-    border: none;
+    border: 1px solid #D9D9D9;
     font-weight: bold;
-    background-color: transparent;
+    background-color: #D9D9D9;
     cursor: pointer;
     color: gray;
     

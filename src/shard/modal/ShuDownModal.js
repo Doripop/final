@@ -92,34 +92,6 @@ const Body = styled.body`
     align-items: center;
 `;
 
-const InputBox = styled.input`
-    width: 290px;
-    height: 50px;
-    background: transparent;
-    color: white;
-    margin-bottom: 10px;
-
-    font-size: 20px;
-
-    border-left-width:0; 
-    border-right-width:0; 
-    border-top-width:0;
-    border-bottom-width:1;
-    border-bottom-color: white;
-
-    ::placeholder {
-        color: white;  
-    }
-`;
-
-const Img_sns = styled.img`
-    width: 290px;
-    height: 60px;
-
-    margin-top: 10px;
-    cursor: pointer;
-`;
-
 const Footer = styled.footer`
     display: flex;
     width:fit-content;

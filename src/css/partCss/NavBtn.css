@@ -34,10 +34,10 @@
 }
 
 .navSelect {
-    width: 118px;
+    width: 100px;
     height: 30px;
     border: 1px solid #3FC275;
-    color: #3FC275;
+    color: black;
 
     position: relative;
     font-family: 'Arita-dotum-Medium';

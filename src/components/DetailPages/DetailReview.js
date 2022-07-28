@@ -15,16 +15,30 @@ const DetailReview = () => {
 
     const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    // console.log(AllLikeList)
+    console.log(AllLikeList)
     console.log(review, "지금필요한게 이거")
 
+
+    const LikeIndex = review?.map((item,i)=>{
+        return AllLikeList?.findIndex((list,k)=>{
+           return item.postid === list.postid
+        })
+        
+    })
+    console.log(LikeIndex)
+    // const LikeIndex = review.findIndex((list,i)=>{
+    //     AllLikeList.map((item,i)=>{
+    //         return list.postid === item.postid
+    //     })
+    // })
+    
 
     const dispatch = useDispatch()
 
 
 
     //정렬하기
-    const [sort, setSort] = useState("")
+    const [sort, setSort] = useState("star")
 
 
 
@@ -48,7 +62,7 @@ const DetailReview = () => {
         }))
         setLike(AllLikeList)
 
-    }, [dispatch, Like, sort])
+    }, [dispatch, Like, sort, parm.id])
 
 
 
@@ -118,14 +132,18 @@ const DetailReview = () => {
     //좋아요 기능
 
     const LikeClick = async (postid) => {
-        console.log()
-
+        console.log(postid)
+        const A = AllLikeList.findIndex((list)=>{
+            return list.postid === postid.postid
+        })
+        console.log(A)
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === false) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === false) {
             console.log("실행")
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(LikeList({
                 postid: postid.postid,
                 like: data.result
@@ -135,9 +153,10 @@ const DetailReview = () => {
                 postid: postid.postid
             }))
             //test
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === true) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(UnLikeList({
                 postid: postid.postid,
                 like: data.result
@@ -181,48 +200,59 @@ const DetailReview = () => {
                             }}>
                             <ReviewHeader>
                                 <ReviewProfile src={item.profileimg}/>
-                                {item.nickname}
+                                &nbsp;{item.nickname}
+                                
                             </ReviewHeader>
                             {userName === item.nickname ?
                                 (
-                                    <>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost(item.postid))
-                                            }}
-                                        >삭제
-                                        </span>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost({
-                                                    postid: item.postid,
-                                                    // 인풋 값 받아서 수정
-                                                }))
-                                            }}
-                                        >수정
-                                        </span>
-                                    </>
+                                    <ReviewDrop>
+                                        <ul className="dep1">
+                                            <li>
+                                                ⋯
+                                                <ul className="dep2">
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost(item.postid))
+                                                        }}
+                                                    >
+                                                    삭제하기
+                                                    </li>
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost({
+                                                                postid: item.postid,
+                                                                // 인풋 값 받아서 수정
+                                                            }))
+                                                        }}
+                                                        >수정하기
+                                                    </li>
+                                                </ul>
+                                            </li>        
+                                        </ul>
+                                    </ReviewDrop>
 
                                 ) : (null)}
                         </div>
                         <ReviewImg src={item.image[0].img} />
-                        <ReviewStarLove>⭐별점 {item.star}점&nbsp;
+                        <ReviewStarLove>★ 별점 {item.star}점&nbsp;
 
                             <span
                                 onClick={() => {
                                     LikeClick({
-                                        postid: item.postid,
-                                        i: i
+                                        postid: review[i]?.postid,
+                                        i: i,
+                                        
                                     })
                                 }}
-                            >{AllLikeList[i]?.postid === item.postid &&
-                                AllLikeList[i]?.like ?
+                            >{AllLikeList[LikeIndex[i]]?.postid === review[i]?.postid &&
+                                AllLikeList[LikeIndex[i]]?.like ?
                                 (<span
                                     style={{ color: "red" }}
-                                >❤</span>)
-                                : (<span>🤍</span>)}</span>
+                                > ❤ </span>)
+                                : (<span> 🤍 </span>)
+                                }</span>
 
-                            좋아요 {item.likecnt}개</ReviewStarLove>
+                             좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
                         <ReviewContext>
@@ -245,7 +275,6 @@ const DetailReview = () => {
                                                                 ModifyComment(e)
                                                             }}
                                                             type="text"
-                                                            placeholder={comment.contents}
                                                             style={{ display: unclick }}
                                                         />
                                                         <Btn style={{ display: unclick }}
@@ -266,7 +295,7 @@ const DetailReview = () => {
                                                             }}
                                                         >⨉</Btn>
                                                     </span>) : (
-                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
+                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
                                                     </span>
 
                                                 )
@@ -286,7 +315,7 @@ const DetailReview = () => {
                                 onChange={(e) => {
                                     setComment(e.target.value)
                                 }}
-                                placeholder="댓글작성"
+                                placeholder="댓글달기"
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
@@ -351,6 +380,40 @@ const ReviewHeader = styled.div`
     font-size: 30px;
     font-weight: bold;
     margin-left: -240px;
+
+    &span {
+        
+    }
+`;
+
+const ReviewDrop = styled.div`
+    // margin: 0 auto;
+    // padding: 0 auto;
+    position: relative;
+    & ul, li {
+        list-style: none;
+    }
+
+    .dep2>li {
+        width: 100px;
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dep1>li {
+        display: block;
+        cursor: pointer;
+    }
+
+    .dep1>li:hover> .dep2 {
+        display: block;
+    }
+
+    .dep2 {
+        display: none;
+    }
 `;
 
 const ReviewImg = styled.img`
@@ -371,14 +434,15 @@ const ReviewUserInfo = styled.div`
     margin-left: 20px;
     font-size: 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
+    margin-left: 18px;
+    // display: contents;
 `;
 
 const ReviewContext = styled.div`
@@ -469,6 +533,7 @@ const ReviewProfile = styled.img`
     width : 20px;
     height : 20px;
     border-radius : 20px;
+    margin: 3px;
 `;
 
 const Btn = styled.button`
