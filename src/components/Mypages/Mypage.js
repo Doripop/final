@@ -66,10 +66,13 @@ const Mypage = () => {
                     )}
 
                     <div className="profileImgBox">
+                       
                         <img className="imageShape" src={MyprofileImg} />
                         <span className="imgBoxSpan">로고 수정하기
                             <span className="imgBoxSpanChild">
-                                <RiPencilFill className="ripen" />
+                                <RiPencilFill 
+                                className="ripen" >
+                                    </RiPencilFill>
                             </span>
                         </span>
                     </div>

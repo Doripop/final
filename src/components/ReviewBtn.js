@@ -19,11 +19,18 @@ const ReviewBtn = (props) => {
     setModalOpen(false);
   }
 
- 
+  const [isLogin, setIsLogin] = useState(null);
+  React.useEffect(()=>{
+    setIsLogin(localStorage?.getItem("token")) 
+  },[localStorage.getItem("token")])
+  console.log(isLogin)
 
   return (
     <>
-      <Btn onClick={openModal}></Btn>
+      <Btn onClick={()=>{
+            !isLogin ? alert("로그인이 필요한 서비스 입니다!") 
+            : openModal()
+          }}></Btn>
       <ReviewModal open={modalOpen} close={closeModal}>
       </ReviewModal>
     </>
