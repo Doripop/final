@@ -43,7 +43,7 @@ const LoginModal = (props) => {
         window.location.href = Naver_AUTH_URL
     }
     //구글
-    const Google_AUTH_URL = ""
+    const Google_AUTH_URL = "https://kyuhong.shop/api/google/login"
     const google = () => {
         window.location.href = Google_AUTH_URL
     }
