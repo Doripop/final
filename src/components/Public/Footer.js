@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import Logo_Cat from "../css/Logo_Cat_lattee.png"
+import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import {AiFillGithub} from 'react-icons/ai';
 
 const Footer = (props) => {

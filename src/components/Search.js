@@ -4,8 +4,8 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { CafeSearch } from "../redux/modules/AllSlice";
-import { AiOutlineSearch } from "react-icons/ai";
-
+import "../css/reset.css"
+import {searchIcon} from "../css/searchSVG/index"
 
 const Search = () => {
 
@@ -36,7 +36,23 @@ const Search = () => {
 
 
     return (
-        <>
+    
+        // <Wrap>
+        //     <div className="searchArea">
+        //         <input type="text">
+        //             <searchIcon/>
+        //         </input>
+        //     </div>
+        //     <div className="resultArea">
+
+        //     </div>
+        //     <div className="recommendTag">
+
+        //     </div>
+
+        // </Wrap>
+
+<>
             <div style={{ display: "grid", justifyContent: "center", flexDirection: "row" }}>
                 <SearchBar
                     type="text"
@@ -81,9 +97,35 @@ const Search = () => {
                         <div>#커피</div>
                     </TagList1>
                 </Tag>
-        </>
+                </>
     )
 }
+
+
+const Wrap = styled.div`
+max-width: 1200px;
+display: flex;
+justify-content: center;
+width : 100%;
+height: 100%;
+
+.searchArea{
+
+}
+
+.resultArea{
+
+}
+
+.recommendTag{
+
+}
+
+`;
+
+
+
+
 
 const SearchBar = styled.input`
     margin-top : 150px;
