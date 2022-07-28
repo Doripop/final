@@ -15,16 +15,30 @@ const DetailReview = () => {
 
     const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    // console.log(AllLikeList)
+    console.log(AllLikeList)
     console.log(review, "지금필요한게 이거")
 
+
+    const LikeIndex = AllLikeList?.map((item,i)=>{
+        return review?.findIndex((list,k)=>{
+           return item.postid === list.postid
+        })
+        
+    })
+    console.log(LikeIndex)
+    // const LikeIndex = review.findIndex((list,i)=>{
+    //     AllLikeList.map((item,i)=>{
+    //         return list.postid === item.postid
+    //     })
+    // })
+    
 
     const dispatch = useDispatch()
 
 
 
     //정렬하기
-    const [sort, setSort] = useState("")
+    const [sort, setSort] = useState("star")
 
 
 
@@ -48,7 +62,7 @@ const DetailReview = () => {
         }))
         setLike(AllLikeList)
 
-    }, [dispatch, Like, sort])
+    }, [dispatch, Like, sort, parm.id])
 
 
 
@@ -118,7 +132,7 @@ const DetailReview = () => {
     //좋아요 기능
 
     const LikeClick = async (postid) => {
-        console.log()
+        console.log(postid)
 
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
@@ -126,6 +140,7 @@ const DetailReview = () => {
             AllLikeList[postid.i]?.like === false) {
             console.log("실행")
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(LikeList({
                 postid: postid.postid,
                 like: data.result
@@ -138,6 +153,7 @@ const DetailReview = () => {
         } else if (AllLikeList[postid.i]?.postid === postid.postid &&
             AllLikeList[postid.i]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(UnLikeList({
                 postid: postid.postid,
                 like: data.result
@@ -220,12 +236,12 @@ const DetailReview = () => {
                             <span
                                 onClick={() => {
                                     LikeClick({
-                                        postid: item.postid,
-                                        i: i
+                                        postid: review[i]?.postid,
+                                        i: LikeIndex[i],
                                     })
                                 }}
-                            >{AllLikeList[i]?.postid === item.postid &&
-                                AllLikeList[i]?.like ?
+                            >{AllLikeList[LikeIndex[i]]?.postid === review[i]?.postid &&
+                                AllLikeList[LikeIndex[i]]?.like ?
                                 (<span
                                     style={{ color: "red" }}
                                 > ❤ </span>)
@@ -274,7 +290,7 @@ const DetailReview = () => {
                                                             }}
                                                         >⨉</Btn>
                                                     </span>) : (
-                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
+                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
                                                     </span>
 
                                                 )

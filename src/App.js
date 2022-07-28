@@ -32,7 +32,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/detail/:id/*" element={<Detail />} />
-        <Route path="/search/:text/*" element={<Search />} />
+        <Route path="/search/*" element={<Search />} />
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}
 

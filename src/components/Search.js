@@ -9,31 +9,30 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const Search = () => {
 
-    const parm = useParams();
+    
     const pageSearch = useRef("");
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(parm)
 
-
-
-    React.useEffect(() => {
-        dispacth(CafeSearch({
-            keyword: parm.text
-        }))
-    }, [parm.text])
 
     const searchList = useSelector((state) => state.AllSlice.SearchCafeInfo);
-    console.log(searchList)
+
+    React.useEffect(() => {
+     
+        
+    }, [searchList])
+    
+
+ 
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
-            navigate(`/search/${pageSearch.current.value}`);
+       
+            dispatch(CafeSearch({
+                keyword : e.target.value
+            }))
+        
         }
     }
-
-
-    // console.log(parm.text) 파람으로 검색어 넘어오는 부분
-
 
     return (
         <>
@@ -48,7 +47,9 @@ const Search = () => {
                 {searchList?.map((cafe, i) => (
                     <>
                         <CardBox
-                            onClick={() => { navigate(`/detail/${cafe.cafeid}`) }}
+                            onClick={() => { 
+                                navigate(`/detail/${cafe.cafeid}`) 
+                            }}
                             key={cafe.zonenum}>
                             {cafe.cafename} 별점{cafe.avgstar} 점<br />
                             {cafe.address}

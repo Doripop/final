@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import "../css/partCss/Header.css"
 import { useNavigate } from "react-router-dom";
-import { LogOut } from "../redux/modules/AllSlice";
+import { CafeSearch, LogOut } from "../redux/modules/AllSlice";
 import { useDispatch } from "react-redux";
 import Logo_Cat from "../css/Logo_Cat_lattee.png"
 
@@ -25,9 +25,13 @@ const Header = () => {
     const searchItem = useRef("")
     const onKeyPress = (e) => {
         if ( e.key === 'Enter') {
-            navigate(`/search/${searchItem.current.value}`)
+            dispatch(CafeSearch({
+                keyword : e.target.value
+            }))
+            navigate("/search")
         }
     }
+    
     React.useEffect(()=>{
         setIsLogin(localStorage.getItem("token"))
         setRole(localStorage.getItem("role"))
