@@ -15,16 +15,30 @@ const DetailReview = () => {
 
     const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    // console.log(AllLikeList)
+    console.log(AllLikeList)
     console.log(review, "지금필요한게 이거")
 
+
+    const LikeIndex = AllLikeList?.map((item,i)=>{
+        return review?.findIndex((list,k)=>{
+           return item.postid === list.postid
+        })
+        
+    })
+    console.log(LikeIndex)
+    // const LikeIndex = review.findIndex((list,i)=>{
+    //     AllLikeList.map((item,i)=>{
+    //         return list.postid === item.postid
+    //     })
+    // })
+    
 
     const dispatch = useDispatch()
 
 
 
     //정렬하기
-    const [sort, setSort] = useState("")
+    const [sort, setSort] = useState("star")
 
 
 
@@ -48,7 +62,7 @@ const DetailReview = () => {
         }))
         setLike(AllLikeList)
 
-    }, [dispatch, Like, sort])
+    }, [dispatch, Like, sort, parm.id])
 
 
 
@@ -118,7 +132,7 @@ const DetailReview = () => {
     //좋아요 기능
 
     const LikeClick = async (postid) => {
-        console.log()
+        console.log(postid)
 
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
@@ -126,6 +140,7 @@ const DetailReview = () => {
             AllLikeList[postid.i]?.like === false) {
             console.log("실행")
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(LikeList({
                 postid: postid.postid,
                 like: data.result
@@ -138,6 +153,7 @@ const DetailReview = () => {
         } else if (AllLikeList[postid.i]?.postid === postid.postid &&
             AllLikeList[postid.i]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(UnLikeList({
                 postid: postid.postid,
                 like: data.result
@@ -182,27 +198,35 @@ const DetailReview = () => {
                             <ReviewHeader>
                                 <ReviewProfile src={item.profileimg}/>
                                 &nbsp;{item.nickname}
-                                <span>⋯</span>
+                                
                             </ReviewHeader>
                             {userName === item.nickname ?
                                 (
-                                    <>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost(item.postid))
-                                            }}
-                                        >삭제
-                                        </span>
-                                        <span
-                                            onClick={() => {
-                                                dispatch(DeletePost({
-                                                    postid: item.postid,
-                                                    // 인풋 값 받아서 수정
-                                                }))
-                                            }}
-                                        >수정
-                                        </span>
-                                    </>
+                                    <ReviewDrop>
+                                        <ul className="dep1">
+                                            <li>
+                                                ⋯
+                                                <ul className="dep2">
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost(item.postid))
+                                                        }}
+                                                    >
+                                                    삭제하기
+                                                    </li>
+                                                    <li
+                                                        onClick={() => {
+                                                            dispatch(DeletePost({
+                                                                postid: item.postid,
+                                                                // 인풋 값 받아서 수정
+                                                            }))
+                                                        }}
+                                                        >수정하기
+                                                    </li>
+                                                </ul>
+                                            </li>        
+                                        </ul>
+                                    </ReviewDrop>
 
                                 ) : (null)}
                         </div>
@@ -212,12 +236,12 @@ const DetailReview = () => {
                             <span
                                 onClick={() => {
                                     LikeClick({
-                                        postid: item.postid,
-                                        i: i
+                                        postid: review[i]?.postid,
+                                        i: LikeIndex[i],
                                     })
                                 }}
-                            >{AllLikeList[i]?.postid === item.postid &&
-                                AllLikeList[i]?.like ?
+                            >{AllLikeList[LikeIndex[i]]?.postid === review[i]?.postid &&
+                                AllLikeList[LikeIndex[i]]?.like ?
                                 (<span
                                     style={{ color: "red" }}
                                 > ❤ </span>)
@@ -266,7 +290,7 @@ const DetailReview = () => {
                                                             }}
                                                         >⨉</Btn>
                                                     </span>) : (
-                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
+                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
                                                     </span>
 
                                                 )
@@ -357,6 +381,36 @@ const ReviewHeader = styled.div`
     }
 `;
 
+const ReviewDrop = styled.div`
+    // margin: 0 auto;
+    // padding: 0 auto;
+    position: relative;
+    & ul, li {
+        list-style: none;
+    }
+
+    .dep2>li {
+        width: 100px;
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dep1>li {
+        display: block;
+        cursor: pointer;
+    }
+
+    .dep1>li:hover> .dep2 {
+        display: block;
+    }
+
+    .dep2 {
+        display: none;
+    }
+`;
+
 const ReviewImg = styled.img`
     width: 500px;
     height: 500px;
@@ -375,14 +429,15 @@ const ReviewUserInfo = styled.div`
     margin-left: 20px;
     font-size: 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
+    // margin-left: 18px;
+    display: contents;
 `;
 
 const ReviewContext = styled.div`
