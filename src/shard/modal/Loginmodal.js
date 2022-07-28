@@ -10,10 +10,11 @@ import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 
 //Image import
-import backImg1 from "../../css/cafeImg1.jpg";
-import backImg2 from "../../css/cafeImg2.jpg";
-import backImg3 from "../../css/cafeImg3.jpg";
-import backImg4 from "../../css/cafeImg4.jpg";
+
+import backImg1 from "../../css/cafeImg/cafeImg1.jpg";
+import backImg2 from "../../css/cafeImg/cafeImg2.jpg";
+import backImg3 from "../../css/cafeImg/cafeImg3.jpg";
+import backImg4 from "../../css/cafeImg/cafeImg4.jpg";
 import kakaoImg from "../../css/kakao_login_large_narrow.png";
 import googleImg from "../../css/btn_google_signin_dark_normal_web2x.png";
 import naverImg from "../../css/btnG_official.png"
@@ -43,7 +44,7 @@ const LoginModal = (props) => {
         window.location.href = Naver_AUTH_URL
     }
     //구글
-    const Google_AUTH_URL = ""
+    const Google_AUTH_URL = "https://kyuhong.shop/api/google/login"
     const google = () => {
         window.location.href = Google_AUTH_URL
     }
