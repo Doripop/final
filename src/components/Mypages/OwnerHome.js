@@ -274,7 +274,7 @@ const Container = styled.div`
 
 
 const Home = styled.div`
-    position: relative;
+    position: relative; 
 
     margin: 0px auto;
 
@@ -282,7 +282,7 @@ const Home = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
 
     & h1 {
         margin-left: 40px;
@@ -293,21 +293,25 @@ const Home = styled.div`
     }
 
     & h3 {
-        padding: 10px;
-        border-bottom: solid 1px black;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 30px;
+        
+        border-bottom: solid 1px #D9D9D9;
     }
 `;
 
 const Home2 = styled.div`
-    position: relative;
+    position: relative; 
     margin: 0px auto;
-    padding: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
 
     word-break:break-all;
 
@@ -324,12 +328,11 @@ const Home3 = styled.div`
     position: relative; 
 
     margin: 0px auto;
-    padding: 10px;
+
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
 
     .map {
         color: #3FC275;

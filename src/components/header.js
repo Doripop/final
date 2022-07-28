@@ -12,6 +12,7 @@ import Logo_Cat from "../css/Logo_Cat_lattee.png"
 //아이콘
 import {CgLogOut} from 'react-icons/cg'
 import {FaUserEdit} from 'react-icons/fa'
+import {FiLogIn} from 'react-icons/fi'
 import {HiSearch} from 'react-icons/fa'
 
 
@@ -65,7 +66,7 @@ const Header = () => {
                         <>
                             <h1 style={{
                                 color:"white",
-                                fontSize:"20px",
+                                fontSize:"30px",
                                 cursor : "pointer"
                             }}
                             onClick = {()=>{LogOutBtn();}}
@@ -74,12 +75,12 @@ const Header = () => {
 
                             <h1 style={{
                                 color:"white",
-                                fontSize:"20px",
+                                fontSize:"32px",
                                 cursor : "pointer"
                             }}
                             onClick = {()=>{role === "admin" ? navigate("/admin") : navigate("/mypage");}}
                             >
-                                <FaUserEdit className="myPage"/>
+                                <FiLogIn className="myPage"/>
                             </h1>
                             {/* <FaUserEdit/> 유저 아이콘 */}
                         </>

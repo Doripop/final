@@ -67,7 +67,7 @@ const OwnerMenu = () => {
         <>
             <div>
                 <div className="coffeeMenuDiv">
-                    <h1><SiBuymeacoffee className="coffeeIcon" />커피메뉴</h1>
+                    <h1><SiBuymeacoffee className="coffeeIcon" /> 커피메뉴</h1>
                     {OwnerMenuInfo?.drink.map((item, i) => (
                         <div className="coffeeDiv"
                             id={item.menuid}>
@@ -75,13 +75,13 @@ const OwnerMenu = () => {
                                 <>
                                     <img className="coMenuDiv" src={item.menuimg} />
                                     <p>
-                                        {item.menuname}<br />
+                                        {item.menuname}<br/>
                                         {item.menuprice}원<br />
                                         <button
                                             onClick={() => {
                                                 setModifyDrinkMenu("B")
                                                 setA(item.menuid)
-                                            }}>수정</button>
+                                            }}>수정하기</button>
                                         <button
                                             onClick={() => {
                                                 dispatch(DeleteCafeMenu({
@@ -89,7 +89,7 @@ const OwnerMenu = () => {
                                                     category: "drink"
                                                 }))
                                             }}
-                                        >삭제</button>
+                                        >삭제하기</button>
                                     </p>
                                 </>
                             ) ||
@@ -124,7 +124,7 @@ const OwnerMenu = () => {
                                                                 menuimg: item.menuimg
                                                             }));
                                                             setModifyDrinkMenu("A")
-                                                        }}>수정</button>
+                                                        }}>수정하기</button>
                                                     <button
                                                         onClick={() => {
                                                             dispatch(DeleteCafeMenu({
@@ -132,7 +132,7 @@ const OwnerMenu = () => {
                                                                 category: "drink"
                                                             }))
                                                         }}
-                                                    >삭제</button>
+                                                    >삭제하기</button>
                                                 </p>
                                             </>
                                         ) : (
@@ -145,7 +145,7 @@ const OwnerMenu = () => {
                                                         onClick={() => {
                                                             setModifyDrinkMenu("B")
                                                             setA(item.menuid)
-                                                        }}>수정</button>
+                                                        }}>수정하기</button>
                                                     <button
                                                         onClick={() => {
                                                             dispatch(DeleteCafeMenu({
@@ -153,7 +153,7 @@ const OwnerMenu = () => {
                                                                 category: "drink"
                                                             }))
                                                         }}
-                                                    >삭제</button>
+                                                    >삭제하기</button>
                                                 </p>
                                             </>
                                         )}
@@ -197,7 +197,7 @@ const OwnerMenu = () => {
 
 
                 <div className="coffeeMenuDiv">
-                    <h1><GiCakeSlice className="dessertIcon" />디저트메뉴</h1>
+                    <h1><GiCakeSlice className="dessertIcon" /> 디저트메뉴</h1>
                     {OwnerMenuInfo?.dessert.map((item, i) => (
                         <>
                             <div className="coffeeDiv"
@@ -213,7 +213,7 @@ const OwnerMenu = () => {
                                                     setModifyDessertMenu("B")
                                                     setB(item.menuid)
                                                 }}
-                                            >수정</button>
+                                            >수정하기</button>
                                             <button
                                                 onClick={() => {
                                                     dispatch(DeleteCafeMenu({
@@ -221,7 +221,7 @@ const OwnerMenu = () => {
                                                         category: "dessert"
                                                     }))
                                                 }}
-                                            >삭제</button>
+                                            >삭제하기</button>
                                         </p>
                                     </>
                                 ) || modifyDessertMenu === "B" && (
