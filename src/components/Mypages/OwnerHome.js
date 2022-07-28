@@ -36,14 +36,6 @@ const OwnerHome = () => {
         setDelivery(OwnerInfoList.delivery)
     }, [OwnerInfoList?.cafeid, OwnerInfoList.delivery, dispatch])
 
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slideToShow: 1,
-        slideToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000
-    };
 
     const [page, setPage] = useState("A")
 
@@ -83,7 +75,7 @@ const OwnerHome = () => {
                             )}
 
                         <h1>가게설명</h1>
-                        {OwnerInfoList?.intro}
+                        <p>{OwnerInfoList?.intro}</p>
                     </Home>
                     <Home2>
                         <h1><AiFillSound className="sound" />사장님이 안내드립니다.</h1>
@@ -105,7 +97,7 @@ const OwnerHome = () => {
                                 <div
                                     className="map"
                                     style={{
-                                        width: "800px",
+                                        width: "686px",
                                         height: "300px",
                                     }}
                                     ref={container}
@@ -296,6 +288,10 @@ const Home = styled.div`
         margin-left: 40px;
     }
 
+    & p {
+        margin-left: 40px;
+    }
+
     & h3 {
         padding: 10px;
         border-bottom: solid 1px black;
@@ -317,6 +313,10 @@ const Home2 = styled.div`
 
     .sound {
         color: #3FC275;
+    }
+
+    & p {
+        margin-left: 40px;
     }
 `;
 

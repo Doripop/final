@@ -60,25 +60,12 @@ const OwnerMenu = () => {
         dispatch(OwnerCafeMeunLoad())
     }, [dispatch])
 
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slideToShow: 1,
-        slideToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000
-    };
-
-
     const [modifyDrinkMenu, setModifyDrinkMenu] = useState("A")
     const [modifyDessertMenu, setModifyDessertMenu] = useState("A")
 
     return (
         <>
             <div>
-                {/* <StyledSlider {...settings}>
-                <div><img width={'1200px'} height={'400px'} src={Cafe1} alt='slider' /></div>
-            </StyledSlider> */}
                 <div className="coffeeMenuDiv">
                     <h1><SiBuymeacoffee className="coffeeIcon" />커피메뉴</h1>
                     {OwnerMenuInfo?.drink.map((item, i) => (
@@ -175,12 +162,18 @@ const OwnerMenu = () => {
                         </div>
                     ))}
                     <div className="plusCoMenuDiv">
+                        <label for="input-file" className="input-file-button">
+                            +                                
+                        </label>
                         <input
                             onChange={(e) => {
                                 MenuImage(e)
                             }}
                             type="file"
-                        />
+                            id="input-file"
+                            style={{display:"none"}}
+                            />
+                        <div className="textInputDiv">
                         <input
                             ref={drinkname}
                             type="text"
@@ -198,6 +191,7 @@ const OwnerMenu = () => {
                                 }))
                             }}
                         >추가하기</button>
+                        </div>
                     </div>
                 </div>
 
@@ -302,12 +296,18 @@ const OwnerMenu = () => {
                         </>
                     ))}
                     <div className="plusCoMenuDiv">
+                        <label for="input-file" className="input-file-button">
+                            +
+                        </label>
                         <input
-                            type="file"
                             onChange={(e) => {
                                 MenuImage(e)
                             }}
+                            type="file"
+                            id="input-file"
+                            style={{display: "none"}}
                         />
+                        <div className="textInputDiv">
                         <input
                             ref={dessertname}
                             type="text"
@@ -325,6 +325,7 @@ const OwnerMenu = () => {
                                 }))
                             }}
                         >추가하기</button>
+                        </div>
                     </div>
                 </div>
                 <ScrollBtn />
