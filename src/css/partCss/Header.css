@@ -1,6 +1,24 @@
+/* .header {
+    display: flex;
+    justify-content: center;
+}
+
+
+.navBar {
+    background-color: #19221f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 29px 20px;
+    width: 100%;
+    min-width: 375px;
+} */
+
 .header {
     display: flex;
     justify-content: center;
+    /* background-color: #19221f; */
+    background-color: #19221f;
 }
 
 
@@ -11,12 +29,17 @@
     /* space-between */
     align-items: center;
     padding: 29px 20px;
-    width: 100%;
+    /* width: 1920px; */
+    max-width: 1200px;
+    width: 80%;
+    align-items: center;
+    padding: 0px 25px;
+    align-content: center;
     min-width: 375px;
 }
 
 .navBar>div {
-    margin-top: 22px;
+    margin-top: 30px;
     display: flex;   
 }
 

@@ -45,6 +45,7 @@ const Header = () => {
         <>
             <div className="header">
                 <div className="navBar">
+
                     <Logo onClick={() => {
                      navigate("/")
                     }}><img className="logoImg" src={Logo_Cat}/><div> BLANK</div></Logo>
