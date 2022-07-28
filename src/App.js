@@ -10,6 +10,7 @@ import Mypage from "./components/Mypages/Mypage";
 import Footer from "./components/Footer";
 import KakaoLogin from "./shard/KakaoLogin";
 import NaverLogin from "./shard/NaverLogin";
+import GoogleLogin from "react-google-login";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/search/*" element={<Search />} />
         <Route path="/Ouath" element={<KakaoLogin />} />
         <Route path="/Ouath" element={<NaverLogin />} />
+        <Route path="/Ouath" element={<GoogleLogin />} />
 
       </Routes>
       {/* <Route path="/search/:text/*"  element={<Search />}/> */}

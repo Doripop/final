@@ -20,6 +20,7 @@ import naverImg from "../../css/btnG_official.png"
 import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BiBorderRadius } from "react-icons/bi";
 
 const LoginModal = (props) => {
 
@@ -37,11 +38,15 @@ const LoginModal = (props) => {
         window.location.href = KAKAO_AUTH_URL
     }
     //네이버
-    const Naver_AUTH_URL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=qF6prEII7uI4LdzuKI5V&state=onechild&redirect_uri=https://kyuhong.shop/api/naver/auth"
+    const Naver_AUTH_URL = "http://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=qF6prEII7uI4LdzuKI5V&state=onechild&redirect_uri=https://kyuhong.shop/api/naver/auth"
     const naver = () => {
         window.location.href = Naver_AUTH_URL
     }
-
+    //구글
+    const Google_AUTH_URL = ""
+    const google = () => {
+        window.location.href = Google_AUTH_URL
+    }
     //Image array
     const backgroundArr = [backImg1, backImg2, backImg3, backImg4];
     const randomIndex = Math.floor(Math.random() * backgroundArr.length);
@@ -95,33 +100,8 @@ const LoginModal = (props) => {
                             <div>
                                 <InputBox ref={userPW} type="password" placeholder="Password" />
                             </div>
-                            {/* <NaverLogin
-                            clientId={'Khwo3ZGcF4998EqdYc6y'}
-                            callbackURL="http://localhost:3000/"
-                            render={renderProps => (
-                                <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                                    <Img_sns src={naverImg} resizeMode={'contain'}/>
-                                </div>
-                            )}
-                        />
-                        <KakaoLogin
-                            token={'18f40c27569f0470621e75528f5bf4fa'}
-                            callbackURL="http://localhost:3000/"
-                            render={renderProps => (
-                                <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                                    <Img_sns src={kakaoImg} resizeMode={'contain'}/>
-                                </div>
-                            )}
-                        />
-                        <GoogleLogin
-                            clientId={'AIzaSyCpUevbYDNdPRAI5Tdt3vnj74Da5hMeBU4'}
-                            buttonText="Login"
-                            render={renderProps => (
-                                <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                                    <Img_sns src={googleImg} resizeMode={'contain'}/>
-                                </div>
-                            )}
-                        /> */}
+                            
+                       
 
 
 
@@ -151,9 +131,24 @@ const LoginModal = (props) => {
                                     style={{
                                         width: "288px",
                                         height: "50px",
-                                        marginLeft: "-5px"
+                                        marginLeft: "-5px",
+                                        borderRadius:"8px"
                                     }}
                                     src={naverImg} />
+                            </AuthBtn>
+                            {/* 구글 로그인 */}
+                            <AuthBtn
+                                onClick={() => {
+                                    google()
+                                }}>
+                                <img
+                                    style={{
+                                        width: "300px",
+                                        height: "50px",
+                                        marginLeft: "-12px",
+                                       borderRadius:"20px"
+                                    }}
+                                    src={googleImg} />
                             </AuthBtn>
                         </Footer>
                     </section>
