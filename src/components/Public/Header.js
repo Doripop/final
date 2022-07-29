@@ -125,9 +125,10 @@ align-items: center;
 
     img{
       width: 90px;
-    margin: 0 20px 0 0;
-    height: 92px;
-    margin-top: 33px;
+      height: 92px;
+      margin-top: 33px;
+      margin: 0 20px 0 0;
+      cursor: pointer;
     }
 
     p{
@@ -136,7 +137,7 @@ align-items: center;
       font-size: 3rem;
       font-family: 'Jua', sans-serif;
       color:white;
-  
+      cursor: pointer;
     }}
 
 .search{
