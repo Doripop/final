@@ -261,9 +261,8 @@ const DetailReview = () => {
                             {item.contents}
                         </ReviewContext>
                         <ReviewCommentGroup>
-                        {comment != item.commentList ? (
                             <details>
-                                <summary>댓글 {item.commentCnt}개 모두 보기</summary>
+                                <summary>댓글 모두 보기</summary>
                                 <ReviewComUp>
                                     {item.commentList.map((comment, i) => (
                                         <>
@@ -271,7 +270,7 @@ const DetailReview = () => {
                                                 {userName === comment.nickname ? (
                                                     <span style={{ display: "flex" }}>
                                                         <ReviewProfile src={comment.profileimg} />
-                                                        {comment.nickname}{comment.contents}
+                                                        {comment.nickname} : {comment.contents}
                                                         <Btn style={{ display: click }} onClick={() => { clickevent() }}>🖊</Btn>
                                                         <input
                                                             onChange={(e) => {
@@ -308,7 +307,6 @@ const DetailReview = () => {
                                     ))}
                                 </ReviewComUp>
                             </details>
-                        ):(<summary></summary>)}
                         </ReviewCommentGroup>
                         <ReviewDate>
                             {item.modifiedAt}
@@ -323,25 +321,6 @@ const DetailReview = () => {
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
-                        <ReviewComUp2>
-                            {item.commentList.map((comment, i) => (
-                                <>
-                                    <div>
-                                        {userName === comment.nickname ? (
-                                            <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
-                                                <ReviewProfile2 src={comment.profileimg} />
-                                                        {comment.nickname}
-                                                        {comment.contents}
-                                            </span>) : (
-                                            <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
-                                            </span>
-
-                                        )
-                                        }
-                                    </div>
-                                </>
-                            ))}
-                        </ReviewComUp2>
                     </Review>
                 </>
             ))}
@@ -580,47 +559,4 @@ const Btn = styled.button`
         color: red;
     }
 `;
-
-const ReviewComUp2 = styled.div`
-    width: 500px;
-    margin-left: 20px;
-    line-height: 2;
-    color: gray;
-
-    input {
-        position: relative;
-        margin-left: 5px;
-        background-repeat: no-repeat;
-        border: 1px solid #ccc;
-
-        :focus {
-            border-color:#0982f0;
-            outline: none;
-        }
-    }
-`;
-
-const ReviewProfile2 = styled.img`
-    width : 30px;
-    height : 30px;
-    border-radius : 20px;
-    margin: 3px;
-`;
-
-const Btn2 = styled.button`
-    position: relative;
-    /* display: flex; */
-    -webkit-box-align: center;
-    align-items: center;
-    color: black;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    justify-content:center;
-
-    : hover {
-        color: red;
-    }
-`;
-
 export default DetailReview;
