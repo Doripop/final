@@ -67,17 +67,24 @@ const Container = styled.div`
     justify-content: space-around;
 
     position: relative;
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
     
     & button {
-        width: 200px;
-        font-size: 30px;
+        width: 224px;
+        height: 34px;
+        font-size: 32px;
         margin-right: 40px;
         font-family: 'Arita-dotum-Medium';
+        
+    }
+
+    & button:hover {
+        text-decoration: underline;
     }
 `;
 
 const CategoryBox = styled.button`
+
     border: 1px solid #D9D9D9;
     font-weight: bold;
     background-color: #D9D9D9;
@@ -85,7 +92,7 @@ const CategoryBox = styled.button`
     color: gray;
     
     &: hover {
-        color: black;
+        color: #19221F;
     }
 `;
 

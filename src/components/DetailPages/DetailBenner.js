@@ -24,7 +24,7 @@ const DetailBanner = (images) => {
 
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slideToShow: 1,
     slideToScroll: 1,
     autoplay: true,
@@ -37,9 +37,9 @@ const DetailBanner = (images) => {
         <>
           <div>
             {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
-            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
-            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
-            <img width={'38%'} height={'400px'} src={item.img} alt='slider' />
+            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
           </div>
         </>
       ))}
@@ -49,19 +49,19 @@ const DetailBanner = (images) => {
 
 const StyledSlider = styled(Slider)`
    //슬라이드 컨테이너 영역
-   height: 370px; 
    width: 100%;
    margin-bottom: 40px;
    box-sizing: border-box;
 
   .slick-list {  //슬라이드 스크린
-    max-width: 1900px;
-    min-width: 1050px;
+    max-width: 100%;
+    min-width: 100%;
+    position: relative;
     width: 100%;
-    margin: 0 auto;
-    background-size: cover;
-    background-position: 50% cover;
+    // margin: 0 auto;
     background-repeat: no-repeat;
+    background-size: contain;
+    // background-position: 60% cover;
   }
 
   .slick-slide div { //슬라이더  컨텐츠

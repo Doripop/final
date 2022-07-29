@@ -27,7 +27,7 @@ const DetailMenu = (props) => {
     return (
         <>
             <CoffeeMenu>
-                <h1><SiBuymeacoffee className="coffee" />커피메뉴</h1>
+                <h1><SiBuymeacoffee className="coffee" /> 커피메뉴</h1>
                 {menuList?.drink.map((item, i) => (
                     <>
                     <Coffee
@@ -44,7 +44,7 @@ const DetailMenu = (props) => {
                 ))}
             </CoffeeMenu>
             <DessertMenu>
-                <h1><GiCakeSlice className="cake" />디저트메뉴</h1>
+                <h1><GiCakeSlice className="cake" /> 디저트메뉴</h1>
                 {menuList?.dessert.map((item, i) => (
                     <>
                     <Dessert
@@ -65,18 +65,20 @@ const DetailMenu = (props) => {
 }
 
 const CoffeeMenu = styled.div`
-    width: 1000px;
-
+    width: 950px;
+    
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arita-dotum-Medium';
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #D9D9D9;
     
     h1 {
         cursor: default;
+        font-size: 20px;
     }
 
     .coffee {
+        font-size: 24px;
         color: #00E676;
     }
 `;
@@ -84,7 +86,7 @@ const CoffeeMenu = styled.div`
 const Coffee = styled.div`
     width: 350px;
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid #D9D9D9;
     
     display: inline-flex;
     align-items: center;
@@ -112,17 +114,19 @@ const CoMenu = styled.img`
 `;
 
 const DessertMenu = styled.div`
-    width: 1000px;
+    width: 950px;
 
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arita-dotum-Medium';
 
     h1 {
+        font-size: 20px;
         cursor: default;
     }
 
     .cake {
+        font-size: 24px;
         color: #00E676;
     }
 `;

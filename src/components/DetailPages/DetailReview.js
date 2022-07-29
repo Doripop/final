@@ -254,7 +254,9 @@ const DetailReview = () => {
 
                              좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
+                        <Tag>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
+                        </Tag>
                         <ReviewContext>
                             {item.contents}
                         </ReviewContext>
@@ -348,18 +350,18 @@ const Alignment = styled.div`
 `;
 
 const AlignBtn = styled.button`
-    width: 100px;
-    height: 40px;
-    font-size: 20px;
-    padding: 10px;
-    margin-right: 30px;
+    width: 80px;
+    height: 15px;
+    font-size: 15px;
+    margin-right: 15px;
     border: none;
     background-color: transparent;
+    font-family: 'Arita-dotum-Medium';
 
-    &:hover {
+    :hover {
         cursor: pointer;
         font-weight: bold;
-        border-bottom: 1px solid black;
+        text-decoration: underline;
     }
 `;
 
@@ -438,16 +440,22 @@ const ReviewUserInfo = styled.div`
     flex-direction: row;
 `;
 
+const Tag = styled.div`
+    position: relative;
+    margin-left: 18px;
+    width: 500px;
+`;
+
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    margin-left: 18px;
-    // display: contents;
+    margin-left: 10px;
+    padding: -10px;
+    display: contents;
 `;
 
 const ReviewContext = styled.div`
     width: 480px;
-    margin-top: 10px;
     margin-top: 10px;
 `;
 

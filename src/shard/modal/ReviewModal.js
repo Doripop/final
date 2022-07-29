@@ -185,7 +185,7 @@ const ReviewModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-                    <section>
+                    <section style={{overflowY: "scroll"}}>
                         <div
                             onClick={close}
                             style={{
