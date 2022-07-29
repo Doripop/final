@@ -32,18 +32,31 @@ const DetailBanner = (images) => {
   };
 
   return (
+    // <StyledSlider {...settings}>
+    //   {list?.data.imageList.map((item, i) => (
+    //     <>
+    //       <div>
+    //         {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
+    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+    //       </div>
+    //     </>
+    //   ))}
+    // </StyledSlider>
+
     <StyledSlider {...settings}>
-      {list?.data.imageList.map((item, i) => (
         <>
           <div>
-            {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
+          {list?.data.imageList.map((item, i) => (
             <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
+            ))}
           </div>
         </>
-      ))}
+    
     </StyledSlider>
+
+   
   );
 }
 
@@ -69,6 +82,7 @@ const StyledSlider = styled(Slider)`
     outline: none;
     display: flex;
     width: 100%;
+    justify-content:center;
   }
 `;
 
