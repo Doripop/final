@@ -169,6 +169,11 @@ const Header = styled.header`
     font-family: 'BMJUA';
     font-size: 50px;
     color: white;
+
+    & img {
+        width: 90px;
+        height: 90px;
+    }
 `;
 
 const Body = styled.body`
