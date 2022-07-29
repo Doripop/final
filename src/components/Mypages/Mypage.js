@@ -27,7 +27,7 @@ const Mypage = () => {
     const dispatch = useDispatch()
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
-    const [isLogin, setLogin] = useState("")
+   
     React.useEffect(() => {
         setRole(localStorage.getItem("role"));
         setNickname(localStorage.getItem("nicname"));
@@ -43,9 +43,11 @@ const Mypage = () => {
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");
-
-    const MyprofileImg = localStorage?.getItem("profileimg")
-
+    // const MyprofileImg = localStorage?.getItem("profileimg")
+    const [MyprofileImg, setMyprofileImg] = useState("")
+    React.useEffect(()=>{
+        setMyprofileImg(localStorage?.getItem("profileimg"))  
+    },[localStorage?.getItem("profileimg")])
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
     const clickevent = () => {
@@ -56,7 +58,7 @@ const Mypage = () => {
         setClick("flex")
         setUnclick("none")
     }
-
+    
    
     const ImgUpload = async (e) =>{
         const formData = new FormData();
@@ -67,15 +69,17 @@ const Mypage = () => {
                 formData.append("file", e.target.files[0])
             }
            if(role==="user"){
-            const {data} = await instance.post("api/user/profile", formData,{headers: {
+            const {data} = await instance.patch("api/user/profile", formData,{headers: {
                 "Content-Type": "multipart/form-data"
             }})
-            console.log(data)
+            localStorage.setItem("profileimg", data.data)
+            setMyprofileImg(data.data)
            }else if(role === "owner"){
-            const {data} = await instance.post("api/owner/logo", formData,{headers: {
+            const {data} = await instance.patch("api/owner/logo", formData,{headers: {
                 "Content-Type": "multipart/form-data"
             }})
-            console.log(data)
+            localStorage.setItem("profileimg", data.data)
+            setMyprofileImg(data.data)
            }else{
             alert("유효하지 않은 요청입니다.")
            }
@@ -83,8 +87,6 @@ const Mypage = () => {
         }catch(error){
             console.log(error)
         }
-        
-        console.log(e.target.files[0])
     }
 
     return (

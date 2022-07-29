@@ -5,7 +5,7 @@ import { instance } from "../../shard/axios";
 const initialState = {
     user: [],
     city: [],
-    sort:[],
+    sort: [],
     AutoCafeSearch: [],
     MainReviewList: [],
     MyReview: []
@@ -39,7 +39,7 @@ export const LogOut = createAsyncThunk(
 export const DetailCafePost = createAsyncThunk(
     'AllSlice/DetailCafePost',
     async (cafeid) => {
-        console.log(cafeid)
+
         try {
             const { data } = await instance.get(`api/cafes/${cafeid.id}/posts/${cafeid.sort}`)
             // console.log(data)
@@ -56,9 +56,9 @@ export const CreateComment = createAsyncThunk(
     'AllSlice/CreateComment',
     async (contents) => {
         try {
-            console.log(contents)
+
             const { data } = await instance.post(`api/posts/${contents.postid}/comments`, { contents: contents.contents })
-            // console.log(data)
+
             const comment = {
                 contents: contents.contents,
                 nickname: contents.nickname,
@@ -77,7 +77,7 @@ export const ModifyMyCommnet = createAsyncThunk(
     'AllSlice/ModifyMyCommnet',
     async (CommentInfo) => {
         try {
-            console.log(CommentInfo)
+
             const { data } = await instance.patch(`api/comments/${CommentInfo.commentid}`, { contents: CommentInfo.contents })
             const ChangeComment = {
                 commentid: CommentInfo.commentid,
@@ -85,7 +85,6 @@ export const ModifyMyCommnet = createAsyncThunk(
                 nickname: CommentInfo.nickname,
                 profileimg: CommentInfo.profileimg
             }
-            // console.log(data)
 
             return {
                 comment: ChangeComment,
@@ -103,7 +102,7 @@ export const DeleteMyComment = createAsyncThunk(
     async (CommentId) => {
 
         try {
-            console.log(CommentId)
+
             const { data } = await instance.delete(`api/comments/${CommentId.commentid}`)
             return {
                 commentid: CommentId.commentid,
@@ -127,9 +126,9 @@ export const DeletePost = createAsyncThunk(
     'AllSlice/DeletePost',
     async (postid) => {
         try {
-            console.log(postid)
+
             const { data } = await instance.delete(`api/posts/${postid}`)
-            console.log(data)
+
             return postid
         } catch (error) {
             console.log(error)
@@ -143,12 +142,12 @@ export const DeletePost = createAsyncThunk(
 export const MainReview = createAsyncThunk(
     'AllSlice/MainReview',
     async (region) => {
-        console.log(region)
+
         const citydefault = region.city == "" ? "전지역" : region.city
-        console.log(citydefault)
+
         try {
             const { data } = await instance.get(`api/posts/list/${citydefault}/${region.sort}`);
-            console.log(data)
+
             return data
         } catch (error) {
             console.log(error);
@@ -164,7 +163,7 @@ export const MainReview = createAsyncThunk(
 export const ReviewCreate = createAsyncThunk(
     'AllSlice/ReviewCreate',
     async (reviewInfo) => {
-        console.log(reviewInfo)
+
         try {
             const { data } = await instance.post(`api/${reviewInfo.cafeid}/posts`, reviewInfo.formdata, {
                 headers: {
@@ -172,7 +171,7 @@ export const ReviewCreate = createAsyncThunk(
                 }
             });
             window.alert(data.message)
-            console.log(data);
+
             return data.result ?
                 window.location.replace("/") : window.alert("게시글 작성에 실패하였습니다.")
         } catch (error) {
@@ -189,11 +188,9 @@ export const ReviewReg = createAsyncThunk(
     async (cafeDetail, dispacth) => {
         try {
             const { data } = await instance.get("api/cafes");
-            console.log(data);
-            // dispacth(listLoad(data));
             return data
         } catch (error) {
-            // window.alert(error) 
+            console.log(error)
         }
     }
 )
@@ -201,14 +198,10 @@ export const ReviewReg = createAsyncThunk(
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
     async (searchName, thunkAPI) => {
-        console.log(searchName);
         try {
-            const { data } = await axios.post("https://kyuhong.shop/api/search" , searchName);
-            console.log(data);
-            // dispacth(listLoad(data));
+            const { data } = await axios.post("https://kyuhong.shop/api/search", searchName);
             return data
         } catch (error) {
-            // console.log(error.response.data.message)
             window.alert(error.response.data.message)
         }
     }
@@ -217,13 +210,11 @@ export const CafeSearch = createAsyncThunk(
 export const DetailCafeBanner = createAsyncThunk(
     'AllSlice/DetailCafeBanner',
     async (cafeid) => {
-        console.log(cafeid)
         try {
             const { data } = await instance.get(`api/cafes/${cafeid}`)
-            console.log(data)
+
             return data
         } catch (error) {
-            // window.alert(error)
         }
     }
 )
@@ -232,11 +223,10 @@ export const DetailCafeHome = createAsyncThunk(
     'AllSlice/DetailCafeHome',
     async (cafeid) => {
         try {
-            const { data } = await instance.get(`api/cafes/${cafeid}/info`)
-            console.log(data)
+            const { data } = await instance.get(`api/cafes/${cafeid}/info`);
             return data
         } catch (error) {
-            // window.alert(error)
+            console.log(error)
         }
     }
 )
@@ -246,10 +236,9 @@ export const DetailCafeMenu = createAsyncThunk(
     async (cafeid) => {
         try {
             const { data } = await instance.get(`api/cafes/${cafeid}/menus`)
-            console.log(data)
             return data
         } catch (error) {
-            // window.alert(error)
+            console.log(error)
         }
     }
 )
@@ -267,7 +256,7 @@ const change = createSlice({
             state.city = (action.payload);
         },
         sortList: (state, action) => {
-            console.log(action.payload)
+
             state.sort = (action.payload);
         },
         LikeCountAdd: (state, action) => {
@@ -318,17 +307,17 @@ const change = createSlice({
         //디테일페이지 리뷰관리
         [DetailCafePost.fulfilled]: (state, action) => {
             state.DetailCafePostList = action.payload.data
-            // console.log(action.payload.data)
+
         },
         [CreateComment.fulfilled]: (state, action) => {
-            // console.log(action.payload)
+
             const index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
             state.DetailCafePostList[index].commentList.push(action.payload.comment)
         },
         [ModifyMyCommnet.fulfilled]: (state, action) => {
-            // console.log(action.payload)
+
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })
@@ -339,7 +328,7 @@ const change = createSlice({
             state.DetailCafePostList[Index].commentList[CommentIndex] = action.payload.comment
         },
         [DeleteMyComment.fulfilled]: (state, action) => {
-            // console.log(action.payload)
+
             const Index = state.DetailCafePostList.findIndex((List) => {
                 return List.postid === action.payload.postid
             })

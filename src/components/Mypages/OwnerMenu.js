@@ -40,7 +40,6 @@ const OwnerMenu = () => {
         console.log(e.target.files[0])
         setMenuImage(e.target.files[0])
     }
-    console.log(menuImgae)
 
     const SendCafeMenu = (item) => {
         const formData = new FormData()
@@ -55,9 +54,7 @@ const OwnerMenu = () => {
         ))
 
     }
-    // 화폐 단위 쉼표처리 
-    // .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-
+    
     React.useEffect(() => {
         dispatch(OwnerCafeMeunLoad())
     }, [dispatch])
@@ -164,7 +161,7 @@ const OwnerMenu = () => {
                         </div>
                     ))}
                     <div className="plusCoMenuDiv">
-                        <label for="input-file" className="input-file-button">
+                        <label for="input-fileimg" className="input-file-button">
                             +                                
                         </label>
                         <input
@@ -172,7 +169,7 @@ const OwnerMenu = () => {
                                 MenuImage(e)
                             }}
                             type="file"
-                            id="input-file"
+                            id="input-fileimg"
                             style={{display:"none"}}
                             />
                         <div className="textInputDiv">
@@ -298,15 +295,15 @@ const OwnerMenu = () => {
                         </>
                     ))}
                     <div className="plusCoMenuDiv">
-                        <label for="input-file" className="input-file-button">
+                        <label for="input-fileimg" className="input-file-button">
                             +
                         </label>
                         <input
-                            onChange={(e) => {
-                                MenuImage(e)
-                            }}
+                        onChange={(e) => {
+                            MenuImage(e)
+                        }}
                             type="file"
-                            id="input-file"
+                            id="input-fileimg"
                             style={{display: "none"}}
                         />
                         <div className="textInputDiv">

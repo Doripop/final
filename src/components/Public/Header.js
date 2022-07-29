@@ -39,14 +39,14 @@ const Header = () => {
   return (
     <Wrap>
       <div className="center">
-
         <div class="leftMenu">
-          <div className="logo">
+          <div
+          onClick={() => {
+            navigate("/")
+          }} 
+          className="logo">
             <img
               src={Logo_Cat}
-              onClick={() => {
-                navigate("/")
-              }}
             />
             <p> BLANK </p>
           </div>
@@ -97,7 +97,7 @@ const Header = () => {
 
 const Wrap = styled.div`
 max-width: 1920px;
-width: 100%;
+margin : auto;
 height: 100px;
 background: #19221F;
 display: flex;
@@ -105,13 +105,13 @@ justify-content: center;
 align-items: center;
 
 .center{
-
   display: flex;
   justify-content: center;
+  background: #19221F;
   align-items: center;
-  
   max-width: 1200px;
   min-width: 1050px;
+  height:100px;
   width: 100%;
   gap: 3%;
 
