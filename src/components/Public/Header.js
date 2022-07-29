@@ -9,7 +9,7 @@ import { CafeSearch, LogOut } from "../../redux/modules/AllSlice";
 import { useDispatch } from "react-redux";
 import Logo_Cat from "../../css/Logo_Cat_lattee.png"
 import { HeaderLogOut, HeaderLogOutIcon, HeaderSearchIcon } from "../../css/public";
-import {FaUserEdit} from 'react-icons/fa'
+import { FaUserEdit } from 'react-icons/fa'
 
 
 
@@ -18,123 +18,75 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(null)
-  const [role , setRole] = useState(null)
+  const [role, setRole] = useState(null)
   const searchItem = useRef("")
 
   const onKeyPress = (e) => {
-    if ( e.key === 'Enter') {
-        dispatch(CafeSearch({
-            keyword : e.target.value
-        }))
-        navigate("/search")
+    if (e.key === 'Enter') {
+      dispatch(CafeSearch({
+        keyword: e.target.value
+      }))
+      navigate("/search")
     }
-}
+  }
 
-React.useEffect(()=>{
+  React.useEffect(() => {
     setIsLogin(localStorage.getItem("token"))
     setRole(localStorage.getItem("role"))
-},[isLogin])
+  }, [isLogin])
 
 
   return (
     <Wrap>
       <div className="center">
-        
+
         <div class="leftMenu">
           <div className="logo">
-            <img 
+            <img
               src={Logo_Cat}
-              onClick={()=>{
+              onClick={() => {
                 navigate("/")
               }}
             />
             <p> BLANK </p>
-        </div>
-          
+          </div>
+
           <div className="search">
             <div className="hSearchIcon">
-              <HeaderSearchIcon/>
-              </div>
-            <input 
+              <HeaderSearchIcon />
+            </div>
+            <input
               type="text"
               placeholder="검색"
               ref={searchItem}
-              onKeyPress={(e) => { onKeyPress(e) }}/>
+              onKeyPress={(e) => { onKeyPress(e) }} />
           </div>
         </div>
 
-        {!isLogin ? 
-        <>
-          <Login />
-          <Signup />
-        </>
-        :
-        <div className="buttonArea">
-          <div>
-            <HeaderLogOut
-              onClick={()=>{
-                dispatch(LogOut())
-              }}/>
-            <HeaderLogOutIcon
-             onClick={() => { 
-              role === "admin" ? 
-              navigate("/admin") : 
-              navigate("/mypage"); }}
-            />
+        {!isLogin ?
+          <>
+            <Login />
+            <Signup />
+          </>
+          :
+          <div className="buttonArea">
+            <div>
+              <HeaderLogOut
+                onClick={() => {
+                  dispatch(LogOut())
+                }} />
+              <HeaderLogOutIcon
+                onClick={() => {
+                  role === "admin" ?
+                    navigate("/admin") :
+                    navigate("/mypage");
+                }}
+              />
+            </div>
           </div>
-        </div>
-        }        
+        }
       </div>
 
-
-
-
-      {/* <div className="header">
-        <div className="navBar">
-          <Logo onClick={() => {
-            navigate("/")
-          }}><img className="logoImg" src={Logo_Cat} /><div> BLANK</div></Logo>
-          <SearchInput
-            type="text"
-            placeholder="서울특별시 용산구, 42 디저트카페"
-            ref={searchItem}
-            onKeyPress={(e) => { onKeyPress(e) }}
-          />
-          <div>
-            {!isLogin ? (
-              <>
-                <Login />
-                <Signup />
-              </>
-
-            ) : (
-              <>
-                <h1 style={{
-                  color: "white",
-                  fontSize: "20px",
-                  cursor: "pointer"
-                }}
-                  onClick={() => { LogOutBtn(); }}
-                >logout</h1>
-                <CgLogOut className="logout"/> 로그아웃 아이콘 
-
-                <h1 style={{
-                  color: "white",
-                  fontSize: "20px",
-                  cursor: "pointer"
-                }}
-                  onClick={() => { role === "admin" ? navigate("/admin") : navigate("/mypage"); }}
-                >
-                  <FaUserEdit className="myPage" />
-                </h1>
-            <FaUserEdit/> 유저 아이콘 
-              </>
-            )}
-
-          </div>
-        </div>
-      </div>
-       */}
     </Wrap>
 
   )
@@ -173,7 +125,8 @@ align-items: center;
 
     img{
       width: 90px;
-      margin: 0 20px 0 0;
+      height: 92px;
+      margin: 32px 20px 0 0;
       cursor: pointer;
     }
 
