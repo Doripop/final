@@ -99,7 +99,7 @@ const Footer = styled.footer`
     flex-direction:row;
 
     & button {
-        width: 100px;
+        width: 110px;
         height: 50px;
         margin-right : 10px;
         border-radius :10px;

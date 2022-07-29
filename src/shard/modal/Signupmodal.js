@@ -236,7 +236,7 @@ const SignupModal = (props) => {
         <>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
-                    <section>
+                    <section style={{overflowY: "scroll"}}>
                         <div
                             onClick={close}
                             style={{ display: "flex", justifyContent: "flex-end" }}

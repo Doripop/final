@@ -44,7 +44,7 @@ const LoginModal = (props) => {
         window.location.href = Naver_AUTH_URL
     }
     //구글
-    const Google_AUTH_URL = ""
+    const Google_AUTH_URL = "https://kyuhong.shop/api/google/login"
     const google = () => {
         window.location.href = Google_AUTH_URL
     }
@@ -117,9 +117,10 @@ const LoginModal = (props) => {
                                 }}>
                                 <img
                                     style={{
-                                        width: "288px",
+                                        width: "300px",
                                         height: "50px",
-                                        marginLeft: "-5px"
+                                        marginLeft: "-11px",
+                                        borderRadius:"8px"
                                     }}
                                     src={kakaoImg} />
                             </AuthBtn>
@@ -130,9 +131,9 @@ const LoginModal = (props) => {
                                 }}>
                                 <img
                                     style={{
-                                        width: "288px",
+                                        width: "300px",
                                         height: "50px",
-                                        marginLeft: "-5px",
+                                        marginLeft: "-11px",
                                         borderRadius:"8px"
                                     }}
                                     src={naverImg} />
@@ -144,9 +145,9 @@ const LoginModal = (props) => {
                                 }}>
                                 <img
                                     style={{
-                                        width: "300px",
+                                        width: "310px",
                                         height: "50px",
-                                        marginLeft: "-12px",
+                                        marginLeft: "-16px",
                                        borderRadius:"20px"
                                     }}
                                     src={googleImg} />
@@ -169,6 +170,11 @@ const Header = styled.header`
     font-family: 'BMJUA';
     font-size: 50px;
     color: white;
+
+    & img {
+        width: 90px;
+        height: 90px;
+    }
 `;
 
 const Body = styled.body`
@@ -225,10 +231,10 @@ const Fbutton = styled.button`
 
 
 const AuthBtn = styled.button`
-    width : 290px;
+    width : 300px;
     height : 50px;
     background-color: transparent;
-    margin-bottom : 5px;
+    margin-bottom : 10px;
 `;
 
 export default LoginModal;

@@ -8,7 +8,6 @@ const CardList = () => {
     const city = useSelector((state) => state.AllSlice.MainReviewList);
     const citychange = useSelector((state) => state.AllSlice.city);
     const sort = useSelector((state) => state.AllSlice.sort);
-    console.log(sort)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
@@ -16,7 +15,7 @@ const CardList = () => {
             {city : citychange,
             sort: sort}))
     },[citychange, dispatch, sort])
-   console.log(city)
+ 
     
     
     return (

@@ -22,7 +22,6 @@ const CafeReg = () => {
     React.useEffect(()=>{
       setIsLogin(localStorage?.getItem("token")) 
     },[localStorage.getItem("token")])
-    console.log(isLogin)
     return (
         <>
           <CafeBtn onClick={()=>{

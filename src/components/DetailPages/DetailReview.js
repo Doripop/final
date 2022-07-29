@@ -254,13 +254,16 @@ const DetailReview = () => {
 
                              좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
+                        <Tag>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
+                        </Tag>
                         <ReviewContext>
                             {item.contents}
                         </ReviewContext>
                         <ReviewCommentGroup>
+                        {comment != item.commentList ? (
                             <details>
-                                <summary>댓글 모두 보기</summary>
+                                <summary>댓글 {item.commentCnt}개 모두 보기</summary>
                                 <ReviewComUp>
                                     {item.commentList.map((comment, i) => (
                                         <>
@@ -268,7 +271,7 @@ const DetailReview = () => {
                                                 {userName === comment.nickname ? (
                                                     <span style={{ display: "flex" }}>
                                                         <ReviewProfile src={comment.profileimg} />
-                                                        {comment.nickname} : {comment.contents}
+                                                        {comment.nickname}{comment.contents}
                                                         <Btn style={{ display: click }} onClick={() => { clickevent() }}>🖊</Btn>
                                                         <input
                                                             onChange={(e) => {
@@ -305,6 +308,7 @@ const DetailReview = () => {
                                     ))}
                                 </ReviewComUp>
                             </details>
+                        ):(<summary></summary>)}
                         </ReviewCommentGroup>
                         <ReviewDate>
                             {item.modifiedAt}
@@ -319,6 +323,25 @@ const DetailReview = () => {
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
+                        <ReviewComUp2>
+                            {item.commentList.map((comment, i) => (
+                                <>
+                                    <div>
+                                        {userName === comment.nickname ? (
+                                            <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
+                                                <ReviewProfile2 src={comment.profileimg} />
+                                                        {comment.nickname}
+                                                        {comment.contents}
+                                            </span>) : (
+                                            <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
+                                            </span>
+
+                                        )
+                                        }
+                                    </div>
+                                </>
+                            ))}
+                        </ReviewComUp2>
                     </Review>
                 </>
             ))}
@@ -348,18 +371,18 @@ const Alignment = styled.div`
 `;
 
 const AlignBtn = styled.button`
-    width: 100px;
-    height: 40px;
-    font-size: 20px;
-    padding: 10px;
-    margin-right: 30px;
+    width: 80px;
+    height: 15px;
+    font-size: 15px;
+    margin-right: 15px;
     border: none;
     background-color: transparent;
+    font-family: 'Arita-dotum-Medium';
 
-    &:hover {
+    :hover {
         cursor: pointer;
         font-weight: bold;
-        border-bottom: 1px solid black;
+        text-decoration: underline;
     }
 `;
 
@@ -438,16 +461,22 @@ const ReviewUserInfo = styled.div`
     flex-direction: row;
 `;
 
+const Tag = styled.div`
+    position: relative;
+    margin-left: 18px;
+    width: 500px;
+`;
+
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    margin-left: 18px;
-    // display: contents;
+    margin-left: 10px;
+    padding: -10px;
+    display: contents;
 `;
 
 const ReviewContext = styled.div`
     width: 480px;
-    margin-top: 10px;
     margin-top: 10px;
 `;
 
@@ -551,4 +580,47 @@ const Btn = styled.button`
         color: red;
     }
 `;
+
+const ReviewComUp2 = styled.div`
+    width: 500px;
+    margin-left: 20px;
+    line-height: 2;
+    color: gray;
+
+    input {
+        position: relative;
+        margin-left: 5px;
+        background-repeat: no-repeat;
+        border: 1px solid #ccc;
+
+        :focus {
+            border-color:#0982f0;
+            outline: none;
+        }
+    }
+`;
+
+const ReviewProfile2 = styled.img`
+    width : 30px;
+    height : 30px;
+    border-radius : 20px;
+    margin: 3px;
+`;
+
+const Btn2 = styled.button`
+    position: relative;
+    /* display: flex; */
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content:center;
+
+    : hover {
+        color: red;
+    }
+`;
+
 export default DetailReview;

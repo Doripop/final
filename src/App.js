@@ -41,7 +41,7 @@ function App() {
         <Route path="/Ouath" element={<GoogleLogin />} />
 
       </Routes>
-
+      <div><Footer/></div>
     {/* <Footer/>  풋터 메인페이지에만 있음, 메인페이지 수정 예정 */}
 
 </>
