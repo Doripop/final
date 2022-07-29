@@ -72,10 +72,12 @@ const Header = () => {
           <div className="buttonArea">
             <div>
               <HeaderLogOut
+                style={{cursor: "pointer"}}
                 onClick={() => {
                   dispatch(LogOut())
                 }} />
               <HeaderLogOutIcon
+                style={{cursor: "pointer"}}
                 onClick={() => {
                   role === "admin" ?
                     navigate("/admin") :

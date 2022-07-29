@@ -84,8 +84,10 @@ const Mypage = () => {
                             <span className="imgBoxSpan">로고 수정하기
                                 <span className="imgBoxSpanChild">
                                     <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
-                                    <input type="file" style={{ display: unclick, marginLeft: "10px" }}/>
-                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                    <label for="input-file" className="input-file-button">
+                                        <RiPencilFill className="ripen" style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                    </label>
+                                    <input type="file" id="input-file" style={{ display: "none" }}/>
                                 </span>
                             </span>
                         </>
@@ -95,8 +97,10 @@ const Mypage = () => {
                             <span className="imgBoxSpan">프로필 수정하기
                                 <span className="imgBoxSpanChild">
                                     <RiPencilFill className="ripen" style={{ display: click }} onClick={() => { clickevent() }}/>
-                                    <input type="file" style={{ display: unclick }}/>
-                                    <RiPencilFill className="ripen"  style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                    <label for="input-file" className="input-file-button">
+                                        <RiPencilFill className="ripen" style={{ display: unclick }} onClick={() => { unclickevent() }}/>
+                                    </label>
+                                    <input type="file" id="input-file" style={{ display: "none" }}/>
                                 </span>
                             </span>
                         </>
