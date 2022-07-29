@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import '../../css/partCss/UserPage.css';
@@ -15,6 +15,8 @@ import MyReview from "./MyReview";
 import { useNavigate } from "react-router-dom";
 import ScrollBtn from "../ScrollBtn";
 import OwnerShutDown from "./OwnerShutDown";
+import axios from "axios";
+import { instance } from "../../shard/axios";
 
 
 
@@ -25,7 +27,7 @@ const Mypage = () => {
     const dispatch = useDispatch()
     const [role, setRole] = useState("")
     const [nickname, setNickname] = useState("")
-    const [isLogin, setLogin] = useState("")
+   
     React.useEffect(() => {
         setRole(localStorage.getItem("role"));
         setNickname(localStorage.getItem("nicname"));
@@ -37,13 +39,15 @@ const Mypage = () => {
     const LogOutBtn = () => {
         dispatch(LogOut())
     }
-    console.log(isLogin)
+    // console.log(isLogin)
 
     const [OwnerSubMenu, setOwnerSubMenu] = useState("A");
     const [userSubMenu, setUserSubMenu] = useState("A");
-
-    const MyprofileImg = localStorage?.getItem("profileimg")
-
+    // const MyprofileImg = localStorage?.getItem("profileimg")
+    const [MyprofileImg, setMyprofileImg] = useState("")
+    React.useEffect(()=>{
+        setMyprofileImg(localStorage?.getItem("profileimg"))  
+    },[localStorage?.getItem("profileimg")])
     const [unclick, setUnclick] = useState("none")
     const [click, setClick] = useState("flex")
     const clickevent = () => {
@@ -53,6 +57,36 @@ const Mypage = () => {
     const unclickevent = () => {
         setClick("flex")
         setUnclick("none")
+    }
+    
+   
+    const ImgUpload = async (e) =>{
+        const formData = new FormData();
+        try{
+            if(!e.target.files[0]){
+                formData.append("file", localStorage.getItem("profileimg"))
+            }else{
+                formData.append("file", e.target.files[0])
+            }
+           if(role==="user"){
+            const {data} = await instance.patch("api/user/profile", formData,{headers: {
+                "Content-Type": "multipart/form-data"
+            }})
+            localStorage.setItem("profileimg", data.data)
+            setMyprofileImg(data.data)
+           }else if(role === "owner"){
+            const {data} = await instance.patch("api/owner/logo", formData,{headers: {
+                "Content-Type": "multipart/form-data"
+            }})
+            localStorage.setItem("profileimg", data.data)
+            setMyprofileImg(data.data)
+           }else{
+            alert("유효하지 않은 요청입니다.")
+           }
+            
+        }catch(error){
+            console.log(error)
+        }
     }
 
     return (
@@ -87,7 +121,11 @@ const Mypage = () => {
                                     <label for="input-file" className="input-file-button">
                                         <RiPencilFill className="ripen" style={{ display: unclick }} onClick={() => { unclickevent() }}/>
                                     </label>
-                                    <input type="file" id="input-file" style={{ display: "none" }}/>
+                                    <input 
+                                    onChange={(e)=>{
+                                        ImgUpload(e)
+                                    }} 
+                                    type="file" id="input-file" style={{ display: "none" }}/>
                                 </span>
                             </span>
                         </>
@@ -100,7 +138,14 @@ const Mypage = () => {
                                     <label for="input-file" className="input-file-button">
                                         <RiPencilFill className="ripen" style={{ display: unclick }} onClick={() => { unclickevent() }}/>
                                     </label>
-                                    <input type="file" id="input-file" style={{ display: "none" }}/>
+                                    <input
+                                    onChange={(e)=>{
+                                        ImgUpload(e)
+                                    }} 
+                                    type="file" 
+                                    id="input-file" 
+                                    style={{ display: "none" }}
+                                    />
                                 </span>
                             </span>
                         </>
