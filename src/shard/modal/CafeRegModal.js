@@ -133,7 +133,7 @@ const CafeReg = (props) => {
               onClick={close}
               style={{display:"flex",justifyContent:"flex-end"}}
               >
-                  <span style={{fontSize:"25px", cursor: "pointer", padding: 15}}><AiOutlineClose /></span>
+                  <span style={{fontSize:"25px", cursor: "pointer", padding: 15, color: "black"}}><AiOutlineClose /></span>
               </div>
              
               <Header>
