@@ -15,16 +15,30 @@ const DetailReview = () => {
 
     const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
-    // console.log(AllLikeList)
+    console.log(AllLikeList)
     console.log(review, "지금필요한게 이거")
 
+
+    const LikeIndex = review?.map((item,i)=>{
+        return AllLikeList?.findIndex((list,k)=>{
+           return item.postid === list.postid
+        })
+        
+    })
+    console.log(LikeIndex)
+    // const LikeIndex = review.findIndex((list,i)=>{
+    //     AllLikeList.map((item,i)=>{
+    //         return list.postid === item.postid
+    //     })
+    // })
+    
 
     const dispatch = useDispatch()
 
 
 
     //정렬하기
-    const [sort, setSort] = useState("")
+    const [sort, setSort] = useState("star")
 
 
 
@@ -48,7 +62,7 @@ const DetailReview = () => {
         }))
         setLike(AllLikeList)
 
-    }, [dispatch, Like, sort])
+    }, [dispatch, Like, sort, parm.id])
 
 
 
@@ -118,14 +132,18 @@ const DetailReview = () => {
     //좋아요 기능
 
     const LikeClick = async (postid) => {
-        console.log()
-
+        console.log(postid)
+        const A = AllLikeList.findIndex((list)=>{
+            return list.postid === postid.postid
+        })
+        console.log(A)
         if (!isLogin) {
             return window.alert("로그인 후 이용해주세요!")
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === false) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === false) {
             console.log("실행")
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(LikeList({
                 postid: postid.postid,
                 like: data.result
@@ -135,9 +153,10 @@ const DetailReview = () => {
                 postid: postid.postid
             }))
             //test
-        } else if (AllLikeList[postid.i]?.postid === postid.postid &&
-            AllLikeList[postid.i]?.like === true) {
+        } else if (AllLikeList[A]?.postid === postid.postid &&
+            AllLikeList[A]?.like === true) {
             const { data } = await instance.post(`api/${postid.postid}/like`)
+            console.log(data)
             dispatch(UnLikeList({
                 postid: postid.postid,
                 like: data.result
@@ -220,26 +239,31 @@ const DetailReview = () => {
                             <span
                                 onClick={() => {
                                     LikeClick({
-                                        postid: item.postid,
-                                        i: i
+                                        postid: review[i]?.postid,
+                                        i: i,
+                                        
                                     })
                                 }}
-                            >{AllLikeList[i]?.postid === item.postid &&
-                                AllLikeList[i]?.like ?
+                            >{AllLikeList[LikeIndex[i]]?.postid === review[i]?.postid &&
+                                AllLikeList[LikeIndex[i]]?.like ?
                                 (<span
                                     style={{ color: "red" }}
                                 > ❤ </span>)
-                                : (<span> 🤍 </span>)}</span>
+                                : (<span> 🤍 </span>)
+                                }</span>
 
                              좋아요 {item.likecnt}개</ReviewStarLove>
                         <ReviewUserInfo>{item.nickname}</ReviewUserInfo>
+                        <Tag>
                         {item.hashtagList.map((t, i) => (<ReviewTag>{t.hashtag}</ReviewTag>))}
+                        </Tag>
                         <ReviewContext>
                             {item.contents}
                         </ReviewContext>
                         <ReviewCommentGroup>
+                        {comment != item.commentList ? (
                             <details>
-                                <summary>댓글 모두 보기</summary>
+                                <summary>댓글 {item.commentCnt}개 모두 보기</summary>
                                 <ReviewComUp>
                                     {item.commentList.map((comment, i) => (
                                         <>
@@ -247,7 +271,7 @@ const DetailReview = () => {
                                                 {userName === comment.nickname ? (
                                                     <span style={{ display: "flex" }}>
                                                         <ReviewProfile src={comment.profileimg} />
-                                                        {comment.nickname} : {comment.contents}
+                                                        {comment.nickname}{comment.contents}
                                                         <Btn style={{ display: click }} onClick={() => { clickevent() }}>🖊</Btn>
                                                         <input
                                                             onChange={(e) => {
@@ -274,7 +298,7 @@ const DetailReview = () => {
                                                             }}
                                                         >⨉</Btn>
                                                     </span>) : (
-                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{item.nickname} : {comment.contents}{comment.modifiedAt}
+                                                    <span style={{ display: "flex" }}><ReviewProfile src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
                                                     </span>
 
                                                 )
@@ -284,6 +308,7 @@ const DetailReview = () => {
                                     ))}
                                 </ReviewComUp>
                             </details>
+                        ):(<summary></summary>)}
                         </ReviewCommentGroup>
                         <ReviewDate>
                             {item.modifiedAt}
@@ -298,6 +323,25 @@ const DetailReview = () => {
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
+                        <ReviewComUp2>
+                            {item.commentList.map((comment, i) => (
+                                <>
+                                    <div>
+                                        {userName === comment.nickname ? (
+                                            <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
+                                                <ReviewProfile2 src={comment.profileimg} />
+                                                        {comment.nickname}
+                                                        {comment.contents}
+                                            </span>) : (
+                                            <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
+                                            </span>
+
+                                        )
+                                        }
+                                    </div>
+                                </>
+                            ))}
+                        </ReviewComUp2>
                     </Review>
                 </>
             ))}
@@ -327,18 +371,18 @@ const Alignment = styled.div`
 `;
 
 const AlignBtn = styled.button`
-    width: 100px;
-    height: 40px;
-    font-size: 20px;
-    padding: 10px;
-    margin-right: 30px;
+    width: 80px;
+    height: 15px;
+    font-size: 15px;
+    margin-right: 15px;
     border: none;
     background-color: transparent;
+    font-family: 'Arita-dotum-Medium';
 
-    &:hover {
+    :hover {
         cursor: pointer;
         font-weight: bold;
-        border-bottom: 1px solid black;
+        text-decoration: underline;
     }
 `;
 
@@ -417,16 +461,22 @@ const ReviewUserInfo = styled.div`
     flex-direction: row;
 `;
 
+const Tag = styled.div`
+    position: relative;
+    margin-left: 18px;
+    width: 500px;
+`;
+
 const ReviewTag = styled.div`
     width: 500px;
     height: 20px;
-    // margin-left: 18px;
+    margin-left: 10px;
+    padding: -10px;
     display: contents;
 `;
 
 const ReviewContext = styled.div`
     width: 480px;
-    margin-top: 10px;
     margin-top: 10px;
 `;
 
@@ -530,4 +580,47 @@ const Btn = styled.button`
         color: red;
     }
 `;
+
+const ReviewComUp2 = styled.div`
+    width: 500px;
+    margin-left: 20px;
+    line-height: 2;
+    color: gray;
+
+    input {
+        position: relative;
+        margin-left: 5px;
+        background-repeat: no-repeat;
+        border: 1px solid #ccc;
+
+        :focus {
+            border-color:#0982f0;
+            outline: none;
+        }
+    }
+`;
+
+const ReviewProfile2 = styled.img`
+    width : 30px;
+    height : 30px;
+    border-radius : 20px;
+    margin: 3px;
+`;
+
+const Btn2 = styled.button`
+    position: relative;
+    /* display: flex; */
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content:center;
+
+    : hover {
+        color: red;
+    }
+`;
+
 export default DetailReview;

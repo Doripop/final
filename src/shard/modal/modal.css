@@ -17,14 +17,13 @@
 }
 
 .modal > section {
-    width: 400px;
-    height: 580px;
+    width: 375px;
+    height: 800px;
     max-width: 450px;
     margin: 0 auto;
     border-radius: 0.3rem;
     background-color: #fff;
     animation: modal-show 0.1s;
-    overflow: scroll;
 }
 
 .modal > section > footer {

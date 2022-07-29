@@ -201,9 +201,9 @@ export const ReviewReg = createAsyncThunk(
 export const CafeSearch = createAsyncThunk(
     'AllSlice/CafeSearchInfo',
     async (searchName, thunkAPI) => {
-        console.log(searchName, "아아아");
+        console.log(searchName);
         try {
-            const { data } = await instance.get(`/api/search/${searchName.keyword}`);
+            const { data } = await axios.post("https://kyuhong.shop/api/search" , searchName);
             console.log(data);
             // dispacth(listLoad(data));
             return data

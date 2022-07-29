@@ -20,12 +20,11 @@
 }
 
 .imgBoxSpan{
-    display: flex;
+    display: -webkit-box;
     align-items: center;
-    /* position: relative;
-    margin-left: 60px; */
     margin-bottom: 10px;
     flex-direction: column;
+    margin-left: 60px;
 }
 
 .imgBoxSpanChild {
