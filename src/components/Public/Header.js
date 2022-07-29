@@ -126,8 +126,7 @@ align-items: center;
     img{
       width: 90px;
       height: 92px;
-      margin-top: 33px;
-      margin: 0 20px 0 0;
+      margin: 32px 20px 0 0;
       cursor: pointer;
     }
 
