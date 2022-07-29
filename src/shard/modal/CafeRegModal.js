@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DaumPostCode from "react-daum-postcode"
 import { useDispatch } from "react-redux"
 import { instance } from "../axios"
-import {AiOutlineClose} from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
 
 const CafeReg = (props) => {
   //modal
@@ -66,16 +66,16 @@ const CafeReg = (props) => {
         setLatitude(lat);
         setLongitude(lon);
       });
-      console.log(latitude, longitude, address, zone, query)
+    console.log(latitude, longitude, address, zone, query)
   };
-  
+
   // window.setTimeout(() => {
   //   console.log(Detail_Address.current.value)
   //   console.log(latitude, longitude, address, zone, query)
   // }, 6000)
 
   const CafeAdd = async () => {
-    if (role== "user" && !Cafe_Name.current.value) {
+    if (role == "user" && !Cafe_Name.current.value) {
       return alert("카페명을 입력해주세요")
     } else if (!address || !zone) {
       return alert("우편주소를 입력해주세요")
@@ -83,7 +83,7 @@ const CafeReg = (props) => {
       return alert("상세주소를 입력해주세요")
     } else {
       try {
-        if(role == "user") {
+        if (role == "user") {
           const { data } = await instance.post("api/user/regist-cafe", {
             cafename: Cafe_Name.current.value,
             address: query,
@@ -104,14 +104,14 @@ const CafeReg = (props) => {
             latitude: latitude,
             longitude: longitude,
             // oldAddress: query
-            
+
           });
           alert("등록이 완료되었습니다!")
           // console.log(query);
           // console.log(data);
         }
         // console.log(data);
-        
+
       } catch (error) {
         console.log(error);
         window.alert(error)
@@ -129,28 +129,37 @@ const CafeReg = (props) => {
         {open ? (
           <>
             <section>
-              <div 
-              onClick={close}
-              style={{display:"flex",justifyContent:"flex-end"}}
+              <div
+                onClick={close}
+                style={{ display: "flex", justifyContent: "flex-end" }}
               >
-                  <span style={{fontSize:"25px", cursor: "pointer", padding: 15, color: "black"}}><AiOutlineClose /></span>
+                <span style={{ fontSize: "25px", cursor: "pointer", padding: 15, color: "black" }}><AiOutlineClose /></span>
               </div>
-             
+
               <Header>
                 {header}
               </Header>
               <Body>
                 {role == "user" ? (
-            <div>
-              <h1>원하시는 카페를 신청해주세요!</h1>
-              상호명
-            <input ref={Cafe_Name} type="text" placeholder="카페이름" />
-            </div>
-            ):(
-              <div style={{ fontFamily: 'Arita-dotum-Medium' }}>
-                 등록하신 카페명 : {cafename}
-              </div>
-              )}
+                  <div>
+                    <h1>원하시는 카페를 신청해주세요!</h1>
+                    <div
+                    style={{
+                      display:"flex",
+                      flexDirection:"column"
+                    }}>
+                      <h3>
+                        상호명
+                      </h3>
+                      <AdressBox ref={Cafe_Name} type="text" placeholder="카페이름 + 지점명" />
+                    </div>
+
+                  </div>
+                ) : (
+                  <div style={{ fontFamily: 'Arita-dotum-Medium' }}>
+                    등록하신 카페명 : {cafename}
+                  </div>
+                )}
                 <h3>우편번호 찾기</h3>
                 <div style={{ display: "flex", fontFamily: 'Arita-dotum-Medium' }}>
                   <AdressBox
@@ -182,16 +191,16 @@ const CafeReg = (props) => {
                 </div>
               </Body>
               <BtnBox>
-                 <BtnAdd
-                onClick={() => { 
-                  CafeAdd();
-                }}
-              >카페신청하기
-              </BtnAdd>
+                <BtnAdd
+                  onClick={() => {
+                    CafeAdd();
+                  }}
+                >카페신청하기
+                </BtnAdd>
               </BtnBox>
-                
-            
-             
+
+
+
             </section>
           </>
         ) : null}
