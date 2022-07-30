@@ -29,7 +29,8 @@ function App() {
 
   return (
 <>
-      <div><Header/></div>
+      <div
+      id = "app"><Header/></div>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />

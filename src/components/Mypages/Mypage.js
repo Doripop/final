@@ -68,21 +68,13 @@ const Mypage = () => {
             }else{
                 formData.append("file", e.target.files[0])
             }
-           if(role==="user"){
+       
             const {data} = await instance.patch("api/user/profile", formData,{headers: {
                 "Content-Type": "multipart/form-data"
             }})
             localStorage.setItem("profileimg", data.data)
             setMyprofileImg(data.data)
-           }else if(role === "owner"){
-            const {data} = await instance.patch("api/owner/logo", formData,{headers: {
-                "Content-Type": "multipart/form-data"
-            }})
-            localStorage.setItem("profileimg", data.data)
-            setMyprofileImg(data.data)
-           }else{
-            alert("유효하지 않은 요청입니다.")
-           }
+          
             
         }catch(error){
             console.log(error)
