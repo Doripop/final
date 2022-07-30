@@ -20,7 +20,7 @@ const DetailBanner = (images) => {
 
   const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
   console.log(list?.data.imageList)
-
+  console.log(list)
 
   const settings = {
     infinite: true,
@@ -48,6 +48,23 @@ const DetailBanner = (images) => {
     <StyledSlider {...settings}>
         <>
           <div>
+
+          {/* 이부분에 정보  */}
+          <div style={{
+            display:"flex",
+            flexDirection:"column"
+          }}>
+            별점 : {list?.data.avgstar}
+            카페이름 : {list?.data.cafename}
+            카페오픈시간 : {list?.data.opentime}
+            카페닫는시간 : {list?.data.closetime}
+            카페로고이미지 :{list?.data.logoimg}
+            reviews : {list?.data.postCnt}
+          </div>
+
+
+
+
           {list?.data.imageList.map((item, i) => (
             <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
             ))}
