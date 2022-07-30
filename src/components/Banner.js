@@ -21,32 +21,32 @@ const Banner = () => {
     };
 
     return (
+
         <StyledSlider {...settings}>
-            <div><img width={'1400px'} height={'500px'} src={BannerImg} alt='slider' /></div>
-            <div><img width={'1400px'} height={'500px'} src={BannerImg2} alt='slider' /></div>
-        </StyledSlider>
+            <div>
+              <img src={BannerImg} alt='slider' />
+            </div>
+            <div>
+              <img src={BannerImg2} alt='slider' />
+            </div>
+        </StyledSlider> 
       );
     }
 
 const StyledSlider = styled(Slider)`
-   //슬라이드 컨테이너 영역
+  //  //슬라이드 컨테이너 영역
+  all: unset;
    position: relative;
-   height: 500px; 
-   width: 1400px;
-   margin-bottom: 40px;
+   height: 700px;  
    box-sizing: border-box;
-
+   
   .slick-list {  //슬라이드 스크린
-    max-width: 1400px;
-    min-width: 500px;
-    margin-left: 120px;
-    background-size: 50% cover;
-    background-repeat: no-repeat;
+
   }
 
   .slick-slide div { //슬라이더  컨텐츠
     cursor: pointer;
-    outline: none;
+    // outline: none;
   }
 `;
 

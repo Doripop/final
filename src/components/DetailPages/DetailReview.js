@@ -264,6 +264,9 @@ const DetailReview = () => {
                         {comment != item.commentList ? (
                             <details>
                                 <summary>댓글 {item.commentCnt}개 모두 보기</summary>
+                                <ReviewDate>
+                                    {item.modifiedAt}
+                                </ReviewDate>
                                 <ReviewComUp>
                                     {item.commentList.map((comment, i) => (
                                         <>
@@ -307,13 +310,10 @@ const DetailReview = () => {
                                         </>
                                     ))}
                                 </ReviewComUp>
+                               
                             </details>
                         ):(<summary></summary>)}
-                        </ReviewCommentGroup>
-                        <ReviewDate>
-                            {item.modifiedAt}
-                        </ReviewDate>
-                        <ReviewComment>
+                         <ReviewComment>
                             <input
                                 type="text"
                                 onChange={(e) => {
@@ -323,7 +323,16 @@ const DetailReview = () => {
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
-                        <ReviewComUp2>
+                        </ReviewCommentGroup>
+
+
+
+
+                       
+                        
+
+                        
+                        {/* <ReviewComUp2>
                             {item.commentList.map((comment, i) => (
                                 <>
                                     <div>
@@ -341,7 +350,9 @@ const DetailReview = () => {
                                     </div>
                                 </>
                             ))}
-                        </ReviewComUp2>
+                        </ReviewComUp2> */}
+
+
                     </Review>
                 </>
             ))}

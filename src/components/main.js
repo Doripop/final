@@ -7,23 +7,26 @@ import CardList from "./CardList";
 import ScrollBtn from "./ScrollBtn";
 import ReviewBtn from "./ReviewBtn";
 
-
+import "../css/main/main.css"
 
 const Main = () => {
 
-   
     return (
         <>
-            <div>
-                <Banner/>
+            <div className="main">
+                <div className="banner">
+                    <Banner/>
+                </div>
+             
+                <div className="element">                
                 <NavBtn/>
                 <CardList/>
-                <ReviewBtn/>
+                {/* <ReviewBtn/> */}
                 <ScrollBtn/>
+                </div>
             </div>
         </>
     )
 }
-
 
 export default Main;

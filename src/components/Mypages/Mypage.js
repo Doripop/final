@@ -229,7 +229,7 @@ const Mypage = () => {
                 {/* 컴포넌트 박아넣기 */}
 
             </div>
-            <ScrollBtn />
+            {/* <ScrollBtn /> */}
         </>
     )
 }

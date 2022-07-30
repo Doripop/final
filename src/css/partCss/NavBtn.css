@@ -1,12 +1,26 @@
 .container{
-    width: 1180px;
-    margin: 0 auto;
+    width: 1200px;
+    /* margin: 0 auto; */
     display: flex;
 	flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-        font-family: 'Arita-dotum-Medium';
+    font-family: 'Arita-dotum-Medium';
+}
+
+.nav-p-navSelect{
+    width: 340px;
+    margin-left: 50px;
+    display: flex;
+}
+
+.nav-p-navSelect > p {
+    margin: 0 15px 0 0;
+    color : #19221f; 
+    font-family : "Arita-dotum-Bold"; 
+    font-size : 25px;
+    margin-right: 15px;
 }
 
 .navDiv{
@@ -16,64 +30,74 @@
     flex-direction: row;
     flex-direction: column;
 }
-.navSpan {
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-}
 
 .RegiBtn {
-    width: 100%;
     position: relative;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
     font-family: 'Arita-dotum-Medium';
+    margin-left: auto;
+    margin-top: 75px;
+    margin-right: 60px;
+    justify-content: flex-end;
+    width: 1200px;
 }
 
 .navSelect {
-    width: 100px;
+    width: 130px;
     height: 30px;
-    border: 1px solid #3FC275;
-    color: black;
-
+    border: 1px solid #3FC275; 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+    border-radius: 3px;
+    color : #3FC275;  
+    font-family : 'Arita-dotum-SemiBold';
+    font-size : 16px;
     position: relative;
-    font-family: 'Arita-dotum-Medium';
+}
+
+.navSelect > option {
+    color : #19221f;  
+    font-family : 'Arita-dotum-SemiBold';
+    font-size : 16px;
 }
 
 .navBomMenu {
-    width: 100%;
-    padding: 0 auto;
-    margin: 0 auto;
-
+    width: 1200px;
+    height: 25px;
+    margin: 30px auto 30px auto;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
+
+
 .navAli {
-    width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    margin-left: auto;
+    /* margin-right: 60px; */
 }
 
 .navAli > button {
+    font-size: 15px;
     position: relative;
     outline: none;
     margin-left:3px;
-    padding: 0 auto;
     margin: 0px 2px 0px 0px;
     font-family: 'Arita-dotum-Medium';
     background:transparent;
     border: none;
-
     cursor: pointer;
 
+}
+
+
+.navAli > button:checked {
+    border-bottom-color: #19221f;
 }
 
 .navAli > button:hover {
     text-decoration: underline;
 }
+

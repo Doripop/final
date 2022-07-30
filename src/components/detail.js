@@ -51,7 +51,7 @@ const Detail = () => {
             }
             </div>
             <ReviewBtn/>
-            <ScrollBtn/>
+            {/* <ScrollBtn/> */}
         </>
     );
 }
