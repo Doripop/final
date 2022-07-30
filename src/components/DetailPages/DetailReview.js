@@ -313,6 +313,7 @@ const DetailReview = () => {
                                
                             </details>
                         ):(<summary></summary>)}
+                        </ReviewCommentGroup>
                          <ReviewComment>
                             <input
                                 type="text"
@@ -323,36 +324,6 @@ const DetailReview = () => {
                                 onKeyPress={(e) => { keyPress(e, item.postid); }}
                             />
                         </ReviewComment>
-                        </ReviewCommentGroup>
-
-
-
-
-                       
-                        
-
-                        
-                        {/* <ReviewComUp2>
-                            {item.commentList.map((comment, i) => (
-                                <>
-                                    <div>
-                                        {userName === comment.nickname ? (
-                                            <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
-                                                <ReviewProfile2 src={comment.profileimg} />
-                                                        {comment.nickname}
-                                                        {comment.contents}
-                                            </span>) : (
-                                            <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
-                                            </span>
-
-                                        )
-                                        }
-                                    </div>
-                                </>
-                            ))}
-                        </ReviewComUp2> */}
-
-
                     </Review>
                 </>
             ))}
@@ -399,10 +370,10 @@ const AlignBtn = styled.button`
 
 const Review = styled.div`
     position: relative;
+    margin: 29px auto 20px auto;
 
-    margin: 30px auto 0px auto;
-
-    border: 1px solid black;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
 
     display: flex;
     flex-direction: column;
@@ -508,6 +479,12 @@ const ReviewCommentGroup = styled.div`
         margin-left: 20px;
         cursor: pointer;
         list-style: none;
+        font-family: 'Arita-dotum4.0(OTF)';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 15px;
     }
 `;
 
@@ -522,6 +499,7 @@ const ReviewComUp = styled.div`
         margin-left: 5px;
         background-repeat: no-repeat;
         border: 1px solid #ccc;
+        
 
         :focus {
             border-color:#0982f0;
@@ -536,22 +514,29 @@ const ReviewDate = styled.div`
     line-height: 2;
     margin-left: 20px;
     color: gray;
+    margin-top: 15px;
+    font-family: 'Arita-dotum4.0(OTF)';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
 `;
 
 const ReviewComment = styled.div`
     width: 500px;
-    height: 90px;
+    height: 60px;
 
-    line-height: 5.5;
+    line-height: 5;
+    border-radius: 0px 0px 5px 5px;
 
-    input {
-        width: 470px;
-        height: 30px;
+    & input {
+        width: 488px;
+        height: 60px;
         margin-top: 12px;
-        margin-left: 10px;
-        background-repeat: no-repeat;
         border: 1px solid #ccc;
+        background-repeat: no-repeat;
         padding: 5px 5px;
+        border-radius: 0px 0px 5px 5px;
 
         :focus {
             border-color:#0982f0;
@@ -633,5 +618,25 @@ const Btn2 = styled.button`
         color: red;
     }
 `;
+
+{/* <ReviewComUp2>
+    {item.commentList.map((comment, i) => (
+        <>
+            <div>
+                {userName === comment.nickname ? (
+                    <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
+                        <ReviewProfile2 src={comment.profileimg} />
+                                {comment.nickname}
+                                {comment.contents}
+                    </span>) : (
+                    <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
+                    </span>
+
+                )
+                }
+            </div>
+        </>
+    ))}
+</ReviewComUp2> */}
 
 export default DetailReview;
