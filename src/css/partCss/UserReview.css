@@ -4,14 +4,16 @@
     justify-content: center;
     margin: 0 auto;
     margin-top: -440px;
+    
 }
 
 .reviewDiv {
     width: 500px;
 
-    margin: 30px auto 0px auto;
+    margin: 12% auto 0px auto;
 
-    border: 1px solid black;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
 
     display: flex;
     flex-direction: column;

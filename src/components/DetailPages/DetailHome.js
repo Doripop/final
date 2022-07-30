@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { BiMap } from 'react-icons/bi';
 import { AiFillSound } from 'react-icons/ai';
+import { MdDeliveryDining } from 'react-icons/md';
+import { GiShop } from 'react-icons/gi';
 
 import { useDispatch, useSelector } from "react-redux"
 
@@ -17,6 +19,10 @@ const DetailHome = () => {
     const dispatch = useDispatch()
     const parm = useParams()
     console.log(parm);
+
+    //카페정보
+    const OwnerInfoList = useSelector((state) => state.MypageSlice.OwnerInfo);
+    console.log(OwnerInfoList)
 
     const home = useSelector((state) => state.AllSlice.DetailCafeList);
     console.log(home)
@@ -51,6 +57,18 @@ const DetailHome = () => {
 
     return (
         <>
+            <HomeCafe>
+                {OwnerInfoList?.dilivery ?
+                (
+                    <h1>
+                        <MdDeliveryDining className="IconMD" /> 배달 가능 매장입니다!
+                    </h1>
+                ) : (
+                    <h1>
+                        <GiShop className="IconShop" /> 매장만 이용 가능합니다!
+                    </h1>
+                )}
+            </HomeCafe>
             <Home id={home?.cafeid}>
                 <h1>가게 설명</h1>
                 {home?.intro}
@@ -92,6 +110,44 @@ const DetailHome = () => {
     );
 }
 
+const HomeCafe = styled.div`
+    width: 960px;
+    height: 100%;
+
+    margin: 0px auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-family: 'Arita-dotum-Medium';
+    border-bottom: solid 1px #D9D9D9;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+
+    h1 {
+        margin-left: 33px;
+        color: #19221F;
+        font-family: 'Arita-dotum-Medium';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    & .IconMD{
+        color: #3FC275;
+    }
+
+    & .IconShop{
+        color: #3FC275;
+        font-size: 30px;
+    }
+
+`;
+
 const Home = styled.div`
     width: 960px;
     height: 100%;
@@ -103,10 +159,20 @@ const Home = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     font-family: 'Arita-dotum-Medium';
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
 
     h1 {
-        margin-left: 33px;
+        margin-left: 22px;
+        color: #19221F;
+        font-family: 'Arita-dotum-Medium';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
     }
 `;
 
@@ -121,12 +187,29 @@ const Home2 = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
 
     word-break:break-all;
     font-family: 'Arita-dotum-Medium';
+
+    & h1 {
+        color: #19221F;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    & p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #19221F;
+    }
+
     .sound {
-        color: #00E676;
+        color: #3FC275;
     }
 `;
 
@@ -140,11 +223,19 @@ const Home3 = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
-    border-bottom: solid 1px black;
+    color: #19221F;
+    border-bottom: solid 1px #D9D9D9;
 
     .map {
-        color: #00E676;
+        color: #3FC275;
+    }
+
+    & h1 {
+        color: #19221F;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
     }
 `;
 

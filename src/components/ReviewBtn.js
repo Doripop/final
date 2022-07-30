@@ -45,13 +45,13 @@ const Btn = styled.button`
   display:flex;
   justify-content:center;
   align-items:center;
-  width: 60px;
-  height: 60px;
+  width: 160px;
+  height: 160px;
   background-color: #fff;
   background-image: url(${Btn_Cat});
   background-repeat: no-repeat;
 	background-size: cover;
-  border: 1.5px solid #eee;
+  border: none;
   border-radius: 120px;
   font-size : 28px;
   padding:0px;
