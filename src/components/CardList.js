@@ -10,26 +10,37 @@ const CardList = () => {
     const sort = useSelector((state) => state.AllSlice.sort);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispatch(MainReview(
-            {city : citychange,
-            sort: sort}))
-    },[citychange, dispatch, sort])
- 
-    
-    
+            {
+                city: citychange,
+                sort: sort
+            }))
+    }, [citychange, dispatch, sort])
+
+    //가로 div 만들어서 붙여줌 3개 씩
+    var result = [];
+    for (let i = 0; i < city.length; i += 3) result.push(city.slice(i, i + 3));
+    console.log(result)
+
     return (
         <div className='containDiv'>
-            {city?.map((item,i)=>(
-            <>
-                <div className='contentDiv'
-                onClick={() => {navigate(`/detail/${city[i]?.cafeid}/review`)}}
-                key={item.postid}
-                >
-                    <img className='contentImg' src={item.img}/>
-                    <p className='contentTitle'>{item.cafename}</p>
-                </div>
-            </>
+
+            {result?.map((item, i) => (
+                <>
+                    {item?.map((post, j) => (
+                        <div className='contentDiv'
+                            onClick={() => { navigate(`/detail/${item[j]?.cafeid}/review`) }}
+                            key={post.postid}
+                        >
+                            <div className='contentImg' style={{ backgroundImage: `url(${post.img})`, backgroundSize: 'cover' }}>
+                                <div className='textAutoLayout'>
+                                    <p className='contentTitle'>{post.cafename}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </>
             ))}
         </div>
     );

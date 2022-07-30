@@ -95,7 +95,7 @@ const Admin = () => {
                     }
                 </div>
             </div>
-            <ScrollBtn/>
+            {/* <ScrollBtn/> */}
         </div>
     );
 }
