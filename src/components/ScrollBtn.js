@@ -25,7 +25,7 @@ const ScrollTopBtn = styled.button`
   position: fixed;
   width: 80px;
   height: 80px;
-  right: 380px;
+  right: 20.3%;
   bottom: 30px;
   background: url(.png);
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));

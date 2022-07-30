@@ -11,6 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  width: 100%;
+  overflow: hidden;
+}
+
 /* 아리따 돋움체 */
 @font-face {
   font-family: 'Arita-dotum-Medium';
@@ -18,6 +24,32 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+
+/* 아리따 볼드 */
+@font-face {
+  font-family: 'Arita-dotum-Bold';
+  src: url('./fonts/AritaDotumBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 아리따 세미볼드 */
+@font-face {
+  font-family: 'Arita-dotum-SemiBold';
+  src: url('./fonts/AritaDotumSemiBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 아리따 라이트 */
+@font-face {
+  font-family: 'Arita-dotum-Light';
+  src: url('./fonts/AritaDotumLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* 주아체 */
 @font-face {
   font-family: 'BMJUA';
@@ -25,3 +57,6 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+
+
+

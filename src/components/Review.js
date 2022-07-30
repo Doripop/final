@@ -45,7 +45,7 @@ const ReviewBtn = styled.button`
   border-radius: 5px;
   border: none;
   outline: none;
-  
+  margin-right:60px;
   cursor: pointer;
 `;
 
