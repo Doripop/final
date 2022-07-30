@@ -619,24 +619,5 @@ const Btn2 = styled.button`
     }
 `;
 
-{/* <ReviewComUp2>
-    {item.commentList.map((comment, i) => (
-        <>
-            <div>
-                {userName === comment.nickname ? (
-                    <span style={{ display: "flex", width:264, height: 39, fontSize: "14px"}}>
-                        <ReviewProfile2 src={comment.profileimg} />
-                                {comment.nickname}
-                                {comment.contents}
-                    </span>) : (
-                    <span style={{ display: "flex" }}><ReviewProfile2 src={comment.profileimg} />{comment.nickname} : {comment.contents}{comment.modifiedAt}
-                    </span>
-
-                )
-                }
-            </div>
-        </>
-    ))}
-</ReviewComUp2> */}
 
 export default DetailReview;
