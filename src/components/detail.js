@@ -20,13 +20,13 @@ const Detail = () => {
     },[dispatch, parm.id])
 
     const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
-    console.log(list?.data.imageList)
+    console.log(list?.imageList)
     console.log(parm["*"])
     const [Menu, setMenu] = useState(parm["*"]==="review"?"C":"A")
 
     return (
         <>
-            <DetailBanner image = {list?.data.imageList} />
+            <DetailBanner image = {list?.imageList} />
             <Container>
                 <div>
                     <CategoryBox

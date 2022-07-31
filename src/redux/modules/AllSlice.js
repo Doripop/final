@@ -210,6 +210,7 @@ export const CafeSearch = createAsyncThunk(
 export const DetailCafeBanner = createAsyncThunk(
     'AllSlice/DetailCafeBanner',
     async (cafeid) => {
+        console.log(cafeid)
         try {
             const { data } = await instance.get(`api/cafes/${cafeid}`)
 
@@ -295,7 +296,7 @@ const change = createSlice({
             state.DetailCafeMenuList = action.payload.data
         },
         [DetailCafeBanner.fulfilled]: (state, action) => {
-            state.DetailCafeBanner = action.payload
+            state.DetailCafeBanner = action.payload.data
         },
         //메인 리뷰 지역별 정렬
         [MainReview.fulfilled]: (state, action) => {

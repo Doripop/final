@@ -81,11 +81,30 @@ const ModifyCafe = () => {
                                     {OwnerInfoBenner?.cafename}
                                     </div>
                                     <div className='ceo-star-reviewCntDiv'>
-                                    <span>☆☆☆☆☆{OwnerInfoBenner?.avgstar}</span>
+                                    <span>
+                                        {/* ☆☆☆☆☆ */}
+                                        {Array.from({ length: 5 }, (items, i) => (
+                                        <>
+                                            <span
+                                                style={{
+                                                    fontSize: "30px",
+                                                    color: "white",
+                                                    cursor: "pointer"
+                                                }}
+                                            > {OwnerInfoBenner?.avgstar < i + 1 ? <span
+                                            style={{color:"red"}}>☆</span>: "★"}</span>
+                                        </>
+                                    ))}
+                                        
+                                        
+                                        {OwnerInfoBenner?.avgstar}</span>
                                     &nbsp;{OwnerInfoBenner?.postCnt}&nbsp;reviews
                                     </div>
                                     <div className='ceo-open-close-time'>
-                                    <span>영업시간</span>{/* &nbsp;AM {OwnerInfoBenner?.opentime.substring(0,2)}:{OwnerInfoBenner?.opentime.substring(2,4)}&nbsp;-&nbsp;PM {OwnerInfoBenner?.closetime.substring(0,2)}:{OwnerInfoBenner?.closetime.substring(2,4)} */}
+                                    <span>영업시간</span>
+                                    &nbsp;
+                                    AM {!OwnerInfoBenner?.opentime? "00" : OwnerInfoBenner?.opentime.slice(0,2)}:{!OwnerInfoBenner?.opentime? "00" : OwnerInfoBenner?.opentime.slice(0,4)}&nbsp;-&nbsp;
+                                    PM {!OwnerInfoBenner?.closetime? "00" : OwnerInfoBenner?.closetime.slice(0,2)}:{!OwnerInfoBenner?.closetime? "00" : OwnerInfoBenner?.closetime.slice(0,4)}
                                     </div>
                                 </div>
                                 </div>

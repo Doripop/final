@@ -1,5 +1,5 @@
 //메인페이지 배너
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -19,9 +19,12 @@ const DetailBanner = (images) => {
     dispatch(DetailCafeBanner(parm.id))
   }, [dispatch, parm.id])
 
+  console.log(parm)
   const list = useSelector((state) => state.AllSlice.DetailCafeBanner);
-  console.log(list?.data.imageList)
+  console.log(list?.imageList)
+  // console.log(list?.opentime, "오픈시간" , list?.opentime.split("").slice(0,2))
   console.log(list)
+  const defaultTime = [0,0,0,0]
 
   const settings = {
     slide: 'div',
@@ -42,25 +45,42 @@ const DetailBanner = (images) => {
         <div className='sizeDiv'>
               <div className='cafeInfo'>
                 <div className='logoDiv'>
-                  <img className='cafeLogo' src={list?.data.logoimg}></img>
+                  <img className='cafeLogo' src={list?.logoimg}></img>
                 </div>
                   <div className='cafeInfoDiv'>
                     <div className='cafeNameDiv'>
-                      {list?.data.cafename}
+                      {list?.cafename}
                     </div>
                     <div className='star-reviewCntDiv'>
-                      <span>☆☆☆☆☆{list?.data.avgstar}</span>
-                      &nbsp;{list?.data.postCnt}&nbsp;reviews
+                      <span>
+                   
+                        {Array.from({ length: 5 }, (items, i) => (
+                                        <>
+                                            <span
+                                                style={{
+                                                    fontSize: "30px",
+                                                    color: "white",
+                                                    cursor: "pointer"
+                                                }}
+                                            > {list?.avgstar < i + 1 ? <span>☆</span>: "★"}</span>
+                                        </>
+                                    ))}
+                      {list?.avgstar}
+                    </span>
+                       
+                      &nbsp;{list?.postCnt}&nbsp;reviews
                     </div>
                     <div className='open-close-time'>
-                      <span>영업시간</span>&nbsp;AM {list?.data.opentime.substring(0,2)}:{list?.data.opentime.substring(2,4)}&nbsp;-&nbsp;PM {list?.data.closetime.substring(0,2)}:{list?.data.closetime.substring(2,4)}
-                    </div>
+                      <span>영업시간</span>&nbsp;
+                      AM{!list?.opentime? "00" :list?.opentime.slice(0,2)}:{!list?.opentime? "00":list?.opentime.slice(2,4)}~
+                      PM{!list?.closetime?"00":list?.closetime.slice(0,2)}:{!list?.closetime?"00":list?.closetime.slice(2,4)}
+                    </div> 
                   </div>
                 </div>
 
                 {
         (() => {
-          if (list?.data.imageList.length === 0)
+          if (list?.imageList.length === 0)
             return (
               <>
               <div className='nullBanner'>
@@ -70,7 +90,7 @@ const DetailBanner = (images) => {
           else
             return (<>
                 <StyledSlider className='slider' {...settings}>
-                  {list?.data.imageList.map((item, i) => (
+                  {list?.imageList.map((item, i) => (
                     <>
                       <div className='imgItem'>
                         <img width={599} height={450} src={item.img} alt='slider' />
