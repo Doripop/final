@@ -75,11 +75,12 @@ const CoffeeMenu = styled.div`
     h1 {
         cursor: default;
         font-size: 20px;
+        color: 19221F;
     }
 
     .coffee {
         font-size: 24px;
-        color: #00E676;
+        color: #3FC275;
     }
 `;
 
@@ -123,11 +124,12 @@ const DessertMenu = styled.div`
     h1 {
         font-size: 20px;
         cursor: default;
+        color: 19221F;
     }
 
     .cake {
         font-size: 24px;
-        color: #00E676;
+        color: #3FC275;
     }
 `;
 

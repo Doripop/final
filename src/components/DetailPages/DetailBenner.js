@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../../css/partCss/Banner.css";
 import Button from '../Button';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,57 +24,71 @@ const DetailBanner = (images) => {
   console.log(list)
 
   const settings = {
+    slide: 'div',
     infinite: true,
-    speed: 1000,
-    slideToShow: 1,
-    slideToScroll: 1,
+    speed: 500,
+    slideToShow: 15,
+    variableWidth: true,
+    slideToScroll: 15,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 4000,
+    nextArrow: <Button place="right" margin="0 0 0 590px"/>,
+    prevArrow: <Button margin="0 0 0 -590px"/>,
   };
 
   return (
-    // <StyledSlider {...settings}>
-    //   {list?.data.imageList.map((item, i) => (
-    //     <>
-    //       <div>
-    //         {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
-    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-    //         <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-    //       </div>
-    //     </>
-    //   ))}
-    // </StyledSlider>
+    <>
+      <div className='bannerDiv'>
+        <div className='sizeDiv'>
+              <div className='cafeInfo'>
+                <div className='logoDiv'>
+                  <img className='cafeLogo' src={list?.data.logoimg}></img>
+                </div>
+                  <div className='cafeInfoDiv'>
+                    <div className='cafeNameDiv'>
+                      {list?.data.cafename}
+                    </div>
+                    <div className='star-reviewCntDiv'>
+                      <span>☆☆☆☆☆{list?.data.avgstar}</span>
+                      &nbsp;{list?.data.postCnt}&nbsp;reviews
+                    </div>
+                    <div className='open-close-time'>
+                      <span>영업시간</span>&nbsp;AM {list?.data.opentime.substring(0,2)}:{list?.data.opentime.substring(2,4)}&nbsp;-&nbsp;PM {list?.data.closetime.substring(0,2)}:{list?.data.closetime.substring(2,4)}
+                    </div>
+                  </div>
+                </div>
 
-    <StyledSlider {...settings}>
-        <>
-          <div>
-
-          {/* 이부분에 정보  */}
-          <div style={{
-            display:"flex",
-            flexDirection:"column"
-          }}>
-            별점 : {list?.data.avgstar}
-            카페이름 : {list?.data.cafename}
-            카페오픈시간 : {list?.data.opentime}
-            카페닫는시간 : {list?.data.closetime}
-            카페로고이미지 :{list?.data.logoimg}
-            reviews : {list?.data.postCnt}
-          </div>
-
-
-
-
-          {list?.data.imageList.map((item, i) => (
-            <img width={'520px'} height={'440px'} src={item.img} alt='slider' />
-            ))}
-          </div>
-        </>
+                {
+        (() => {
+          if (list?.data.imageList.length === 0)
+            return (
+              <>
+              <div className='nullBanner'>
+                </div>
+              </>
+            );
+          else
+            return (<>
+                <StyledSlider className='slider' {...settings}>
+                  {list?.data.imageList.map((item, i) => (
+                    <>
+                      <div className='imgItem'>
+                        <img width={599} height={450} src={item.img} alt='slider' />
+                      </div>
+                      {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
+                    </>
+                  ))}
+                </StyledSlider>
+              </>  
+            );
+        }
+        )()
+      }
+      </div>
+    </div>
     
-    </StyledSlider>
+    </>
 
-   
   );
 }
 
@@ -87,7 +102,6 @@ const StyledSlider = styled(Slider)`
     max-width: 100%;
     min-width: 100%;
     position: relative;
-    width: 100%;
     // margin: 0 auto;
     background-repeat: no-repeat;
     background-size: contain;
@@ -95,11 +109,9 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-slide div { //슬라이더  컨텐츠
+    width: fit-content;
     cursor: pointer;
     outline: none;
-    display: flex;
-    width: 100%;
-    justify-content:center;
   }
 `;
 

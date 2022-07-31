@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
-import Cafe1 from '../../css/cafeImg/cafe1.jpg'
+import "../../css/partCss/CeoBanner.css";
 import '../../css/partCss/OwnerCafe.css';
 import { OwnerCafeBenner, OwnerCafeLoad } from "../../redux/modules/MypageSlice";
 import CafeReg from "../CafeReg";
@@ -17,7 +17,7 @@ const ModifyCafe = () => {
     const dispatch = useDispatch()
     //카페베너
     const OwnerInfoBenner = useSelector((state) => state.MypageSlice.OwnerInfoBenner);
-    console.log(OwnerInfoBenner)
+    console.log(OwnerInfoBenner, "이게 필요하다 지금")
     //테스트
     const OwnerInfoList = useSelector((state) => state.MypageSlice.OwnerInfo);
     console.log(OwnerInfoList)
@@ -29,12 +29,14 @@ const ModifyCafe = () => {
 
 
     const settings = {
+        slide: 'div',
         infinite: true,
         speed: 500,
-        slideToShow: 1,
-        slideToScroll: 1,
+        slideToShow: 15,
+        variableWidth: true,
+        slideToScroll: 15,
         autoplay: true,
-        autoplaySpeed: 5000
+        autoplaySpeed: 4000,
     };
 
     return (
@@ -71,29 +73,75 @@ const ModifyCafe = () => {
                 </>
             ) : (
                 <>
-                    <StyledSlider {...settings}>
-                        <div></div>
-                    </StyledSlider>
-                    <BannerDiv>
-                        <div>
+                    <div className='ceoBannerDiv'>
+                        <div className='ceoSizeDiv'>
+                            <div className='ceoCafeInfo'>
+                                <div className='ceoCafeInfoDiv'>
+                                    <div className='ceoCafeNameDiv'>
+                                    {OwnerInfoBenner?.cafename}
+                                    </div>
+                                    <div className='ceo-star-reviewCntDiv'>
+                                    <span>☆☆☆☆☆{OwnerInfoBenner?.avgstar}</span>
+                                    &nbsp;{OwnerInfoBenner?.postCnt}&nbsp;reviews
+                                    </div>
+                                    <div className='ceo-open-close-time'>
+                                    <span>영업시간</span>{/* &nbsp;AM {OwnerInfoBenner?.opentime.substring(0,2)}:{OwnerInfoBenner?.opentime.substring(2,4)}&nbsp;-&nbsp;PM {OwnerInfoBenner?.closetime.substring(0,2)}:{OwnerInfoBenner?.closetime.substring(2,4)} */}
+                                    </div>
+                                </div>
+                                </div>
+
+                                {
+                        (() => {
+                        if (OwnerInfoBenner?.imageList.length === 0)
+                            return (
+                            <>
+                            <div className='ceoNullBanner'>
+                                </div>
+                            </>
+                            );
+                        else
+                            return (<>
+                                <StyledSlider className='ceoSlider' {...settings}>
+                                {OwnerInfoBenner?.imageList.map((item, i) => (
+                                    <>
+                                    <div className='imgItem'>
+                                        <img width={599} height={450} src={item.img} alt='slider' />
+                                    </div>
+                                    {/* {item.imageList?.map((t, i) => ())} //imageList안에 img뽑아오려고 작성한 map */}
+                                    </>
+                                ))}
+                                </StyledSlider>
+                            </>  
+                            );
+                        }
+                        )()
+                    }
+                    </div>
+                </div>
+                    {/* <div className='bannerDiv'>
+                        <div className='sizeDiv'>
                             <div className="div1">{OwnerInfoBenner?.cafename}</div><br />
                             <div className="div2">
                                 ☆☆☆☆☆{OwnerInfoBenner?.avgstar}&nbsp;
                                 <span>{OwnerInfoBenner?.postCnt}review</span> <br />
                             </div>
-                            {OwnerCafeBenner?.opentime !== OwnerInfoBenner?.opentime ? (
                                 <>
                                 <div className="div3">
-                                    Open {OwnerInfoBenner?.opentime}</div><br />
+                                    영업시간{OwnerInfoBenner?.opentime}
+                                    {OwnerInfoBenner?.closetime}
+                                </div>
                                 </>
-                            ):(
-                                <>
-                                <div className="div4">
-                                    Close {OwnerInfoBenner?.closetime}</div><br />
-                                </>
-                            )}
+                                <StyledSlider {...settings}>
+                                    {OwnerInfoBenner?.imageList.map((item, i) => (
+                                        <>
+                                            <div>
+                                                <img width={599} height={450} src={item.img} alt='slider' />
+                                            </div>
+                                        </>
+                                    ))}
+                                </StyledSlider>
                         </div>
-                    </BannerDiv>
+                    </div> */}
                     <div className="containerDiv">
                         <button className="categoryBox"
                             onClick={() => { setSubMenu("A") }}>
@@ -147,13 +195,13 @@ const Container = styled.div`
 `;
 
 const BannerDiv = styled.div`
-  position: relative;
-  margin-top: -125px;
-  padding: 5px;
+    position: relative;
+    display : flex;
+    justify-content: center;
 
 
   .div1 {
-    font-family: 'Arita-dotum-Medium';
+    font-family: 'Arita-dotum-Bold';
     font-size: 50px;
   }
 
@@ -166,12 +214,12 @@ const BannerDiv = styled.div`
   }
 
   .div3 {
-    color: blue;
-  }
+
+}
 
   .div4 {
-    color: blue;
-  }
+
+}
 `;
 
 

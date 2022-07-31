@@ -1,0 +1,84 @@
+.imgItem{
+    height: 450px;
+    width: fit-content;
+}
+
+.ceoNullBanner{
+    height: 450px;
+    background-color: #FFFFFF;
+    z-index: 1;
+}
+
+.ceoBannerDiv{
+    position: relative;
+    display : flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ceoSizeDiv {
+    width: 1200px;
+    height: 450px;
+    z-index: 2;
+}
+
+.ceoCafeInfo {
+    position: absolute;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 3;
+    display: flex;
+    left: 68px;
+    top: 260px;
+}
+
+.ceoCafeInfoDiv {
+    margin-left: 31px;
+}
+
+.ceoCafeNameDiv {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 50px;
+    font-family: 'Arita-dotum-Bold';
+    color: #19221F;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.ceo-star-reviewCntDiv {
+    font-family: 'Arita-dotum-Medium';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #19221F;
+}
+
+.ceo-star-reviewCntDiv>span {
+    font-size: 30px;
+    color: #19221F;
+}
+
+.ceo-open-close-time {
+    font-family: 'Arita-dotum-Medium';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #19221F;
+}
+
+.ceo-open-close-time>span{
+    font-family: 'Arita-dotum-Medium';
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    color: #0085FF;
+}
+
+.ceoSlider{
+    position: absolute;
+    right: 0%;
+    z-index: 1;
+}

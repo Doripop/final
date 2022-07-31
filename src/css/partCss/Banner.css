@@ -1,0 +1,100 @@
+.imgContainer{
+    display: flex;
+}
+
+.imgItem{
+    height: 450px;
+    width: fit-content;
+}
+
+.logoDiv{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.logoDiv > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nullBanner{
+    height: 450px;
+    background-color: #19221F;
+    z-index: 1;
+}
+
+.bannerDiv{
+    position: relative;
+    display : flex;
+    justify-content: center;
+}
+
+.sizeDiv {
+    width: 1200px;
+    height: 450px;
+    z-index: 2;
+}
+
+.cafeInfo {
+    position: absolute;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 3;
+    display: flex;
+    left: 270px;
+    top: 280px;
+}
+
+.cafeInfoDiv {
+    margin-left: 31px;
+}
+
+.cafeNameDiv {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 50px;
+    font-family: 'Arita-dotum-Bold';
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.star-reviewCntDiv {
+    font-family: 'Arita-dotum-Medium';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.star-reviewCntDiv>span {
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.open-close-time {
+    font-family: 'Arita-dotum-Medium';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.open-close-time>span{
+    font-family: 'Arita-dotum-Medium';
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    color: #0085FF;
+}
+
+.slider{
+    position: absolute;
+    right: 0%;
+    z-index: 1;
+}
