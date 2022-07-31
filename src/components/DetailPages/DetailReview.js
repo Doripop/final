@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaComment } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux"
-import { ApplyLike, CreateComment, DeleteMyComment, DeletePost, DetailCafePost, LikeCountAdd, LikeCountMinus, ModifyMyCommnet } from "../../redux/modules/AllSlice";
+import { ApplyLike, CreateComment, DeleteMyComment, DeletePost, DetailCafeBanner, DetailCafePost, LikeCountAdd, LikeCountMinus, ModifyMyCommnet } from "../../redux/modules/AllSlice";
 import { useParams } from "react-router-dom";
 import { instance } from "../../shard/axios";
 import { LikeInfoLoad, LikeList, UnLikeList } from "../../redux/modules/Likes";
@@ -12,6 +12,27 @@ import { LikeInfoLoad, LikeList, UnLikeList } from "../../redux/modules/Likes";
 
 const DetailReview = () => {
 
+    const parm = useParams();
+    const [userName, setUsername] = useState("")
+    const [isLogin, setIsLogin] = useState("")
+    const [Like, setLike] = useState([])
+    const dispatch = useDispatch()
+    //정렬하기
+    const [sort, setSort] = useState("star")
+    const [comment, setComment] = useState("")
+
+    React.useEffect(() => {
+        setUsername(localStorage.getItem("nicname"))
+        setIsLogin(localStorage.getItem("token"))
+        dispatch(LikeInfoLoad(parm.id))
+        dispatch(DetailCafeBanner(parm.id))
+        dispatch(DetailCafePost({
+            id: parm.id,
+            sort: sort
+        }))
+        setLike(AllLikeList)
+
+    }, [dispatch, Like, sort, parm.id])
 
     const AllLikeList = useSelector((state) => state.Likes.LikeInfo);
     const review = useSelector((state) => state.AllSlice.DetailCafePostList);
@@ -32,40 +53,6 @@ const DetailReview = () => {
     //     })
     // })
     
-
-    const dispatch = useDispatch()
-
-
-
-    //정렬하기
-    const [sort, setSort] = useState("star")
-
-
-
-    const [comment, setComment] = useState("")
-
-
-    const parm = useParams();
-    const [userName, setUsername] = useState("")
-    const [isLogin, setIsLogin] = useState("")
-    const [Like, setLike] = useState([])
-
-
-
-    React.useEffect(() => {
-        setUsername(localStorage.getItem("nicname"))
-        setIsLogin(localStorage.getItem("token"))
-        dispatch(LikeInfoLoad(parm.id))
-        dispatch(DetailCafePost({
-            id: parm.id,
-            sort: sort
-        }))
-        setLike(AllLikeList)
-
-    }, [dispatch, Like, sort, parm.id])
-
-
-
 
     // console.log(review)
     // console.log(Like)
