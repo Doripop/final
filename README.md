@@ -11,6 +11,11 @@
 
 <br>
 
+# 📏 ERD
+<img width="1875" alt="BLANK ERD" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2fc444c4-cff3-4c82-b628-922a3eb65228/ERD.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220804T092757Z&X-Amz-Expires=86400&X-Amz-Signature=8b994356367080033259758cc6dd61cb0134751329cfc779acc555a95d7ab394&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22ERD.PNG.png%22&x-id=GetObject">
+
+<br>
+
 # ☕ 서비스 아키텍처
 
 <img width="1875" alt="BLANK 최종 아키텍쳐" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ab8ee524-e03b-43bc-a3b1-543e7a27bf0b/KakaoTalk_20220802_213104269.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220803%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220803T111050Z&X-Amz-Expires=86400&X-Amz-Signature=5c7def0256f1877924c6bbf3d6270772bb527027c979a740ec07b7edeb9754de&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22KakaoTalk_20220802_213104269.png%22&x-id=GetObject">
